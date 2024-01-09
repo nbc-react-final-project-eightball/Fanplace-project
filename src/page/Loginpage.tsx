@@ -1,7 +1,13 @@
-import React from "react";
-import * as S from "../styledComponent/styledLogin/StLogin";
+import React from 'react';
+import * as S from '../styledComponent/styledLogin/StLogin';
+import LoginForm from '../component/login/LoginForm';
 const Loginpage = () => {
-  return <div>Loginpage</div>;
+  return (
+    <>
+      <S.LoginTitle>로그인</S.LoginTitle>
+      <LoginForm></LoginForm>
+    </>
+  );
 };
 
 export default Loginpage;
