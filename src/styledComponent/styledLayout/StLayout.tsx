@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const Layout = styled.div`
   display: flex;
   flex-direction: column;
-
+  height: 100vh;
   align-items: center;
 `;
 
@@ -18,13 +18,13 @@ export const LayoutSection1 = styled.div`
   grid-area: 1 / 2 / 4 / 3;
   background: #494949;
   width: 15vw;
-  height: 80vh;
+  height: 100vh;
 `;
 export const LayoutSection2 = styled.div`
   grid-area: 1 / 3 / 4 / 4;
   background: #cbffd4;
   width: 85vw;
-  height: 80vh;
+  height: 100vh;
 `;
 
 //sidebar start
@@ -55,7 +55,7 @@ export const FooterContainer = styled.div`
   background-color: #faafaf;
   padding: 20px;
   color: white;
-  width: 100vw;
+  width: 100%;
   height: 200px;
 `;
 export const FooterContent = styled.div`
