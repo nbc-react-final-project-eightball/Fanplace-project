@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from 'react';
 import * as S from '../../styledComponent/styledHeader/StHeader';
 import BasicHeader from './BasicHeader';
@@ -16,6 +17,7 @@ const Header = () => {
     <S.HeaderContainer>
       {scrollPostion < 150 ? <BasicHeader /> : <ChangeHeader />};
     </S.HeaderContainer>
+
   );
 };
 
