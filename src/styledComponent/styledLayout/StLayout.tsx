@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const Layout = styled.div`
   display: flex;
   flex-direction: column;
-
+  height: 200vh;
   align-items: center;
 `;
 
@@ -13,49 +13,28 @@ export const LayoutContainer = styled.div`
   grid-template-rows: 0fr 0fr 1fr;
   grid-column-gap: 0px;
   grid-row-gap: 0px;
+  height: 280vw;
 `;
 export const LayoutSection1 = styled.div`
   grid-area: 1 / 2 / 4 / 3;
-  background: #494949;
+  background: black;
   width: 15vw;
-  height: 80vh;
+  height: 100vh;
+  margin-top: 10%;
 `;
 export const LayoutSection2 = styled.div`
   grid-area: 1 / 3 / 4 / 4;
-  background: #cbffd4;
+
   width: 85vw;
-  height: 80vh;
+  height: 100vh;
 `;
-
-//sidebar start
-export const SideBarContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 20px;
-`;
-export const SideBarBtn = styled.button`
-  width: 100%;
-  height: 50px;
-  margin-bottom: 10px;
-  background-color: #f0f90e;
-  border: none;
-  border-radius: 5px;
-  color: black;
-  font-size: 20px;
-  font-weight: bold;
-  cursor: pointer;
-  text-align: center;
-`;
-
-//sidebar end
 
 //Footer start
 export const FooterContainer = styled.div`
   background-color: #faafaf;
   padding: 20px;
   color: white;
-  width: 100vw;
+  width: 100%;
   height: 200px;
 `;
 export const FooterContent = styled.div`

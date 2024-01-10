@@ -1,9 +1,9 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
 import * as S from '../styledComponent/styledLayout/StLayout';
-import Footer from '../component/layout/Footer';
-import Header from '../component/layout/Header';
-import SideBar from '../component/layout/SideBar';
+import Footer from '../components/layout/Footer';
+import Header from '../components/layout/Header';
+import SideBar from '../components/layout/SideBar';
 const Layout = () => {
   return (
     <S.Layout>
