@@ -16,7 +16,7 @@ export const LayoutContainer = styled.div`
 `;
 export const LayoutSection1 = styled.div`
   grid-area: 1 / 2 / 4 / 3;
-  background: #494949;
+  background: black;
   width: 15vw;
   height: 100vh;
 `;
@@ -26,29 +26,6 @@ export const LayoutSection2 = styled.div`
   width: 85vw;
   height: 100vh;
 `;
-
-//sidebar start
-export const SideBarContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 20px;
-`;
-export const SideBarBtn = styled.button`
-  width: 100%;
-  height: 50px;
-  margin-bottom: 10px;
-  background-color: #f0f90e;
-  border: none;
-  border-radius: 5px;
-  color: black;
-  font-size: 20px;
-  font-weight: bold;
-  cursor: pointer;
-  text-align: center;
-`;
-
-//sidebar end
 
 //Footer start
 export const FooterContainer = styled.div`
