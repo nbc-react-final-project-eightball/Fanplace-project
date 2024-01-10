@@ -9,7 +9,7 @@ const Mainpage = () => {
       <div
         style={{
           width: '90%',
-          height: '100vh',
+          height: '170vh',
           margin: 'auto',
           justifyContent: 'center',
           overflow: 'hidden',
@@ -18,6 +18,18 @@ const Mainpage = () => {
         <MainBottomCarousel />
         <MainBottomCarousel />
         <MainBttomAlbum />
+        {/* TODO: 나중에 백그라운드 이미지 변경 해야함 */}
+        <div
+          style={{
+            backgroundImage: `url('img/bg1.jpg')`,
+            backgroundSize: '320',
+            backgroundRepeat: 'no-repeat',
+            backgroundAttachment: 'fixed',
+            backgroundPosition: 'right 25% center',
+            height: '20vh',
+            width: '100%',
+          }}
+        />
       </div>
     </>
   );

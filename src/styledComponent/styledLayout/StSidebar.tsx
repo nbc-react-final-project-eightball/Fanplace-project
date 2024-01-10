@@ -11,7 +11,6 @@ export const SideBarBtn = styled.button`
   width: 100%;
   height: 50px;
   margin-bottom: 10px;
-
   border: none;
   border-radius: 5px;
   color: #ffffff;
