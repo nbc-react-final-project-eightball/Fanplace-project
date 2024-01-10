@@ -1,16 +1,4 @@
 import React from 'react';
-<<<<<<< HEAD
-import * as S from '../../styledComponent/styledLayout/StLayout';
-const SideBar = () => {
-  return (
-    <S.SideBarContainer>
-      <S.SideBarBtn>New</S.SideBarBtn>
-      <S.SideBarBtn>CD</S.SideBarBtn>
-      <S.SideBarBtn> 포토카드</S.SideBarBtn>
-      <S.SideBarBtn> 의류</S.SideBarBtn>
-      <S.SideBarBtn> 응원봉 </S.SideBarBtn>
-      <S.SideBarBtn> 악세사리 </S.SideBarBtn>
-=======
 import * as S from '../../styledComponent/styledLayout/StSidebar';
 import { Link } from 'react-router-dom';
 const SideBar = () => {
@@ -52,7 +40,6 @@ const SideBar = () => {
           <Link to="/New">공지사항/FAQ</Link>
         </S.SideBarBtn>
       </S.SideBarSectionBottom>
->>>>>>> 84b04770ceec93270d2d70a87c82819612408d5f
     </S.SideBarContainer>
   );
 };
