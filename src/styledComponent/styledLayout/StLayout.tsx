@@ -20,6 +20,8 @@ export const LayoutSection1 = styled.div`
   background: black;
   width: 15vw;
   height: 100vh;
+  margin-top: 10%;
+
 `;
 export const LayoutSection2 = styled.div`
   grid-area: 1 / 3 / 4 / 4;
