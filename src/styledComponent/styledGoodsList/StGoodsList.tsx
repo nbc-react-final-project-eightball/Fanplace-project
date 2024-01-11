@@ -3,6 +3,7 @@ import styled from 'styled-components';
 export const Div = styled.div``;
 
 export const GoodsListContainer = styled.div`
+margin-top: 7vh;
   display: flex;
   flex-direction: column;
   align-items: center;
