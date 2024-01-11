@@ -7,6 +7,7 @@ export const SideBarContainer = styled.div`
   padding: 20px;
   height: 80%;
   margin-top: 30%;
+
 `;
 export const SideBarBtn = styled.button`
   width: 100%;

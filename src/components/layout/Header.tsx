@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from 'react';
 import * as S from '../../styledComponent/styledLayout/StHeader';
 import { useNavigate } from 'react-router-dom';
@@ -37,6 +38,7 @@ const Header = () => {
         </S.Header>
       </S.Wrapper>
     </S.HeaderContainer>
+
   );
 };
 
