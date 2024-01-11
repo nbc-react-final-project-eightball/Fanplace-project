@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import * as S from '../../styledComponent/styledLayout/StHeader';
 import { useNavigate } from 'react-router-dom';
-
+//헤더수정
 const Header = () => {
   const navigate = useNavigate();
 
