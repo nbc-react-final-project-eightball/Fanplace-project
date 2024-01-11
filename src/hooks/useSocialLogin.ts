@@ -5,17 +5,23 @@ import {
   signInWithPopup,
 } from 'firebase/auth';
 import { auth } from '../firebase/config';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import { AuthContext } from 'contexts/AuthContext';
+import { useNavigate } from 'react-router-dom';
 
-interface LoginResult {
-  login: () => Promise<void>;
+interface SocialLoginResult {
+  socialLogin: () => Promise<void>;
   isPending: boolean;
   error: boolean | null;
 }
 
 type AuthProviderType = 'github' | 'google';
 
-export const useSocialLogin = (providerType: AuthProviderType): LoginResult => {
+export const useSocialLogin = (
+  providerType: AuthProviderType,
+): SocialLoginResult => {
+  const navigate = useNavigate();
+
   const [error, setError] = useState<boolean | null>(null);
   const [isPending, setIsPending] = useState<boolean>(false);
 
@@ -26,7 +32,9 @@ export const useSocialLogin = (providerType: AuthProviderType): LoginResult => {
       ? new GithubAuthProvider()
       : new GoogleAuthProvider();
 
-  const login: () => Promise<void> = async () => {
+  const { dispatch } = useContext(AuthContext);
+
+  const socialLogin: () => Promise<void> = async () => {
     setError(null);
     setIsPending(true);
 
@@ -37,7 +45,11 @@ export const useSocialLogin = (providerType: AuthProviderType): LoginResult => {
       }
 
       const user = res.user;
-      console.log(user);
+      const displayName = user.displayName || 'Guest';
+
+      dispatch({ type: 'LOGIN', payload: { ...user, displayName } });
+      alert('로그인 되었습니다.');
+      navigate('/');
       setIsPending(false);
     } catch (error: any) {
       console.log(error);
@@ -46,5 +58,5 @@ export const useSocialLogin = (providerType: AuthProviderType): LoginResult => {
     }
   };
 
-  return { login, isPending, error };
+  return { socialLogin, isPending, error };
 };

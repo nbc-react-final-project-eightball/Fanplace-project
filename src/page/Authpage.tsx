@@ -4,8 +4,9 @@ import AuthForm from '../components/auth/AuthForm';
 const Authpage = () => {
   return (
     <>
-      <S.LoginTitle>로그인</S.LoginTitle>
+    <S.AuthFormWrapper>
       <AuthForm></AuthForm>
+      </S.AuthFormWrapper>
     </>
   );
 };

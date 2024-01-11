@@ -1,11 +1,13 @@
 import React, { ComponentProps, useState } from 'react';
 import * as S from '../../styledComponent/styledAuth/StAuthForm';
-import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from 'firebase/auth';
 import { auth, db } from '../../firebase/config';
 import { doc, setDoc } from 'firebase/firestore';
 import { useSocialLogin } from '../../hooks/useSocialLogin';
 import { useNavigate } from 'react-router-dom';
-import { useLogin } from 'hooks/useLogin';
 
 const AuthForm = () => {
   const navigate = useNavigate();
@@ -17,7 +19,7 @@ const AuthForm = () => {
   const [passwordConfirmation, setPasswordConfirmation] = useState<string>('');
   const [isLoginForm, setIsLoginForm] = useState<boolean>(true);
 
-  // 로그인 훅
+  // 소셜로그인 훅
   // 깃허브로 로그인
   const {
     socialLogin: githubLogin,
@@ -32,12 +34,6 @@ const AuthForm = () => {
     error: googleError,
   } = useSocialLogin('google');
 
-  // 이메일로 로그인
-  const { login, isPending, error } = useLogin();
-
-  // if (isLoading) {
-  //   return <div>로딩 중..</div>;
-  // }
   const InputHandler: ComponentProps<'input'>['onChange'] = (e) => {
     const { name, value } = e.target;
 
@@ -59,8 +55,13 @@ const AuthForm = () => {
 
     try {
       if (isLoginForm) {
-        await login(email, password);
-        // cta[0]));
+        // 로그인
+        const signIn = await signInWithEmailAndPassword(
+          auth,
+          email.trim(),
+          password,
+        );
+        // dispatch(login(signIn.user.providerData[0]));
         alert('로그인 되었습니다.');
         navigate('/');
       } else {
@@ -74,9 +75,6 @@ const AuthForm = () => {
           email,
           password,
         );
-
-        await updateProfile(response.user, { displayName: userName });
-
         console.log('response', response);
         await setDoc(doc(db, 'user', response.user.uid), {
           name: userName,
