@@ -5,7 +5,6 @@ const SideBar = () => {
   return (
     <S.SideBarContainer>
       <S.SideBarSectionTop>
-        \
         <S.SideBarBtn>
           <Link to="/New">New</Link>
         </S.SideBarBtn>
