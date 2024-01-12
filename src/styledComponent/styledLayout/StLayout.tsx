@@ -22,6 +22,7 @@ export const LayoutSection1 = styled.div`
   height: 100vh;
 `;
 export const LayoutSection2 = styled.div`
+  margin-top: 150px;
   grid-area: 1 / 3 / 4 / 4;
   width: 85vw;
   height: 100vh;

@@ -2,6 +2,7 @@ import React from 'react';
 import * as S from '../styledComponent/styledMain/StMain';
 import MainBottomCarousel from '../components/Main/MainBottomCarousel';
 import MainBttomAlbum from '../components/Main/MainBttomAlbum';
+import MainTopCarousel from 'components/Main/MainTopCarousel';
 
 const Mainpage = () => {
   return (
@@ -15,6 +16,7 @@ const Mainpage = () => {
           overflow: 'hidden',
         }}
       >
+        <MainTopCarousel />
         <MainBottomCarousel />
         <MainBottomCarousel />
         <MainBttomAlbum />
