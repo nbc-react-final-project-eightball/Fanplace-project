@@ -1,13 +1,22 @@
 import styled from 'styled-components';
 import TextField from '@mui/material/TextField';
 
+interface LoginButtonProps {
+  width?: string;
+}
+
 export const AuthForm = styled.form`
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 20px;
   width: 640px;
   height: auto;
   margin: 0 auto;
+`;
+export const AuthFormTitle = styled.h2`
+  font-size: 24px;
+  text-align: center;
 `;
 
 export const LoginInput = styled.input`
@@ -48,11 +57,21 @@ export const TextInputField = styled(TextField)`
   }
 `;
 
-export const LoginButton = styled.button`
+export const LoginButton = styled.button<LoginButtonProps>`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
   width: 320px;
-  height: 40px;
+  height: 48px;
   text-align: center;
   border: 1px solid #aaa;
+  border-radius: 5px;
+  background: ${(props) => props.color || 'none'};
+  color: ${(props) => (props.color ? '#ffffff' : '')};
+  img {
+    width: ${(props) => props.width || 'auto'};
+  }
 `;
 
 export const SignUpButton = styled.button`

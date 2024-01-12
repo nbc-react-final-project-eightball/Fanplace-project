@@ -7,6 +7,9 @@ import { useSocialLogin } from '../../hooks/useSocialLogin';
 import { useNavigate } from 'react-router-dom';
 import { useLogin } from 'hooks/useLogin';
 import { Controller, useForm } from 'react-hook-form';
+import { InputLabel } from '@mui/material';
+import DeliveryAddress from 'components/auth/DeliveryAddress';
+import { useSignUp } from 'hooks/useSignUp';
 
 const AuthForm = () => {
   const navigate = useNavigate();
@@ -24,6 +27,7 @@ const AuthForm = () => {
     // 실시간 유효성 검사
     mode: isLoginForm ? 'onSubmit' : 'onChange',
   });
+  console.log('isLoginForm', isLoginForm);
 
   // 로그인 훅
   // 깃허브로 로그인
@@ -43,56 +47,30 @@ const AuthForm = () => {
   // 이메일로 로그인
   const { login, isPending, error } = useLogin();
 
+  // 이메일로 회원가입
+  const { signUp } = useSignUp();
+
   // if (isLoading) {
   //   return <div>로딩 중..</div>;
   // }
 
   const submitHandler = async (data: Record<string, any>) => {
-    const {
-      loginEmail,
-      signUpEmail,
-      userName,
-      phoneNumber,
-      address,
-      loginPassword,
-      signUpPassword,
-      passwordConfirmation,
-    } = data;
-
-    const authInputData = {
-      loginEmail: data.get('loginEmail'),
-      signUpEmail: data.get('signUpEmail'),
-      userName: data.get('userName'),
-      phoneNumber: data.get('phoneNumber'),
-      address: data.get('address'),
-      loginPassword: data.get('loginPassword'),
-      signUpPassword: data.get('signUpPassword'),
-      passwordConfirmation: data.get('passwordConfirmation'),
-    };
-
     try {
       if (isLoginForm) {
         // 로그인
-        await login(data.email, loginPassword);
-        alert('로그인 되었습니다.');
-        navigate('/');
+        const [email, password] = getValues(['email', 'password']);
+
+        await login(data.email, password);
       } else {
-        //회원가입;
-        const response = await createUserWithEmailAndPassword(
-          auth,
-          signUpEmail,
-          signUpPassword,
-        );
+        const [email, userName, phoneNumber, adress, password] = getValues([
+          'email',
+          'userName',
+          'phoneNumber',
+          'adress',
+          'password',
+        ]);
+        await signUp(email, userName, phoneNumber, adress, password);
 
-        await updateProfile(response.user, { displayName: userName });
-
-        console.log('response', response);
-        await setDoc(doc(db, 'user', response.user.uid), {
-          name: userName,
-          phoneNumber,
-          email: signUpEmail,
-        });
-        alert('회원가입이 완료되었습니다.');
         reset();
         setIsLoginForm(true);
       }
@@ -103,48 +81,55 @@ const AuthForm = () => {
   return (
     <>
       <S.AuthForm onSubmit={handleSubmit(submitHandler)}>
-        <h2>{isLoginForm ? '로그인' : '회원가입'}</h2>
+        <S.AuthFormTitle>{isLoginForm ? '로그인' : '회원가입'}</S.AuthFormTitle>
         {isLoginForm ? (
           <>
             <Controller
-              name="loginEmail"
+              name="email"
               control={control}
               defaultValue={''}
-              rules={{
-                required: '이메일을 입력하세요.',
-              }}
               render={({ field, fieldState }) => (
-                <S.TextInputField
-                  value={field.value}
-                  onChange={field.onChange}
-                  error={fieldState.error !== undefined && fieldState.isDirty}
-                  helperText={fieldState.error && fieldState.error.message}
-                  InputLabelProps={{ shrink: false }}
-                  InputProps={{
-                    placeholder: '이메일',
-                  }}
-                />
+                <div>
+                  <InputLabel>이메일</InputLabel>
+                  <S.TextInputField
+                    value={field.value}
+                    onChange={field.onChange}
+                    error={fieldState.error !== undefined && fieldState.isDirty}
+                    helperText={
+                      fieldState.isDirty
+                        ? fieldState.error && fieldState.error.message
+                        : ''
+                    }
+                    InputLabelProps={{ shrink: false }}
+                    InputProps={{
+                      placeholder: 'fancyplace@gmail.com',
+                    }}
+                  />
+                </div>
               )}
             />
             <Controller
-              name="loginPassword"
+              name="password"
               control={control}
               defaultValue={''}
-              rules={{
-                required: '비밀번호를 입력해주세요!',
-                minLength: { value: 8, message: '최소 8자 입력해주세요.' },
-              }}
               render={({ field, fieldState }) => (
-                <S.TextInputField
-                  value={field.value}
-                  onChange={field.onChange}
-                  error={fieldState.error !== undefined && fieldState.isDirty}
-                  helperText={fieldState.error && fieldState.error.message}
-                  InputLabelProps={{ shrink: false }}
-                  InputProps={{
-                    placeholder: '비밀번호',
-                  }}
-                />
+                <div>
+                  <InputLabel>비밀번호</InputLabel>
+                  <S.TextInputField
+                    value={field.value}
+                    onChange={field.onChange}
+                    error={fieldState.error !== undefined && fieldState.isDirty}
+                    helperText={
+                      fieldState.isDirty
+                        ? fieldState.error && fieldState.error.message
+                        : ''
+                    }
+                    InputLabelProps={{ shrink: false }}
+                    InputProps={{
+                      placeholder: '비밀번호',
+                    }}
+                  />
+                </div>
               )}
             />
           </>
@@ -157,22 +142,29 @@ const AuthForm = () => {
               rules={{
                 required: '이름을 입력해주세요',
                 pattern: {
-                  value: /^[가-힣a-zA-Z0-9]+$/u,
+                  value: /^[가-힣]+$/u,
                   message: '올바른 이름을 입력해주세요',
                 },
               }}
               render={({ field, fieldState }) => (
-                <S.TextInputField
-                  value={field.value}
-                  onChange={field.onChange}
-                  error={fieldState.error !== undefined && fieldState.isDirty}
-                  helperText={fieldState.error && fieldState.error.message}
-                  InputLabelProps={{ shrink: false }}
-                  InputProps={{
-                    // maxLength: 8,
-                    placeholder: '이름을 입력해주세요(최대 8자)',
-                  }}
-                />
+                <div>
+                  <InputLabel>이름</InputLabel>
+                  <S.TextInputField
+                    value={field.value}
+                    onChange={field.onChange}
+                    error={fieldState.error !== undefined && fieldState.isDirty}
+                    helperText={
+                      fieldState.isDirty
+                        ? fieldState.error && fieldState.error.message
+                        : ''
+                    }
+                    InputLabelProps={{ shrink: false }}
+                    InputProps={{
+                      // maxLength: 8,
+                      placeholder: '이름을 입력해주세요',
+                    }}
+                  />
+                </div>
               )}
             />
             <Controller
@@ -187,42 +179,29 @@ const AuthForm = () => {
                 },
               }}
               render={({ field, fieldState }) => (
-                <S.TextInputField
-                  value={field.value}
-                  onChange={field.onChange}
-                  error={fieldState.error !== undefined && fieldState.isDirty}
-                  helperText={fieldState.error && fieldState.error.message}
-                  InputLabelProps={{ shrink: false }}
-                  InputProps={{
-                    // maxLength: 11,
-                    placeholder: '01012345678',
-                  }}
-                />
+                <div>
+                  <InputLabel>전화번호</InputLabel>
+                  <S.TextInputField
+                    value={field.value}
+                    onChange={field.onChange}
+                    error={fieldState.error !== undefined && fieldState.isDirty}
+                    helperText={
+                      fieldState.isDirty
+                        ? fieldState.error && fieldState.error.message
+                        : ''
+                    }
+                    InputLabelProps={{ shrink: false }}
+                    InputProps={{
+                      // maxLength: 11,
+                      placeholder: '01012345678',
+                    }}
+                  />
+                </div>
               )}
             />
+            <DeliveryAddress />
             <Controller
-              name="address"
-              control={control}
-              defaultValue={''}
-              rules={{
-                required: '기본 배송지를 입력해주세요',
-              }}
-              render={({ field, fieldState }) => (
-                <S.TextInputField
-                  value={field.value}
-                  onChange={field.onChange}
-                  error={fieldState.error !== undefined && fieldState.isDirty}
-                  helperText={fieldState.error && fieldState.error.message}
-                  InputLabelProps={{ shrink: false }}
-                  InputProps={{
-                    // maxLength: 11,
-                    placeholder: '기본 배송지를 입력해주세요',
-                  }}
-                />
-              )}
-            />
-            <Controller
-              name="signUpEmail"
+              name="email"
               control={control}
               defaultValue={''}
               rules={{
@@ -234,20 +213,27 @@ const AuthForm = () => {
                 },
               }}
               render={({ field, fieldState }) => (
-                <S.TextInputField
-                  value={field.value}
-                  onChange={field.onChange}
-                  error={fieldState.error !== undefined && fieldState.isDirty}
-                  helperText={fieldState.error && fieldState.error.message}
-                  InputLabelProps={{ shrink: false }}
-                  InputProps={{
-                    placeholder: '이메일을 입력해주세요',
-                  }}
-                />
+                <div>
+                  <InputLabel>이메일</InputLabel>
+                  <S.TextInputField
+                    value={field.value}
+                    onChange={field.onChange}
+                    error={fieldState.error !== undefined && fieldState.isDirty}
+                    helperText={
+                      fieldState.isDirty
+                        ? fieldState.error && fieldState.error.message
+                        : ''
+                    }
+                    InputLabelProps={{ shrink: false }}
+                    InputProps={{
+                      placeholder: 'fancyplace@gmail.com',
+                    }}
+                  />
+                </div>
               )}
             />
             <Controller
-              name="signUpPassword"
+              name="password"
               control={control}
               defaultValue={''}
               rules={{
@@ -261,16 +247,23 @@ const AuthForm = () => {
                 },
               }}
               render={({ field, fieldState }) => (
-                <S.TextInputField
-                  value={field.value}
-                  onChange={field.onChange}
-                  error={fieldState.error !== undefined && fieldState.isDirty}
-                  helperText={fieldState.error && fieldState.error.message}
-                  InputLabelProps={{ shrink: false }}
-                  InputProps={{
-                    placeholder: '비밀번호를 입력해주세요!',
-                  }}
-                />
+                <div>
+                  <InputLabel>비밀번호</InputLabel>
+                  <S.TextInputField
+                    value={field.value}
+                    onChange={field.onChange}
+                    error={fieldState.error !== undefined && fieldState.isDirty}
+                    helperText={
+                      fieldState.isDirty
+                        ? fieldState.error && fieldState.error.message
+                        : ''
+                    }
+                    InputLabelProps={{ shrink: false }}
+                    InputProps={{
+                      placeholder: '비밀번호를 입력해주세요!',
+                    }}
+                  />
+                </div>
               )}
             />
             <Controller
@@ -279,26 +272,29 @@ const AuthForm = () => {
               defaultValue={''}
               rules={{
                 required: '비밀번호 확인이 일치하지 않습니다!',
-                minLength: { value: 6, message: '최소 6자 입력해주세요.' },
                 validate: (value) =>
-                  value === getValues('signUpPassword') ||
+                  value === getValues('password') ||
                   '비밀번호 확인이 일치하지 않습니다!',
               }}
               render={({ field, fieldState }) => (
-                <S.TextInputField
-                  value={field.value}
-                  onChange={field.onChange}
-                  error={!!fieldState.error}
-                  helperText={fieldState.error && fieldState.error.message}
-                  InputLabelProps={{ shrink: false }}
-                  InputProps={{
-                    // maxLength: 12,
-                    ...(fieldState.error !== undefined
-                      ? { maxLength: 12 }
-                      : {}),
-                    placeholder: '비밀번호 확인을 입력해주세요',
-                  }}
-                />
+                <div>
+                  <InputLabel>비밀번호 확인</InputLabel>
+                  <S.TextInputField
+                    value={field.value}
+                    onChange={field.onChange}
+                    error={!!(fieldState.isDirty && fieldState.error)}
+                    helperText={
+                      fieldState.isDirty
+                        ? fieldState.error && fieldState.error.message
+                        : ''
+                    }
+                    InputLabelProps={{ shrink: false }}
+                    InputProps={{
+                      // maxLength: 12,
+                      placeholder: '비밀번호 확인을 입력해주세요',
+                    }}
+                  />
+                </div>
               )}
             />
           </>
@@ -308,6 +304,7 @@ const AuthForm = () => {
         </S.LoginButton>
         {isLoginForm ? (
           <S.SignUpButton
+            type="button"
             onClick={() => {
               setIsLoginForm(false);
               reset();
@@ -317,6 +314,7 @@ const AuthForm = () => {
           </S.SignUpButton>
         ) : (
           <S.SignUpButton
+            type="button"
             onClick={() => {
               setIsLoginForm(true);
               reset();
@@ -325,11 +323,31 @@ const AuthForm = () => {
             이메일로 로그인하기
           </S.SignUpButton>
         )}
-        <S.LoginButton onClick={googleLogin}>
-          {googleIsPending ? 'Loading...' : '구글 로그인'}
+        <S.LoginButton width={'24px'} onClick={googleLogin}>
+          {googleIsPending ? (
+            'Loading...'
+          ) : (
+            <>
+              <img
+                src={`${process.env.PUBLIC_URL}/img/logo/google.png`}
+                alt="Google Logo"
+              />
+              구글 로그인
+            </>
+          )}
         </S.LoginButton>
-        <S.LoginButton onClick={githubLogin}>
-          {githubIsPending ? 'Loading...' : '깃허브 로그인'}
+        <S.LoginButton color={'#333333'} width={'18px'} onClick={githubLogin}>
+          {githubIsPending ? (
+            'Loading...'
+          ) : (
+            <>
+              <img
+                src={`${process.env.PUBLIC_URL}/img/logo/github.png`}
+                alt="github Logo"
+              />
+              깃허브 로그인
+            </>
+          )}
         </S.LoginButton>
       </S.AuthForm>
     </>

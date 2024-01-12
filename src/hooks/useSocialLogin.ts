@@ -3,6 +3,7 @@ import {
   GithubAuthProvider,
   GoogleAuthProvider,
   signInWithPopup,
+  updateProfile,
 } from 'firebase/auth';
 import { auth } from '../firebase/config';
 import { useContext, useState } from 'react';
@@ -48,7 +49,8 @@ export const useSocialLogin = (
       const displayName = user.displayName || 'Guest';
 
       dispatch({ type: 'LOGIN', payload: { ...user, displayName } });
-      alert('로그인 되었습니다.');
+      // await updateProfile( { displayName: userName });
+      alert('로그인 되었습니다2.');
       navigate('/');
       setIsPending(false);
     } catch (error: any) {
