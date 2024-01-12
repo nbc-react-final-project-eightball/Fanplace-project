@@ -13,7 +13,7 @@ export const LayoutContainer = styled.div`
   grid-template-rows: 0fr 0fr 1fr;
   grid-column-gap: 0px;
   grid-row-gap: 0px;
-  height: 120vw;
+  height: 170vw;
 `;
 export const LayoutSection1 = styled.div`
   grid-area: 1 / 2 / 4 / 3;
