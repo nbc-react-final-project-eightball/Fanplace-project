@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const Layout = styled.div`
   display: flex;
   flex-direction: column;
-  height: 200vh;
+  height: 100vh;
   align-items: center;
 `;
 
@@ -13,18 +13,19 @@ export const LayoutContainer = styled.div`
   grid-template-rows: 0fr 0fr 1fr;
   grid-column-gap: 0px;
   grid-row-gap: 0px;
-  height: 280vw;
+  height: 120vw;
 `;
 export const LayoutSection1 = styled.div`
   grid-area: 1 / 2 / 4 / 3;
   background: black;
   width: 15vw;
-  height: 100vh;
+
+  margin-top: 10%;
 `;
 export const LayoutSection2 = styled.div`
   grid-area: 1 / 3 / 4 / 4;
+  height: 100%;
   width: 85vw;
-  height: 100vh;
 `;
 
 //Footer start

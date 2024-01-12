@@ -11,6 +11,7 @@ const Mainpage = () => {
           width: '90%',
           height: '170vh',
           margin: 'auto',
+          marginTop: '10vh',
           justifyContent: 'center',
           overflow: 'hidden',
         }}
