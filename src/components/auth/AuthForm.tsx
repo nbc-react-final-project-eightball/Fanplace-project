@@ -1,14 +1,11 @@
 import { useState } from 'react';
 import * as S from '../../styledComponent/styledAuth/StAuthForm';
-import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
-import { auth, db } from '../../firebase/config';
-import { doc, setDoc } from 'firebase/firestore';
 import { useSocialLogin } from '../../hooks/useSocialLogin';
 import { useNavigate } from 'react-router-dom';
 import { useLogin } from 'hooks/useLogin';
 import { Controller, useForm } from 'react-hook-form';
 import { InputLabel } from '@mui/material';
-import DeliveryAddress from 'components/auth/DeliveryAddress';
+import DeliveryAddress from './DeliveryAddress';
 import { useSignUp } from 'hooks/useSignUp';
 
 const AuthForm = () => {
@@ -23,6 +20,7 @@ const AuthForm = () => {
     reset,
     getValues,
     formState: { errors },
+    watch,
   } = useForm({
     // 실시간 유효성 검사
     mode: isLoginForm ? 'onSubmit' : 'onChange',
@@ -62,13 +60,15 @@ const AuthForm = () => {
 
         await login(data.email, password);
       } else {
-        const [email, userName, phoneNumber, adress, password] = getValues([
-          'email',
-          'userName',
-          'phoneNumber',
-          'adress',
-          'password',
-        ]);
+        // 회원가입
+        const { email, userName, phoneNumber, adress, password } = watch();
+        // const [email, userName, phoneNumber, adress, password] = getValues([
+        //   'email',
+        //   'userName',
+        //   'phoneNumber',
+        //   'adress',
+        //   'password',
+        // ]);
         await signUp(email, userName, phoneNumber, adress, password);
 
         reset();
@@ -299,56 +299,74 @@ const AuthForm = () => {
             />
           </>
         )}
-        <S.LoginButton type="submit">
-          {isLoginForm ? '이메일로 로그인' : '이메일로 회원가입'}
-        </S.LoginButton>
         {isLoginForm ? (
-          <S.SignUpButton
-            type="button"
-            onClick={() => {
-              setIsLoginForm(false);
-              reset();
-            }}
-          >
-            이메일로 회원가입하기
-          </S.SignUpButton>
+          <S.LoginButton type="submit">로그인 </S.LoginButton>
         ) : (
-          <S.SignUpButton
-            type="button"
-            onClick={() => {
-              setIsLoginForm(true);
-              reset();
-            }}
-          >
-            이메일로 로그인하기
-          </S.SignUpButton>
+          <S.LoginButton type="submit">회원가입 완료</S.LoginButton>
         )}
-        <S.LoginButton width={'24px'} onClick={googleLogin}>
-          {googleIsPending ? (
-            'Loading...'
-          ) : (
-            <>
-              <img
-                src={`${process.env.PUBLIC_URL}/img/logo/google.png`}
-                alt="Google Logo"
-              />
-              구글 로그인
-            </>
-          )}
-        </S.LoginButton>
-        <S.LoginButton color={'#333333'} width={'18px'} onClick={githubLogin}>
-          {githubIsPending ? (
-            'Loading...'
-          ) : (
-            <>
-              <img
-                src={`${process.env.PUBLIC_URL}/img/logo/github.png`}
-                alt="github Logo"
-              />
-              깃허브 로그인
-            </>
-          )}
-        </S.LoginButton>
+        {isLoginForm ? (
+          <>
+            <p>아직 회원이 아니신가요?</p>
+            <S.SignUpButton
+              type="button"
+              onClick={() => {
+                setIsLoginForm(false);
+                reset();
+              }}
+            >
+              회원가입하기
+            </S.SignUpButton>
+          </>
+        ) : (
+          <>
+            <p>이미 회원이신가요?</p>
+            <S.SignUpButton
+              type="button"
+              onClick={() => {
+                setIsLoginForm(true);
+                reset();
+              }}
+            >
+              로그인하기
+            </S.SignUpButton>
+          </>
+        )}
+        {isLoginForm ? (
+          <>
+            <S.LoginButton width={'24px'} onClick={googleLogin}>
+              {googleIsPending ? (
+                'Loading...'
+              ) : (
+                <>
+                  <img
+                    src={`${process.env.PUBLIC_URL}/img/logo/google.png`}
+                    alt="Google Logo"
+                  />
+                  구글 로그인
+                </>
+              )}
+            </S.LoginButton>
+            <S.LoginButton
+              color={'#333333'}
+              width={'18px'}
+              onClick={githubLogin}
+            >
+              {githubIsPending ? (
+                'Loading...'
+              ) : (
+                <>
+                  <img
+                    src={`${process.env.PUBLIC_URL}/img/logo/github.png`}
+                    alt="github Logo"
+                  />
+                  깃허브 로그인
+                </>
+              )}
+            </S.LoginButton>
+          </>
+        ) : (
+          <></>
+        )}
       </S.AuthForm>
     </>
   );

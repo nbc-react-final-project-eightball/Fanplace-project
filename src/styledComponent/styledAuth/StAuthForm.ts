@@ -82,3 +82,24 @@ export const SignUpButton = styled.button`
   color: #777;
   font-size: 15px;
 `;
+
+export const DeliveryAddressButton = styled.button`
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: 320px;
+  height: 48px;
+  margin-top: 12px;
+  padding: 0 20px;
+  border-radius: 5px;
+  background: #f1f1f1;
+  color: #9e9e9e;
+  box-sizing: border-box;
+`;
+
+export const FlexBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
