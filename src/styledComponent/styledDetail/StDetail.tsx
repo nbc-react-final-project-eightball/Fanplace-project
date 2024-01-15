@@ -2,12 +2,14 @@ import styled from 'styled-components';
 
 export const DtailContainer = styled.div`
   margin-left: 150px;
+  width: 1800px;
   justify-content: center;
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr;
   grid-column-gap: 0px;
   grid-row-gap: 0px;
+  justify-items: center;
 `;
 
 export const ProductSection1 = styled.section`
@@ -61,6 +63,7 @@ export const ProductDetailImg = styled.img`
 export const ProductInfoContainer = styled.div`
   position: sticky;
   top: 100px;
+
   height: 50vh;
   width: 500px;
   display: flex;

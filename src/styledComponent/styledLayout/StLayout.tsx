@@ -18,7 +18,7 @@ export const LayoutContainer = styled.div`
 export const LayoutSection1 = styled.div`
   grid-area: 1 / 2 / 4 / 3;
   background: black;
-  width: 15vw;
+  width: 300px;
   height: 1500px;
   margin-top: 10%;
 `;
