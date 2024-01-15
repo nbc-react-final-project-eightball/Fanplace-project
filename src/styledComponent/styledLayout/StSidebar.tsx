@@ -5,9 +5,8 @@ export const SideBarContainer = styled.div`
   flex-direction: column;
   align-items: center;
   padding: 20px;
-  height: 80%;
+  height: 100vh;
   margin-top: 30%;
-
 `;
 export const SideBarBtn = styled.button`
   width: 100%;
