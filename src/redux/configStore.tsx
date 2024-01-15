@@ -1,9 +1,10 @@
-import { configureStore } from "@reduxjs/toolkit";
-import React from "react";
+import { configureStore } from '@reduxjs/toolkit';
+import React from 'react';
+import { goodsSlice } from './modules/GoodsList/GoodsListSlice';
 
 const store = configureStore({
   reducer: {
-    // 여기에 리듀서를 넣어주세요
+    goods: goodsSlice.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

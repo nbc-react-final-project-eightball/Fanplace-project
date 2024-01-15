@@ -12,24 +12,31 @@ import {
   startAfter,
 } from 'firebase/firestore';
 import axios from 'axios';
-interface typeProduct {
-  category: string; //카테고리
-  info?: string; //정보
-  img: string; //이미지
-  artist: string; //아티스트
-  title: string; //상품이름
-  price: number; //가격
-  teg?: string; //태그 뉴? 세일?
-  isSoldOut?: boolean; //품절여부
-  remainingQuantity?: number; //남은수량
-  contentImg1?: string; //상품설명이미지
-  contentImg2?: string; //상품설명이미지
-}
+import { typeProduct } from '../Type/TypeInterface';
+import { useDispatch } from 'react-redux';
+import { setSelectedProduct } from '../redux/modules/GoodsList/GoodsListSlice';
+import { useNavigate, useParams } from 'react-router-dom';
+// interface typeProduct {
+//   category: string; //카테고리
+//   info?: string; //정보
+//   img: string; //이미지
+//   artist: string; //아티스트
+//   title: string; //상품이름
+//   price: number; //가격
+//   teg?: string; //태그 뉴? 세일?
+//   isSoldOut?: boolean; //품절여부
+//   remainingQuantity?: number; //남은수량
+//   contentImg1?: string; //상품설명이미지
+//   contentImg2?: string; //상품설명이미지
+// }
+
 const pageSize = 12;
 let lastDocument: any = null;
 const GoodsList = () => {
   const [goodsList, setGoodsList] = useState<DocumentData>([]);
-
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { id } = useParams();
   const saveProduct = async (productList: typeProduct[]) => {
     try {
       const addGoodsList = await collection(db, 'goodsList');
@@ -78,6 +85,7 @@ const GoodsList = () => {
   const [selectedArtists, setSelectedArtists] = React.useState<string[]>([]);
   const ProducList = [
     {
+      productId: 1,
       category: 'CD',
       info: '[2/13출시]',
       img: 'img/ProductCardImg/YO1.jpg',
@@ -89,6 +97,7 @@ const GoodsList = () => {
       remainingQuantity: 100,
     },
     {
+      productId: 2,
       category: 'CD',
       info: '[2/13출시]',
       img: 'img/ProductCardImg/YO2.jpg',
@@ -100,6 +109,7 @@ const GoodsList = () => {
       remainingQuantity: 100,
     },
     {
+      productId: 3,
       category: '티셔츠',
       info: '[CONNECTION]',
       img: 'img/ProductCardImg/Boa1.png',
@@ -111,6 +121,7 @@ const GoodsList = () => {
       remainingQuantity: 100,
     },
     {
+      productId: 4,
       category: 'CD',
       info: '[2/13출시]',
       artist: '있지',
@@ -122,6 +133,7 @@ const GoodsList = () => {
       remainingQuantity: 100,
     },
     {
+      productId: 5,
       category: '잠옷',
       info: '[2/13출시]',
       artist: '에스파',
@@ -133,6 +145,7 @@ const GoodsList = () => {
       remainingQuantity: 100,
     },
     {
+      productId: 6,
       category: 'CD',
       info: '[2/13출시]',
       artist: '칸나',
@@ -144,6 +157,7 @@ const GoodsList = () => {
       remainingQuantity: 100,
     },
     {
+      productId: 7,
       category: 'CD',
       info: '[2/13출시]',
       artist: '칸나',
@@ -155,6 +169,7 @@ const GoodsList = () => {
       remainingQuantity: 100,
     },
     {
+      productId: 8,
       category: '머그컵',
       info: '[2/13출시]',
       artist: '아이즈원',
@@ -166,6 +181,7 @@ const GoodsList = () => {
       remainingQuantity: 100,
     },
     {
+      productId: 9,
       category: '티셔츠',
       info: '[2/13출시]',
       artist: '아이즈원',
@@ -177,6 +193,7 @@ const GoodsList = () => {
       remainingQuantity: 100,
     },
     {
+      productId: 10,
       category: '티셔츠',
       info: '[2/13출시]',
       artist: '트와이스',
@@ -188,6 +205,7 @@ const GoodsList = () => {
       remainingQuantity: 100,
     },
     {
+      productId: 11,
       category: '목걸이',
       info: '[2/13출시]',
       artist: '트와이스',
@@ -199,6 +217,7 @@ const GoodsList = () => {
       remainingQuantity: 100,
     },
     {
+      productId: 12,
       category: '핸드폰케이스',
       info: '[2/13출시]',
       artist: '트와이스',
@@ -210,6 +229,7 @@ const GoodsList = () => {
       remainingQuantity: 100,
     },
     {
+      productId: 13,
       category: '포토카드',
       info: '[2/13출시]',
       artist: '트와이스',
@@ -221,6 +241,7 @@ const GoodsList = () => {
       remainingQuantity: 100,
     },
     {
+      productId: 14,
       category: 'CD',
       info: '',
       artist: '트와이스',
@@ -232,6 +253,7 @@ const GoodsList = () => {
       remainingQuantity: 100,
     },
     {
+      productId: 15,
       category: 'CD',
       info: '',
       artist: '트와이스',
@@ -243,6 +265,7 @@ const GoodsList = () => {
       remainingQuantity: 100,
     },
     {
+      productId: 16,
       category: 'CD',
       info: '',
       artist: '스트레이키즈',
@@ -254,6 +277,7 @@ const GoodsList = () => {
       remainingQuantity: 100,
     },
     {
+      productId: 17,
       category: 'CD',
       info: '',
       artist: '스트레이키즈',
@@ -265,6 +289,7 @@ const GoodsList = () => {
       remainingQuantity: 100,
     },
     {
+      productId: 18,
       category: '포토카드',
       info: '',
       artist: '블랙핑크',
@@ -276,6 +301,7 @@ const GoodsList = () => {
       remainingQuantity: 100,
     },
     {
+      productId: 19,
       category: '포토카드',
       info: '',
       artist: '블랙핑크',
@@ -287,6 +313,7 @@ const GoodsList = () => {
       remainingQuantity: 100,
     },
     {
+      productId: 20,
       category: '포토카드',
       info: '[2/21 출시]',
       artist: '샤이니',
@@ -299,6 +326,7 @@ const GoodsList = () => {
       remainingQuantity: 100,
     },
     {
+      productId: 21,
       category: 'CD',
       info: '',
       artist: '샤이니',
@@ -310,6 +338,7 @@ const GoodsList = () => {
       remainingQuantity: 100,
     },
     {
+      productId: 22,
       category: '모자',
       info: ' [2/8 출시]',
       artist: '샤이니',
@@ -322,6 +351,7 @@ const GoodsList = () => {
       remainingQuantity: 100,
     },
     {
+      productId: 23,
       category: '모자',
       info: ' [6/1 출시]',
       artist: '샤이니',
@@ -334,6 +364,7 @@ const GoodsList = () => {
       remainingQuantity: 100,
     },
     {
+      productId: 24,
       category: '모자',
       info: ' [6/12 출시]',
       artist: '샤이니',
@@ -346,6 +377,7 @@ const GoodsList = () => {
       remainingQuantity: 100,
     },
     {
+      productId: 25,
       category: '티셔츠',
       info: ' [6/5 출시]',
       artist: '샤이니',
@@ -357,6 +389,7 @@ const GoodsList = () => {
       remainingQuantity: 100,
     },
     {
+      productId: 26,
       category: '포토카드',
       info: '',
       artist: '샤이니',
@@ -368,6 +401,7 @@ const GoodsList = () => {
       remainingQuantity: 100,
     },
     {
+      productId: 27,
       category: '키링',
       info: '',
       artist: '라이즈',
@@ -380,6 +414,7 @@ const GoodsList = () => {
       remainingQuantity: 100,
     },
     {
+      productId: 28,
       category: '포토카드',
       info: '[2/21 출시]',
       artist: '라이즈',
@@ -392,6 +427,7 @@ const GoodsList = () => {
       remainingQuantity: 100,
     },
     {
+      productId: 29,
       category: 'CD',
       info: '',
       artist: '라이즈',
@@ -526,7 +562,12 @@ const GoodsList = () => {
             //상품 필터해서 0개면 상품없다고 말해줌
             filteredProduct?.length > 0 ? (
               filteredProduct?.map((product: typeProduct) => (
-                <S.ProductCard>
+                <S.ProductCard
+                  onClick={() => {
+                    dispatch(setSelectedProduct(product));
+                    navigate(`/detail/${product.productId}`);
+                  }}
+                >
                   <S.ProductCardImgBox>
                     <S.ProductCardImg src={product.img} alt="상품이미지" />
                   </S.ProductCardImgBox>
