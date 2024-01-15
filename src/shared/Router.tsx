@@ -5,7 +5,7 @@ import Mainpage from '../page/Mainpage';
 import Authpage from '../page/Authpage';
 import ProductDetailpage from '../page/ProductDetailpage';
 import GoodsList from '../page/GoodsList';
-import ChatComponent from 'page/ChatComponent';
+import Chat from 'page/Chat';
 
 const Router = () => {
   return (
@@ -16,7 +16,7 @@ const Router = () => {
           <Route path="/login" element={<Authpage />} />
           <Route path="*" element={<ProductDetailpage />} />
           <Route path="/GoodsList" element={<GoodsList />} />
-          <Route path="/chat" element={<ChatComponent />} />
+          <Route path="/chat" element={<Chat />} />
         </Route>
       </Routes>
     </BrowserRouter>
