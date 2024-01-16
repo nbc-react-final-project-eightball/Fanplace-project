@@ -1,21 +1,21 @@
 import { useDispatch } from 'react-redux';
 import { closeModal, openModal } from '../redux/modules/modal/modalSlice';
 
-export const useModal = () => {
+export const useAddressModal = () => {
   const dispatch = useDispatch();
 
-  const openModalHandler =
+  const openAddressModalHandler =
     (isOpen: boolean) => (event: React.MouseEvent<HTMLButtonElement>) => {
       event.preventDefault();
       dispatch(openModal(isOpen));
     };
 
-  const closeModalHandler = (isOpen: boolean) => {
+  const closeAddressModalHandler = (isOpen: boolean) => {
     dispatch(closeModal());
   };
 
   return {
-    openModalHandler,
-    closeModalHandler,
+    openAddressModalHandler,
+    closeAddressModalHandler,
   };
 };

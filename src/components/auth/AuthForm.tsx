@@ -19,8 +19,7 @@ const AuthForm = () => {
     control,
     reset,
     getValues,
-    formState: { errors },
-    watch,
+    formState: { errors, isValid },
   } = useForm({
     // 실시간 유효성 검사
     mode: isLoginForm ? 'onSubmit' : 'onChange',
@@ -61,15 +60,14 @@ const AuthForm = () => {
         await login(data.email, password);
       } else {
         // 회원가입
-        const { email, userName, phoneNumber, adress, password } = watch();
-        // const [email, userName, phoneNumber, adress, password] = getValues([
-        //   'email',
-        //   'userName',
-        //   'phoneNumber',
-        //   'adress',
-        //   'password',
-        // ]);
-        await signUp(email, userName, phoneNumber, adress, password);
+        const [email, displayName, phoneNumber, address, password] = getValues([
+          'email',
+          'displayName',
+          'phoneNumber',
+          'address',
+          'password',
+        ]);
+        await signUp(email, displayName, phoneNumber, address, password);
 
         reset();
         setIsLoginForm(true);
@@ -116,6 +114,7 @@ const AuthForm = () => {
                 <div>
                   <InputLabel>비밀번호</InputLabel>
                   <S.TextInputField
+                    type="password"
                     value={field.value}
                     onChange={field.onChange}
                     error={fieldState.error !== undefined && fieldState.isDirty}
@@ -136,7 +135,7 @@ const AuthForm = () => {
         ) : (
           <>
             <Controller
-              name="userName"
+              name="displayName"
               control={control}
               defaultValue={''}
               rules={{
@@ -250,6 +249,7 @@ const AuthForm = () => {
                 <div>
                   <InputLabel>비밀번호</InputLabel>
                   <S.TextInputField
+                    type="password"
                     value={field.value}
                     onChange={field.onChange}
                     error={fieldState.error !== undefined && fieldState.isDirty}
@@ -280,6 +280,7 @@ const AuthForm = () => {
                 <div>
                   <InputLabel>비밀번호 확인</InputLabel>
                   <S.TextInputField
+                    type="password"
                     value={field.value}
                     onChange={field.onChange}
                     error={!!(fieldState.isDirty && fieldState.error)}
@@ -300,14 +301,18 @@ const AuthForm = () => {
           </>
         )}
         {isLoginForm ? (
-          <S.LoginButton type="submit">로그인 </S.LoginButton>
+          <S.LoginButton type="submit" disabled={!isValid}>
+            로그인{' '}
+          </S.LoginButton>
         ) : (
-          <S.LoginButton type="submit">회원가입 완료</S.LoginButton>
+          <S.SignUpButton type="submit" disabled={!isValid}>
+            회원가입 완료
+          </S.SignUpButton>
         )}
         {isLoginForm ? (
           <>
             <p>아직 회원이 아니신가요?</p>
-            <S.SignUpButton
+            <S.GuideButton
               type="button"
               onClick={() => {
                 setIsLoginForm(false);
@@ -315,12 +320,12 @@ const AuthForm = () => {
               }}
             >
               회원가입하기
-            </S.SignUpButton>
+            </S.GuideButton>
           </>
         ) : (
           <>
             <p>이미 회원이신가요?</p>
-            <S.SignUpButton
+            <S.GuideButton
               type="button"
               onClick={() => {
                 setIsLoginForm(true);
@@ -328,7 +333,7 @@ const AuthForm = () => {
               }}
             >
               로그인하기
-            </S.SignUpButton>
+            </S.GuideButton>
           </>
         )}
         {isLoginForm ? (

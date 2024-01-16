@@ -8,6 +8,7 @@ export const ModalBackground = styled.div`
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 10;
+  cursor: pointer;
 `;
 export const ModalContainer = styled.div`
   position: absolute;

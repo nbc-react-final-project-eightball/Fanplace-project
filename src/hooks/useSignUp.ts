@@ -1,14 +1,16 @@
 import { createUserWithEmailAndPassword } from '@firebase/auth';
 import { auth, db } from '../firebase/config';
 import { useNavigate } from 'react-router-dom';
-import { doc, setDoc } from '@firebase/firestore';
+import { getFirestore, doc, setDoc } from '@firebase/firestore';
+import { useContext } from 'react';
+import { AuthContext } from 'contexts/AuthContext';
 
 interface LoginResult {
   signUp: (
     email: string,
-    userName: string,
+    displayName: string,
     phoneNumber: number,
-    adress: string,
+    Address: string,
     password: string,
   ) => Promise<void>;
 }
@@ -16,12 +18,14 @@ interface LoginResult {
 export const useSignUp = (): LoginResult => {
   const navigate = useNavigate();
 
+  const { dispatch } = useContext(AuthContext);
+
   // 로그인
   const signUp = async (
     email: string,
-    userName: string,
+    displayName: string,
     phoneNumber: number,
-    adress: string,
+    address: string,
     password: string,
   ): Promise<void> => {
     try {
@@ -31,12 +35,18 @@ export const useSignUp = (): LoginResult => {
         password,
       );
 
-      console.log('response', response);
-      await setDoc(doc(db, 'user', response.user.uid), {
-        name: userName,
+      const user = response.user;
+      console.log('signup response', response);
+      const db = getFirestore();
+      const userDocRef = doc(db, 'user', response.user.uid);
+      const displayName = user.displayName || 'Guest';
+
+      dispatch({ type: 'LOGIN', payload: { ...user, displayName } });
+      await setDoc(userDocRef, {
+        name: displayName,
         phoneNumber,
         email,
-        adress,
+        address,
       });
       alert('회원가입이 완료되었습니다.');
     } catch (error: any) {

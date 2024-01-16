@@ -74,7 +74,22 @@ export const LoginButton = styled.button<LoginButtonProps>`
   }
 `;
 
-export const SignUpButton = styled.button`
+export const SignUpButton = styled.button<LoginButtonProps>`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  width: 320px;
+  height: 48px;
+  text-align: center;
+  border-radius: 5px;
+  border: 1px solid ${(props) => (props.disabled ? 'none' : '#333')};
+  background-color: ${(props) => (props.disabled ? '#ddd' : 'none')};
+  color: ${(props) => (props.disabled ? '#999' : '#111')};
+  cursor: ${(props) => (props.disabled ? 'default' : 'pointer')};
+`;
+
+export const GuideButton = styled.button`
   width: 320px;
   margin-top: -10px;
   margin-bottom: 20px;
