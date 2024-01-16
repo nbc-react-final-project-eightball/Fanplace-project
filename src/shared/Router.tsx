@@ -7,6 +7,7 @@ import ProductDetailpage from '../page/ProductDetailpage';
 import GoodsList from '../page/GoodsList';
 import Chat from 'page/Chat';
 import Detail from 'page/Detail';
+import NotFound from 'page/NotFound';
 
 const Router = () => {
   return (
@@ -15,7 +16,7 @@ const Router = () => {
         <Route path="/" element={<Layout />}>
           <Route path="/" element={<Mainpage />} />
           <Route path="/login" element={<Authpage />} />
-          <Route path="*" element={<ProductDetailpage />} />
+          <Route path="*" element={<NotFound />} />
           <Route path="/GoodsList" element={<GoodsList />} />
           <Route path="/chat" element={<Chat />} />
           <Route path="/Detail/:id" element={<Detail />} />

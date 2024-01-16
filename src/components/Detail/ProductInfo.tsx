@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import * as S from '../../styledComponent/styledDetail/StDetail';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { config } from '@fortawesome/fontawesome-svg-core';
@@ -19,11 +19,14 @@ const ProductInfo: React.FC<ProductProps> = ({ product }) => {
   const navigate = useNavigate();
   const [quantity, setQuantity] = useState(1);
   const [totalPrice, setTotalPrice] = useState(product?.price || 0);
+
   const quantityPlusHandler = () => {
     const newQuantity = quantity + 1;
     setQuantity(newQuantity);
     setTotalPrice(newQuantity * (product?.price || 0));
   };
+
+  //더하기
   const quantityNinusHandler = () => {
     if (quantity > 1) {
       const newQuantity = quantity - 1;
@@ -31,6 +34,7 @@ const ProductInfo: React.FC<ProductProps> = ({ product }) => {
       setTotalPrice(newQuantity * (product?.price || 0));
     }
   };
+  //빼기
   const addCartHandler = () => {
     if (product) {
       dispatch(
@@ -50,6 +54,7 @@ const ProductInfo: React.FC<ProductProps> = ({ product }) => {
     navigate('/cart');
     //
   };
+  //장바구니로 보낼때
   return (
     <S.ProductInfoContainer>
       <S.ProductInfoSection1>

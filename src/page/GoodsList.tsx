@@ -96,6 +96,7 @@ const GoodsList = () => {
       teg: 'img/new.svg',
       isSoldOut: false,
       remainingQuantity: 100,
+      contentImg1: 'img/ProductDetail/YO1_1.jpg',
     },
     {
       productId: 2,
@@ -109,6 +110,7 @@ const GoodsList = () => {
       teg: 'img/new.svg',
       isSoldOut: false,
       remainingQuantity: 100,
+      contentImg1: 'img/ProductDetail/YO1_1.jpg',
     },
     {
       productId: 3,
@@ -122,6 +124,7 @@ const GoodsList = () => {
       teg: 'img/new.svg',
       isSoldOut: false,
       remainingQuantity: 100,
+      contentImg1: 'img/ProductDetail/Boa1_1.png',
     },
     {
       productId: 4,
