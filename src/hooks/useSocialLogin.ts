@@ -46,7 +46,7 @@ export const useSocialLogin = (
       }
 
       const user = res.user;
-      const displayName = user.displayName || 'Guest';
+      // const displayName = providerType === 'github' ? user.displayName: user.displayName;
 
       dispatch(logIn({ userInfo: user.providerData[0] }));
       alert('로그인 되었습니다2.');

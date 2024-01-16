@@ -1,7 +1,6 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import * as S from '../../styledComponent/styledAuth/StAuthForm';
 import { useSocialLogin } from '../../hooks/useSocialLogin';
-import { useNavigate } from 'react-router-dom';
 import { useLogin } from 'hooks/useLogin';
 import { Controller, useForm } from 'react-hook-form';
 import { InputLabel } from '@mui/material';
@@ -10,8 +9,6 @@ import { useSignUp } from 'hooks/useSignUp';
 import { useSelector } from 'react-redux';
 
 const AuthForm = () => {
-  const navigate = useNavigate();
-
   const [isLoginForm, setIsLoginForm] = useState<boolean>(true);
 
   // react-hook-form
@@ -23,9 +20,8 @@ const AuthForm = () => {
     formState: { errors, isValid },
   } = useForm({
     // 실시간 유효성 검사
-    mode: isLoginForm ? 'onSubmit' : 'onChange',
+    mode: 'onChange',
   });
-  console.log('isLoginForm', isLoginForm);
 
   // 로그인 훅
   // 깃허브로 로그인
@@ -161,12 +157,8 @@ const AuthForm = () => {
                   <S.TextInputField
                     value={field.value}
                     onChange={field.onChange}
-                    error={fieldState.error !== undefined && fieldState.isDirty}
-                    helperText={
-                      fieldState.isDirty
-                        ? fieldState.error && fieldState.error.message
-                        : ''
-                    }
+                    error={fieldState.error !== undefined}
+                    helperText={fieldState.error && fieldState.error.message}
                     InputLabelProps={{ shrink: false }}
                     InputProps={{
                       // maxLength: 8,
@@ -227,11 +219,9 @@ const AuthForm = () => {
                   <S.TextInputField
                     value={field.value}
                     onChange={field.onChange}
-                    error={fieldState.error !== undefined && fieldState.isDirty}
+                    error={fieldState.invalid}
                     helperText={
-                      fieldState.isDirty
-                        ? fieldState.error && fieldState.error.message
-                        : ''
+                      fieldState.invalid ? fieldState.error?.message : ''
                     }
                     InputLabelProps={{ shrink: false }}
                     InputProps={{
@@ -348,7 +338,7 @@ const AuthForm = () => {
         )}
         {isLoginForm ? (
           <>
-            <S.LoginButton width={'24px'} onClick={googleLogin}>
+            <S.LoginButton type="button" width={'24px'} onClick={googleLogin}>
               {googleIsPending ? (
                 'Loading...'
               ) : (
@@ -362,6 +352,7 @@ const AuthForm = () => {
               )}
             </S.LoginButton>
             <S.LoginButton
+              type="button"
               color={'#333333'}
               width={'18px'}
               onClick={githubLogin}

@@ -1,12 +1,15 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { UserInfo } from 'firebase/auth';
 
+const storedUserInfo = localStorage.getItem('userInfo');
+
 interface SignUpState {
   isLogged: boolean;
   address: string;
   isAddressSuccess: boolean;
-  userInfo: UserInfo;
+  userInfo: UserInfo | null;
 }
+
 interface AddAddress {
   address: string;
   isAddressSuccess: boolean;
@@ -20,13 +23,21 @@ const initialState: SignUpState = {
   isLogged: false,
   address: '',
   isAddressSuccess: false,
-  userInfo: {} as UserInfo,
+  userInfo: storedUserInfo ? JSON.parse(storedUserInfo) : null,
 };
 
 const signUpSlice = createSlice({
   name: 'signUp',
   initialState,
   reducers: {
+    getUser: (state, action: PayloadAction<AddAddress>) => {
+      console.log('action', action);
+      return {
+        ...state,
+        address: action.payload.address,
+        isAddressSuccess: true,
+      };
+    },
     addAddress: (state, action: PayloadAction<AddAddress>) => {
       console.log('action', action);
       return {
@@ -40,9 +51,15 @@ const signUpSlice = createSlice({
       console.log('user.providerData[0]', action.payload);
       state.userInfo = action.payload.userInfo;
       state.isLogged = true;
+
+      localStorage.setItem('userInfo', JSON.stringify(action.payload.userInfo));
     },
     logOut: (state) => {
-      return initialState;
+      state.isLogged = false;
+      state.address = '';
+      state.isAddressSuccess = false;
+      state.userInfo = null;
+      localStorage.removeItem('userInfo');
     },
   },
 });

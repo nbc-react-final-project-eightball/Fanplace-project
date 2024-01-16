@@ -28,8 +28,12 @@ const Header = () => {
     (state: { signUpSlice: any }) => state.signUpSlice,
   );
   const isLogged = userData.isLogged;
-  console.log('헤더에서 userData_____', userData);
-  console.log('헤더에서 isLogged_____', isLogged);
+  console.log(
+    'Header에서 signUpSlice isLogged______',
+    isLogged,
+    'userData_______',
+    userData,
+  );
 
   return (
     <S.HeaderContainer color={scrollPostion < 150 ? 'transparent' : 'black'}>

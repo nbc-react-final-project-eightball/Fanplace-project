@@ -18,11 +18,13 @@ interface ModalState<T> {
 const DeliveryAddress = () => {
   // react-hook-form
   const {
-    handleSubmit,
     control,
+    getValues,
     reset,
     formState: { errors },
   } = useForm({});
+
+  const [subAddress] = getValues(['subAddress']);
 
   const { address, isAddressSuccess } = useSelector(
     (state: { signUpSlice: SignUpState }) =>
@@ -31,9 +33,7 @@ const DeliveryAddress = () => {
   const modal = useSelector(
     (state: { modalSlice: ModalState<unknown> }) => state.modalSlice,
   );
-  console.log('modal.visible', modal.visible);
 
-  console.log('isAddressSuccess', isAddressSuccess);
   const { openAddressModalHandler } = useAddressModal();
 
   return (
@@ -61,11 +61,11 @@ const DeliveryAddress = () => {
           )}
 
           <Controller
-            name="address"
+            name="subAddress"
             control={control}
             defaultValue=""
             rules={{
-              required: '기본 배송지를 입력해주세요',
+              required: '상세 주소를 입력해주세요',
             }}
             render={({ field, fieldState }) => (
               <S.TextInputField
@@ -85,7 +85,7 @@ const DeliveryAddress = () => {
             )}
           />
         </S.FlexBox>
-        {modal.visible && <AddressModal />}
+        {modal.visible && <AddressModal subAddress={subAddress} />}
       </div>
     </>
   );

@@ -49,6 +49,7 @@ export const useSignUp = (): LoginResult => {
         address,
       });
       alert('회원가입이 완료되었습니다.');
+      navigate('/');
     } catch (error: any) {
       console.log(error.message);
       console.log('회원가입 중 오류가 발생했습니다.', error.message);

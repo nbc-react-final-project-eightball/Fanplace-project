@@ -5,10 +5,15 @@ import { useAddressModal } from 'hooks/useAddressModal';
 import { useDispatch } from 'react-redux';
 import { addAddress } from '../redux/modules/signup/signUpSlice';
 
-const AddressModal = () => {
-  const { closeAddressModalHandler } = useAddressModal();
+interface AddressModalProps {
+  subAddress: any;
+}
 
+const AddressModal: React.FC<AddressModalProps> = ({ subAddress }) => {
+  const { closeAddressModalHandler } = useAddressModal();
   const dispatch = useDispatch();
+
+  console.log('subAddress', subAddress);
 
   const completeHandler = (data: any) => {
     console.log('data.address', data.address);
