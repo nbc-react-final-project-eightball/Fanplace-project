@@ -1,6 +1,12 @@
 import React from 'react';
 import * as S from '../../styledComponent/styledDetail/StDetail';
-const Product = () => {
+import { typeProduct } from '../../Type/TypeInterface';
+
+interface ProductProps {
+  product: typeProduct | null;
+}
+
+const Product: React.FC<ProductProps> = ({ product }) => {
   return (
     <S.ProductContainer>
       <S.ProductSection1>

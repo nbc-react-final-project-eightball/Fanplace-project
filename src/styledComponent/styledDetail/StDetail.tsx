@@ -64,7 +64,7 @@ export const ProductInfoContainer = styled.div`
   position: sticky;
   top: 100px;
 
-  height: 50vh;
+  height: 700px;
   width: 500px;
   display: flex;
   flex-direction: column;
@@ -164,8 +164,11 @@ export const ProductInfoSection3Btn1 = styled.button`
   height: 60px;
   width: 96%;
   margin: 0 auto;
-
   background-color: #355775;
+  transition: all 0.5s ease-in-out;
+  &:hover {
+    background-color: #12191f;
+  }
 `;
 export const ProductInfoSection3Btn2 = styled.button`
   width: 50%;
@@ -173,6 +176,9 @@ export const ProductInfoSection3Btn2 = styled.button`
   border-radius: 20px;
   margin-left: 10px;
   margin-right: 10px;
-
   background-color: #1d89e8;
+  transition: all 0.5s ease-in-out;
+  &:hover {
+    background-color: #12191f;
+  }
 `;

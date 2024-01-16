@@ -1,9 +1,9 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { typeProduct } from '../../../Type/TypeInterface'; // 상품 타입을 가져옵니다.
+import { typeProduct } from '../../../Type/TypeInterface';
 
 interface GoodsState {
   goodsList: typeProduct[];
-  selectedProduct: typeProduct | null; // 선택된 상품을 저장합니다.
+  selectedProduct: typeProduct | null; // 선택된 상품을 저장
 }
 
 const initialState: GoodsState = {
