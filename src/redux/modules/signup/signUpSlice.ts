@@ -1,23 +1,26 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { UserInfo } from 'firebase/auth';
 
 interface SignUpState {
-  name: string;
-  phoneNumber: number | null;
-  email: string;
+  isLogged: boolean;
   address: string;
   isAddressSuccess: boolean;
+  userInfo: UserInfo;
 }
 interface AddAddress {
   address: string;
   isAddressSuccess: boolean;
 }
 
+interface LogInState {
+  userInfo: UserInfo;
+}
+
 const initialState: SignUpState = {
-  name: '',
-  phoneNumber: null,
-  email: '',
+  isLogged: false,
   address: '',
   isAddressSuccess: false,
+  userInfo: {} as UserInfo,
 };
 
 const signUpSlice = createSlice({
@@ -25,30 +28,25 @@ const signUpSlice = createSlice({
   initialState,
   reducers: {
     addAddress: (state, action: PayloadAction<AddAddress>) => {
-      console.log('state', state, 'action', action);
+      console.log('action', action);
       return {
         ...state,
         address: action.payload.address,
         isAddressSuccess: true,
       };
     },
-    logIn: (state, action: PayloadAction<AddAddress>) => {
-      console.log('state', state, 'action', action);
-
-      return { ...state, user: action.payload };
+    logIn: (state, action: PayloadAction<LogInState>) => {
+      console.log('회원가입/로그인', action.payload);
+      console.log('user.providerData[0]', action.payload);
+      state.userInfo = action.payload.userInfo;
+      state.isLogged = true;
     },
-    logOut: (state, action: PayloadAction<AddAddress>) => {
-      console.log('state', state, 'action', action);
-      return { ...state, user: null };
-    },
-    AuthIsReady: (state, action: PayloadAction<AddAddress>) => {
-      console.log('state', state, 'action', action);
-
-      return state;
+    logOut: (state) => {
+      return initialState;
     },
   },
 });
 
-export const { addAddress } = signUpSlice.actions;
+export const { addAddress, logIn, logOut } = signUpSlice.actions;
 
 export default signUpSlice.reducer;

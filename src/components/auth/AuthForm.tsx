@@ -7,6 +7,7 @@ import { Controller, useForm } from 'react-hook-form';
 import { InputLabel } from '@mui/material';
 import DeliveryAddress from './DeliveryAddress';
 import { useSignUp } from 'hooks/useSignUp';
+import { useSelector } from 'react-redux';
 
 const AuthForm = () => {
   const navigate = useNavigate();
@@ -51,22 +52,31 @@ const AuthForm = () => {
   //   return <div>로딩 중..</div>;
   // }
 
+  interface SignUpState {
+    address: string;
+  }
+
+  const { address } = useSelector(
+    (state: { signUpSlice: SignUpState }) => state.signUpSlice,
+  );
+
   const submitHandler = async (data: Record<string, any>) => {
     try {
       if (isLoginForm) {
         // 로그인
         const [email, password] = getValues(['email', 'password']);
 
-        await login(data.email, password);
+        await login(email, password);
       } else {
         // 회원가입
-        const [email, displayName, phoneNumber, address, password] = getValues([
+        const [email, displayName, phoneNumber, password] = getValues([
           'email',
           'displayName',
           'phoneNumber',
-          'address',
           'password',
         ]);
+
+        console.log('address______________', address);
         await signUp(email, displayName, phoneNumber, address, password);
 
         reset();

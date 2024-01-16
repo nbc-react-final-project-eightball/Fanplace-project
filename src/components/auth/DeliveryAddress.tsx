@@ -21,7 +21,6 @@ const DeliveryAddress = () => {
     handleSubmit,
     control,
     reset,
-    getValues,
     formState: { errors },
   } = useForm({});
 

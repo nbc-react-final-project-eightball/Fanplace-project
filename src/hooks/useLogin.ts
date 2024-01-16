@@ -6,6 +6,8 @@ import {
 import { auth } from '../firebase/config';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { logIn } from '../redux/modules/signup/signUpSlice';
+import { useDispatch } from 'react-redux';
 
 interface LoginResult {
   login: (email: string | null, password: string | null) => Promise<void>;
@@ -15,6 +17,7 @@ interface LoginResult {
 
 export const useLogin = (): LoginResult => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const [isPending, setIsPending] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -31,9 +34,12 @@ export const useLogin = (): LoginResult => {
       if (email === null || password === null) {
         throw new Error('Email and password are required.');
       }
-      await signInWithEmailAndPassword(auth, email.trim(), password.trim());
-      console.log('user login');
-      // await updateProfile(email, { displayName: userName });
+      const signIn = await signInWithEmailAndPassword(
+        auth,
+        email.trim(),
+        password.trim(),
+      );
+      dispatch(logIn({ userInfo: signIn.user.providerData[0] }));
       alert('로그인 되었습니다1.');
       navigate('/');
       setIsPending(false);

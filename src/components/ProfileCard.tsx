@@ -2,7 +2,8 @@ import React from 'react';
 import { useLogout } from '../hooks/useLogout';
 
 const ProfileCard = ({ user }: any) => {
-  console.log('user displayname', user, user.displayName);
+  console.log('user displayname', user);
+
   const { logout } = useLogout();
   return (
     <>

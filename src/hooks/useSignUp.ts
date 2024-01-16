@@ -1,9 +1,9 @@
-import { createUserWithEmailAndPassword } from '@firebase/auth';
+import { createUserWithEmailAndPassword, updateProfile } from '@firebase/auth';
 import { auth, db } from '../firebase/config';
 import { useNavigate } from 'react-router-dom';
 import { getFirestore, doc, setDoc } from '@firebase/firestore';
-import { useContext } from 'react';
-import { AuthContext } from 'contexts/AuthContext';
+import { logIn } from '../redux/modules/signup/signUpSlice';
+import { useDispatch } from 'react-redux';
 
 interface LoginResult {
   signUp: (
@@ -18,7 +18,7 @@ interface LoginResult {
 export const useSignUp = (): LoginResult => {
   const navigate = useNavigate();
 
-  const { dispatch } = useContext(AuthContext);
+  const dispatch = useDispatch();
 
   // 로그인
   const signUp = async (
@@ -36,12 +36,12 @@ export const useSignUp = (): LoginResult => {
       );
 
       const user = response.user;
-      console.log('signup response', response);
+      console.log('address_______유효한', address);
       const db = getFirestore();
       const userDocRef = doc(db, 'user', response.user.uid);
-      const displayName = user.displayName || 'Guest';
+      await updateProfile(user, { displayName });
 
-      dispatch({ type: 'LOGIN', payload: { ...user, displayName } });
+      dispatch(logIn({ userInfo: user.providerData[0] }));
       await setDoc(userDocRef, {
         name: displayName,
         phoneNumber,
