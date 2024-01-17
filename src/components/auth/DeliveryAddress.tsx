@@ -31,7 +31,8 @@ const DeliveryAddress = () => {
       state.signUpSlice || { address: '' },
   );
   const modal = useSelector(
-    (state: { modalSlice: ModalState<unknown> }) => state.modalSlice,
+    (state: { modalSlice: ModalState<unknown> }) =>
+      state.modalSlice || { visible: false },
   );
 
   const { openAddressModalHandler } = useAddressModal();
