@@ -9,7 +9,7 @@ const initialState: ModalState<unknown> = {
   visible: false,
 };
 
-const modalSlice = createSlice({
+export const modalSlice = createSlice({
   name: 'modal',
   initialState,
   reducers: {

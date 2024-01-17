@@ -27,7 +27,7 @@ const Header = () => {
   const userData = useSelector(
     (state: { signUpSlice: any }) => state.signUpSlice,
   );
-  const isLogged = userData.isLogged;
+  const isLogged = userData?.isLogged;
   console.log(
     'Header에서 signUpSlice isLogged______',
     isLogged,
