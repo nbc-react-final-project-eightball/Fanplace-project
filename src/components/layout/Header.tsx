@@ -1,8 +1,8 @@
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import * as S from 'styledComponent/styledLayout/StHeader';
 import { useNavigate } from 'react-router-dom';
 import ProfileCard from 'components/ProfileCard';
-import { AuthContext } from 'contexts/AuthContext';
+import { useSelector } from 'react-redux';
 //헤더수정
 const Header = () => {
   const navigate = useNavigate();
@@ -24,8 +24,16 @@ const Header = () => {
     window.addEventListener('scroll', updateScroll);
   });
 
-  const data = useContext(AuthContext);
-  const user = data.state.user;
+  const userData = useSelector(
+    (state: { signUpSlice: any }) => state.signUpSlice,
+  );
+  const isLogged = userData?.isLogged;
+  console.log(
+    'Header에서 signUpSlice isLogged______',
+    isLogged,
+    'userData_______',
+    userData,
+  );
 
   return (
     <S.HeaderContainer color={scrollPostion < 150 ? 'transparent' : 'black'}>
@@ -35,8 +43,8 @@ const Header = () => {
         </S.Header>
         <S.Header>
           <S.HeaderButton>
-            {user ? (
-              <ProfileCard user={user} />
+            {isLogged ? (
+              <ProfileCard user={userData.userInfo} />
             ) : (
               <button onClick={loginHandler}>로그인</button>
             )}

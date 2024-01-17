@@ -1,10 +1,9 @@
 import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Layout from '../page/Layout';
-import Mainpage from '../page/Mainpage';
-import Authpage from '../page/Authpage';
-import ProductDetailpage from '../page/ProductDetailpage';
-import GoodsList from '../page/GoodsList';
+import Layout from 'page/Layout';
+import Mainpage from 'page/Mainpage';
+import Authpage from 'page/Authpage';
+import GoodsList from 'page/GoodsList';
 import Chat from 'page/Chat';
 import Detail from 'page/Detail';
 import NotFound from 'page/NotFound';

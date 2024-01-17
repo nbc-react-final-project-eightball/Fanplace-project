@@ -2,10 +2,15 @@ import { configureStore } from '@reduxjs/toolkit';
 import React from 'react';
 import { goodsSlice } from './modules/GoodsList/GoodsListSlice';
 import { productSlice } from './modules/Detail/DetailSlice';
+import { modalSlice } from './modules/modal/modalSlice';
+import { signUpSlice } from './modules/signup/signUpSlice';
+
 const store = configureStore({
   reducer: {
     goods: goodsSlice.reducer,
     productDetailTotal: productSlice.reducer,
+    modal: modalSlice.reducer,
+    signUp: signUpSlice.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

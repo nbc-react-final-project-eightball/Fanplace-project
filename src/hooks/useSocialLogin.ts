@@ -5,9 +5,10 @@ import {
   signInWithPopup,
 } from 'firebase/auth';
 import { auth } from '../firebase/config';
-import { useContext, useState } from 'react';
-import { AuthContext } from 'contexts/AuthContext';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { logIn } from '../redux/modules/signup/signUpSlice';
 
 interface SocialLoginResult {
   socialLogin: () => Promise<void>;
@@ -32,7 +33,7 @@ export const useSocialLogin = (
       ? new GithubAuthProvider()
       : new GoogleAuthProvider();
 
-  const { dispatch } = useContext(AuthContext);
+  const dispatch = useDispatch();
 
   const socialLogin: () => Promise<void> = async () => {
     setError(null);
@@ -45,10 +46,10 @@ export const useSocialLogin = (
       }
 
       const user = res.user;
-      const displayName = user.displayName || 'Guest';
+      // const displayName = providerType === 'github' ? user.displayName: user.displayName;
 
-      dispatch({ type: 'LOGIN', payload: { ...user, displayName } });
-      alert('로그인 되었습니다.');
+      dispatch(logIn({ userInfo: user.providerData[0] }));
+      alert('로그인 되었습니다2.');
       navigate('/');
       setIsPending(false);
     } catch (error: any) {
