@@ -31,16 +31,18 @@ const Product: React.FC<ProductProps> = ({ product }) => {
           src={`/${product?.contentImg1}`}
           alt="상품이미지1"
         />
-        {product?.contentImg2 && product?.contentImg3 && (
+        {product?.contentImg2 && (
           <>
             <S.ProductDetailImg
               src={`/${product?.contentImg2}`}
               alt="상품이미지2"
             />
-            <S.ProductDetailImg
-              src={`/${product?.contentImg3}`}
-              alt="상품이미지3"
-            />
+            {product?.contentImg3 && (
+              <S.ProductDetailImg
+                src={`/${product?.contentImg3}`}
+                alt="상품이미지3"
+              />
+            )}
           </>
         )}
       </S.ProductSection2>

@@ -1,7 +1,7 @@
 export interface typeProduct {
   productId: number; //상품아이디
   category: string; //카테고리
-  info?: string; //정보
+  info?: string; //정보 (예약,뉴,품절)
   Checklist1?: string; //확인사항
   Checklist2?: string;
   Checklist3?: string;
@@ -25,6 +25,7 @@ export interface ProducToShoppingCart {
   artist: string; //가수이름
   title: string; // 상품타이틀
   price: number; // 가격
+  totalPrice?: number; // 총가격
   quantity?: number; // 선택된수량
   remainingQuantity?: number; // 재고
 }

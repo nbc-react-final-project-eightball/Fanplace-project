@@ -4,11 +4,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { config } from '@fortawesome/fontawesome-svg-core';
 import '@fortawesome/fontawesome-svg-core/styles.css';
 import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
-import { typeProduct } from 'Type/TypeInterface';
+import { ProducToShoppingCart, typeProduct } from 'Type/TypeInterface';
 import { useDispatch, useSelector } from 'react-redux';
-
 import { setProduct } from '../../redux/modules/Detail/DetailSlice';
 import { useNavigate } from 'react-router-dom';
+import { db } from '../../firebase/config';
+import { addDoc, collection, getDocs } from 'firebase/firestore';
+import axios from 'axios';
+import { RootState } from 'redux/configStore';
 
 interface ProductProps {
   product: typeProduct | null;
@@ -19,7 +22,9 @@ const ProductInfo: React.FC<ProductProps> = ({ product }) => {
   const navigate = useNavigate();
   const [quantity, setQuantity] = useState(1);
   const [totalPrice, setTotalPrice] = useState(product?.price || 0);
-
+  const addCart = useSelector(
+    (state: RootState) => state.productDetailTotal.product,
+  );
   const quantityPlusHandler = () => {
     const newQuantity = quantity + 1;
     setQuantity(newQuantity);
@@ -35,6 +40,7 @@ const ProductInfo: React.FC<ProductProps> = ({ product }) => {
     }
   };
   //빼기
+
   const addCartHandler = () => {
     if (product) {
       dispatch(
@@ -44,10 +50,18 @@ const ProductInfo: React.FC<ProductProps> = ({ product }) => {
           artist: product.artist,
           title: product.title,
           quantity: quantity,
-          price: totalPrice,
+          price: product.price,
+          totalPrice: totalPrice,
           remainingQuantity: product.remainingQuantity,
         }),
       );
+    }
+    try {
+      const docRef = addDoc(collection(db, 'cart'), addCart);
+      console.log('보내지냐 ? ', docRef);
+      console.log('보내지냐 ? ', addCart);
+    } catch (error) {
+      console.log('에러가 났습니다! ', error);
     }
     alert('장바구니에 추가되었습니다!');
     // 소이님이동할페이지 적어주세요 !!
