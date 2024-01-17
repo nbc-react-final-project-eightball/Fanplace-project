@@ -28,5 +28,6 @@ export interface ProducToShoppingCart {
   totalPrice?: number; // 총가격
   quantity?: number; // 선택된수량
   remainingQuantity?: number; // 재고
+  productId: number; // 상품아이디
 }
 //디테일페이지에서 상품 정보 보낼때 타입
