@@ -12,9 +12,9 @@ const Mypage = () => {
       <p>
         Name: <span>{userInfo.displayName}</span>
       </p>
-      <p>
+      <span>
         Email: <span>{userInfo.email}</span>
-      </p>
+      </span>
       <S.MenuList>
         <S.MenuBox>
           {/* <h3>쇼핑정보</h3> */}
