@@ -3,19 +3,11 @@ import { useLogout } from '../hooks/useLogout';
 import { Link } from 'react-router-dom';
 import * as S from 'styledComponent/styledLayout/StHeader';
 
-const ProfileCard = ({ user }: any) => {
-  console.log('user displayname', user);
-
+const ProfileCard = () => {
   const { logout } = useLogout();
   return (
     <>
       <S.ProfileCard>
-        {/* <p>
-          Name: <span>{user.displayName}</span>
-        </p>
-        <p>
-          Email: <span>{user.email}</span>
-        </p> */}
         <Link to={'/mypage'}>
           <img
             src={`${process.env.PUBLIC_URL}/img/common/user.svg`}

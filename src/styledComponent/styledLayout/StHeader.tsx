@@ -19,6 +19,7 @@ export const Wrapper = styled.div`
   align-items: center;
   width: 100%;
   height: 100%;
+  padding: 0 1.5rem;
   > div {
     cursor: pointer;
   }
@@ -37,20 +38,26 @@ export const Header = styled.div`
   }
 `;
 export const BrandLogo = styled.div`
-  padding-left: 70px;
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 1rem;
-  color: red;
+  gap: 0.5rem;
+  font-weight: 700;
 `;
 export const HeaderButton = styled.div`
-  padding-right: 100px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   gap: 1.875rem;
+`;
+
+export const LoginButton = styled.button`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
 `;
 
 export const Exchange = styled.div`

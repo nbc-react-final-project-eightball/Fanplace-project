@@ -141,12 +141,14 @@ body {
 ul {
   padding-left: 0;
 }
+li {
+  list-style: none;
+}
 a,button {
   all: unset;
   cursor: pointer;
 }
 img {
-  width: 100%;
   vertical-align: top;
 }
 `;

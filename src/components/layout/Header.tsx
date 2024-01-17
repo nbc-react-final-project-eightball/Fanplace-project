@@ -3,6 +3,7 @@ import * as S from 'styledComponent/styledLayout/StHeader';
 import { Link, useNavigate } from 'react-router-dom';
 import ProfileCard from 'components/ProfileCard';
 import { useSelector } from 'react-redux';
+import CustomSelect from 'components/Select/CustomSelect';
 //헤더수정
 const Header = () => {
   const navigate = useNavigate();
@@ -28,12 +29,6 @@ const Header = () => {
     (state: { signUpSlice: any }) => state.signUpSlice,
   );
   const isLogged = userData.isLogged;
-  console.log(
-    'Header에서 signUpSlice isLogged______',
-    isLogged,
-    'userData_______',
-    userData,
-  );
 
   return (
     <S.HeaderContainer color={scrollPostion < 150 ? 'transparent' : 'black'}>
@@ -56,15 +51,15 @@ const Header = () => {
               />
             </button>
             {isLogged ? (
-              <ProfileCard user={userData.userInfo} />
+              <ProfileCard />
             ) : (
-              <button onClick={loginHandler}>
+              <S.LoginButton onClick={loginHandler}>
                 <img
                   src={`${process.env.PUBLIC_URL}/img/common/user.svg`}
                   alt="auth icon"
                 />
-                로그인
-              </button>
+                {/* 로그인 */}
+              </S.LoginButton>
             )}
             <button onClick={wishListHandler}>
               <img
@@ -72,7 +67,7 @@ const Header = () => {
                 alt="shopping cart icon"
               />
             </button>
-            <S.Exchange>
+            {/* <S.Exchange>
               <img
                 src={`${process.env.PUBLIC_URL}/img/common/KRW.svg`}
                 alt="KRW icon"
@@ -81,7 +76,8 @@ const Header = () => {
                 src={`${process.env.PUBLIC_URL}/img/common/down-arrow.svg`}
                 alt="down-arrow icon"
               />
-            </S.Exchange>
+            </S.Exchange> */}
+            <CustomSelect />
           </S.HeaderButton>
         </S.Header>
       </S.Wrapper>
