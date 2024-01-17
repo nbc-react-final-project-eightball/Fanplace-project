@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import * as S from 'styledComponent/styledLayout/StHeader';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import ProfileCard from 'components/ProfileCard';
 import { useSelector } from 'react-redux';
 //헤더수정
@@ -39,17 +39,49 @@ const Header = () => {
     <S.HeaderContainer color={scrollPostion < 150 ? 'transparent' : 'black'}>
       <S.Wrapper>
         <S.Header>
-          <S.BrandLogo onClick={homeClickHandler}>FancyPlace</S.BrandLogo>
+          <S.BrandLogo onClick={homeClickHandler}>
+            <img
+              src={`${process.env.PUBLIC_URL}/img/logo/logo.svg`}
+              alt="FancyPlace Logo"
+            />
+            FancyPlace
+          </S.BrandLogo>
         </S.Header>
         <S.Header>
           <S.HeaderButton>
+            <button>
+              <img
+                src={`${process.env.PUBLIC_URL}/img/common/search.svg`}
+                alt="search icon"
+              />
+            </button>
             {isLogged ? (
               <ProfileCard user={userData.userInfo} />
             ) : (
-              <button onClick={loginHandler}>로그인</button>
+              <button onClick={loginHandler}>
+                <img
+                  src={`${process.env.PUBLIC_URL}/img/common/user.svg`}
+                  alt="auth icon"
+                />
+                로그인
+              </button>
             )}
-            <button onClick={wishListHandler}>장바구니</button>
-            <button>KoR \</button>
+            <button onClick={wishListHandler}>
+              <img
+                src={`${process.env.PUBLIC_URL}/img/common/shopping.svg`}
+                alt="shopping cart icon"
+              />
+            </button>
+            <S.Exchange>
+              <img
+                src={`${process.env.PUBLIC_URL}/img/common/KRW.svg`}
+                alt="KRW icon"
+              />
+              <img
+                src={`${process.env.PUBLIC_URL}/img/common/down-arrow.svg`}
+                alt="down-arrow icon"
+              />
+            </S.Exchange>
           </S.HeaderButton>
         </S.Header>
       </S.Wrapper>

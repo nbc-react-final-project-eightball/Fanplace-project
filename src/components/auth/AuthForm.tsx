@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import * as S from '../../styledComponent/styledAuth/StAuthForm';
 import { useSocialLogin } from '../../hooks/useSocialLogin';
 import { useLogin } from 'hooks/useLogin';
