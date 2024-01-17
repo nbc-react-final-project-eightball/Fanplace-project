@@ -9,8 +9,8 @@ const store = configureStore({
   reducer: {
     goods: goodsSlice.reducer,
     productDetailTotal: productSlice.reducer,
-    modal: modalSlice.reducer,
-    signUp: signUpSlice.reducer,
+    modalSlice: modalSlice.reducer,
+    signUpSlice: signUpSlice.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
