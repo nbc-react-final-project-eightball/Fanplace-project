@@ -109,6 +109,7 @@ export const ProductsTab = styled.div`
 //상품리스트
 export const GoodsListSection3 = styled.section`
   width: 100%;
+  position: relative;
 `;
 export const GoodsListSection3Wrapper = styled.div`
   margin-top: 20px;
@@ -186,4 +187,30 @@ export const GoodsListCardSection1_2 = styled.section`
   margin-bottom: 10px;
 `;
 //상품리스트 1,2,3,4,5 버튼
-export const GoodsListSection4 = styled.section``;
+export const GoodsListSection4 = styled.section`
+  position: absolute;
+
+  bottom: 200px;
+  left: 45%;
+`;
+
+export const GoodsListSection4Btn = styled.button`
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 1px solid black;
+  background-color: white;
+  margin-right: 10px;
+  cursor: pointer;
+  &:hover {
+    background-color: #faafaf;
+  }
+`;
+
+export const NotProduct = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  font-size: 30px;
+`;

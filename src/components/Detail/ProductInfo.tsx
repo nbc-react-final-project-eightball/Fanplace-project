@@ -69,7 +69,7 @@ const ProductInfo: React.FC<ProductProps> = ({ product }) => {
   const addToCart = async () => {
     try {
       if (user && product) {
-        const userCartRef = doc(collection(db, 'cart'), user.uid);
+        const userCartRef = doc(collection(db, 'cartList'), user.uid);
         const docSnap = await getDoc(userCartRef);
         const cartProduct = {
           category: product.category,
@@ -84,12 +84,12 @@ const ProductInfo: React.FC<ProductProps> = ({ product }) => {
         };
         await setDoc(
           userCartRef,
-          { cart: arrayUnion(cartProduct) },
+          { cartList: arrayUnion(cartProduct) },
           { merge: true },
         );
         //유저 장바구니 있는지 확인
         if (docSnap.exists()) {
-          const cartProducts = docSnap.data().cart;
+          const cartProducts = docSnap.data().cartList;
           const existingProductIndex = cartProducts.findIndex(
             (p: { productId: number }) => p.productId === cartProduct.productId,
           );
@@ -105,14 +105,18 @@ const ProductInfo: React.FC<ProductProps> = ({ product }) => {
               cartProducts[existingProductIndex],
             );
             //장바구니 상태 최신화
-            await setDoc(userCartRef, { cart: cartProducts }, { merge: true });
+            await setDoc(
+              userCartRef,
+              { cartList: cartProducts },
+              { merge: true },
+            );
           } else {
             // 장바구니에 동일한 상품이 없는 경우, 새 상품을 장바구니에 추가
             cartProduct.quantity = quantity;
             cartProduct.totalPrice = cartProduct.price * quantity;
             await updateDoc(userCartRef, {
               //배열로 추가
-              cart: arrayUnion(cartProduct),
+              cartList: arrayUnion(cartProduct),
             });
           }
         } else {
@@ -121,7 +125,7 @@ const ProductInfo: React.FC<ProductProps> = ({ product }) => {
           cartProduct.totalPrice = cartProduct.price * quantity;
           await setDoc(
             userCartRef,
-            { cart: arrayUnion(cartProduct) },
+            { cartList: arrayUnion(cartProduct) },
             { merge: true },
           );
         }

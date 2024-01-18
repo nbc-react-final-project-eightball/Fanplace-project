@@ -1,5 +1,6 @@
 export interface typeProduct {
   productId: number; //상품아이디
+  sideCategory?: string; //사이드바카테고리
   category: string; //카테고리
   info?: string; //정보 (예약,뉴,품절)
   Checklist1?: string; //확인사항
