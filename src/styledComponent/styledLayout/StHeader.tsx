@@ -49,7 +49,7 @@ export const HeaderButton = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  gap: 1.875rem;
+  gap: 1rem;
 
   & button {
     padding: 0.5rem;
