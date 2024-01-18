@@ -14,6 +14,7 @@ import Detail from 'page/Detail';
 import NotFound from 'page/NotFound';
 import Cartpage from 'page/Cartpage';
 import PaymentPage from 'page/PaymentPage';
+import PaymentSuccess from 'page/PaymentSuccess';
 
 const Router = () => {
   return (
@@ -33,6 +34,7 @@ const Router = () => {
           <Route path="/Cart" element={<Cartpage />} />
           <Route path="/payment" element={<PaymentPage />} />
           <Route path="/Detail/:id" element={<Detail />} />
+          <Route path="/success" element={<PaymentSuccess />} />
         </Route>
       </Routes>
     </BrowserRouter>

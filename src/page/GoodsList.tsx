@@ -17,27 +17,24 @@ import {
 } from 'firebase/firestore';
 import axios from 'axios';
 import { typeProduct } from '../Type/TypeInterface';
-import { useDispatch } from 'react-redux';
-import { setSelectedProduct } from '../redux/modules/GoodsList/GoodsListSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  setSelectedProduct,
+  setCurrentPage,
+  setLastDoc,
+} from '../redux/modules/GoodsList/GoodsListSlice';
 import { useNavigate, useParams } from 'react-router-dom';
-// interface typeProduct {
-//   category: string; //카테고리
-//   info?: string; //정보
-//   img: string; //이미지
-//   artist: string; //아티스트
-//   title: string; //상품이름
-//   price: number; //가격
-//   teg?: string; //태그 뉴? 세일?
-//   isSoldOut?: boolean; //품절여부
-//   remainingQuantity?: number; //남은수량
-//   contentImg1?: string; //상품설명이미지
-//   contentImg2?: string; //상품설명이미지
-// }
+import { RootState } from 'redux/configStore';
 
 const pageSize = 12;
-let lastDocument: any = null;
 const GoodsList = () => {
   const [goodsList, setGoodsList] = useState<DocumentData>([]);
+  const [filter, setFilter] = React.useState<null | String>(null);
+  const [showArtistFilter, setShowArtistFilter] = React.useState(false);
+  const [selectedArtists, setSelectedArtists] = React.useState<string[]>([]);
+  const [FilteredProduct, setFilteredProduct] = useState<DocumentData | null>(
+    [],
+  );
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { id } = useParams();
@@ -51,42 +48,34 @@ const GoodsList = () => {
       console.error('상품을 저장하는 데 실패했습니다:', error);
     }
   };
-
+  const lastDocument = useSelector((state: RootState) => state.goods.lastDoc);
   const fetchGoods = async () => {
     try {
       const goodsCollection = collection(db, 'goodsList');
-      let goodsQuery;
-
-      if (lastDocument) {
-        goodsQuery = query(
-          goodsCollection,
-          orderBy('title'),
-          startAfter(lastDocument),
-          limit(pageSize),
-        );
-      } else {
-        goodsQuery = query(goodsCollection, orderBy('title'), limit(pageSize));
-      }
+      const goodsQuery = query(goodsCollection, orderBy('productId'));
 
       const goodsSnapshot = await getDocs(goodsQuery);
       const getGoodsList = goodsSnapshot.docs.map((doc) => doc.data());
-
-      lastDocument = goodsSnapshot.docs[goodsSnapshot.docs.length - 1];
-
       setGoodsList(getGoodsList);
+      console.log('처음 불러오기', goodsList);
     } catch (error) {
       console.log('상품 가져오기 실패!', error);
     }
   };
   useEffect(() => {
     fetchGoods();
-
-    console.log('처음 불러오기', goodsList);
   }, []);
-  console.log(goodsList);
-  const [filter, setFilter] = React.useState<null | String>('');
-  const [showArtistFilter, setShowArtistFilter] = React.useState(false);
-  const [selectedArtists, setSelectedArtists] = React.useState<string[]>([]);
+
+  useEffect(() => {
+    console.log('처음 불러오기', goodsList);
+  }, [goodsList]);
+
+  let pageNumber = useSelector((state: RootState) => state.goods.currentPage);
+
+  const currentPageGoodsList = goodsList.slice(
+    (pageNumber - 1) * pageSize,
+    pageNumber * pageSize,
+  );
   const ProducList = [
     {
       productId: 1,
@@ -189,7 +178,7 @@ const GoodsList = () => {
       category: '머그컵',
 
       artist: '아이즈원',
-      img: 'img/ProductCardImg/아이즈원1.jpg',
+      img: 'img/ProductCardImg/아이즈원2.jpg',
       title: '아이즈원 - 보틀 / HEART*IZ POP-UP STORE',
       ProductName: '아이즈원 - 보틀  ',
       price: 8000,
@@ -202,7 +191,7 @@ const GoodsList = () => {
       productId: 9,
       category: '티셔츠',
       artist: '아이즈원',
-      img: 'img/ProductCardImg/아이즈원2.jpg',
+      img: 'img/ProductCardImg/아이즈원1.jpg',
       title: '아이즈원 - 02 티셔츠 / 2020 ONEIRIC THEATER',
       ProductName: '아이즈원 - 02 티셔츠 ',
       price: 38000,
@@ -535,8 +524,26 @@ const GoodsList = () => {
     '(여자)아이들',
     '아이브',
   ];
-  const handleFilterTeb = (category: string) => {
-    setFilter(category);
+  const handleFilterTeb = (
+    category?: string | null,
+    artist?: string | null,
+  ) => {
+    let filtered = goodsList;
+
+    if (artist) {
+      filtered = filtered.filter(
+        (product: typeProduct) => product.artist === artist,
+        setFilter(artist),
+      );
+    }
+
+    if (category) {
+      filtered = filtered.filter(
+        (product: typeProduct) => product.category === category,
+        setFilter(category),
+      );
+    }
+    setFilteredProduct(filtered);
   };
   const handleArtistChange = (artist: string) => {
     setSelectedArtists((prevArtists) =>
@@ -548,12 +555,37 @@ const GoodsList = () => {
   const resetArtistFilter = () => {
     setSelectedArtists([]);
   };
-  const filteredProduct = goodsList.filter(
+  const filteredProduct = currentPageGoodsList.filter(
     (product: typeProduct) =>
       (selectedArtists.length === 0 ||
         selectedArtists.includes(product.artist)) &&
       (!filter || product.category === filter),
   );
+  const lastFilteredProduct = goodsList.filter(
+    (product: typeProduct) =>
+      (selectedArtists.length === 0 ||
+        selectedArtists.includes(product.artist)) &&
+      (!filter || product.category === filter),
+    (product: typeProduct) => !filter || product.category === filter,
+  );
+
+  const handleNextPage = (pageNumber: number) => {
+    let page = pageNumber + 1;
+    const lastPageNumber = Math.ceil(goodsList.length / pageSize);
+    if (page > lastPageNumber) {
+      page = 1;
+    }
+    dispatch(setCurrentPage(page));
+    console.log('페이지넘버', page);
+  };
+  const handlePrevPage = (pageNumber: number) => {
+    let page = pageNumber - 1;
+    if (page < 1) {
+      page = 1;
+    }
+    dispatch(setCurrentPage(page));
+    console.log('페이지넘버', page);
+  };
 
   //userUID임시 인증로직넣어야함
   const userUID = 'dKSTD7ENlnWUXkuBLMV1MIXdPbg2';
@@ -598,9 +630,9 @@ const GoodsList = () => {
                         type="checkbox"
                         checked={selectedArtists.includes(artist)}
                         onChange={() => handleArtistChange(artist)}
-                        id="artist"
+                        id={artist}
                       />
-                      <label htmlFor="artist">{artist}</label>
+                      <label htmlFor={artist}>{artist}</label>
                     </S.AtistFilterArtist>
                   ))}
                 </S.AtistFilterContainer>
@@ -624,7 +656,12 @@ const GoodsList = () => {
       </button>
       <S.GoodsListSection2>
         <S.GoodsListSection2Wrapper>
-          <S.ProductsTab key="all" onClick={() => setFilter(null)}>
+          <S.ProductsTab
+            key="all"
+            onClick={() => {
+              setFilter(null);
+            }}
+          >
             전체보기
           </S.ProductsTab>
           {categories.map((category) => (
@@ -642,41 +679,67 @@ const GoodsList = () => {
         <S.GoodsListSection3Wrapper>
           {
             //상품 필터해서 0개면 상품없다고 말해줌
-            filteredProduct?.length > 0 ? (
-              filteredProduct?.map((product: typeProduct) => (
-                <S.ProductCard
-                  onClick={() => {
-                    dispatch(setSelectedProduct(product));
-                    navigate(`/detail/${product.productId}`);
-                  }}
-                >
-                  <S.ProductCardImgBox>
-                    <S.ProductCardImg src={product.img} alt="상품이미지" />
-                  </S.ProductCardImgBox>
-                  <div>
-                    <S.GoodsListCardSection1>
-                      <S.GoodsListCardSection1_1>
-                        <S.ProductCardInfo>{product.info}?</S.ProductCardInfo>
-                        <S.ProductCardTitle>{product.title}</S.ProductCardTitle>
-                      </S.GoodsListCardSection1_1>
-                      <S.GoodsListCardSection1_2>
-                        <S.ProductCardPrice>
-                          {product.price} 원
-                        </S.ProductCardPrice>
-                        <S.ProductCardTeg src={product.teg} alt="이미지태그" />
-                      </S.GoodsListCardSection1_2>
-                    </S.GoodsListCardSection1>
-                  </div>
-                </S.ProductCard>
+            goodsList?.length > 0 ? (
+              (console.log('시작', currentPageGoodsList),
+              console.log('카테고리 상품', lastFilteredProduct),
+              console.log('필터 상품', filter),
+              (filter == null ? filteredProduct : lastFilteredProduct)?.map(
+                (product: typeProduct) => (
+                  <S.ProductCard
+                    onClick={() => {
+                      dispatch(setSelectedProduct(product));
+                      navigate(`/detail/${product.productId}`);
+                    }}
+                  >
+                    <S.ProductCardImgBox>
+                      <S.ProductCardImg src={product.img} alt="상품이미지" />
+                    </S.ProductCardImgBox>
+                    <div>
+                      <S.GoodsListCardSection1>
+                        <S.GoodsListCardSection1_1>
+                          <S.ProductCardInfo>{product.info}</S.ProductCardInfo>
+                          <S.ProductCardTitle>
+                            {product.title}
+                          </S.ProductCardTitle>
+                        </S.GoodsListCardSection1_1>
+                        <S.GoodsListCardSection1_2>
+                          <S.ProductCardPrice>
+                            {product.price} 원
+                          </S.ProductCardPrice>
+                          {product.teg ? (
+                            <S.ProductCardTeg
+                              src={product.teg}
+                              alt="이미지태그"
+                            />
+                          ) : (
+                            ''
+                          )}
+                        </S.GoodsListCardSection1_2>
+                      </S.GoodsListCardSection1>
+                    </div>
+                  </S.ProductCard>
+                ),
               ))
             ) : (
-              <div>상품이 없습니다.</div>
+              <S.NotProduct>상품이 없습니다.</S.NotProduct>
             )
           }
         </S.GoodsListSection3Wrapper>
         <S.GoodsListSection4>
-          {' '}
-          <button onClick={fetchGoods}>다음 페이지</button>
+          <S.GoodsListSection4Btn
+            onClick={() => {
+              handlePrevPage(pageNumber);
+            }}
+          >
+            이전 페이지
+          </S.GoodsListSection4Btn>
+          <S.GoodsListSection4Btn
+            onClick={() => {
+              handleNextPage(pageNumber);
+            }}
+          >
+            다음 페이지
+          </S.GoodsListSection4Btn>
         </S.GoodsListSection4>
       </S.GoodsListSection3>
     </S.GoodsListContainer>
