@@ -1,5 +1,6 @@
 export interface typeProduct {
   productId: number; //상품아이디
+  sideCategory?: string; //사이드바카테고리
   category: string; //카테고리
   info?: string; //정보 (예약,뉴,품절)
   Checklist1?: string; //확인사항
@@ -28,5 +29,6 @@ export interface ProducToShoppingCart {
   totalPrice?: number; // 총가격
   quantity?: number; // 선택된수량
   remainingQuantity?: number; // 재고
+  productId: number; // 상품아이디
 }
 //디테일페이지에서 상품 정보 보낼때 타입
