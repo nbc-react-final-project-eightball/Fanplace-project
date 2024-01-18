@@ -7,24 +7,28 @@ export const Layout = styled.div`
   align-items: center;
 `;
 
-export const LayoutContainer = styled.div`
-  display: grid;
-  grid-template-columns: 0fr 1fr 9fr;
-  grid-template-rows: 0fr 0fr 1fr;
-  grid-column-gap: 0px;
-  grid-row-gap: 0px;
+export const Welcome = styled.div`
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100%;
-  height: 120vw;
+  height: 2rem;
+  font-size: 0.87rem;
+  color: #fff;
+  background: #000;
+  z-index: 9;
+`;
+
+export const LayoutContainer = styled.div`
+  width: 100%;
   padding: 0 1.5rem;
 `;
 export const LayoutSection1 = styled.div`
-  grid-area: 1 / 2 / 4 / 3;
   width: 100px;
   margin-top: 120px;
 `;
 export const LayoutSection2 = styled.div`
-  margin-top: 150px;
-  grid-area: 1 / 3 / 4 / 4;
   height: 100%;
   width: 100%;
 `;

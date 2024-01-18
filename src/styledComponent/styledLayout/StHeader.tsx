@@ -1,8 +1,7 @@
 import styled from 'styled-components';
 
 export const HeaderContainer = styled.div`
-  background: ${({ color }) => color};
-  color: ${({ color }) => (color === 'transparent' ? 'black' : 'white')};
+  color: #000;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -10,6 +9,7 @@ export const HeaderContainer = styled.div`
   z-index: 9;
   width: 100%;
   height: 80px;
+  margin-top: 2rem;
   box-shadow: var(--box-shadow);
 `;
 export const Wrapper = styled.div`
@@ -50,6 +50,12 @@ export const HeaderButton = styled.div`
   justify-content: space-between;
   align-items: center;
   gap: 1.875rem;
+
+  & button {
+    padding: 0.5rem;
+    background: #fff;
+    border-radius: 4rem;
+  }
 `;
 
 export const LoginButton = styled.button`
