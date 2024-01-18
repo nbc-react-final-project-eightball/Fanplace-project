@@ -14,6 +14,7 @@ import Detail from 'page/Detail';
 import NotFound from 'page/NotFound';
 import Cartpage from 'page/Cartpage';
 import PaymentPage from 'page/PaymentPage';
+import ChatListPage from 'page/ChatListPage';
 
 const Router = () => {
   return (
@@ -30,9 +31,10 @@ const Router = () => {
           <Route path="/wishlist" element={<WishListPage />} />
           <Route path="/profilesettings" element={<ProfileSettingsPage />} />
           <Route path="/shipping" element={<ShippingPage />} />
-          <Route path="/Cart" element={<Cartpage />} />
+          <Route path="/cart" element={<Cartpage />} />
           <Route path="/payment" element={<PaymentPage />} />
           <Route path="/Detail/:id" element={<Detail />} />
+          <Route path="/chatlist" element={<ChatListPage />} />
         </Route>
       </Routes>
     </BrowserRouter>

@@ -95,7 +95,7 @@ export const MainContentBox = styled.div`
 export const MainContentInnerBox = styled.div`
   display: flex;
   max-width: 75rem;
-  margin: 2rem auto 0;
+  margin: 3.5rem auto 0;
 `;
 
 export const MenuList = styled.div`
@@ -177,11 +177,16 @@ export const TableHead = styled.div`
     height: 100%;
   }
   ul li {
+    flex: 1;
     display: flex;
     align-items: center;
     justify-content: center;
     width: 100%;
     height: 100%;
+    font-size: 0.875rem;
+  }
+  ul li:nth-child(2) {
+    flex: 2;
   }
 `;
 export const TableBody = styled.div`

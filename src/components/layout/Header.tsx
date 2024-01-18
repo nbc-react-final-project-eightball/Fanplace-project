@@ -14,8 +14,8 @@ const Header = () => {
   const loginHandler = () => {
     navigate('/login');
   };
-  const wishListHandler = () => {
-    navigate('/');
+  const CartHandler = () => {
+    navigate('/cart');
   };
 
   const userData = useSelector(
@@ -99,7 +99,7 @@ const Header = () => {
                 {/* 로그인 */}
               </S.LoginButton>
             )}
-            <button onClick={wishListHandler}>
+            <button onClick={CartHandler}>
               <svg
                 id="shopping"
                 xmlns="http://www.w3.org/2000/svg"

@@ -8,15 +8,19 @@ export const Layout = styled.div`
 `;
 
 export const Welcome = styled.div`
-  position: fixed;
+  position: absolute;
+  top: 40px;
+  left: 50%;
+  transform: translate(-50%, -50%);
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100%;
-  height: 2rem;
+  height: 2.5rem;
+  padding: 0 2rem;
+  border-radius: 2.5rem;
   font-size: 0.87rem;
-  color: #fff;
-  background: #000;
+  color: #777;
+  background: #f7f7f7;
   z-index: 9;
 `;
 

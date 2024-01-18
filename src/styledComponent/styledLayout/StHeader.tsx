@@ -9,7 +9,7 @@ export const HeaderContainer = styled.div`
   z-index: 9;
   width: 100%;
   height: 80px;
-  margin-top: 2rem;
+  /* margin-top: 2.5rem; */
   box-shadow: var(--box-shadow);
 `;
 export const Wrapper = styled.div`
@@ -27,6 +27,7 @@ export const Wrapper = styled.div`
     width: 200px;
   }
 `;
+
 export const Header = styled.div`
   display: flex;
   flex-direction: row;
