@@ -9,30 +9,29 @@ export const Layout = styled.div`
 
 export const LayoutContainer = styled.div`
   display: grid;
-  grid-template-columns: 0fr 1fr 5fr;
+  grid-template-columns: 0fr 1fr 9fr;
   grid-template-rows: 0fr 0fr 1fr;
   grid-column-gap: 0px;
   grid-row-gap: 0px;
-  height: auto;
+  width: 100%;
+  height: 120vw;
+  padding: 0 1.5rem;
 `;
 export const LayoutSection1 = styled.div`
   grid-area: 1 / 2 / 4 / 3;
-  background: black;
-  width: 300px;
-  height: 1500px;
-  margin-top: 10%;
+  width: 100px;
+  margin-top: 120px;
 `;
 export const LayoutSection2 = styled.div`
   margin-top: 150px;
   grid-area: 1 / 3 / 4 / 4;
-  height: auto;
-  min-height: 100%;
-  width: 85vw;
+  height: 100%;
+  width: 100%;
 `;
 
 //Footer start
 export const FooterContainer = styled.div`
-  background-color: #faafaf;
+  background-color: #202020;
   padding: 20px;
   color: white;
   width: 100%;
