@@ -57,7 +57,7 @@ const ProductInfo: React.FC<ProductProps> = ({ product }) => {
       );
     }
     try {
-      const docRef = addDoc(collection(db, 'cart'), addCart);
+      const docRef = addDoc(collection(db, 'cartList'), addCart);
       console.log('보내지냐 ? ', docRef);
       console.log('보내지냐 ? ', addCart);
     } catch (error) {
@@ -65,7 +65,7 @@ const ProductInfo: React.FC<ProductProps> = ({ product }) => {
     }
     alert('장바구니에 추가되었습니다!');
     // 소이님이동할페이지 적어주세요 !!
-    navigate('/cart');
+    navigate('/Cart');
     //
   };
   //장바구니로 보낼때

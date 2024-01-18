@@ -10,6 +10,10 @@ import {
   addDoc,
   DocumentData,
   startAfter,
+  doc,
+  getDoc,
+  setDoc,
+  updateDoc,
 } from 'firebase/firestore';
 import axios from 'axios';
 import { typeProduct } from '../Type/TypeInterface';
@@ -550,6 +554,29 @@ const GoodsList = () => {
         selectedArtists.includes(product.artist)) &&
       (!filter || product.category === filter),
   );
+
+  //userUID임시 인증로직넣어야함
+  const userUID = 'dKSTD7ENlnWUXkuBLMV1MIXdPbg2';
+  const addCartListFirestore = async (addCartList: typeProduct[]) => {
+    try {
+      const cartRef = doc(db, 'cart', userUID);
+      const cartDoc = await getDoc(cartRef);
+
+      if (!cartDoc.exists()) {
+        await setDoc(cartRef, { cartList: [] });
+      }
+
+      const cartList = cartDoc.data()?.cartList || [];
+      const updateCartList = [...cartList, ...addCartList];
+
+      //cart collection의 document를 추가
+      await updateDoc(cartRef, { cartList: updateCartList });
+
+      console.log('제품을 성공적으로 DB에 업데이트!');
+    } catch (error) {
+      console.error('업데이트 실패ㅠ.ㅠ', error);
+    }
+  };
 
   return (
     <S.GoodsListContainer>
