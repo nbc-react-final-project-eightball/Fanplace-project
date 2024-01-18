@@ -1,3 +1,4 @@
+import 'index.css';
 const { createGlobalStyle } = require('styled-components');
 
 const GlobalStyle = createGlobalStyle`
@@ -127,29 +128,27 @@ table {
 
 body {
   margin: 0;
-  font-family: 'Noto Sans KR', sans-serif; /* 한글 폰트 설정 */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-code {
-  font-family: 'Montserrat', sans-serif;
 }
 
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  font-family: 'Pretendard', sans-serif; /* 폰트 설정 */
 }
 ul {
   padding-left: 0;
+}
+li {
+  list-style: none;
 }
 a,button {
   all: unset;
   cursor: pointer;
 }
 img {
-  width: 100%;
   vertical-align: top;
 }
 `;
