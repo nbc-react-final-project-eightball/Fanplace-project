@@ -10,9 +10,10 @@ import OrderListPage from 'page/OrderListPage';
 import WishListPage from 'page/WishListPage';
 import ShippingPage from 'page/ShippingPage';
 import ProfileSettingsPage from 'page/ProfileSettingsPage';
-import Chat from 'page/Chat';
 import Detail from 'page/Detail';
 import NotFound from 'page/NotFound';
+import Cartpage from 'page/Cartpage';
+import PaymentPage from 'page/PaymentPage';
 
 const Router = () => {
   return (
@@ -29,7 +30,8 @@ const Router = () => {
           <Route path="/wishlist" element={<WishListPage />} />
           <Route path="/profilesettings" element={<ProfileSettingsPage />} />
           <Route path="/shipping" element={<ShippingPage />} />
-          <Route path="/chat" element={<Chat />} />
+          <Route path="/Cart" element={<Cartpage />} />
+          <Route path="/payment" element={<PaymentPage />} />
           <Route path="/Detail/:id" element={<Detail />} />
         </Route>
       </Routes>
