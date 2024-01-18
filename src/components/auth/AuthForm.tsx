@@ -52,9 +52,9 @@ const AuthForm = () => {
     address: string;
   }
 
-  const { address } = useSelector(
-    (state: { signUpSlice: SignUpState }) => state.signUpSlice,
-  );
+  const { address } =
+    useSelector((state: { signUpSlice: SignUpState }) => state.signUpSlice) ||
+    {};
 
   const submitHandler = async (data: Record<string, any>) => {
     try {

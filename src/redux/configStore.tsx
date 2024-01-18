@@ -1,12 +1,16 @@
 import { configureStore } from '@reduxjs/toolkit';
-import modalSlice from '../redux/modules/modal/modalSlice';
-import signUpSlice from '../redux/modules/signup/signUpSlice';
+import React from 'react';
+import { goodsSlice } from './modules/GoodsList/GoodsListSlice';
+import { productSlice } from './modules/Detail/DetailSlice';
+import { modalSlice } from './modules/modal/modalSlice';
+import { signUpSlice } from './modules/signup/signUpSlice';
 
 const store = configureStore({
   reducer: {
-    // 여기에 리듀서를 넣어주세요
-    modalSlice,
-    signUpSlice,
+    goods: goodsSlice.reducer,
+    productDetailTotal: productSlice.reducer,
+    modalSlice: modalSlice.reducer,
+    signUpSlice: signUpSlice.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
@@ -15,3 +19,4 @@ const store = configureStore({
   devTools: true,
 });
 export default store;
+export type RootState = ReturnType<typeof store.getState>;

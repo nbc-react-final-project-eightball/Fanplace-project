@@ -9,7 +9,7 @@ export const GoodsListContainer = styled.div`
   max-width: 2200px;
 
   margin: auto;
-  margin-top: 7vh;
+  margin-top: 2vh;
   display: flex;
   flex-direction: column;
   align-items: center;

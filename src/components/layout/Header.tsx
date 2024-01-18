@@ -28,7 +28,13 @@ const Header = () => {
   const userData = useSelector(
     (state: { signUpSlice: any }) => state.signUpSlice,
   );
-  const isLogged = userData.isLogged;
+  const isLogged = userData?.isLogged;
+  console.log(
+    'Header에서 signUpSlice isLogged______',
+    isLogged,
+    'userData_______',
+    userData,
+  );
 
   return (
     <S.HeaderContainer color={scrollPostion < 150 ? 'transparent' : 'black'}>

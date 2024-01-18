@@ -26,7 +26,7 @@ const initialState: SignUpState = {
   userInfo: storedUserInfo ? JSON.parse(storedUserInfo) : null,
 };
 
-const signUpSlice = createSlice({
+export const signUpSlice = createSlice({
   name: 'signUp',
   initialState,
   reducers: {

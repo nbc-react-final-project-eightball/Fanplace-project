@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const Layout = styled.div`
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  height: auto;
   align-items: center;
 `;
 
@@ -23,6 +23,7 @@ export const LayoutSection1 = styled.div`
   margin-top: 120px;
 `;
 export const LayoutSection2 = styled.div`
+  margin-top: 150px;
   grid-area: 1 / 3 / 4 / 4;
   height: 100%;
   width: 100%;
