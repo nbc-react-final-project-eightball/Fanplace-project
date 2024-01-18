@@ -4,9 +4,10 @@ import Layout from 'page/Layout';
 import Mainpage from 'page/Mainpage';
 import Authpage from 'page/Authpage';
 import GoodsList from 'page/GoodsList';
-import Chat from 'page/Chat';
 import Detail from 'page/Detail';
 import NotFound from 'page/NotFound';
+import Cartpage from 'page/Cartpage';
+import PaymentPage from 'page/PaymentPage';
 
 const Router = () => {
   return (
@@ -17,7 +18,8 @@ const Router = () => {
           <Route path="/login" element={<Authpage />} />
           <Route path="*" element={<NotFound />} />
           <Route path="/GoodsList" element={<GoodsList />} />
-          <Route path="/chat" element={<Chat />} />
+          <Route path="/Cart" element={<Cartpage />} />
+          <Route path="/payment" element={<PaymentPage />} />
           <Route path="/Detail/:id" element={<Detail />} />
         </Route>
       </Routes>
