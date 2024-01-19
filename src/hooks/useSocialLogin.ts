@@ -65,9 +65,11 @@ export const useSocialLogin = (
 
         const githubUserData = await getGitHubUserData(githubProviderData?.uid);
         displayName = githubUserData.login;
+        dispatch(logIn({ userInfo: { ...user.providerData[0], displayName } }));
+      } else {
+        dispatch(logIn({ userInfo: user.providerData[0] }));
       }
 
-      dispatch(logIn({ userInfo: { ...user.providerData[0], displayName } }));
       alert('로그인 되었습니다2.');
       navigate('/');
       setIsPending(false);
