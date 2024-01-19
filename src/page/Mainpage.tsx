@@ -9,11 +9,10 @@ const Mainpage = () => {
     <>
       <div
         style={{
-          width: '90%',
-          height: '170vh',
-          margin: 'auto',
-          marginTop: '5vh',
-          justifyContent: 'center',
+          width: '100%',
+          height: 'auto',
+          maxWidth: '1200px',
+          margin: '0 auto',
           overflow: 'hidden',
         }}
       >

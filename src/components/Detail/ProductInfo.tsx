@@ -135,7 +135,7 @@ const ProductInfo: React.FC<ProductProps> = ({ product }) => {
     }
     alert('장바구니에 추가되었습니다!');
     // 소이님이동할페이지 적어주세요 !!
-    // navigate('/cart');
+    navigate('/Cart');
     //
   };
 

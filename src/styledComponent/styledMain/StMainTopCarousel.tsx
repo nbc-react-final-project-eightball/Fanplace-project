@@ -3,42 +3,53 @@ import styled from 'styled-components';
 export const Div = styled.div`
   display: flex;
   justify-content: center;
-  margin-bottom: 60px;
+  position: relative;
+  width: 32.5rem;
+  height: 32.5rem;
+  margin: 0 auto;
+  border-radius: 32.5rem;
 `;
 
 export const PrevButton = styled.button`
+  position: absolute;
+  top: 50%;
+  left: -25px;
+  transform: translateY(-50%);
   display: block;
-  flex-grow: 1;
-  flex-shrink: 1;
-  flex-basis: auto;
-  text-align: center;
-  order: 0;
+  z-index: 5;
 `;
 
 export const NextButton = styled.button`
+  position: absolute;
+  top: 50%;
+  right: -25px;
+  transform: translateY(-50%);
   display: block;
-  flex-grow: 1;
-  flex-shrink: 1;
-  flex-basis: auto;
-  align-self: auto;
-  text-align: center;
-  order: 0;
+  z-index: 5;
 `;
 export const MainTopCarouselContainer = styled.div`
   position: relative;
-  width: 100%;
   overflow: hidden;
   margin: 0 auto;
   flex-grow: 20;
 `;
 export const MainTopCarousel = styled.div`
   display: flex;
+  width: 100%;
+  height: 100%;
 `;
 export const MainTopCarouselItem = styled.div`
   flex: 0 0 auto;
   position: relative;
   width: 100%;
-  margin: 0 0.5rem;
+  height: 100%;
+  border-radius: 50%;
+  overflow: hidden;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 `;
 
 export const MainTopCarouselItemText = styled.div``;
