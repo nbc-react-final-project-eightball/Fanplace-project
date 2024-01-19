@@ -10,6 +10,10 @@ import {
   addDoc,
   DocumentData,
   startAfter,
+  doc,
+  getDoc,
+  setDoc,
+  updateDoc,
 } from 'firebase/firestore';
 import axios from 'axios';
 import { typeProduct } from '../Type/TypeInterface';

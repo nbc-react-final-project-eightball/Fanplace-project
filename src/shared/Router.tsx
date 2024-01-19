@@ -14,6 +14,7 @@ import Detail from 'page/Detail';
 import NotFound from 'page/NotFound';
 import Cartpage from 'page/Cartpage';
 import PaymentPage from 'page/PaymentPage';
+import PaymentSuccess from 'page/PaymentSuccess';
 import ChatListPage from 'page/ChatListPage';
 
 const Router = () => {
@@ -34,6 +35,7 @@ const Router = () => {
           <Route path="/cart" element={<Cartpage />} />
           <Route path="/payment" element={<PaymentPage />} />
           <Route path="/Detail/:id" element={<Detail />} />
+          <Route path="/success" element={<PaymentSuccess />} />
           <Route path="/chatlist" element={<ChatListPage />} />
         </Route>
       </Routes>
