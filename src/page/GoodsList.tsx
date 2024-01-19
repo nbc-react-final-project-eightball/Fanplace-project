@@ -586,32 +586,6 @@ const GoodsList = () => {
     dispatch(setCurrentPage(page));
     console.log('페이지넘버', page);
   };
-<<<<<<< HEAD
-
-  //userUID임시 인증로직넣어야함
-  const userUID = 'dKSTD7ENlnWUXkuBLMV1MIXdPbg2';
-  const addCartListFirestore = async (addCartList: typeProduct[]) => {
-    try {
-      const cartRef = doc(db, 'cart', userUID);
-      const cartDoc = await getDoc(cartRef);
-
-      if (!cartDoc.exists()) {
-        await setDoc(cartRef, { cartList: [] });
-      }
-
-      const cartList = cartDoc.data()?.cartList || [];
-      const updateCartList = [...cartList, ...addCartList];
-
-      //cart collection의 document를 추가
-      await updateDoc(cartRef, { cartList: updateCartList });
-
-      console.log('제품을 성공적으로 DB에 업데이트!');
-    } catch (error) {
-      console.error('업데이트 실패ㅠ.ㅠ', error);
-    }
-  };
-=======
->>>>>>> 696d38e68b530ace778defc6c3bc1dd48fcc3700
 
   return (
     <S.GoodsListContainer>

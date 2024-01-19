@@ -72,10 +72,6 @@ const ProductInfo: React.FC<ProductProps> = ({ product }) => {
         const userCartRef = doc(collection(db, 'cartList'), user.uid);
         const docSnap = await getDoc(userCartRef);
         const cartProduct = {
-<<<<<<< HEAD
-          id: 4,
-=======
->>>>>>> 696d38e68b530ace778defc6c3bc1dd48fcc3700
           category: product.category,
           img: product.img,
           artist: product.artist,
@@ -139,11 +135,7 @@ const ProductInfo: React.FC<ProductProps> = ({ product }) => {
     }
     alert('장바구니에 추가되었습니다!');
     // 소이님이동할페이지 적어주세요 !!
-<<<<<<< HEAD
     navigate('/Cart');
-=======
-    // navigate('/cart');
->>>>>>> 696d38e68b530ace778defc6c3bc1dd48fcc3700
     //
   };
 
