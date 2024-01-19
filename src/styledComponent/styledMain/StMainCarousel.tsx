@@ -59,8 +59,12 @@ export const CarouselRange = styled.input`
 
     background: #000000;
     cursor: pointer;
-    box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
-    transition: background 0.5s ease-in-out, border 0.5s ease-in-out,
+    box-shadow:
+      1px 1px 1px #000000,
+      0px 0px 1px #0d0d0d;
+    transition:
+      background 0.5s ease-in-out,
+      border 0.5s ease-in-out,
       left 0.5s ease-in-out;
     -webkit-appearance: none;
   }

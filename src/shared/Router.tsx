@@ -14,7 +14,11 @@ import Detail from 'page/Detail';
 import NotFound from 'page/NotFound';
 import Cartpage from 'page/Cartpage';
 import PaymentPage from 'page/PaymentPage';
+<<<<<<< HEAD
 import PaymentSuccess from 'page/PaymentSuccess';
+=======
+import ChatListPage from 'page/ChatListPage';
+>>>>>>> 696d38e68b530ace778defc6c3bc1dd48fcc3700
 
 const Router = () => {
   return (
@@ -31,10 +35,14 @@ const Router = () => {
           <Route path="/wishlist" element={<WishListPage />} />
           <Route path="/profilesettings" element={<ProfileSettingsPage />} />
           <Route path="/shipping" element={<ShippingPage />} />
-          <Route path="/Cart" element={<Cartpage />} />
+          <Route path="/cart" element={<Cartpage />} />
           <Route path="/payment" element={<PaymentPage />} />
           <Route path="/Detail/:id" element={<Detail />} />
+<<<<<<< HEAD
           <Route path="/success" element={<PaymentSuccess />} />
+=======
+          <Route path="/chatlist" element={<ChatListPage />} />
+>>>>>>> 696d38e68b530ace778defc6c3bc1dd48fcc3700
         </Route>
       </Routes>
     </BrowserRouter>

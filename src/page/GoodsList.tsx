@@ -586,6 +586,7 @@ const GoodsList = () => {
     dispatch(setCurrentPage(page));
     console.log('페이지넘버', page);
   };
+<<<<<<< HEAD
 
   //userUID임시 인증로직넣어야함
   const userUID = 'dKSTD7ENlnWUXkuBLMV1MIXdPbg2';
@@ -609,6 +610,8 @@ const GoodsList = () => {
       console.error('업데이트 실패ㅠ.ㅠ', error);
     }
   };
+=======
+>>>>>>> 696d38e68b530ace778defc6c3bc1dd48fcc3700
 
   return (
     <S.GoodsListContainer>

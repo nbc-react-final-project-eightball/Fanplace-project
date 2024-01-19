@@ -1,8 +1,7 @@
 import styled from 'styled-components';
 
 export const HeaderContainer = styled.div`
-  background: ${({ color }) => color};
-  color: ${({ color }) => (color === 'transparent' ? 'black' : 'white')};
+  color: #000;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -10,6 +9,7 @@ export const HeaderContainer = styled.div`
   z-index: 9;
   width: 100%;
   height: 80px;
+  /* margin-top: 2.5rem; */
   box-shadow: var(--box-shadow);
 `;
 export const Wrapper = styled.div`
@@ -27,6 +27,7 @@ export const Wrapper = styled.div`
     width: 200px;
   }
 `;
+
 export const Header = styled.div`
   display: flex;
   flex-direction: row;
@@ -49,7 +50,13 @@ export const HeaderButton = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  gap: 1.875rem;
+  gap: 1rem;
+
+  & button {
+    padding: 0.5rem;
+    background: #fff;
+    border-radius: 4rem;
+  }
 `;
 
 export const LoginButton = styled.button`
