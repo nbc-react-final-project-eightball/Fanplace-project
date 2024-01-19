@@ -46,7 +46,7 @@ const GoodsList = () => {
   const fetchGoods = async () => {
     try {
       const goodsCollection = collection(db, 'goodsList');
-      const goodsQuery = query(goodsCollection, orderBy('productId'));
+      const goodsQuery = query(goodsCollection, orderBy('category'));
 
       const goodsSnapshot = await getDocs(goodsQuery);
       const getGoodsList = goodsSnapshot.docs.map((doc) => doc.data());
@@ -65,8 +65,14 @@ const GoodsList = () => {
   }, [goodsList]);
 
   let pageNumber = useSelector((state: RootState) => state.goods.currentPage);
-
-  const currentPageGoodsList = goodsList.slice(
+  const filteredProduct = goodsList.filter(
+    (product: typeProduct) =>
+      (selectedArtists.length === 0 ||
+        selectedArtists.includes(product.artist)) &&
+      (!filter || product.category === filter) &&
+      (!sideCategory || product.sideCategory === sideCategory),
+  );
+  const currentPageGoodsList = filteredProduct.slice(
     (pageNumber - 1) * pageSize,
     pageNumber * pageSize,
   );
@@ -99,7 +105,7 @@ const GoodsList = () => {
       teg: '/img/new.svg',
       isSoldOut: false,
       remainingQuantity: 100,
-      contentImg1: '/img/ProductDetail/YO1_1.jpg',
+      contentImg1: '/img/ProductDetail/YO2_1.jpg',
     },
     {
       productId: 3,
@@ -177,16 +183,15 @@ const GoodsList = () => {
     {
       productId: 8,
       sideCategory: 'Sundries',
-      category: '머그컵',
-      artist: '아이즈원',
-      img: '/img/ProductCardImg/아이즈원2.jpg',
-      title: '아이즈원 - 보틀 / HEART*IZ POP-UP STORE',
-      ProductName: '아이즈원 - 보틀  ',
+      category: '텀블러/컵',
+      artist: 'BTS',
+      img: '/img/ProductCardImg/BTS1.jpg',
+      title: 'BTS WORLD 방탄 굿즈 스트랩 키링',
+      ProductName: '[BTS월드 공식] BTS WORLD 방탄 굿즈 스트랩 키링',
       price: 8000,
-
       isSoldOut: false,
       remainingQuantity: 100,
-      contentImg1: '/img/ProductDetail/아이즈원1_1.jpg',
+      contentImg1: '/img/ProductDetail/BTS1_1.jpg',
     },
     {
       productId: 9,
@@ -194,13 +199,13 @@ const GoodsList = () => {
       sideCategory: 'Apparel',
       artist: '아이즈원',
       img: '/img/ProductCardImg/아이즈원1.jpg',
-      title: '아이즈원 - 02 티셔츠 / 2020 ONEIRIC THEATER',
-      ProductName: '아이즈원 - 02 티셔츠 ',
+      title: 'IZONE 아이즈원 COLORIZ 프린팅 후드티',
+      ProductName: 'COLORIZ 프린팅 후드티 ',
       price: 38000,
       teg: '/img/new.svg',
       isSoldOut: false,
       remainingQuantity: 100,
-      contentImg1: '/img/ProductDetail/아이즈원2_1.jpg',
+      contentImg1: '/img/ProductDetail/아이즈원1_1.jpg',
     },
     {
       productId: 10,
@@ -208,8 +213,8 @@ const GoodsList = () => {
       sideCategory: 'Sundries',
       artist: '트와이스',
       img: '/img/ProductCardImg/트와이스1.jpg',
-      title: '트와이스 - 23 텀블러 / 2019 ONCE HALLOWEEN 2',
-      ProductName: '트와이스 - 23 텀블러 ',
+      title: '트와이스 포토 텀블러 트와 굿즈 ( TWICE GOODS TUMBLER)',
+      ProductName: '트와이스 - 포토 텀블러 ',
       price: 25000,
       teg: '/img/new.svg',
       isSoldOut: false,
@@ -222,8 +227,8 @@ const GoodsList = () => {
       sideCategory: 'Sundries',
       artist: '트와이스',
       img: '/img/ProductCardImg/트와이스2.jpg',
-      title: '트와이스 - 27 목걸이 / 4TH WORLD TOUR Ⅲ 2ND MD',
-      ProductName: '트와이스 - 27 목걸이',
+      title: '트와이스 -  목걸이',
+      ProductName: '트와이스 -  목걸이',
       price: 25000,
       teg: '/img/new.svg',
       isSoldOut: false,
@@ -236,13 +241,14 @@ const GoodsList = () => {
       sideCategory: 'Sundries',
       artist: '트와이스',
       img: '/img/ProductCardImg/트와이스3.jpg',
-      title: '트와이스 - 04 폰케이스 / 2019 ONCE HALLOWEEN 2',
-      ProductName: '트와이스 - 04 폰케이스 ',
+      title: 'TWICE 트와이스 Part 5 굿즈 이중범퍼 휴대폰 케이스',
+      ProductName: '트와이스 -Part5 폰케이스 ',
       price: 38000,
 
       isSoldOut: false,
       remainingQuantity: 100,
       contentImg1: '/img/ProductDetail/트와이스3_1.jpg',
+      contentImg2: '/img/ProductDetail/트와이스3_2.jpg',
     },
     {
       productId: 13,
@@ -253,10 +259,10 @@ const GoodsList = () => {
       title: '트와이스 - 18 필름 포토 세트 / 4TH WORLD TOUR Ⅲ 2ND MD',
       ProductName: '트와이스 - 18 필름 포토 세트',
       price: 15000,
-
       isSoldOut: false,
       remainingQuantity: 100,
       contentImg1: '/img/ProductDetail/트와이스4_1.jpg',
+      contentImg2: '/img/ProductDetail/트와이스4_2.jpg',
     },
     {
       productId: 14,
@@ -265,10 +271,9 @@ const GoodsList = () => {
       info: '',
       artist: '트와이스',
       img: '/img/ProductCardImg/트와이스5.jpg',
-      title: '트와이스 - TWICE TV4 DVD',
+      title: '트와이스 (TWICE) / TWICE TV4 (3 DVD) (한정판)',
       ProductName: '트와이스 - TWICE TV4 DVD',
       price: 39600,
-
       isSoldOut: false,
       remainingQuantity: 100,
       contentImg1: '/img/ProductDetail/트와이스5_1.jpg',
@@ -293,14 +298,12 @@ const GoodsList = () => {
       sideCategory: 'CD',
       artist: '스트레이키즈',
       img: '/img/ProductCardImg/스트레이키즈1.jpg',
-      title: '스트레이 키즈 - ★★★★★ (5-STAR) / 3집 정규 앨범',
-      ProductName: '스트레이 키즈 - ★★★★★ (5-STAR) ',
+      title: '스트레이 키즈 / 3집 정규 앨범',
+      ProductName: '스트레이 키즈 3집 정규 앨범 ',
       price: 21000,
-
       isSoldOut: false,
       remainingQuantity: 100,
       contentImg1: '/img/ProductDetail/스트레이키즈1_1.jpg',
-      contentImg2: '/img/ProductDetail/스트레이키즈1_2.jpg',
     },
     {
       productId: 17,
@@ -312,12 +315,9 @@ const GoodsList = () => {
       title: '스트레이 키즈 - MAXIDENT / 미니앨범 (CASE ver.)',
       ProductName: '스트레이 키즈 - MAXIDENT ',
       price: 14000,
-
       isSoldOut: false,
       remainingQuantity: 100,
       contentImg1: '/img/ProductDetail/스트레이키즈2_1.jpg',
-      contentImg2: '/img/ProductDetail/스트레이키즈2_2.jpg',
-      contentImg3: '/img/ProductDetail/스트레이키즈2_3.jpg',
     },
     {
       productId: 18,
@@ -326,18 +326,17 @@ const GoodsList = () => {
       info: '',
       artist: '블랙핑크',
       img: '/img/ProductCardImg/블랙핑크1.jpg',
-      title: '블랙핑크 (BLACKPINK) - 더 게임 포토카드 컬렉션 (세트)',
+      title: '블랙핑크 (BLACKPINK) - 더 게임 포토카드 (세트)',
       ProductName: '블랙핑크 - 더 게임 포토카드 컬렉션',
       price: 45000,
-
       isSoldOut: false,
       remainingQuantity: 100,
       contentImg1: '/img/ProductDetail/블랙핑크1_1.jpg',
     },
     {
       productId: 19,
-      category: '포토카드',
-      sideCategory: 'Photo',
+      category: 'CD',
+      sideCategory: 'DVD',
       info: '',
       artist: '블랙핑크',
       img: '/img/ProductCardImg/블랙핑크2.jpg',
@@ -348,7 +347,6 @@ const GoodsList = () => {
       isSoldOut: false,
       remainingQuantity: 100,
       contentImg1: '/img/ProductDetail/블랙핑크2_1.jpg',
-      contentImg2: '/img/ProductDetail/블랙핑크2_2.jpg',
     },
     {
       productId: 20,
@@ -357,18 +355,18 @@ const GoodsList = () => {
       info: '[2/21 출시]',
       artist: '샤이니',
       img: 'img/ProductCardImg/샤이니1.jpg',
-      title:
-        '04 ID 포토 키링 (샤이니 Ver.) / 2024 SEASON S GREETINGS OFFICIAL MD',
-      ProductName: '04 ID 포토 키링 (샤이니 Ver.) ',
+      title: '샤이니 SHINEE 굿즈 스페셜 포토카드 60장 세트 굿즈',
+      ProductName: '샤이니 SHINEE 굿즈 스페셜 포토카드  세트 굿즈',
       price: 9000,
       teg: '/img/new.svg',
       isSoldOut: false,
       remainingQuantity: 100,
       contentImg1: '/img/ProductDetail/샤이니1_1.jpg',
+      contentImg2: '/img/ProductDetail/샤이니1_2.jpg',
     },
     {
       productId: 21,
-      sideCategory: 'Photo',
+      sideCategory: 'CD',
       category: 'CD',
       info: '',
       artist: '샤이니',
@@ -380,7 +378,6 @@ const GoodsList = () => {
       isSoldOut: false,
       remainingQuantity: 100,
       contentImg1: '/img/ProductDetail/샤이니2_1.jpg',
-      contentImg2: '/img/ProductDetail/샤이니2_2.jpg',
     },
     {
       productId: 22,
@@ -390,8 +387,8 @@ const GoodsList = () => {
       artist: '샤이니',
       img: '/img/ProductCardImg/샤이니3.jpg',
       title:
-        ' 태민 - 06 볼캡 세트 / 2023 TAEMIN SOLO CONCERT [METAMORPH]​ OFFICIAL MD',
-      ProductName: '태민 - 06 볼캡 세트 ',
+        ' 태민 아트 캡 샤이니 모자 버킷 디지털 모자 야구 남성용 여성용 모자',
+      ProductName: '태민 아트  볼캡',
       price: 41000,
       teg: '/img/new.svg',
       isSoldOut: false,
@@ -400,14 +397,13 @@ const GoodsList = () => {
     },
     {
       productId: 23,
-      category: '모자',
-      sideCategory: 'Apparel',
+      category: '포토카드',
+      sideCategory: 'Photo',
       info: ' [6/1 출시]',
       artist: '샤이니',
       img: '/img/ProductCardImg/샤이니4.jpg',
-      title:
-        ' 샤이니 - 03 볼캡 / 2023 SHINee Fanmeeting MD [Everyday is SHINee DAY - Piece of SHINE]​',
-      ProductName: '샤이니 - 03 볼캡',
+      title: '샤이니(SHINee) - [2020 시즌그리팅(SEASONS GREETINGS 2020)',
+      ProductName: '[2020 시즌그리팅(SEASONS GREETINGS 2020)',
       price: 40000,
       teg: '/img/new.svg',
       isSoldOut: false,
@@ -416,14 +412,14 @@ const GoodsList = () => {
     },
     {
       productId: 24,
-      category: '모자',
-      sideCategory: 'Apparel',
+      category: '포토카드',
+      sideCategory: 'Photo',
       info: ' [6/12 출시]',
       artist: '샤이니',
       img: '/img/ProductCardImg/샤이니5.jpg',
       title:
-        '태민 - 01 버킷햇 + 포토카드 세트 / 2023 TAEMIN FANMEETING [RE:ACT] 2ND MD​',
-      ProductName: '태민 - 01 버킷햇 + 포토카드 세트 ',
+        '[특전증정] [SHINee] 2024 SEASONS GREETINGS 미공개 폴라로이드 포토카드 3종 세트​',
+      ProductName: '미공개 폴라로이드 포토카드 3종 세트',
       price: 42000,
       teg: '/img/new.svg',
       isSoldOut: false,
@@ -432,13 +428,13 @@ const GoodsList = () => {
     },
     {
       productId: 25,
-      category: '티셔츠',
-      sideCategory: 'Apparel',
+      category: 'CD',
+      sideCategory: 'CD',
       info: ' [6/5 출시]',
       artist: '샤이니',
       img: '/img/ProductCardImg/샤이니6.jpg',
-      title: '태민 - 02 티셔츠 / 2023 TAEMIN FANMEETING [RE:ACT]​',
-      ProductName: '태민 - 02 티셔츠 ',
+      title: '온유 (ONEW) - 미니앨범2집_[DICE] (Photo Book Ver.)​',
+      ProductName: '온유 (ONEW) - 미니앨범2집',
       price: 35000,
       teg: '/img/new.svg',
       isSoldOut: false,
@@ -447,14 +443,14 @@ const GoodsList = () => {
     },
     {
       productId: 26,
-      category: '포토카드',
-      sideCategory: 'Photo',
+      category: 'CD',
+      sideCategory: 'CD',
       info: '',
       artist: '샤이니',
       img: '/img/ProductCardImg/샤이니7.jpg',
-      title: '온유 - 로카모빌리티교통카드 Circle​',
-      ProductName: '온유 - 로카모빌리티교통카드 ',
-      price: 7000,
+      title: '샤이니(SHINee) - 정규 5집 [1 of 1] (카세트테이프 한정반)',
+      ProductName: '샤이니(SHINee) - 정규 5집 ',
+      price: 37000,
 
       isSoldOut: false,
       remainingQuantity: 100,
@@ -477,15 +473,15 @@ const GoodsList = () => {
     },
     {
       productId: 28,
-      category: '포토카드',
-      sideCategory: 'Photo',
+      category: '키링',
+      sideCategory: 'PhSundriesoto',
       info: '[2/21 출시]',
       artist: '라이즈',
       img: '/img/ProductCardImg/라이즈2.jpg',
       title:
-        '22 랜덤 트레이딩 카드 세트 (RIIZE Ver.) / 2024 SEASON S GREETINGS OFFICIAL MD​',
-      ProductName: '22 랜덤 트레이딩 카드 세트 (RIIZE Ver.) ',
-      price: 9000,
+        '[RIIZE Get A Guitar] ACRYLIC KEY RING + PHOTO CARD SET [앤톤 ver.]​',
+      ProductName: 'ACRYLIC KEY RING + PHOTO CARD SET [앤톤 ver.] ',
+      price: 12000,
       teg: '/img/new.svg',
       isSoldOut: false,
       remainingQuantity: 100,
@@ -498,9 +494,9 @@ const GoodsList = () => {
       info: '',
       artist: '라이즈',
       img: '/img/ProductCardImg/라이즈3.jpg',
-      title: '위클리 - ColoRise / 5집 미니앨범 (Platform Ver.)​',
-      ProductName: '위클리 - ColoRise  ',
-      price: 14900,
+      title: 'RIIZE (라이즈) - 싱글앨범 1집 : Get A Guitar​',
+      ProductName: 'Get A Guitar',
+      price: 24900,
       teg: '/img/new.svg',
       isSoldOut: false,
       remainingQuantity: 100,
@@ -524,7 +520,7 @@ const GoodsList = () => {
         '악세사리',
         '응원봉',
         '키링',
-        '텀블러',
+        '텀블러/컵',
         '핸드폰케이스',
         '그립톡',
       ],
@@ -552,7 +548,7 @@ const GoodsList = () => {
     '라이즈',
     '엑소',
     '레드벨벳',
-    '엔시티',
+    'BTS',
     '뉴진스',
     '르세라핌',
     '투바투',
@@ -596,13 +592,7 @@ const GoodsList = () => {
   const resetArtistFilter = () => {
     setSelectedArtists([]);
   };
-  const filteredProduct = currentPageGoodsList.filter(
-    (product: typeProduct) =>
-      (selectedArtists.length === 0 ||
-        selectedArtists.includes(product.artist)) &&
-      (!filter || product.category === filter) &&
-      (!sideCategory || product.sideCategory === sideCategory),
-  );
+
   const lastFilteredProduct = goodsList.filter(
     (product: typeProduct) =>
       (selectedArtists.length === 0 ||
@@ -632,7 +622,6 @@ const GoodsList = () => {
   const sideCategoryFilter = categories.find(
     (category) => category.name === sideCategory,
   );
-  console.log('카테고dddddd리', sideCategoryFilter);
 
   return (
     <S.GoodsListContainer>
@@ -705,43 +694,42 @@ const GoodsList = () => {
               (console.log('시작', currentPageGoodsList),
               console.log('카테고리 상품', lastFilteredProduct),
               console.log('필터 상품', filter),
-              (filter == null ? lastFilteredProduct : lastFilteredProduct)?.map(
-                (product: typeProduct) => (
-                  <S.ProductCard
-                    onClick={() => {
-                      dispatch(setSelectedProduct(product));
-                      navigate(`/detail/${product.productId}`);
-                    }}
-                  >
-                    <S.ProductCardImgBox>
-                      <S.ProductCardImg src={product.img} alt="상품이미지" />
-                    </S.ProductCardImgBox>
-                    <div>
-                      <S.GoodsListCardSection1>
-                        <S.GoodsListCardSection1_1>
-                          <S.ProductCardInfo>{product.info}</S.ProductCardInfo>
-                          <S.ProductCardTitle>
-                            {product.title}
-                          </S.ProductCardTitle>
-                        </S.GoodsListCardSection1_1>
-                        <S.GoodsListCardSection1_2>
-                          <S.ProductCardPrice>
-                            {product.price} 원
-                          </S.ProductCardPrice>
-                          {product.teg ? (
-                            <S.ProductCardTeg
-                              src={product.teg}
-                              alt="이미지태그"
-                            />
-                          ) : (
-                            ''
-                          )}
-                        </S.GoodsListCardSection1_2>
-                      </S.GoodsListCardSection1>
-                    </div>
-                  </S.ProductCard>
-                ),
-              ))
+              (filter == null
+                ? currentPageGoodsList
+                : lastFilteredProduct
+              )?.map((product: typeProduct) => (
+                <S.ProductCard
+                  onClick={() => {
+                    dispatch(setSelectedProduct(product));
+                    navigate(`/detail/${product.productId}`);
+                  }}
+                >
+                  <S.ProductCardImgBox>
+                    <S.ProductCardImg src={product.img} alt="상품이미지" />
+                  </S.ProductCardImgBox>
+                  <div>
+                    <S.GoodsListCardSection1>
+                      <S.GoodsListCardSection1_1>
+                        <S.ProductCardInfo>{product.info}</S.ProductCardInfo>
+                        <S.ProductCardTitle>{product.title}</S.ProductCardTitle>
+                      </S.GoodsListCardSection1_1>
+                      <S.GoodsListCardSection1_2>
+                        <S.ProductCardPrice>
+                          {product.price} 원
+                        </S.ProductCardPrice>
+                        {product.teg ? (
+                          <S.ProductCardTeg
+                            src={product.teg}
+                            alt="이미지태그"
+                          />
+                        ) : (
+                          ''
+                        )}
+                      </S.GoodsListCardSection1_2>
+                    </S.GoodsListCardSection1>
+                  </div>
+                </S.ProductCard>
+              )))
             ) : (
               <S.NotProduct>상품이 없습니다.</S.NotProduct>
             )
