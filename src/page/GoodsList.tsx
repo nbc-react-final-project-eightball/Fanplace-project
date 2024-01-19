@@ -570,15 +570,15 @@ const GoodsList = () => {
     if (artist) {
       filtered = filtered.filter(
         (product: typeProduct) => product.artist === artist,
-        setFilter(artist),
       );
+      setFilter(artist);
     }
 
     if (category) {
       filtered = filtered.filter(
         (product: typeProduct) => product.category === category,
-        setFilter(category),
       );
+      setFilter(category);
     }
     setFilteredProduct(filtered);
   };
@@ -675,11 +675,16 @@ const GoodsList = () => {
             onClick={() => {
               setFilter(null);
             }}
+            selected={filter === null}
           >
             전체보기
           </S.ProductsTab>
           {sideCategoryFilter?.Category.map((item: string) => (
-            <S.ProductsTab key={item} onClick={() => handleFilterTeb(item)}>
+            <S.ProductsTab
+              key={item}
+              onClick={() => handleFilterTeb(item)}
+              selected={filter === item}
+            >
               {item}
             </S.ProductsTab>
           ))}
@@ -690,7 +695,7 @@ const GoodsList = () => {
         <S.GoodsListSection3Wrapper>
           {
             //상품 필터해서 0개면 상품없다고 말해줌
-            goodsList?.length > 0 ? (
+            lastFilteredProduct?.length > 0 ? (
               (console.log('시작', currentPageGoodsList),
               console.log('카테고리 상품', lastFilteredProduct),
               console.log('필터 상품', filter),

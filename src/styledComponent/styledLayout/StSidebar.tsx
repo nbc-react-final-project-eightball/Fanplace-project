@@ -1,3 +1,4 @@
+import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const SideBarContainer = styled.div`
@@ -36,5 +37,15 @@ export const SideBarSectionBottom = styled.ul`
   height: 50%;
   flex-grow: 3;
 `;
+interface SNavLinkStyleProps {
+  activeStyle?: boolean;
+}
+export const SNavLink = styled(NavLink)<SNavLinkStyleProps>`
+  color: ${(props) => (props.activeStyle ? '#e31313' : '#000000')};
+  text-decoration: none;
 
+  &.active {
+    color: red;
+  }
+`;
 //sidebar end
