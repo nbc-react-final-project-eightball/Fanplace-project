@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const HeaderContainer = styled.div`
@@ -20,9 +21,6 @@ export const Wrapper = styled.div`
   width: 100%;
   height: 100%;
   padding: 0 1.5rem;
-  > div {
-    cursor: pointer;
-  }
   .logo {
     width: 200px;
   }
@@ -32,13 +30,11 @@ export const Header = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  cursor: pointer;
   img {
     object-fit: cover;
-    cursor: pointer;
   }
 `;
-export const BrandLogo = styled.div`
+export const BrandLogo = styled(Link)`
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -50,16 +46,17 @@ export const HeaderButton = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  gap: 1rem;
+  gap: 0.75rem;
+  cursor: pointer;
 
-  & button {
-    padding: 0.5rem;
+  & > * {
+    padding: 0.375rem;
     background: #fff;
     border-radius: 4rem;
   }
 `;
 
-export const LoginButton = styled.button`
+export const LoginButton = styled(Link)`
   display: flex;
   justify-content: space-between;
   align-items: center;
