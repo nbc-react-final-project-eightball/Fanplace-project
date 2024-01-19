@@ -17,8 +17,8 @@ const Mypage = () => {
             </S.MyInfoImgBox>
             <p>
               <S.InfoText>
-                <h3>{userInfo.displayName} 님,</h3>
-                <span>{userInfo.email}</span>
+                <h3>{userInfo?.displayName} 님,</h3>
+                <span>{userInfo?.email}</span>
               </S.InfoText>
             </p>
             <span>팬시플레이스에 오신 걸 환영합니다</span>
