@@ -5,19 +5,16 @@ import {
   collection,
   query,
   orderBy,
-  limit,
   getDocs,
   addDoc,
   DocumentData,
-  startAfter,
 } from 'firebase/firestore';
-import axios from 'axios';
+
 import { typeProduct } from '../Type/TypeInterface';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   setSelectedProduct,
   setCurrentPage,
-  setLastDoc,
 } from '../redux/modules/GoodsList/GoodsListSlice';
 import { useNavigate, useParams } from 'react-router-dom';
 import { RootState } from 'redux/configStore';
