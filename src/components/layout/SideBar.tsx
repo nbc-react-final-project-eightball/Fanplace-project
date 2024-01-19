@@ -6,37 +6,37 @@ const SideBar = () => {
     <S.SideBarContainer>
       <S.SideBarSectionTop>
         <S.SideBarBtn>
-          <Link to="/">New</Link>
+          <Link to="/GoodsList/New">New</Link>
         </S.SideBarBtn>
         <S.SideBarBtn>
           {' '}
-          <Link to="/GoodsList">CD</Link>
+          <Link to="/GoodsList/CD">CD</Link>
         </S.SideBarBtn>
         <S.SideBarBtn>
           {' '}
-          <Link to="/GoodsList">포토카드</Link>
+          <Link to="/GoodsList/Photo">포토카드</Link>
         </S.SideBarBtn>
         <S.SideBarBtn>
           {' '}
-          <Link to="/GoodsList">의류</Link>
+          <Link to="/GoodsList/Apparel">의류</Link>
         </S.SideBarBtn>
         <S.SideBarBtn>
           {' '}
-          <Link to="/GoodsList">응원봉</Link>
+          <Link to="/GoodsList/Pompoms">응원봉</Link>
         </S.SideBarBtn>
         <S.SideBarBtn>
           {' '}
-          <Link to="/GoodsList">악세사리</Link>{' '}
+          <Link to="/GoodsList/Sundries">잡화</Link>{' '}
         </S.SideBarBtn>
       </S.SideBarSectionTop>
       <S.SideBarSectionBottom>
         <S.SideBarBtn>
           {' '}
-          <Link to="/GoodsList">아티스트</Link>
+          <Link to="/GoodsList/Artists">아티스트</Link>
         </S.SideBarBtn>
         <S.SideBarBtn>
           {' '}
-          <Link to="/GoodsList">공지사항/FAQ</Link>
+          <Link to="/GoodsList/Announcements">공지사항/FAQ</Link>
         </S.SideBarBtn>
       </S.SideBarSectionBottom>
     </S.SideBarContainer>
