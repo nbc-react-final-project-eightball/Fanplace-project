@@ -33,7 +33,7 @@ const Router = () => {
           <Route path="/wishlist" element={<WishListPage />} />
           <Route path="/profilesettings" element={<ProfileSettingsPage />} />
           <Route path="/shipping" element={<ShippingPage />} />
-          <Route path="/cart" element={<Cartpage />} />
+          <Route path="/Cart" element={<Cartpage />} />
           <Route path="/payment" element={<PaymentPage />} />
           <Route path="/Detail/:id" element={<Detail />} />
           <Route path="/success" element={<PaymentSuccess />} />

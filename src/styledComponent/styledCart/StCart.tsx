@@ -1,67 +1,151 @@
 import styled from 'styled-components';
 
 export const CartContainer = styled.div`
-  border: solid black 2px;
   width: 100%;
-  height: 50%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  height: 900px;
+  background: #f7f7f7;
+  flex-shrink: 0;
+
+  input[type='checkbox'] {
+    display: none;
+  }
+  input[type='checkbox']:checked + label:before {
+    position: absolute;
+    top: 1px;
+    left: 1px;
+    display: block;
+    content: url('img/common/checked.svg');
+    width: 20px;
+    height: 20px;
+    border-radius: 2px;
+  }
+
+  label {
+    width: 20px;
+    height: 20px;
+    border-radius: 2px;
+    border: 1px solid #d9d9d9;
+    position: relative;
+  }
 `;
 
-export const CartTItle = styled.div`
-  border: solid black 2px;
+export const Cart = styled.div`
+  width: 1200px;
+  height: 900px;
+  top: 112px;
+  padding-left: 165px;
+  display: flex;
+  flex-direction: column;
+  .allArea {
+    display: flex;
+  }
+`;
+export const CartTitle = styled.div`
   width: 100%;
-  height: 60vh;
+  color: #000;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  display: flex;
+  justify-content: space-between;
+`;
+export const LeftArea = styled.div`
+  width: 720px;
+  height: 100%;
+  border-radius: 10px;
+  border: 1px solid #efefef;
+  background: #fff;
+  padding: 20px;
+
+  .artistName {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding-bottom: 20px;
+  }
+
+  .titleWrapper {
+    display: flex;
+    flex-direction: column;
+  }
+  .circleArea {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding-right: 56px;
+  }
+  .circle {
+    width: 22px;
+    height: 22px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 11px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .title {
+    width: 360px;
+    color: #333;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+  }
+  .productprice {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+`;
+export const RightArea = styled.div`
+  width: 280px;
+  height: 321px;
+  border-radius: 10px;
+  border: 1px solid #efefef;
+  background: #fff;
 `;
 
 export const CartList = styled.ul`
-  background-color: black;
-  display: flex;
-  flex-direction: column;
   gap: 20px;
-  width: 100%;
-  border-radius: 12px;
-  padding: 12px;
-  color: white;
+  li:first-child {
+    border-top: 1px solid #d9d9d9;
+  }
+  li {
+    border-top: 1px solid #e9e9e9;
+  }
 `;
 
 export const CartWrapper = styled.li`
   display: flex;
-
-  gap: 12px;
-  color: white;
-  padding: 12px;
-  border: 1px solid white;
-  border-radius: 12px;
-  cursor: pointer;
-  transition: all 0.2s;
+  padding: 20px 0;
 `;
 export const Image = styled.img`
-  width: 100px;
-  height: 100px;
+  width: 60px;
+  height: 60px;
   object-fit: cover;
+  border-radius: 5px;
+  border: 1px solid #efefef;
+  margin-left: 20px;
+  margin-right: 20px;
+  background:
+    url(<path-to-image>),
+    lightgray 50% / cover no-repeat;
 `;
 
 export const TotalAmount = styled.div`
-  margin-top: 100px;
-  background-color: black;
   display: flex;
-  flex-direction: column;
+  align-items: center;
   gap: 20px;
   width: 100%;
-  border-radius: 12px;
-  padding: 12px;
-  color: white;
-
-  div {
-    font-size: x-large;
-    height: 100px;
-  }
-  button {
-    background-color: white;
-    width: 100px;
-    height: 50px;
-    color: black;
+  padding: 20px;
+  margin-left: 59px;
+  .amount1 {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
   }
 `;
