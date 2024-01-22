@@ -1,7 +1,8 @@
+import MyPageLayout from 'components/layout/MyPageLayout';
 import React from 'react';
 
 const ChatListPage = () => {
-  return <div>ChatListPage</div>;
+  return <MyPageLayout>ChatListPage</MyPageLayout>;
 };
 
 export default ChatListPage;

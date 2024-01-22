@@ -3,7 +3,7 @@ import React, { useEffect, useRef, useState } from 'react';
 
 const MainTopCarousel = () => {
   const [currentSlide, setCurrentSlide] = useState(1); // 현재 슬라이드의 인덱스
-  const [autoSlide, setAutoSlide] = useState<NodeJS.Timeout | null>(null); // 자동 슬라이드를 위한 타이머
+
   const [timeId, setTimeId] = useState<NodeJS.Timeout | null>(null);
   const slides = [
     'img/MainTopCarouseImg/TopC1.jpg',
@@ -13,6 +13,7 @@ const MainTopCarousel = () => {
     'img/MainTopCarouseImg/TopC5.jpg',
     'img/MainTopCarouseImg/TopC6.jpg',
     'img/MainTopCarouseImg/TopC7.jpg',
+    'img/MainTopCarouseImg/TopC1.jpg',
   ];
   // TODO: 상품 이미지를 서버에서 받아와서 뿌려주기
   const SLIDE_NUM = slides.length;
@@ -22,59 +23,107 @@ const MainTopCarousel = () => {
   // 앞뒤에 안붙여주면 슬라이드가 끊겨보임
   const copiedSlides = [beforeSlide, ...slides, , beforeSlide, afterSlide];
   const slideRef = useRef<HTMLDivElement>(null);
-
-  const moveSlide = (index: number) => {
-    if (slideRef.current !== null) {
-      slideRef.current.style.transition = 'none';
-      if (index === 0) {
-      }
-      setCurrentSlide(index);
-
-      setTimeout(() => {
+  const autoSlide = useRef<NodeJS.Timeout | null>(null);
+  useEffect(() => {
+    if (autoSlide.current) {
+      clearTimeout(autoSlide.current);
+    }
+    autoSlide.current = setTimeout(() => {
+      // 마지막 슬라이드일 때
+      if (currentSlide >= slides.length - 1) {
+        // 바로 첫 번째 슬라이드로 이동
+        if (slideRef.current) {
+          // 이동 애니메이션 제거
+          slideRef.current.style.transition = 'all 500ms ease-in-out';
+          slideRef.current.style.transition = 'none';
+          // 바로 첫 번째 슬라이드로 이동
+          setCurrentSlide(slides.length);
+          // 다음 자동 스크롤을 위해 다시 애니메이션 적용
+          const nextSlide = () => {
+            setCurrentSlide(0);
+          };
+          nextSlide();
+          setTimeout(() => {
+            if (slideRef.current) {
+              slideRef.current.style.transition = 'all 500ms ease-in-out';
+            }
+          }, 100);
+        }
+      } else {
+        // 다음 슬라이드로 이동
         if (slideRef.current) {
           slideRef.current.style.transition = 'all 500ms ease-in-out';
-          slideRef.current.style.transform = `translateX(-${index * 99.9038}%)`;
         }
-      }, 1000);
-    }
-  };
-  useEffect(() => {
+        setCurrentSlide((prev) => prev + 2);
+      }
+    }, 3000);
     if (currentSlide === 0) {
-      clearTimeout(currentSlide);
-      moveSlide(1);
-    } else if (currentSlide === SLIDE_NUM - 2) {
-      setTimeId(setTimeout(() => setCurrentSlide(1), 3000));
-    }
-  }, [currentSlide, SLIDE_NUM]);
-  useEffect(() => {
-    if (autoSlide) {
-      clearTimeout(autoSlide);
-    } // 슬라이드가 전환되기 전에 타이머를 제거
-    setAutoSlide(
+      // 다음 슬라이드로 이동
       setTimeout(() => {
-        setCurrentSlide((currentSlide + 1) % slides.length);
-      }, 3000), // 3초 후에 슬라이드를 전환
-    );
-    console.log('카운트 인덱스', currentSlide);
-  }, [currentSlide]);
+        if (slideRef.current) {
+          if (autoSlide.current) {
+            clearTimeout(autoSlide.current);
+
+            slideRef.current.style.transition = 'all 500ms ease-in-out';
+          }
+        }
+        setCurrentSlide((prev) => prev + 1);
+      }, 1);
+    }
+
+    return () => {
+      if (autoSlide.current) {
+        clearTimeout(autoSlide.current);
+      }
+    };
+  }, [currentSlide, slides.length]);
+  const handleNext = () => {
+    if (currentSlide >= slides.length - 1) {
+      // 마지막 슬라이드에서 다음 버튼을 누르면 첫 번째 슬라이드로 돌아갑니다.
+      if (slideRef.current) {
+        slideRef.current.style.transition = 'none';
+        setCurrentSlide(0);
+        setTimeout(() => {
+          if (slideRef.current) {
+            slideRef.current.style.transition = 'all 500ms ease-in-out';
+          }
+        }, 100);
+      }
+    } else {
+      if (slideRef.current) {
+        slideRef.current.style.transition = 'all 500ms ease-in-out';
+      }
+      setCurrentSlide((prev) => prev + 1);
+    }
+    // setCurrentSlide((prev) => (prev === slides.length + 1 ? 0 : prev + 1));
+  };
+  const handlePrev = () => {
+    if (currentSlide === 0) {
+      // 첫 번째 슬라이드에서 이전 버튼을 누르면 마지막 슬라이드로 돌아갑니다.
+      if (slideRef.current) {
+        slideRef.current.style.transition = 'none';
+        setCurrentSlide(slides.length - 1);
+        setTimeout(() => {
+          if (slideRef.current) {
+            slideRef.current.style.transition = 'all 500ms ease-in-out';
+          }
+        }, 100);
+      }
+    } else {
+      if (slideRef.current) {
+        slideRef.current.style.transition = 'all 500ms ease-in-out';
+      }
+      setCurrentSlide((prev) => prev - 1);
+    }
+    // setCurrentSlide((prev) => (prev === 1 ? slides.length - 1 : prev - 1));
+  };
+
   const handleScroll = (event: React.ChangeEvent<HTMLInputElement>) => {
     setCurrentSlide(
       Math.floor((Number(event.target.value) * slides.length) / 100),
     );
   };
-  const handlePrev = () => {
-    if (timeId) {
-      clearTimeout(timeId);
-    }
-    setCurrentSlide((prev) => (prev === 1 ? slides.length - 2 : prev - 1));
-  };
 
-  const handleNext = () => {
-    if (timeId) {
-      clearTimeout(timeId);
-    }
-    setCurrentSlide((prev) => (prev === slides.length - 2 ? 0 : prev + 1));
-  };
   return (
     <S.Div>
       {' '}
@@ -104,7 +153,7 @@ const MainTopCarousel = () => {
             transition: 'all 500ms ease-in-out',
           }}
         >
-          {copiedSlides?.map((slide, index) => (
+          {slides?.map((slide, index) => (
             <S.MainTopCarouselItem key={index}>
               <img
                 style={{ width: '100%' }}

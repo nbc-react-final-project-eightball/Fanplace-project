@@ -22,7 +22,10 @@ const Product: React.FC<ProductProps> = ({ product }) => {
         </S.ProductImgContainer>
       </S.ProductSection1>
       <S.ProductSection2>
-        <S.ProductTitle>DETAIL</S.ProductTitle>
+        <S.ProductTitle>
+          <span>상세설명</span>
+          <span style={{ border: 'none' }}>상품리뷰(0)</span>
+        </S.ProductTitle>
         {/* 디테일 이미지1개는 무조건 들어가서 뒤에껏들은  있으면 나오게 해둿습니다*/}
         <S.ProductDetailImg src={`${product?.contentImg1}`} alt="상품이미지1" />
         {product?.contentImg2 && (

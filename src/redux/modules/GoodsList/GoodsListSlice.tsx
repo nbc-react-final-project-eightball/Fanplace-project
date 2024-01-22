@@ -7,6 +7,7 @@ interface GoodsState {
   selectedProduct: typeProduct | null; // 선택된 상품을 저장
   currentPage: number;
   lastDoc: string | null;
+  filter: string | null;
 }
 
 const initialState: GoodsState = {
@@ -14,6 +15,7 @@ const initialState: GoodsState = {
   selectedProduct: null, // 선택되기전 초기값임
   currentPage: 1,
   lastDoc: null,
+  filter: null,
 };
 
 export const goodsSlice = createSlice({
@@ -33,10 +35,24 @@ export const goodsSlice = createSlice({
     setLastDoc: (state, action: PayloadAction<string | null>) => {
       state.lastDoc = action.payload;
     },
+    setFilterR: (state, action: PayloadAction<string | null>) => {
+      state.filter = action.payload;
+      console.log('사이드바필터 초기화', action.payload);
+    },
+    setPage: (state, action: PayloadAction<number>) => {
+      state.currentPage = action.payload;
+      console.log('페이지 초기화', action.payload);
+    },
   },
 });
 
-export const { setGoodsList, setSelectedProduct, setCurrentPage, setLastDoc } =
-  goodsSlice.actions;
+export const {
+  setGoodsList,
+  setSelectedProduct,
+  setCurrentPage,
+  setLastDoc,
+  setFilterR,
+  setPage,
+} = goodsSlice.actions;
 
 export default goodsSlice.reducer;

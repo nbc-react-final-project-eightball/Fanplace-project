@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from 'redux/configStore';
 import { setProduct } from '../redux/modules/Detail/DetailSlice';
 import { collection, getDocs } from 'firebase/firestore';
+import Productlist from 'components/Detail/Productlist';
 const Detail = () => {
   const dispatch = useDispatch();
   const selectedProduct = useSelector(
@@ -34,6 +35,7 @@ const Detail = () => {
     <S.DtailContainer>
       <Product product={selectedProduct} />
       <ProductInfo product={selectedProduct} />
+      <Productlist product={selectedProduct} />
     </S.DtailContainer>
   );
 };

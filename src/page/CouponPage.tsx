@@ -1,7 +1,8 @@
+import MyPageLayout from 'components/layout/MyPageLayout';
 import React from 'react';
 
 const CouponPage = () => {
-  return <div>CouponPage</div>;
+  return <MyPageLayout>CouponPage</MyPageLayout>;
 };
 
 export default CouponPage;

@@ -44,25 +44,6 @@ const MainBottomCarousel = () => {
       }, 1);
     }
   };
-  useEffect(() => {
-    if (currentSlide === 0) {
-      clearTimeout(currentSlide);
-      moveSlide(1);
-    } else if (currentSlide === SLIDE_NUM - 2) {
-      setTimeId(setTimeout(() => setCurrentSlide(1), 3000));
-    }
-  }, [currentSlide, SLIDE_NUM]);
-  useEffect(() => {
-    if (autoSlide) {
-      clearTimeout(autoSlide);
-    } // 슬라이드가 전환되기 전에 타이머를 제거
-    setAutoSlide(
-      setTimeout(() => {
-        setCurrentSlide((currentSlide + 1) % slides.length);
-      }, 3000), // 3초 후에 슬라이드를 전환
-    );
-    console.log('카운트 인덱스', currentSlide);
-  }, [currentSlide]);
 
   const handlePrev = () => {
     if (timeId) {

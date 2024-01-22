@@ -15,14 +15,22 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
   setSelectedProduct,
   setCurrentPage,
+  setFilterR,
 } from '../redux/modules/GoodsList/GoodsListSlice';
 import { useNavigate, useParams } from 'react-router-dom';
 import { RootState } from 'redux/configStore';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faChevronCircleLeft,
+  faChevronCircleRight,
+} from '@fortawesome/free-solid-svg-icons';
+import { Grow } from '@mui/material';
 
 const pageSize = 12;
 const GoodsList = () => {
+  const reSetCategory = useSelector((state: RootState) => state.goods.filter);
   const [goodsList, setGoodsList] = useState<DocumentData>([]);
-  const [filter, setFilter] = React.useState<null | String>(null);
+  const [filter, setFilter] = React.useState<null | String>(reSetCategory);
   const [showArtistFilter, setShowArtistFilter] = React.useState(false);
   const [selectedArtists, setSelectedArtists] = React.useState<string[]>([]);
   const [FilteredProduct, setFilteredProduct] = useState<DocumentData | null>(
@@ -32,6 +40,9 @@ const GoodsList = () => {
   const navigate = useNavigate();
   const { sideCategory } = useParams<{ sideCategory: string }>();
   console.log('사이드카테고리', sideCategory);
+  useEffect(() => {
+    setFilter(null);
+  }, [sideCategory]);
   const saveProduct = async (productList: typeProduct[]) => {
     try {
       const addGoodsList = await collection(db, 'goodsList');
@@ -579,6 +590,7 @@ const GoodsList = () => {
         (product: typeProduct) => product.category === category,
       );
       setFilter(category);
+      dispatch(setFilterR(category));
     }
     setFilteredProduct(filtered);
   };
@@ -603,7 +615,7 @@ const GoodsList = () => {
 
   const handleNextPage = (pageNumber: number) => {
     let page = pageNumber + 1;
-    const lastPageNumber = Math.ceil(goodsList.length / pageSize);
+    const lastPageNumber = Math.ceil(lastFilteredProduct.length / pageSize);
     if (page > lastPageNumber) {
       page = 1;
     }
@@ -625,138 +637,159 @@ const GoodsList = () => {
 
   return (
     <S.GoodsListContainer>
-      <S.GoodsListSection1>
-        <S.AtistFilter isOpen={showArtistFilter}>
-          <S.AtistFilterWrapper>
-            <S.AtistFilterBtn
-              isOpen={!showArtistFilter}
-              onClick={() => setShowArtistFilter(!showArtistFilter)}
-            >
-              아티스트 필터
-            </S.AtistFilterBtn>
-            {showArtistFilter && (
-              <>
-                <S.AtistFilterContainer>
-                  {artists.map((artist) => (
-                    <S.AtistFilterArtist>
-                      <input
-                        type="checkbox"
-                        checked={selectedArtists.includes(artist)}
-                        onChange={() => handleArtistChange(artist)}
-                        id={artist}
-                      />
-                      <label htmlFor={artist}>{artist}</label>
-                    </S.AtistFilterArtist>
-                  ))}
-                </S.AtistFilterContainer>
-                <S.AtistFilterReset onClick={resetArtistFilter}>
-                  초기화
-                </S.AtistFilterReset>
-              </>
-            )}
-          </S.AtistFilterWrapper>
-        </S.AtistFilter>
+      <S.GoodsCategory>
+        <S.Cate>{sideCategory}</S.Cate>
+      </S.GoodsCategory>
+      <S.GoodsListContainerSection>
+        <S.GoodsListSection1>
+          <S.AtistFilter isOpen={showArtistFilter}>
+            <S.AtistFilterWrapper>
+              <S.AtistFilterBtn
+                isOpen={!showArtistFilter}
+                onClick={() => setShowArtistFilter(!showArtistFilter)}
+              >
+                아티스트 필터
+              </S.AtistFilterBtn>
+              {showArtistFilter && (
+                <>
+                  <S.AtistFilterContainer>
+                    {artists.map((artist) => (
+                      <S.AtistFilterArtist>
+                        <S.AtistFilterArtistInput
+                          type="checkbox"
+                          checked={selectedArtists.includes(artist)}
+                          onChange={() => handleArtistChange(artist)}
+                          id={artist}
+                        />
 
-        <S.PageLocation>페이지 위치 알려주는곳 </S.PageLocation>
-      </S.GoodsListSection1>
-      <button
-        onClick={() => {
-          saveProduct(ProducList);
-        }}
-      >
-        {' '}
-        상품추가 테스트용
-      </button>
-      {sideCategory}
-      <S.GoodsListSection2>
-        <S.GoodsListSection2Wrapper>
-          <S.ProductsTab
-            key="all"
+                        <S.AtistFilterArtistLabel htmlFor={artist}>
+                          {artist}
+                        </S.AtistFilterArtistLabel>
+                      </S.AtistFilterArtist>
+                    ))}
+                  </S.AtistFilterContainer>
+                  <S.AtistFilterReset onClick={resetArtistFilter}>
+                    초기화
+                  </S.AtistFilterReset>
+                </>
+              )}
+            </S.AtistFilterWrapper>
+          </S.AtistFilter>
+        </S.GoodsListSection1>
+        <div style={{ flexGrow: '1' }}>
+          {/* <button
             onClick={() => {
-              setFilter(null);
+              saveProduct(ProducList);
             }}
-            selected={filter === null}
           >
-            전체보기
-          </S.ProductsTab>
-          {sideCategoryFilter?.Category.map((item: string) => (
-            <S.ProductsTab
-              key={item}
-              onClick={() => handleFilterTeb(item)}
-              selected={filter === item}
-            >
-              {item}
-            </S.ProductsTab>
-          ))}
-        </S.GoodsListSection2Wrapper>
-      </S.GoodsListSection2>
-      {/* TODO: 상품리스트 카드 */}
-      <S.GoodsListSection3>
-        <S.GoodsListSection3Wrapper>
-          {
-            //상품 필터해서 0개면 상품없다고 말해줌
-            lastFilteredProduct?.length > 0 ? (
-              (console.log('시작', currentPageGoodsList),
-              console.log('카테고리 상품', lastFilteredProduct),
-              console.log('필터 상품', filter),
-              (filter == null
-                ? currentPageGoodsList
-                : lastFilteredProduct
-              )?.map((product: typeProduct) => (
-                <S.ProductCard
-                  onClick={() => {
-                    dispatch(setSelectedProduct(product));
-                    navigate(`/detail/${product.productId}`);
-                  }}
+            {' '}
+            상품추가 테스트용
+          </button> */}
+
+          <S.GoodsListSection2>
+            <S.GoodsListSection2Wrapper>
+              <S.ProductsTab
+                key="all"
+                onClick={() => {
+                  setFilter(null);
+                }}
+                selected={filter === null}
+              >
+                전체보기
+              </S.ProductsTab>
+              {sideCategoryFilter?.Category.map((item: string) => (
+                <S.ProductsTab
+                  key={item}
+                  onClick={() => handleFilterTeb(item)}
+                  selected={filter === item}
                 >
-                  <S.ProductCardImgBox>
-                    <S.ProductCardImg src={product.img} alt="상품이미지" />
-                  </S.ProductCardImgBox>
-                  <div>
-                    <S.GoodsListCardSection1>
-                      <S.GoodsListCardSection1_1>
-                        <S.ProductCardInfo>{product.info}</S.ProductCardInfo>
-                        <S.ProductCardTitle>{product.title}</S.ProductCardTitle>
-                      </S.GoodsListCardSection1_1>
-                      <S.GoodsListCardSection1_2>
-                        <S.ProductCardPrice>
-                          {product.price} 원
-                        </S.ProductCardPrice>
-                        {product.teg ? (
-                          <S.ProductCardTeg
-                            src={product.teg}
-                            alt="이미지태그"
-                          />
-                        ) : (
-                          ''
-                        )}
-                      </S.GoodsListCardSection1_2>
-                    </S.GoodsListCardSection1>
-                  </div>
-                </S.ProductCard>
-              )))
-            ) : (
-              <S.NotProduct>상품이 없습니다.</S.NotProduct>
-            )
-          }
-        </S.GoodsListSection3Wrapper>
-        <S.GoodsListSection4>
-          <S.GoodsListSection4Btn
-            onClick={() => {
-              handlePrevPage(pageNumber);
-            }}
-          >
-            이전 페이지
-          </S.GoodsListSection4Btn>
-          <S.GoodsListSection4Btn
-            onClick={() => {
-              handleNextPage(pageNumber);
-            }}
-          >
-            다음 페이지
-          </S.GoodsListSection4Btn>
-        </S.GoodsListSection4>
-      </S.GoodsListSection3>
+                  {item}
+                </S.ProductsTab>
+              ))}
+            </S.GoodsListSection2Wrapper>
+          </S.GoodsListSection2>
+          {/* TODO: 상품리스트 카드 */}
+          <S.GoodsListSection3>
+            <S.GoodsListSection3Wrapper>
+              {
+                //상품 필터해서 0개면 상품없다고 말해줌
+                lastFilteredProduct?.length > 0 ? (
+                  //   console.log('시작', currentPageGoodsList),
+                  // console.log('카테고리 상품', lastFilteredProduct),
+                  // console.log('필터 상품', filter),
+                  (filter == null
+                    ? currentPageGoodsList
+                    : lastFilteredProduct
+                  )?.map((product: typeProduct) => (
+                    <S.ProductCard
+                      onClick={() => {
+                        dispatch(setSelectedProduct(product));
+                        navigate(`/detail/${product.productId}`);
+                      }}
+                    >
+                      <S.ProductCardImgBox>
+                        <S.ProductCardImg src={product.img} alt="상품이미지" />
+                      </S.ProductCardImgBox>
+                      <div>
+                        <S.GoodsListCardSection1>
+                          <S.GoodsListCardSection1_1>
+                            <S.ProductCardInfoArtist>
+                              {product.artist}
+                            </S.ProductCardInfoArtist>
+                            {/* <S.ProductCardInfo>
+                              {product.info}
+                            </S.ProductCardInfo> */}
+                            <S.ProductCardTitle>
+                              {product.title}
+                            </S.ProductCardTitle>
+                          </S.GoodsListCardSection1_1>
+                          <S.GoodsListCardSection1_2>
+                            <S.ProductCardPrice>
+                              {product.price} 원
+                            </S.ProductCardPrice>
+                            {/* {product.teg ? (
+                              <S.ProductCardTeg
+                                src={product.teg}
+                                alt="이미지태그"
+                              />
+                            ) : (
+                              ''
+                            )} */}
+                          </S.GoodsListCardSection1_2>
+                        </S.GoodsListCardSection1>
+                      </div>
+                    </S.ProductCard>
+                  ))
+                ) : (
+                  <S.NotProduct>상품이 없습니다.</S.NotProduct>
+                )
+              }
+            </S.GoodsListSection3Wrapper>
+          </S.GoodsListSection3>
+          <S.GoodsListSection4>
+            <S.GoodsListSection4Btn
+              onClick={() => {
+                handlePrevPage(pageNumber);
+              }}
+            >
+              <FontAwesomeIcon
+                icon={faChevronCircleLeft}
+                style={{ fontSize: '4rem' }}
+              />
+            </S.GoodsListSection4Btn>
+            <S.GoodsListSection4Btn
+              onClick={() => {
+                handleNextPage(pageNumber);
+              }}
+            >
+              <FontAwesomeIcon
+                icon={faChevronCircleRight}
+                style={{ fontSize: '4rem' }}
+              />
+            </S.GoodsListSection4Btn>
+          </S.GoodsListSection4>
+        </div>
+      </S.GoodsListContainerSection>
     </S.GoodsListContainer>
   );
 };

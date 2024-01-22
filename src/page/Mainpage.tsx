@@ -1,10 +1,37 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import * as S from '../styledComponent/styledMain/StMain';
 import MainBottomCarousel from '../components/Main/MainBottomCarousel';
 import MainBttomAlbum from '../components/Main/MainBttomAlbum';
 import MainTopCarousel from 'components/Main/MainTopCarousel';
+import {
+  DocumentData,
+  collection,
+  getDocs,
+  orderBy,
+  query,
+} from 'firebase/firestore';
+import { db } from '../firebase/config';
 
 const Mainpage = () => {
+  const [goodsList, setGoodsList] = useState<DocumentData>([]);
+  const fetchGoods = async () => {
+    try {
+      const goodsCollection = collection(db, 'goodsList');
+      const goodsQuery = query(goodsCollection, orderBy('category'));
+
+      const goodsSnapshot = await getDocs(goodsQuery);
+      const getGoodsList = goodsSnapshot.docs.map((doc) => doc.data());
+      setGoodsList(getGoodsList);
+    } catch (error) {
+      console.log('상품 가져오기 실패!', error);
+    }
+  };
+  useEffect(() => {
+    fetchGoods();
+  }, []);
+  useEffect(() => {
+    console.log('캐러', goodsList);
+  }, [goodsList]);
   return (
     <>
       <div
