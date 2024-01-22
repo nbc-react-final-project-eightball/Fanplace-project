@@ -29,7 +29,15 @@ const MainBottomCarousel: React.FC<MainBottomCarouselProps> = ({
   const slides = caroueslList.slice(0, 7);
   const SLIDE_NUM = slides.length;
   const beforeSlide1 = slides[SLIDE_NUM - 1];
-
+  const slides2 = [
+    'img/p6.jpg',
+    'img/P1.jpg',
+    'img/P2.jpg',
+    'img/P3.jpg',
+    'img/P4.jpg',
+    'img/P5.jpg',
+    'img/p6.jpg',
+  ];
   const afterSlide1 = slides[0];
   const afterSlide2 = slides[1];
   const afterSlide3 = slides[2];
@@ -149,17 +157,19 @@ const MainBottomCarousel: React.FC<MainBottomCarouselProps> = ({
             transition: 'all 500ms ease-in-out',
           }}
         >
-          {copiedSlides.map((list: CarouselItem, index: number) => (
+          {slides2.map((list, index: number) => (
             <S.Slide key={index}>
               <img
                 style={{ width: '100%' }}
-                src={list.img}
+                src={list}
                 alt={`Slide ${index}`}
               />
               {/* TODO:파이어베이스에 데이터 생기면 맵돌리기 */}
               <S.SlideInTextDiv>
-                <h1>{list.artist}</h1>
-                <p>{list.ProductName}</p>
+                <h1>아티스트</h1>
+                {/* <h1>{list.artist}</h1> */}
+                <p>품명</p>
+                {/* <p>{list.ProductName}</p> */}
                 {/* <p>가격 : {list.price} 원</p> */}
               </S.SlideInTextDiv>
             </S.Slide>

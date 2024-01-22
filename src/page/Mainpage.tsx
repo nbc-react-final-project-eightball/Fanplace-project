@@ -44,8 +44,8 @@ const Mainpage = () => {
         }}
       >
         <MainTopCarousel />
-        <MainBottomCarousel caroueslList={goodsList.slice(0, 7)} />
-        <MainBottomCarousel caroueslList={goodsList.slice(19, 25)} />
+        <MainBottomCarousel caroueslList={goodsList} />
+        <MainBottomCarousel caroueslList={goodsList} />
         <MainBttomAlbum />
         {/* TODO: 나중에 백그라운드 이미지 변경 해야함 */}
         <div
