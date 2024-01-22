@@ -40,7 +40,7 @@ export const useLogin = (): LoginResult => {
         password.trim(),
       );
       dispatch(logIn({ userInfo: signIn.user.providerData[0] }));
-      alert('로그인 되었습니다1.');
+      alert('로그인 되었습니다.');
       navigate('/');
       setIsPending(false);
     } catch (error: any) {

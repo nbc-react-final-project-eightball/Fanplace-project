@@ -35,7 +35,7 @@ const Detail = () => {
     <S.DtailContainer>
       <Product product={selectedProduct} />
       <ProductInfo product={selectedProduct} />
-      <Productlist product={selectedProduct} />
+      {/* <Productlist product={selectedProduct} /> */}
     </S.DtailContainer>
   );
 };
