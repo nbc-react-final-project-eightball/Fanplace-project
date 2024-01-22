@@ -44,20 +44,20 @@ const Mainpage = () => {
         }}
       >
         <MainTopCarousel />
-        <MainBottomCarousel />
-        <MainBottomCarousel />
+        <MainBottomCarousel caroueslList={goodsList.slice(0, 7)} />
+        <MainBottomCarousel caroueslList={goodsList.slice(19, 25)} />
         <MainBttomAlbum />
         {/* TODO: 나중에 백그라운드 이미지 변경 해야함 */}
         <div
-          style={{
-            backgroundImage: `url('img/bg1.jpg')`,
-            backgroundSize: '320',
-            backgroundRepeat: 'no-repeat',
-            backgroundAttachment: 'fixed',
-            backgroundPosition: 'right 25% center',
-            height: '20vh',
-            width: '100%',
-          }}
+        // style={{
+        //   backgroundImage: `url('img/bg1.jpg')`,
+        //   backgroundSize: '320',
+        //   backgroundRepeat: 'no-repeat',
+        //   backgroundAttachment: 'fixed',
+        //   backgroundPosition: 'right 25% center',
+        //   height: '20vh',
+        //   width: '100%',
+        // }}
         />
       </div>
     </>

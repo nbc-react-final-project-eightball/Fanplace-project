@@ -7,57 +7,113 @@ import {
   faChevronCircleLeft,
   faChevronCircleRight,
 } from '@fortawesome/free-solid-svg-icons';
+import { DocumentData } from 'firebase/firestore';
 
 config.autoAddCss = false;
 
-const MainBottomCarousel = () => {
-  const [currentSlide, setCurrentSlide] = useState(1); // 현재 슬라이드의 인덱스
-  const [autoSlide, setAutoSlide] = useState<NodeJS.Timeout | null>(null); // 자동 슬라이드를 위한 타이머
+interface MainBottomCarouselProps {
+  caroueslList: DocumentData;
+}
+interface CarouselItem {
+  img?: string;
+  artist: string;
+  ProductName: string;
+  price: number;
+}
+const MainBottomCarousel: React.FC<MainBottomCarouselProps> = ({
+  caroueslList,
+}) => {
+  const [currentSlide, setCurrentSlide] = useState(0); // 현재 슬라이드의 인덱스
+  const autoSlide = useRef<NodeJS.Timeout | null>(null);
   const [timeId, setTimeId] = useState<NodeJS.Timeout | null>(null);
-  const slides = [
-    'img/p6.jpg',
-    'img/P1.jpg',
-    'img/P2.jpg',
-    'img/P3.jpg',
-    'img/P4.jpg',
-    'img/P5.jpg',
-    'img/p6.jpg',
+  const slides = caroueslList.slice(0, 7);
+  const SLIDE_NUM = slides.length;
+  const beforeSlide1 = slides[SLIDE_NUM - 1];
+
+  const afterSlide1 = slides[0];
+  const afterSlide2 = slides[1];
+  const afterSlide3 = slides[2];
+  const copiedSlides = [
+    beforeSlide1,
+    ...slides,
+    afterSlide1,
+    afterSlide2,
+    afterSlide3,
   ];
   // TODO: 상품 이미지를 서버에서 받아와서 뿌려주기
-  const SLIDE_NUM = slides.length;
-  const beforeSlide = slides[SLIDE_NUM - 1];
+
   // 원래 배열의 첫 부분
-  const afterSlide = slides[0];
-  const copiedSlides = [beforeSlide, ...slides, , beforeSlide, afterSlide];
+
   const slideRef = useRef<HTMLDivElement>(null);
 
-  const moveSlide = (index: number) => {
-    if (slideRef.current !== null) {
-      slideRef.current.style.transition = 'none';
-      setCurrentSlide(index);
+  // useEffect(() => {
+  //   if (autoSlide.current) {
+  //     clearTimeout(autoSlide.current);
+  //   }
+  //   autoSlide.current = setTimeout(() => {
+  //     if (currentSlide >= slides.length - 1) {
+  //       if (slideRef.current) {
+  //         slideRef.current.style.transition = 'none';
+  //         setCurrentSlide(0);
+  //         setTimeout(() => {
+  //           if (slideRef.current) {
+  //             slideRef.current.style.transition = 'all 500ms ease-in-out';
+  //           }
+  //         }, 100);
+  //       }
+  //     } else {
+  //       if (slideRef.current) {
+  //         slideRef.current.style.transition = 'all 500ms ease-in-out';
+  //       }
+  //       setCurrentSlide((prev) => prev + 1);
+  //     }
+  //   }, 3000);
 
-      setTimeout(() => {
-        if (slideRef.current) {
-          slideRef.current.style.transition = 'all 500ms ease-in-out';
-          slideRef.current.style.transform = `translateX(-${index * 25}%)`;
-        }
-      }, 1);
+  //   return () => {
+  //     if (autoSlide.current) {
+  //       clearTimeout(autoSlide.current);
+  //     }
+  //   };
+  // }, [currentSlide, slides.length]);
+
+  const handleNext = () => {
+    if (currentSlide >= slides.length) {
+      if (slideRef.current) {
+        slideRef.current.style.transition = 'none';
+        setCurrentSlide(0);
+        setTimeout(() => {
+          if (slideRef.current) {
+            slideRef.current.style.transition = 'all 500ms ease-in-out';
+          }
+        }, 100);
+      }
+    } else {
+      if (slideRef.current) {
+        slideRef.current.style.transition = 'all 500ms ease-in-out';
+      }
+      setCurrentSlide((prev) => prev + 1);
     }
   };
 
   const handlePrev = () => {
-    if (timeId) {
-      clearTimeout(timeId);
+    if (currentSlide === 0) {
+      if (slideRef.current) {
+        slideRef.current.style.transition = 'none';
+        setCurrentSlide(slides.length - 1);
+        setTimeout(() => {
+          if (slideRef.current) {
+            slideRef.current.style.transition = 'all 500ms ease-in-out';
+          }
+        }, 100);
+      }
+    } else {
+      if (slideRef.current) {
+        slideRef.current.style.transition = 'all 500ms ease-in-out';
+      }
+      setCurrentSlide((prev) => prev - 1);
     }
-    setCurrentSlide((prev) => (prev === 1 ? slides.length - 2 : prev - 1));
   };
 
-  const handleNext = () => {
-    if (timeId) {
-      clearTimeout(timeId);
-    }
-    setCurrentSlide((prev) => (prev === slides.length - 2 ? 0 : prev + 1));
-  };
   const handleScroll = (event: React.ChangeEvent<HTMLInputElement>) => {
     setCurrentSlide(
       Math.floor((Number(event.target.value) * slides.length) / 100),
@@ -93,18 +149,18 @@ const MainBottomCarousel = () => {
             transition: 'all 500ms ease-in-out',
           }}
         >
-          {copiedSlides?.map((slide, index) => (
+          {copiedSlides.map((list: CarouselItem, index: number) => (
             <S.Slide key={index}>
               <img
                 style={{ width: '100%' }}
-                src={slide}
+                src={list.img}
                 alt={`Slide ${index}`}
               />
               {/* TODO:파이어베이스에 데이터 생기면 맵돌리기 */}
               <S.SlideInTextDiv>
-                <h1>가수 : 김두한</h1>
-                <p>제품명 : 김두한</p>
-                <p>가격 : 50000 전</p>
+                <h1>{list.artist}</h1>
+                <p>{list.ProductName}</p>
+                {/* <p>가격 : {list.price} 원</p> */}
               </S.SlideInTextDiv>
             </S.Slide>
           ))}

@@ -34,8 +34,6 @@ export const GoodsListSection1 = styled.section`
 `;
 //아티스트 필터
 export const AtistFilter = styled.button<AtistFilterProps>`
-  flex-shrink: 1;
-  flex-grow: 0;
   width: 200px;
   font-size: 20px;
   padding-top: 5px;

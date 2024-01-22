@@ -146,7 +146,7 @@ const MainBttomAlbum = () => {
 
   return (
     <>
-      <h1>새로운 앨범!</h1>
+      {/* <h1>새로운 앨범!</h1> */}
       <S.AlbumDiv>
         <S.PrevButton onClick={handlePrev}>
           <FontAwesomeIcon

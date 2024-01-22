@@ -24,6 +24,17 @@ export const SlideInTextDiv = styled.div`
   color: whitesmoke;
   text-shadow: 1px 1px 1px black;
   line-height: 150%;
+  h1 {
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    text-overflow: ellipsis;
+    height: 30px;
+    width: 100%;
+
+    font-weight: 500px;
+  }
 `;
 export const Slide = styled.div`
   flex: 0 0 auto;
