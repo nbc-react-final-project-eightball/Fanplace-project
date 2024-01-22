@@ -6,9 +6,8 @@ import {
   faChevronCircleRight,
 } from '@fortawesome/free-solid-svg-icons';
 const MainBttomAlbum = () => {
-  const [currentSlide, setCurrentSlide] = useState(1); // 현재 슬라이드의 인덱스
-  const [autoSlide, setAutoSlide] = useState<NodeJS.Timeout | null>(null); // 자동 슬라이드를 위한 타이머
-  const [timeId, setTimeId] = useState<NodeJS.Timeout | null>(null);
+  const [currentSlide, setCurrentSlide] = useState(2); // 현재 슬라이드의 인덱스
+  // const [autoSlide, setAutoSlide] = useState<NodeJS.Timeout | null>(null); // 자동 슬라이드를 위한 타이머
   const slides = [
     'img/Album8.jpg',
     'img/Album1.jpg',
@@ -20,63 +19,128 @@ const MainBttomAlbum = () => {
     'img/Album7.jpg',
     'img/Album8.jpg',
     'img/Album1.jpg',
+    'img/Album2.jpg',
+    'img/Album3.jpg',
+    'img/Album4.jpg',
   ];
   // TODO: 앨범상품 이미지를 서버에서 받아와서 뿌려주기
-  const SLIDE_NUM = slides.length;
-  const beforeSlide = slides[SLIDE_NUM - 1];
-  // 원래 배열의 첫 부분
-  const afterSlide = slides[0];
-  const copiedSlides = [beforeSlide, ...slides, , beforeSlide, afterSlide];
+  const copiedSlides = [...slides];
+  const autoSlide = useRef<NodeJS.Timeout | null>(null);
   const slideRef = useRef<HTMLDivElement>(null);
-  const moveSlide = (index: number) => {
-    if (slideRef.current !== null) {
-      slideRef.current.style.transition = 'none';
-      setCurrentSlide(index);
 
-      setTimeout(() => {
+  useEffect(() => {
+    if (autoSlide.current) {
+      clearTimeout(autoSlide.current);
+    }
+    autoSlide.current = setTimeout(() => {
+      // 마지막 슬라이드일 때
+      if (currentSlide >= slides.length - 1) {
+        // 바로 첫 번째 슬라이드로 이동
+        if (slideRef.current) {
+          // 이동 애니메이션 제거
+          slideRef.current.style.transition = 'all 500ms ease-in-out';
+          slideRef.current.style.transition = 'none';
+          // 바로 첫 번째 슬라이드로 이동
+          setCurrentSlide(slides.length);
+          // 다음 자동 스크롤을 위해 다시 애니메이션 적용
+          const nextSlide = () => {
+            setCurrentSlide(1);
+          };
+          nextSlide();
+          setTimeout(() => {
+            if (slideRef.current) {
+              slideRef.current.style.transition = 'all 500ms ease-in-out';
+            }
+          }, 100);
+        }
+      } else {
+        // 다음 슬라이드로 이동
         if (slideRef.current) {
           slideRef.current.style.transition = 'all 500ms ease-in-out';
-          slideRef.current.style.transform = `translateX(-${index * 25}%)`;
         }
+        setCurrentSlide((prev) => prev + 1.5);
+      }
+    }, 3000);
+    if (currentSlide === 1) {
+      // 다음 슬라이드로 이동
+      setTimeout(() => {
+        if (slideRef.current) {
+          if (autoSlide.current) {
+            clearTimeout(autoSlide.current);
+
+            slideRef.current.style.transition = 'all 500ms ease-in-out';
+          }
+        }
+        setCurrentSlide((prev) => prev + 1);
       }, 1);
     }
-  };
-  useEffect(() => {
-    if (currentSlide === 0) {
-      clearTimeout(currentSlide);
-      moveSlide(1);
-    } else if (currentSlide === SLIDE_NUM - 2) {
-      setTimeId(setTimeout(() => setCurrentSlide(1), 3000));
-    }
-  }, [currentSlide, SLIDE_NUM]);
-  useEffect(() => {
-    if (autoSlide) {
-      clearTimeout(autoSlide);
-    } // 슬라이드가 전환되기 전에 타이머를 제거
-    setAutoSlide(
-      setTimeout(() => {
-        setCurrentSlide((currentSlide + 1) % slides.length);
-      }, 3000), // 3초 후에 슬라이드를 전환
-    );
-    console.log('카운트 인덱스', currentSlide);
-  }, [currentSlide]);
 
-  const handlePrev = () => {
-    if (timeId) {
-      clearTimeout(timeId);
-    }
-    setCurrentSlide((prev) => (prev === 1 ? slides.length - 2 : prev - 1));
-  };
+    return () => {
+      if (autoSlide.current) {
+        clearTimeout(autoSlide.current);
+      }
+    };
+  }, [currentSlide, slides.length]);
+  // useEffect(() => {
+  //   if (autoSlide) {
+  //     clearTimeout(autoSlide);
+  //   } // 슬라이드가 전환되기 전에 타이머를 제거
+  //   setAutoSlide(
+  //     setTimeout(() => {
+  //       setCurrentSlide((currentSlide + 1) % slides.length);
+  //       if (currentSlide === null) {
+  //         clearTimeout(currentSlide);
+  //         moveSlide(0);
+  //       }
+  //     }, 3000), // 3초 후에 슬라이드를 전환
+  //   );
+  // }, [currentSlide]);
 
   const handleNext = () => {
-    if (timeId) {
-      clearTimeout(timeId);
+    if (currentSlide >= slides.length - 1) {
+      // 마지막 슬라이드에서 다음 버튼을 누르면 첫 번째 슬라이드로 돌아갑니다.
+      if (slideRef.current) {
+        slideRef.current.style.transition = 'none';
+        setCurrentSlide(0);
+        setTimeout(() => {
+          if (slideRef.current) {
+            slideRef.current.style.transition = 'all 500ms ease-in-out';
+          }
+        }, 100);
+      }
+    } else {
+      if (slideRef.current) {
+        slideRef.current.style.transition = 'all 500ms ease-in-out';
+      }
+      setCurrentSlide((prev) => prev + 1);
     }
-    setCurrentSlide((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
+    // setCurrentSlide((prev) => (prev === slides.length + 1 ? 0 : prev + 1));
   };
+
+  const handlePrev = () => {
+    if (currentSlide === 0) {
+      // 첫 번째 슬라이드에서 이전 버튼을 누르면 마지막 슬라이드로 돌아갑니다.
+      if (slideRef.current) {
+        slideRef.current.style.transition = 'none';
+        setCurrentSlide(slides.length - 1);
+        setTimeout(() => {
+          if (slideRef.current) {
+            slideRef.current.style.transition = 'all 500ms ease-in-out';
+          }
+        }, 100);
+      }
+    } else {
+      if (slideRef.current) {
+        slideRef.current.style.transition = 'all 500ms ease-in-out';
+      }
+      setCurrentSlide((prev) => prev - 1);
+    }
+    // setCurrentSlide((prev) => (prev === 1 ? slides.length - 1 : prev - 1));
+  };
+
   const handleScroll = (event: React.ChangeEvent<HTMLInputElement>) => {
     setCurrentSlide(
-      Math.floor((Number(event.target.value) * slides.length) / 100),
+      Math.floor((Number(event.target.value) * slides.length + 3) / 100),
     );
   };
 
@@ -95,10 +159,9 @@ const MainBttomAlbum = () => {
             ref={slideRef}
             style={{
               transform: `translateX(-${currentSlide * 25}%)`,
-              transition: 'all 500ms ease-in-out',
             }}
           >
-            {slides.map((slide, index) => (
+            {copiedSlides.map((slide, index) => (
               <S.AlbumSlide key={index}>
                 <img src={slide} alt="img" style={{ width: '100%' }} />
                 <S.AlbumTitle> 앨범타이틀 : 어쩌구블라 </S.AlbumTitle>

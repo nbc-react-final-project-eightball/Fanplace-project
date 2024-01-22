@@ -143,27 +143,41 @@ const ProductInfo: React.FC<ProductProps> = ({ product }) => {
   return (
     <S.ProductInfoContainer>
       <S.ProductInfoSection1>
-        <S.ProductInfoSection1_1> 상품 태그</S.ProductInfoSection1_1>
+        <S.ProductInfoSection1_1> {product?.artist}</S.ProductInfoSection1_1>
         <S.ProductInfoSection1_2>
           {' '}
-          <h1>{product?.title}</h1>
+          <h1 style={{ fontSize: '18px' }}>{product?.title}</h1>
         </S.ProductInfoSection1_2>
         <S.ProductInfoSection1_3>
           {' '}
-          <h1> {product?.price}원 </h1>
+          <h1 style={{ fontSize: '20px' }}> {product?.price}원 </h1>
         </S.ProductInfoSection1_3>
       </S.ProductInfoSection1>
       <S.ProductInfoSection2>
         <S.ProductInfoSection2_1>
           {' '}
-          <h1>상품 정보</h1>
+          <h1 style={{ fontSize: '14px' }}>상품 정보</h1>
           <ul>
-            <li> 상품ID : {product?.productId}</li>
-            <li> 발매일 : 2023-05-16 </li>
+            <li>
+              {' '}
+              <span>상품ID</span> <span>{product?.productId}</span>
+            </li>
+            <li>
+              {' '}
+              <span>발매일 </span>
+              <span>2023-05-16</span>{' '}
+            </li>
             {product?.Checklist1 && (
               <>
-                <li> 상품 확인사항(1) :{product?.Checklist1} </li>
-                <li>상품 확인사항(2) : ✓{product?.Checklist2}</li>
+                <li>
+                  {' '}
+                  <span>상품 확인사항(1)</span> :
+                  <span>{product?.Checklist1}</span>{' '}
+                </li>
+                <li>
+                  <span>상품 확인사항(2) </span>:{' '}
+                  <span>{product?.Checklist2}</span>
+                </li>
               </>
             )}
           </ul>
@@ -189,23 +203,29 @@ const ProductInfo: React.FC<ProductProps> = ({ product }) => {
                   <FontAwesomeIcon icon={faPlus} />
                 </S.ProductInfoBtn>
               </div>
-              <p>{totalPrice}원</p>
+              <h1>{totalPrice}원</h1>
             </S.ProductInfoSection2_2CartBoxSection2>
           </S.ProductInfoSection2_2CartBox>
         </S.ProductInfoSection2_2>
-        <S.ProductInfoSection2_3>
-          총 상품 금액 : {totalPrice}원
-        </S.ProductInfoSection2_3>
       </S.ProductInfoSection2>
+      <S.ProductInfoSection2_3>
+        <S.ProductP>
+          <span>총 금액 </span>
+          <S.ProductH1> {totalPrice}원</S.ProductH1>
+        </S.ProductP>
+      </S.ProductInfoSection2_3>
       <S.ProductInfoSection3>
         <S.ProductInfoSection3Btn1 onClick={addCartHandler}>
-          Buy Now
+          구매하기
         </S.ProductInfoSection3Btn1>
         <S.ProductInfoSection3_1>
           <S.ProductInfoSection3Btn2 onClick={addCartHandler}>
-            Add Cart
+            장바구니 담기
           </S.ProductInfoSection3Btn2>
-          <S.ProductInfoSection3Btn2> Wish List</S.ProductInfoSection3Btn2>
+          <S.ProductInfoSection3Btn3>
+            {' '}
+            ♡ 위시리스트 담기
+          </S.ProductInfoSection3Btn3>
         </S.ProductInfoSection3_1>
       </S.ProductInfoSection3>
     </S.ProductInfoContainer>
