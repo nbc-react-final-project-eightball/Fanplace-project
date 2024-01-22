@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const CartContainer = styled.div`
   width: 100%;
-  height: 900px;
+  /* height: 0.433; */
   background: #f7f7f7;
   flex-shrink: 0;
 
@@ -11,8 +11,8 @@ export const CartContainer = styled.div`
   }
   input[type='checkbox']:checked + label:before {
     position: absolute;
-    top: 1px;
-    left: 1px;
+    top: 0;
+    left: 0;
     display: block;
     content: url('img/common/checked.svg');
     width: 20px;
@@ -30,25 +30,42 @@ export const CartContainer = styled.div`
 `;
 
 export const Cart = styled.div`
-  width: 1200px;
   height: 900px;
   top: 112px;
-  padding-left: 165px;
+  padding: 0 2.5rem 0 8.75rem;
   display: flex;
   flex-direction: column;
   .allArea {
     display: flex;
+    gap: 10px;
+    margin: 0 auto;
   }
 `;
 export const CartTitle = styled.div`
   width: 100%;
+  max-width: 1070px;
   color: #000;
   font-size: 20px;
   font-style: normal;
   font-weight: 600;
   line-height: normal;
+  margin: 40px auto 20px;
   display: flex;
   justify-content: space-between;
+`;
+export const Process = styled.div`
+  display: flex;
+  align-items: center;
+  span {
+    color: #999;
+    font-size: 16px;
+    font-weight: 400;
+  }
+  span:first-child {
+    color: #000;
+    font-size: 16px;
+    font-weight: 600;
+  }
 `;
 export const LeftArea = styled.div`
   width: 720px;
@@ -102,13 +119,62 @@ export const LeftArea = styled.div`
   }
 `;
 export const RightArea = styled.div`
-  width: 280px;
-  height: 321px;
+  width: 320px;
+  min-height: 320px;
+  padding: 20px;
   border-radius: 10px;
   border: 1px solid #efefef;
   background: #fff;
 `;
 
+export const PaymentInfo = styled.h2`
+  font-size: 20px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #d9d9d9;
+`;
+
+export const Box = styled.div`
+  display: flex;
+  justify-content: space-between;
+  h3 {
+    color: #999;
+    font-weight: 500;
+  }
+  span {
+    font-size: 16px;
+    color: #333;
+    font-weight: 500;
+  }
+  h2 {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    font-size: 16px;
+    color: #333;
+    font-weight: 600;
+    border-top: 1px solid #d9d9d9;
+    padding: 20px 0 30px;
+  }
+  h2 span {
+    font-size: 20px;
+  }
+`;
+export const BoxWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 20px 0;
+`;
+
+export const PaymentButton = styled.button`
+  width: 100%;
+  height: 48px;
+  text-align: center;
+  flex-shrink: 0;
+  border-radius: 28px;
+  background: #000;
+  color: #fff;
+`;
 export const CartList = styled.ul`
   gap: 20px;
   li:first-child {
@@ -140,12 +206,12 @@ export const TotalAmount = styled.div`
   display: flex;
   align-items: center;
   gap: 20px;
+  justify-content: space-between;
   width: 100%;
   padding: 20px;
-  margin-left: 59px;
   .amount1 {
-    display: flex;
+    /* display: flex;
     justify-content: space-between;
-    padding: 20px;
+    padding: 20px; */
   }
 `;

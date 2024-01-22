@@ -70,7 +70,7 @@ export const useSocialLogin = (
         dispatch(logIn({ userInfo: user.providerData[0] }));
       }
 
-      alert('로그인 되었습니다2.');
+      alert('로그인 되었습니다.');
       navigate('/');
       setIsPending(false);
     } catch (error: any) {
