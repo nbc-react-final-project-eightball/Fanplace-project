@@ -26,7 +26,8 @@ const Router = () => {
           <Route path="/login" element={<Authpage />} />
           <Route path="*" element={<NotFound />} />
           <Route path="/mypage" element={<Mypage />} />
-          <Route path="/GoodsList" element={<GoodsList />} />
+          <Route path="/GoodsList/:sideCategory" element={<GoodsList />} />
+          <Route path="/GoodsList/" element={<GoodsList />} />
           <Route path="/orderlist" element={<OrderListPage />} />
           <Route path="/coupon" element={<CouponPage />} />
           <Route path="/wishlist" element={<WishListPage />} />
