@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 //하단 캐러셀 스타일 start
 export const Div = styled.div`
+  margin-top: 100px;
   display: flex;
   justify-content: center;
 `;
@@ -93,7 +94,8 @@ export const NextButton = styled.button`
 export const AlbumDiv = styled.div`
   display: flex;
   justify-content: center;
-  margin-top: 50px;
+  margin-top: 100px;
+  margin-bottom: 100px;
 `;
 
 export const AlbumContainer = styled.div`
@@ -106,7 +108,6 @@ export const AlbumContainer = styled.div`
 
 export const AlbumCarousel = styled.div`
   display: flex;
-  transition: transform 0.5s;
 `;
 
 export const AlbumSlide = styled.div`
@@ -114,7 +115,7 @@ export const AlbumSlide = styled.div`
   position: relative;
   width: 25%;
   margin: 0 4rem;
-  transform: translateX(-25%);
+  /* transform: translateX(-25%); */
 `;
 export const AlbumTitle = styled.h2`
   text-align: center;

@@ -22,8 +22,8 @@ export const ProductImg = styled.img`
   border-radius: 20px;
 `;
 export const ProductSideImg = styled.img`
-  width: 25%;
-  height: 25%;
+  width: 64px;
+  height: 64px;
   border-radius: 20px;
 `;
 export const ProductImgContainer = styled.div``;
@@ -35,43 +35,54 @@ export const ProductImgContainerSection2 = styled.section`
 export const ProductContainer = styled.div`
   height: 100%;
   width: 900px;
-  background-color: #9fffe0;
   margin-right: 30px;
 `;
 
 export const ProductSection2 = styled.section`
   padding: 20px;
   justify-content: center;
+
   text-align: center;
   overflow: hidden;
 `;
 
 export const ProductTitle = styled.h1`
+  display: flex;
+  gap: 20px;
   font-size: 30px;
   font-weight: 700;
-  padding-bottom: 20px;
-  border-bottom: 1px solid #838383;
+
   padding-top: 20px;
-  border-top: 1px solid #cbcbcb;
+  font-size: 16px;
+  border-bottom: 1px solid #e9e9e9;
   margin-bottom: 30px;
+  span {
+    padding: 20px;
+    cursor: pointer;
+    border-bottom: 2px solid #000;
+  }
 `;
 
 export const ProductDetailImg = styled.img`
   display: block;
+  width: 100%;
+  justify-content: center;
+  margin: 0 auto;
+  border-radius: 20px;
 `;
 
 export const ProductInfoContainer = styled.div`
   position: sticky;
   top: 100px;
-
+  margin-right: 230px;
   height: 700px;
-  width: 500px;
+  width: 600px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
-  border: 1px solid #000000;
+  /* justify-content: center;
+  align-items: center; */
+  padding: 10px;
+
   border-radius: 20px;
 `;
 
@@ -80,7 +91,11 @@ export const ProductInfoSection1 = styled.section`
   height: 200px;
   padding: 10px;
 `;
-export const ProductInfoSection1_1 = styled.section``;
+export const ProductInfoSection1_1 = styled.section`
+  color: #aaa;
+  padding: 10px;
+  border-bottom: 1px solid #e9e9e9;
+`;
 export const ProductInfoSection1_2 = styled.section`
   margin-top: 20px;
   h1 {
@@ -91,13 +106,10 @@ export const ProductInfoSection1_3 = styled.section`
   margin-top: 20px;
   h1 {
     font-size: 26px;
-    color: #000000;
+    color: #8f86ff;
   }
 `;
 export const ProductInfoSection2 = styled.section`
-  border-top: 1px solid #000000;
-  border-bottom: 1px solid #000000;
-
   padding: 10px;
   padding-top: 20px;
   padding-bottom: 20px;
@@ -105,41 +117,54 @@ export const ProductInfoSection2 = styled.section`
   height: 350px;
 `;
 export const ProductInfoSection2_1 = styled.section`
-  padding-left: 20px;
-  border-bottom: 1px solid #000000;
   padding-bottom: 20px;
   ul {
+    font-size: 14px;
+    color: #777;
   }
   li {
-    list-style: circle;
+    display: flex;
+    padding-top: 12px;
+    gap: 43px;
+  }
+  span {
+    font-weight: 400;
+
+    line-height: normal;
   }
 `;
 export const ProductInfoSection2_2 = styled.section`
   padding-bottom: 20px;
-  border-bottom: 1px solid #000000;
 `;
-export const ProductInfoSection2_2CartBox = styled.div``;
-export const ProductInfoSection2_2CartBoxSection1 = styled.section`
+export const ProductInfoSection2_2CartBox = styled.div`
+  background-color: #f5f5f5;
   padding: 20px;
+  border-radius: 10px;
+`;
+export const ProductInfoSection2_2CartBoxSection1 = styled.section`
+  padding: 10px;
+  padding-bottom: 20px;
 `;
 export const ProductInfoSection2_2CartBoxSection2 = styled.section`
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: space-between;
 `;
 
 export const ProductInfoBtn = styled.button`
-  border-radius: 20px;
+  border-radius: 70px;
   margin-right: 10px;
   margin-left: 10px;
-
+  color: #dedddd;
+  border: 1px solid #dedddd;
+  background-color: #ffff;
   text-align: center;
-  width: 50px;
-  height: 50px;
+  width: 25px;
+  height: 25px;
 `;
 export const ProductInfoSection2_3 = styled.section`
-  border-top: 1px solid #000000;
-  border-bottom: 1px solid #000000;
+  justify-content: right;
   padding: 20px;
 `;
 export const ProductInfoSection3 = styled.section`
@@ -149,7 +174,7 @@ export const ProductInfoSection3 = styled.section`
   flex-direction: column;
   text-align: center;
   justify-content: center;
-  color: white;
+
   font-size: 20px;
   font-weight: 800;
 `;
@@ -159,26 +184,57 @@ export const ProductInfoSection3_1 = styled.section`
   margin-top: 20px;
 `;
 export const ProductInfoSection3Btn1 = styled.button`
-  border-radius: 20px;
+  color: white;
+  border-radius: 28px;
   margin-right: 10px;
   height: 60px;
   width: 96%;
   margin: 0 auto;
-  background-color: #355775;
+  background-color: #000000;
   transition: all 0.5s ease-in-out;
   &:hover {
-    background-color: #12191f;
+    background-color: #333;
   }
 `;
 export const ProductInfoSection3Btn2 = styled.button`
   width: 50%;
   height: 60px;
-  border-radius: 20px;
+  border-radius: 28px;
   margin-left: 10px;
   margin-right: 10px;
-  background-color: #1d89e8;
+  color: #000;
+  border: 1px solid #999;
+  background-color: #ffffff;
   transition: all 0.5s ease-in-out;
   &:hover {
-    background-color: #12191f;
+    color: #ffffff;
+    background-color: #333;
+  }
+`;
+export const ProductP = styled.p`
+  display: flex;
+  gap: 24px;
+  justify-content: flex-end;
+  text-align: right;
+  span {
+    color: #999;
+  }
+`;
+export const ProductH1 = styled.h1`
+  display: inline;
+`;
+export const ProductInfoSection3Btn3 = styled.button`
+  width: 50%;
+  height: 60px;
+  border-radius: 28px;
+  margin-left: 10px;
+  margin-right: 10px;
+  color: #8f86ff;
+  border: 1px solid #8f86ff;
+
+  transition: all 0.5s ease-in-out;
+  &:hover {
+    color: #ffffff;
+    background-color: #8f86ff;
   }
 `;
