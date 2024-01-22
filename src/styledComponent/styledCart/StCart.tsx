@@ -105,8 +105,17 @@ export const RightArea = styled.div`
   width: 280px;
   height: 321px;
   border-radius: 10px;
-  border: 1px solid #efefef;
   background: #fff;
+  padding: 20px;
+
+  .paymentInfo {
+    color: #333;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    margin-bottom: 20px;
+  }
 `;
 
 export const CartList = styled.ul`
@@ -144,8 +153,7 @@ export const TotalAmount = styled.div`
   padding: 20px;
   margin-left: 59px;
   .amount1 {
-    display: flex;
-    justify-content: space-between;
+    justify-content: center;
     padding: 20px;
   }
 `;

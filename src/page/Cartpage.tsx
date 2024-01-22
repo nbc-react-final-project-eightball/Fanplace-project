@@ -107,7 +107,8 @@ const Cartpage = () => {
                 <S.CartWrapper key={cartItem.id}>
                   <input type="checkbox" id="checkbox1" />
                   <input type="checkbox" />
-                  <S.Image src={`/${cartItem.img}`}></S.Image>
+                  <S.Image src={`${cartItem.img}`}></S.Image>
+
                   <div className="titleWrapper">
                     <div className="title">{cartItem.title}</div>
                     {/* <div>옵션</div> */}
@@ -147,14 +148,16 @@ const Cartpage = () => {
                       </svg>
                     </div>
                   </div>
-                  <div className="productprice">{cartItem.price}원</div>
+                  <div className="productprice">
+                    {cartItem.quantity * cartItem.price}원
+                  </div>
                 </S.CartWrapper>
               ))}
             </S.CartList>
             <S.TotalAmount>
               <div className="amount1">
                 <div>상품금액</div>
-                <div>19,000원</div>
+                <div>{totalPrice}원</div>
               </div>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -172,7 +175,7 @@ const Cartpage = () => {
               </svg>
               <div>
                 <div>할인금액</div>
-                <div>19,000원</div>
+                <div>0원</div>
               </div>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -190,7 +193,7 @@ const Cartpage = () => {
               </svg>
               <div>
                 <div>배송비</div>
-                <div>19,000원</div>
+                <div>0원</div>
               </div>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -206,12 +209,27 @@ const Cartpage = () => {
               </svg>
               <div>
                 <div>주문금액</div>
-                <div>19,000원</div>
+                <div>{totalPrice}원</div>
               </div>
             </S.TotalAmount>
           </S.LeftArea>
 
-          <S.RightArea>오른쪽</S.RightArea>
+          <S.RightArea>
+            <div className="paymentInfo">결제정보</div>
+            <div>
+              <div>상품수</div>
+              <div>2개</div>
+            </div>
+            <div>
+              <div>상품금액</div>
+              <div>{totalPrice}</div>
+            </div>
+            <div>
+              <div>배송비</div>
+              <div>3,000원</div>
+            </div>
+            <button onClick={paymentHandeler}>구매하기</button>
+          </S.RightArea>
         </div>
       </S.Cart>
     </S.CartContainer>
