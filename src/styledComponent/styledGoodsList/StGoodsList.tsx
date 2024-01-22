@@ -89,7 +89,10 @@ export const GoodsListSection2Wrapper = styled.div`
   grid-column-gap: 100px;
   grid-row-gap: 20px;
 `;
-export const ProductsTab = styled.div`
+interface ProductsTabProps {
+  selected?: boolean;
+}
+export const ProductsTab = styled.div<ProductsTabProps>`
   width: 250px;
   height: 50px;
   margin: auto;
@@ -100,7 +103,7 @@ export const ProductsTab = styled.div`
   border: 1px solid black;
   border-radius: 10px;
   cursor: pointer;
-  background-color: black;
+  background-color: ${(props) => (props.selected ? '#e31313' : '#000000')};
   color: white;
   &:hover {
     background-color: #faafaf;

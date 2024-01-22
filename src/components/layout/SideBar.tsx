@@ -1,42 +1,48 @@
-import React from 'react';
+import React, { useState } from 'react';
 import * as S from '../../styledComponent/styledLayout/StSidebar';
-import { Link } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
+
 const SideBar = () => {
+  const { sideCategory } = useParams<{ sideCategory: string }>();
+  const [active, setActive] = useState<string>('');
+  //..? 스테이트 셋안해줫는데 왜 된느거지 ..???
   return (
     <S.SideBarContainer>
       <S.SideBarSectionTop>
         <S.SideBarBtn>
-          <Link to="/">New</Link>
+          <S.SNavLink to="/GoodsList/New" activeStyle={active === sideCategory}>
+            New
+          </S.SNavLink>
         </S.SideBarBtn>
         <S.SideBarBtn>
           {' '}
-          <Link to="/GoodsList">CD</Link>
+          <S.SNavLink to="/GoodsList/CD">CD</S.SNavLink>
         </S.SideBarBtn>
         <S.SideBarBtn>
           {' '}
-          <Link to="/GoodsList">포토카드</Link>
+          <S.SNavLink to="/GoodsList/Photo">포토카드</S.SNavLink>
         </S.SideBarBtn>
         <S.SideBarBtn>
           {' '}
-          <Link to="/GoodsList">의류</Link>
+          <S.SNavLink to="/GoodsList/Apparel">의류</S.SNavLink>
         </S.SideBarBtn>
         <S.SideBarBtn>
           {' '}
-          <Link to="/GoodsList">응원봉</Link>
+          <S.SNavLink to="/GoodsList/Pompoms">응원봉</S.SNavLink>
         </S.SideBarBtn>
         <S.SideBarBtn>
           {' '}
-          <Link to="/GoodsList">악세사리</Link>{' '}
+          <S.SNavLink to="/GoodsList/Sundries">잡화</S.SNavLink>{' '}
         </S.SideBarBtn>
       </S.SideBarSectionTop>
       <S.SideBarSectionBottom>
         <S.SideBarBtn>
           {' '}
-          <Link to="/GoodsList">아티스트</Link>
+          <S.SNavLink to="/GoodsList/Artists">아티스트</S.SNavLink>
         </S.SideBarBtn>
         <S.SideBarBtn>
           {' '}
-          <Link to="/GoodsList">공지사항/FAQ</Link>
+          <S.SNavLink to="/GoodsList/Announcements">공지사항/FAQ</S.SNavLink>
         </S.SideBarBtn>
       </S.SideBarSectionBottom>
     </S.SideBarContainer>
