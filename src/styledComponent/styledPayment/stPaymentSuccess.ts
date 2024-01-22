@@ -21,8 +21,9 @@ export const PaymentProcess = styled.div`
   color: #999;
   font-weight: 400;
   span:last-child {
-    color: #000;
+    color: #777777;
     font-weight: 600;
+    font-size: 18px;
   }
 `;
 

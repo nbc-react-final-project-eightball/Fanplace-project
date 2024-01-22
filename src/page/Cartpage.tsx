@@ -59,13 +59,15 @@ const Cartpage = () => {
   for (let i = 0; i < cartList.length; i++) {
     totalPrice += cartList[i].price * cartList[i].quantity;
   }
+  const shippingCost = 3000;
+  const totalPayment = totalPrice + shippingCost;
 
   return (
     <S.CartContainer>
       <S.Cart>
         <S.CartTitle>
           <span className="span1">장바구니</span>
-          <div>
+          <S.Process>
             <span>장바구니</span>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -93,7 +95,7 @@ const Cartpage = () => {
               />
             </svg>
             <span>주문완료</span>
-          </div>
+          </S.Process>
         </S.CartTitle>
         <div className="allArea">
           <S.LeftArea>
@@ -107,7 +109,7 @@ const Cartpage = () => {
                 <S.CartWrapper key={cartItem.id}>
                   <input type="checkbox" id="checkbox1" />
                   <input type="checkbox" />
-                  <S.Image src={`/${cartItem.img}`}></S.Image>
+                  <S.Image src={`${cartItem.img}`}></S.Image>
                   <div className="titleWrapper">
                     <div className="title">{cartItem.title}</div>
                     {/* <div>옵션</div> */}
@@ -211,7 +213,31 @@ const Cartpage = () => {
             </S.TotalAmount>
           </S.LeftArea>
 
-          <S.RightArea>오른쪽</S.RightArea>
+          <S.RightArea>
+            <S.PaymentInfo>결제정보</S.PaymentInfo>
+            <S.BoxWrapper>
+              <S.Box>
+                <h3>상품수</h3>
+                <span>2개</span>
+              </S.Box>
+              <S.Box>
+                <h3>상품금액</h3>
+                <span>{totalPrice}원</span>
+              </S.Box>
+              <S.Box>
+                <h3>배송비</h3>
+                <span>3,000원</span>
+              </S.Box>
+              <S.Box>
+                <h2>
+                  총 결제 금액 <span>{totalPayment}원</span>
+                </h2>
+              </S.Box>
+            </S.BoxWrapper>
+            <S.PaymentButton onClick={paymentHandeler}>
+              구매하기
+            </S.PaymentButton>
+          </S.RightArea>
         </div>
       </S.Cart>
     </S.CartContainer>

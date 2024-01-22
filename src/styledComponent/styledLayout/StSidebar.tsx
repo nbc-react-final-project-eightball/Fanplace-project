@@ -8,6 +8,7 @@ export const SideBarContainer = styled.div`
   align-items: center;
   gap: 3rem;
   z-index: 30;
+  padding-left: 1.5rem;
 `;
 
 export const SideBarSectionTop = styled.ul`

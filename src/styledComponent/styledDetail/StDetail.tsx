@@ -1,30 +1,25 @@
 import styled from 'styled-components';
 
 export const DtailContainer = styled.div`
-  margin-left: 150px;
-  width: 1800px;
+  display: flex;
   justify-content: center;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr;
-  grid-column-gap: 0px;
-  grid-row-gap: 0px;
-  justify-items: center;
+  width: 100%;
+  padding: 0 2.5rem 0 8.75rem;
 `;
 
 export const ProductSection1 = styled.section`
-  padding: 20px;
+  /* padding: 20px; */
 `;
 
 export const ProductImg = styled.img`
   width: 100%;
   height: 100%;
-  border-radius: 20px;
+  border-radius: 8px;
 `;
 export const ProductSideImg = styled.img`
   width: 64px;
   height: 64px;
-  border-radius: 20px;
+  border-radius: 4px;
 `;
 export const ProductImgContainer = styled.div``;
 export const ProductImgContainerSection1 = styled.section``;
@@ -33,8 +28,9 @@ export const ProductImgContainerSection2 = styled.section`
 `;
 
 export const ProductContainer = styled.div`
+  width: 51.85%;
+  max-width: 520px;
   height: 100%;
-  width: 900px;
   margin-right: 30px;
 `;
 
@@ -68,32 +64,26 @@ export const ProductDetailImg = styled.img`
   width: 100%;
   justify-content: center;
   margin: 0 auto;
-  border-radius: 20px;
 `;
 
 export const ProductInfoContainer = styled.div`
   position: sticky;
   top: 100px;
-  margin-right: 230px;
+  width: 39.89%;
+  max-width: 400px;
   height: 700px;
-  width: 600px;
   display: flex;
   flex-direction: column;
-  /* justify-content: center;
-  align-items: center; */
-  padding: 10px;
-
   border-radius: 20px;
 `;
 
 export const ProductInfoSection1 = styled.section`
   width: 100%;
   height: 200px;
-  padding: 10px;
 `;
 export const ProductInfoSection1_1 = styled.section`
   color: #aaa;
-  padding: 10px;
+  padding: 0 0 10px 0;
   border-bottom: 1px solid #e9e9e9;
 `;
 export const ProductInfoSection1_2 = styled.section`
@@ -110,7 +100,6 @@ export const ProductInfoSection1_3 = styled.section`
   }
 `;
 export const ProductInfoSection2 = styled.section`
-  padding: 10px;
   padding-top: 20px;
   padding-bottom: 20px;
   width: 100%;
@@ -122,14 +111,16 @@ export const ProductInfoSection2_1 = styled.section`
     font-size: 14px;
     color: #777;
   }
+  h1 {
+    font-weight: normal;
+  }
   li {
     display: flex;
     padding-top: 12px;
-    gap: 43px;
+    gap: 30px;
+    font-weight: normal;
   }
   span {
-    font-weight: 400;
-
     line-height: normal;
   }
 `;
@@ -142,8 +133,7 @@ export const ProductInfoSection2_2CartBox = styled.div`
   border-radius: 10px;
 `;
 export const ProductInfoSection2_2CartBoxSection1 = styled.section`
-  padding: 10px;
-  padding-bottom: 20px;
+  margin-bottom: 20px;
 `;
 export const ProductInfoSection2_2CartBoxSection2 = styled.section`
   display: flex;
@@ -154,14 +144,17 @@ export const ProductInfoSection2_2CartBoxSection2 = styled.section`
 
 export const ProductInfoBtn = styled.button`
   border-radius: 70px;
-  margin-right: 10px;
   margin-left: 10px;
-  color: #dedddd;
   border: 1px solid #dedddd;
+  color: #dedddd;
   background-color: #ffff;
   text-align: center;
-  width: 25px;
-  height: 25px;
+  width: 22px;
+  height: 22px;
+  &:first-child {
+    margin-left: 0;
+    margin-right: 10px;
+  }
 `;
 export const ProductInfoSection2_3 = styled.section`
   justify-content: right;
@@ -175,37 +168,36 @@ export const ProductInfoSection3 = styled.section`
   text-align: center;
   justify-content: center;
 
-  font-size: 20px;
+  font-size: 16px;
   font-weight: 800;
 `;
 export const ProductInfoSection3_1 = styled.section`
   display: flex;
-  flex-direction: row;
+  gap: 10px;
   margin-top: 20px;
 `;
 export const ProductInfoSection3Btn1 = styled.button`
   color: white;
-  border-radius: 28px;
-  margin-right: 10px;
-  height: 60px;
-  width: 96%;
+  border-radius: 30px;
+  height: 56px;
+  width: 100%;
   margin: 0 auto;
+  font-weight: normal;
   background-color: #000000;
-  transition: all 0.5s ease-in-out;
+  transition: all 0.2s;
   &:hover {
     background-color: #333;
   }
 `;
 export const ProductInfoSection3Btn2 = styled.button`
   width: 50%;
-  height: 60px;
-  border-radius: 28px;
-  margin-left: 10px;
-  margin-right: 10px;
+  height: 48px;
+  border-radius: 30px;
+  font-weight: normal;
   color: #000;
   border: 1px solid #999;
   background-color: #ffffff;
-  transition: all 0.5s ease-in-out;
+  transition: all 0.2s;
   &:hover {
     color: #ffffff;
     background-color: #333;
@@ -225,14 +217,13 @@ export const ProductH1 = styled.h1`
 `;
 export const ProductInfoSection3Btn3 = styled.button`
   width: 50%;
-  height: 60px;
-  border-radius: 28px;
-  margin-left: 10px;
-  margin-right: 10px;
+  height: 48px;
+  border-radius: 30px;
+  font-weight: normal;
   color: #8f86ff;
   border: 1px solid #8f86ff;
 
-  transition: all 0.5s ease-in-out;
+  transition: all 0.2s;
   &:hover {
     color: #ffffff;
     background-color: #8f86ff;
