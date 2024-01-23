@@ -31,8 +31,8 @@ const SideBar = () => {
         </S.SideBarBtn>
         <S.SideBarBtn>
           {' '}
-          <S.SNavLink to="/GoodsList/CD" onClick={reSet}>
-            CD
+          <S.SNavLink to="/GoodsList/CD&DVD" onClick={reSet}>
+            CD/DVD
           </S.SNavLink>
         </S.SideBarBtn>
         <S.SideBarBtn>

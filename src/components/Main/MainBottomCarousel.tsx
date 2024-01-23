@@ -12,21 +12,17 @@ import { DocumentData } from 'firebase/firestore';
 config.autoAddCss = false;
 
 interface MainBottomCarouselProps {
-  caroueslList: DocumentData;
+  caroueslList?: DocumentData;
 }
-interface CarouselItem {
-  img?: string;
-  artist: string;
-  ProductName: string;
-  price: number;
-}
+
 const MainBottomCarousel: React.FC<MainBottomCarouselProps> = ({
   caroueslList,
 }) => {
   const [currentSlide, setCurrentSlide] = useState(0); // 현재 슬라이드의 인덱스
   const autoSlide = useRef<NodeJS.Timeout | null>(null);
   const [timeId, setTimeId] = useState<NodeJS.Timeout | null>(null);
-  const slides = caroueslList.slice(0, 7);
+  const slides = caroueslList ? caroueslList?.slice(0, 10) : [];
+  console.log('slides', slides);
   const SLIDE_NUM = slides.length;
   const beforeSlide1 = slides[SLIDE_NUM - 1];
   const slides2 = [
@@ -127,7 +123,9 @@ const MainBottomCarousel: React.FC<MainBottomCarouselProps> = ({
       Math.floor((Number(event.target.value) * slides.length) / 100),
     );
   };
-
+  if (!caroueslList || caroueslList.length === 0 || !slides) {
+    return <div>로딩중</div>;
+  }
   return (
     <S.Div>
       {' '}
@@ -157,18 +155,19 @@ const MainBottomCarousel: React.FC<MainBottomCarouselProps> = ({
             transition: 'all 500ms ease-in-out',
           }}
         >
-          {slides2.map((list, index: number) => (
+          {copiedSlides?.map((list: any, index: number) => (
             <S.Slide key={index}>
               <img
                 style={{ width: '100%' }}
-                src={list}
+                src={list.img}
                 alt={`Slide ${index}`}
               />
               {/* TODO:파이어베이스에 데이터 생기면 맵돌리기 */}
               <S.SlideInTextDiv>
-                <h1>아티스트</h1>
+                <h1>{list.artist}</h1>
                 {/* <h1>{list.artist}</h1> */}
-                <p>품명</p>
+                <p>품명 {list.title}</p>
+                <p>가격 {list.price}</p>
                 {/* <p>{list.ProductName}</p> */}
                 {/* <p>가격 : {list.price} 원</p> */}
               </S.SlideInTextDiv>
