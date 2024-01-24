@@ -1,127 +1,119 @@
 import styled from 'styled-components';
-type AtistFilterProps = {
+type ArtistFilterProps = {
   isOpen: boolean;
   onClick?: () => void;
 };
-export const Div = styled.div``;
-
 export const GoodsListContainer = styled.div`
-  max-width: 1200px;
-  margin: auto;
-  margin-top: 2vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  padding: 20px;
+  max-width: 1360px;
+  min-height: 1200px;
+  padding: 0 2.5rem 0 8.75rem;
+  margin: 0 auto;
   position: relative;
 `;
 
 export const GoodsListContainerSection = styled.section`
+  display: flex;
   width: 100%;
   height: 100%;
-  display: flex;
-  flex-direction: row;
+  margin-top: 1.5rem;
 `;
 //아티스트 선별? // 페이지 위치 알려주는곳 ? 여기는 flex 써도 될듯?
 export const GoodsListSection1 = styled.section`
   display: flex;
-  flex-direction: row;
-
-  width: 250px;
-  height: 10vh;
+  flex-direction: column;
+  height: 100%;
   margin-bottom: 20px;
+  & + div {
+    margin-left: 1.25rem;
+  }
 `;
 //아티스트 필터
-export const AtistFilter = styled.button<AtistFilterProps>`
-  flex-shrink: 1;
-  flex-grow: 0;
-  width: 200px;
-  font-size: 20px;
-  padding-top: 5px;
-  padding-left: 10px;
-  border-radius: 20px;
-  box-shadow: 0px 0px 6px 4px rgba(0, 0, 0, 0.02);
-  height: 3vh;
-  transition: 0.1s;
+export const ArtistFilter = styled.button<ArtistFilterProps>`
+  width: 140px;
+  height: 100%;
+  font-size: 14px;
+  border-radius: 8px;
   color: #555;
-  /* color: ${(props) => (props.isOpen ? 'white' : 'black')}; */
-  /* background-color: ${(props) => (props.isOpen ? '#000000' : 'white')}; */
+  background: #fff;
+  box-sizing: border-box;
 `;
-export const AtistFilterBtn = styled.button<AtistFilterProps>`
+export const ArtistFilterBtn = styled.button<ArtistFilterProps>`
+  display: inline-block;
   width: 100%;
-  text-align: left;
-
-  /* background-color: ${(props) => (props.isOpen ? 'white' : '#000000')}; */
+  height: 100%;
+  padding: 10px;
 `;
-export const AtistFilterWrapper = styled.div`
+export const ArtistFilterWrapper = styled.div`
   position: relative;
-  width: 250px;
-`;
-export const AtistFilterContainer = styled.div`
-  width: 210px;
-  background-color: white;
-  position: absolute;
-  top: 30px;
-  left: -10px;
-  border-radius: 20px;
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 1fr 1fr;
   box-shadow: 0px 0px 6px 4px rgba(0, 0, 0, 0.02);
-  /* background-color: #000000; */
-  z-index: 1;
 `;
-export const AtistFilterArtist = styled.div`
+export const ArtistFilterContainer = styled.div`
+  width: 100%;
+  background-color: white;
+  border-radius: 0 0 20px 20px;
+`;
+export const ArtistFilterArtist = styled.div`
   display: flex;
   align-items: center;
-  padding: 10px;
   width: 100%;
   height: 100%;
 `;
 
-// input[type='checkbox'] {
-//   display: none;
-// }
-// input[type='checkbox'] :checked + label::before {
-//   position: absolute;
-//   top: 1px;
-//   left: 1px;
-//   /* 체크표시 */
-//   content: '✔';
-//   color: white;
-//   width: 18px;
-//   height: 18px;
-// }
-// label {
-//   width: 20px;
-//   height: 20px;
-//   border-radius: 2px;
-//   border: 1px solid #a8a8a8;
-//   position: relative;
-// }
-
-export const AtistFilterArtistInput = styled.input`
-  width: 50px;
-  height: 25px;
-  border-radius: 20px;
-  border: 1px solid #a8a8a8;
+export const ArtistFilterArtistInput = styled.input`
+  display: none;
+  &:checked + label::before {
+    position: absolute;
+    top: 5px;
+    left: 10px;
+    display: block;
+    content: url('/img/common/checked.svg');
+    border: 1px solid #000;
+    border-radius: 3px;
+    width: 20px;
+    height: 20px;
+  }
 `;
-export const AtistFilterReset = styled.button`
+export const ArtistFilterReset = styled.button`
   position: absolute;
-  left: 120px;
+  top: 2px;
+  right: 0;
+  padding: 10px;
+  font-size: 12px;
   border-radius: 20px;
   color: #a8a8a8;
 `;
 export const Cate = styled.h2`
   font-size: 20px;
+  color: #333;
+  span {
+    font-weight: normal;
+  }
 `;
 
-export const AtistFilterArtistLabel = styled.label`
-  color: #555;
-  margin-left: 10px;
-  font-size: 20px;
-  font-weight: 400;
+export const ArtistFilterArtistLabel = styled.label`
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding: 5px;
+  cursor: pointer;
+  &::before {
+    content: '';
+    position: absolute;
+    top: 5px;
+    left: 10px;
+    display: block;
+    width: 20px;
+    height: 20px;
+    border-radius: 2px;
+    border: 1px solid #d9d9d9;
+  }
+  p {
+    margin-left: 35px;
+    padding: 4px 0;
+  }
 `;
 
 //페이지 위치 알려주는곳
@@ -135,21 +127,23 @@ export const GoodsListSection2Wrapper = styled.div`
   flex-wrap: wrap;
   width: 100%;
   gap: 10px;
-  margin-bottom: 30px;
+  margin-bottom: 2.5rem;
 `;
 interface ProductsTabProps {
   selected?: boolean;
 }
 export const ProductsTab = styled.div<ProductsTabProps>`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: calc((100% - 20px) / 3);
-  height: 50px;
-  font-size: 20px;
+  height: 2.5rem;
+  font-size: 1rem;
   text-align: center;
-  line-height: 1.2;
-  padding: 10px;
-  border: 1px solid black;
-  border-radius: 209px;
-  transition: all 0.3s ease-in-out;
+  line-height: 1;
+  border: 1px solid #555;
+  border-radius: 3rem;
+  transition: all 0.2s;
   color: ${(props) => (props.selected ? '#ffffff' : '#000000')};
   cursor: pointer;
   background-color: ${(props) => (props.selected ? '#333' : '#ffffff')};
@@ -160,43 +154,41 @@ export const ProductsTab = styled.div<ProductsTabProps>`
 `;
 //상품리스트
 export const GoodsListSection3 = styled.section`
-  width: 100%;
   position: relative;
-`;
-export const GoodsListSection3Wrapper = styled.div`
   width: 100%;
-
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr 1fr;
-  grid-column-gap: 10px;
-  grid-row-gap: 40px;
+  > div {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    width: 100%;
+  }
 `;
+export const GoodsListSection3Wrapper = styled.div``;
 export const GoodsCategory = styled.div`
-  position: absolute;
-  left: 28px;
-  top: -15px;
+  width: 100%;
 `;
 export const ProductCard = styled.div`
-  width: 100%;
-
   display: flex;
   flex-direction: column;
+  width: calc((100% - 40px) / 3);
+  cursor: pointer;
 `;
 
 export const ProductCardImg = styled.img`
-  flex: 1;
-  width: 300px;
-  max-height: 300px;
+  position: absolute;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
   border-radius: 8px;
 `;
 export const ProductCardImgBox = styled.div`
-  width: 300px;
+  position: relative;
+  width: 100%;
+  padding-bottom: 100%;
   margin-bottom: 20px;
-  border-radius: 30px;
+  border-radius: 8px;
   background-color: #f5f5f5;
-  box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.08);
+  box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.04);
 `;
 export const ProductCardInfoArtist = styled.div`
   color: #999;
@@ -223,7 +215,7 @@ export const ProductCardTitle = styled.h1`
   height: 43px;
   width: 100%;
 
-  font-weight: 500px;
+  font-weight: 500;
 `;
 
 export const ProductCardPrice = styled.p`
@@ -239,14 +231,12 @@ export const ProductCardTeg = styled.img`
 `;
 
 export const GoodsListCardSection1 = styled.section`
-  margin-top: 10px;
-  padding: 5px;
   display: flex;
   flex-direction: column;
 `;
 //상품안에서 타이틀이랑 인포 나눠줌
 export const GoodsListCardSection1_1 = styled.section`
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   color: #333;
   font-size: 16px;
   font-style: normal;
@@ -259,9 +249,10 @@ export const GoodsListCardSection1_2 = styled.section`
 //상품리스트 1,2,3,4,5 버튼
 export const GoodsListSection4 = styled.section`
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
+  width: 100%;
   gap: 24px;
-  margin: 0 auto;
+  margin: 80px auto 100px;
 `;
 
 export const GoodsListSection4Btn = styled.button`
@@ -277,5 +268,6 @@ export const NotProduct = styled.div`
   height: 100%;
   display: flex;
   justify-content: center;
-  font-size: 30px;
+  padding: 40px 0;
+  font-size: 18px;
 `;

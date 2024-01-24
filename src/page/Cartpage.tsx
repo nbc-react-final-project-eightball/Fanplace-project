@@ -14,6 +14,8 @@ interface TypeCart {
   title: string; //상품이름
   price: number; //가격
   quantity: number; // 선택된수량
+  selected: boolean;
+  productId: number;
 }
 
 const Cartpage = () => {
@@ -24,7 +26,41 @@ const Cartpage = () => {
   const paymentHandeler = () => {
     navigate('/payment', { state: { totalPrice } });
   };
+  const [selectAll, setSelectAll] = useState<boolean>(false);
 
+  //체크박스 변하는 핸들러
+  const checkboxChangeHanlder = (itemId: string) => {
+    const updatedCartList = cartList.map((item) =>
+      item.id == itemId ? { ...item, selected: !item.selected } : item,
+    );
+    console.log('itemId :', itemId);
+    setCartList(updatedCartList);
+  };
+  //체크박스 전체선택
+  const selectAllChangeHandler = () => {
+    const updatedCartList = cartList.map((item) => ({
+      ...item,
+      selected: !selectAll,
+    }));
+    setCartList(updatedCartList);
+    setSelectAll(!selectAll);
+  };
+  //장바구니 수량 추가
+  const increaseQuantityHandler = (itemId: string) => {
+    const updatedCartList = cartList.map((item) =>
+      item.id === itemId ? { ...item, quantity: item.quantity + 1 } : item,
+    );
+    setCartList(updatedCartList);
+  };
+  //장바구니 수량 감소
+  const decreaseQuantityHandler = (itemId: string) => {
+    const updatedCartList = cartList.map((item) =>
+      item.id === itemId && item.quantity > 1
+        ? { ...item, quantity: item.quantity - 1 }
+        : item,
+    );
+    setCartList(updatedCartList);
+  };
   //fireBase CartList Collction가져오기
   useEffect(() => {
     const fetch = async () => {
@@ -36,9 +72,12 @@ const Cartpage = () => {
         const docSnap = await getDoc(docRef);
         const docSnapData = docSnap.data();
         console.log('docSnapData', docSnapData);
+        console.log('docSnap.id :', docSnap.id);
+
         if (docSnap.exists()) {
           if (docSnapData) {
             const cartDataArray = docSnapData.cartList;
+            console.log('cartDataArray:', cartDataArray);
             setCartList(cartDataArray as TypeCart[]);
           }
         } else {
@@ -53,19 +92,23 @@ const Cartpage = () => {
   }, []);
   //cartList에 담긴게 없으면 0
   if (cartList.length === 0) return null;
+
   console.log('cartList', cartList);
+  console.log('cartList[0].productId', cartList[0].productId);
   //총금액을 계산하는 로직
   let totalPrice = 0;
   for (let i = 0; i < cartList.length; i++) {
     totalPrice += cartList[i].price * cartList[i].quantity;
   }
+  const shippingCost = totalPrice <= 80000 ? 3000 : 0;
+  const totalPayment = totalPrice + shippingCost;
 
   return (
     <S.CartContainer>
       <S.Cart>
         <S.CartTitle>
           <span className="span1">장바구니</span>
-          <div>
+          <S.Process>
             <span>장바구니</span>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -93,28 +136,40 @@ const Cartpage = () => {
               />
             </svg>
             <span>주문완료</span>
-          </div>
+          </S.Process>
         </S.CartTitle>
         <div className="allArea">
           <S.LeftArea>
             <div className="artistName">
-              <input type="checkbox" id="checkboxTop" />
+              <input
+                type="checkbox"
+                id="checkboxTop"
+                checked={selectAll}
+                onChange={selectAllChangeHandler}
+              />
               <label htmlFor="checkboxTop" />
-              <span>NCT</span>
+              <span>전체선택</span>
             </div>
             <S.CartList>
               {cartList.map((cartItem) => (
                 <S.CartWrapper key={cartItem.id}>
-                  <input type="checkbox" id="checkbox1" />
-                  <input type="checkbox" />
+                  <input
+                    type="checkbox"
+                    id={`checkbox${cartItem.id}`}
+                    checked={cartItem.selected}
+                    onChange={() => checkboxChangeHanlder(cartItem.id)}
+                  />
+                  <label htmlFor={`checkbox${cartItem.id}`} />
                   <S.Image src={`${cartItem.img}`}></S.Image>
-
                   <div className="titleWrapper">
                     <div className="title">{cartItem.title}</div>
                     {/* <div>옵션</div> */}
                   </div>
                   <div className="circleArea">
-                    <div className="circle">
+                    <div
+                      className="circle"
+                      onClick={() => decreaseQuantityHandler(cartItem.id)}
+                    >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="12"
@@ -131,7 +186,10 @@ const Cartpage = () => {
                       </svg>
                     </div>
                     <div>{cartItem.quantity}</div>
-                    <div className="circle">
+                    <div
+                      className="circle"
+                      onClick={() => increaseQuantityHandler(cartItem.id)}
+                    >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="12"
@@ -149,7 +207,7 @@ const Cartpage = () => {
                     </div>
                   </div>
                   <div className="productprice">
-                    {cartItem.quantity * cartItem.price}원
+                    {cartItem.price.toLocaleString()}원
                   </div>
                 </S.CartWrapper>
               ))}
@@ -157,7 +215,7 @@ const Cartpage = () => {
             <S.TotalAmount>
               <div className="amount1">
                 <div>상품금액</div>
-                <div>{totalPrice}원</div>
+                <div>{totalPrice.toLocaleString()}원</div>
               </div>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -193,7 +251,7 @@ const Cartpage = () => {
               </svg>
               <div>
                 <div>배송비</div>
-                <div>0원</div>
+                <div>{shippingCost.toLocaleString()}원</div>
               </div>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -209,26 +267,35 @@ const Cartpage = () => {
               </svg>
               <div>
                 <div>주문금액</div>
-                <div>{totalPrice}원</div>
+                <div>{totalPayment.toLocaleString()}원</div>
               </div>
             </S.TotalAmount>
           </S.LeftArea>
 
           <S.RightArea>
-            <div className="paymentInfo">결제정보</div>
-            <div>
-              <div>상품수</div>
-              <div>2개</div>
-            </div>
-            <div>
-              <div>상품금액</div>
-              <div>{totalPrice}</div>
-            </div>
-            <div>
-              <div>배송비</div>
-              <div>3,000원</div>
-            </div>
-            <button onClick={paymentHandeler}>구매하기</button>
+            <S.PaymentInfo>결제정보</S.PaymentInfo>
+            <S.BoxWrapper>
+              <S.Box>
+                <h3>상품수</h3>
+                <span>2개</span>
+              </S.Box>
+              <S.Box>
+                <h3>상품금액</h3>
+                <span>{totalPrice.toLocaleString()}원</span>
+              </S.Box>
+              <S.Box>
+                <h3>배송비</h3>
+                <span>{shippingCost}</span>
+              </S.Box>
+              <S.Box>
+                <h2>
+                  총 결제 금액 <span>{totalPayment.toLocaleString()}원</span>
+                </h2>
+              </S.Box>
+            </S.BoxWrapper>
+            <S.PaymentButton onClick={paymentHandeler}>
+              구매하기
+            </S.PaymentButton>
           </S.RightArea>
         </div>
       </S.Cart>
