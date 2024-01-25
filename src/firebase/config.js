@@ -21,3 +21,4 @@ export const db = getFirestore(app);
 export const storage = getStorage();
 // Initialize Firebase Authentication and get a reference to the service
 export const auth = getAuth(app);
+export default app;

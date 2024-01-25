@@ -1,25 +1,29 @@
 import { UserInfo } from '@firebase/auth';
 import { InputLabel } from '@mui/material';
 import DeliveryAddress from 'components/auth/DeliveryAddress';
-import React from 'react';
+import React, { useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { useSelector } from 'react-redux';
 import * as S from 'styledComponent/styledMypage/StProfileSettings';
 
 interface SignUpState {
   userInfo: UserInfo;
+  phoneNumber: string | number;
+  address: string;
 }
 
 const ProfileSettingsForm = () => {
+  const [detailAddress, setDetailAddress] = useState<string | null>('');
+  const handleDetailAddressChange = (detailAddress: string) => {
+    setDetailAddress(detailAddress);
+  };
   let userData = useSelector(
-    (state: { signUpSlice: SignUpState }) => state.signUpSlice.userInfo,
+    (state: { signUpSlice: SignUpState }) => state.signUpSlice,
   );
-  const { displayName, phoneNumber, email } = userData;
+  const { userInfo, phoneNumber, address } = userData;
   console.log(
-    'displayName, phoneNumber, email',
-    displayName,
-    phoneNumber,
-    email,
+    'userData -------------- displayName, phoneNumber, email',
+    userData,
   );
   // react-hook-form
   const {
@@ -32,18 +36,13 @@ const ProfileSettingsForm = () => {
     // 실시간 유효성 검사
     mode: 'onChange',
   });
-  //   const [displayName, phoneNumber, email, password] = getValues([
-  //     'displayName',
-  //     'phoneNumber',
-  //     'email',
-  //     'password',
-  //   ]);
+  const [isEditMode, setIsEditMode] = useState<boolean>(false);
   return (
     <S.ProfileSettingsForm>
       <Controller
         name="displayName"
         control={control}
-        defaultValue={displayName}
+        defaultValue={userInfo?.displayName}
         rules={{
           required: '이름을 입력해주세요',
           pattern: {
@@ -55,6 +54,7 @@ const ProfileSettingsForm = () => {
           <div>
             <InputLabel>이름</InputLabel>
             <S.TextInputField
+              disabled={!isEditMode}
               value={field.value}
               onChange={field.onChange}
               error={fieldState.error !== undefined}
@@ -83,6 +83,7 @@ const ProfileSettingsForm = () => {
           <div>
             <InputLabel>전화번호</InputLabel>
             <S.TextInputField
+              disabled={!isEditMode}
               value={field.value}
               onChange={field.onChange}
               error={fieldState.error !== undefined && fieldState.isDirty}
@@ -100,11 +101,11 @@ const ProfileSettingsForm = () => {
           </div>
         )}
       />
-      <DeliveryAddress />
+      <DeliveryAddress onAddressChange={handleDetailAddressChange} />
       <Controller
         name="email"
         control={control}
-        defaultValue={email}
+        defaultValue={userInfo?.email}
         rules={{
           required: '이메일을 입력하세요.',
           pattern: {
@@ -117,6 +118,7 @@ const ProfileSettingsForm = () => {
           <div>
             <InputLabel>이메일</InputLabel>
             <S.TextInputField
+              disabled={!isEditMode}
               value={field.value}
               onChange={field.onChange}
               error={fieldState.invalid}
@@ -143,8 +145,9 @@ const ProfileSettingsForm = () => {
         }}
         render={({ field, fieldState }) => (
           <div>
-            <InputLabel>비밀번호</InputLabel>
+            <InputLabel>새 비밀번호</InputLabel>
             <S.TextInputField
+              disabled={!isEditMode}
               type="password"
               value={field.value}
               onChange={field.onChange}
@@ -162,6 +165,47 @@ const ProfileSettingsForm = () => {
           </div>
         )}
       />
+      <Controller
+        name="passwordConfirmation"
+        control={control}
+        defaultValue={''}
+        rules={{
+          required: '비밀번호 확인이 일치하지 않습니다!',
+          validate: (value) =>
+            value === getValues('password') ||
+            '비밀번호 확인이 일치하지 않습니다!',
+        }}
+        render={({ field, fieldState }) => (
+          <div>
+            <InputLabel>새 비밀번호 확인</InputLabel>
+            <S.TextInputField
+              disabled={!isEditMode}
+              type="password"
+              value={field.value}
+              onChange={field.onChange}
+              error={!!(fieldState.isDirty && fieldState.error)}
+              helperText={
+                fieldState.isDirty
+                  ? fieldState.error && fieldState.error.message
+                  : ''
+              }
+              InputLabelProps={{ shrink: false }}
+              InputProps={{
+                // maxLength: 12,
+                placeholder: '비밀번호 확인을 입력해주세요',
+              }}
+            />
+          </div>
+        )}
+      />
+      <S.EditButton
+        type="button"
+        // type={isEditMode ? 'button' : 'submit'}
+        onClick={() => setIsEditMode(!isEditMode)}
+      >
+        {isEditMode ? '수정완료' : '수정하기'}
+      </S.EditButton>
+      <S.CancelButton type="button">취소</S.CancelButton>
     </S.ProfileSettingsForm>
   );
 };

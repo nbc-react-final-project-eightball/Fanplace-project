@@ -14,29 +14,37 @@ interface ModalState<T> {
   visible: boolean;
   props?: T;
 }
+interface DeliveryAddressProps {
+  onAddressChange: (address: string) => void;
+}
 
-const DeliveryAddress = () => {
+const DeliveryAddress: React.FC<DeliveryAddressProps> = ({
+  onAddressChange,
+}) => {
   // react-hook-form
   const {
     control,
     getValues,
     reset,
     formState: { errors },
-  } = useForm({});
+  } = useForm({ mode: 'onChange' });
 
-  const [subAddress] = getValues(['subAddress']);
+  const [detailAddress] = getValues(['detailAddress']);
 
   const { address, isAddressSuccess } = useSelector(
-    (state: { signUpSlice: SignUpState }) =>
-      state.signUpSlice || { address: '' },
+    (state: { signUpSlice: SignUpState }) => state.signUpSlice,
   );
   const modal = useSelector(
-    (state: { modalSlice: ModalState<unknown> }) =>
-      state.modalSlice || { visible: false },
+    (state: { modalSlice: ModalState<unknown> }) => state.modalSlice,
   );
 
   const { openAddressModalHandler } = useAddressModal();
 
+  const handleBlur = () => {
+    console.log('블러 실행!');
+    // 입력이 끝났을 때 콜백 함수 호출하여 상태 전달
+    onAddressChange(detailAddress);
+  };
   return (
     <>
       <div>
@@ -62,7 +70,7 @@ const DeliveryAddress = () => {
           )}
 
           <Controller
-            name="subAddress"
+            name="detailAddress"
             control={control}
             defaultValue=""
             rules={{
@@ -72,6 +80,7 @@ const DeliveryAddress = () => {
               <S.TextInputField
                 value={field.value}
                 onChange={field.onChange}
+                onBlur={handleBlur}
                 error={fieldState.error !== undefined && fieldState.isDirty}
                 helperText={
                   fieldState.isDirty
@@ -86,7 +95,7 @@ const DeliveryAddress = () => {
             )}
           />
         </S.FlexBox>
-        {modal.visible && <AddressModal subAddress={subAddress} />}
+        {modal.visible && <AddressModal detailAddress={detailAddress} />}
       </div>
     </>
   );
