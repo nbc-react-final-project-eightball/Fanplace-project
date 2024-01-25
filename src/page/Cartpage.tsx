@@ -14,8 +14,8 @@ interface TypeCart {
   title: string; //상품이름
   price: number; //가격
   quantity: number; // 선택된수량
-  selected: boolean;
-  productId: number;
+  selected: boolean; // 체크박스 선택 T/F
+  productId: number; //제품고유id
 }
 
 const Cartpage = () => {
@@ -29,9 +29,9 @@ const Cartpage = () => {
   const [selectAll, setSelectAll] = useState<boolean>(false);
 
   //체크박스 변하는 핸들러
-  const checkboxChangeHanlder = (itemId: string) => {
+  const checkboxChangeHanlder = (itemId: number) => {
     const updatedCartList = cartList.map((item) =>
-      item.id == itemId ? { ...item, selected: !item.selected } : item,
+      item.productId == itemId ? { ...item, selected: !item.selected } : item,
     );
     console.log('itemId :', itemId);
     setCartList(updatedCartList);
@@ -46,16 +46,18 @@ const Cartpage = () => {
     setSelectAll(!selectAll);
   };
   //장바구니 수량 추가
-  const increaseQuantityHandler = (itemId: string) => {
+  const increaseQuantityHandler = (itemId: number) => {
     const updatedCartList = cartList.map((item) =>
-      item.id === itemId ? { ...item, quantity: item.quantity + 1 } : item,
+      item.productId === itemId
+        ? { ...item, quantity: item.quantity + 1 }
+        : item,
     );
     setCartList(updatedCartList);
   };
   //장바구니 수량 감소
-  const decreaseQuantityHandler = (itemId: string) => {
+  const decreaseQuantityHandler = (itemId: number) => {
     const updatedCartList = cartList.map((item) =>
-      item.id === itemId && item.quantity > 1
+      item.productId === itemId && item.quantity > 1
         ? { ...item, quantity: item.quantity - 1 }
         : item,
     );
@@ -94,12 +96,13 @@ const Cartpage = () => {
   if (cartList.length === 0) return null;
 
   console.log('cartList', cartList);
-  console.log('cartList[0].productId', cartList[0].productId);
+  console.log('cartList[0].artist', cartList[0].artist);
   //총금액을 계산하는 로직
   let totalPrice = 0;
   for (let i = 0; i < cartList.length; i++) {
     totalPrice += cartList[i].price * cartList[i].quantity;
   }
+  //주문금액이 8만원이하면 배송비 3000원붙음
   const shippingCost = totalPrice <= 80000 ? 3000 : 0;
   const totalPayment = totalPrice + shippingCost;
 
@@ -155,11 +158,11 @@ const Cartpage = () => {
                 <S.CartWrapper key={cartItem.id}>
                   <input
                     type="checkbox"
-                    id={`checkbox${cartItem.id}`}
+                    id={`checkbox${cartItem.productId}`}
                     checked={cartItem.selected}
-                    onChange={() => checkboxChangeHanlder(cartItem.id)}
+                    onChange={() => checkboxChangeHanlder(cartItem.productId)}
                   />
-                  <label htmlFor={`checkbox${cartItem.id}`} />
+                  <label htmlFor={`checkbox${cartItem.productId}`} />
                   <S.Image src={`${cartItem.img}`}></S.Image>
                   <div className="titleWrapper">
                     <div className="title">{cartItem.title}</div>
@@ -168,7 +171,9 @@ const Cartpage = () => {
                   <div className="circleArea">
                     <div
                       className="circle"
-                      onClick={() => decreaseQuantityHandler(cartItem.id)}
+                      onClick={() =>
+                        decreaseQuantityHandler(cartItem.productId)
+                      }
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -188,7 +193,9 @@ const Cartpage = () => {
                     <div>{cartItem.quantity}</div>
                     <div
                       className="circle"
-                      onClick={() => increaseQuantityHandler(cartItem.id)}
+                      onClick={() =>
+                        increaseQuantityHandler(cartItem.productId)
+                      }
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -277,7 +284,7 @@ const Cartpage = () => {
             <S.BoxWrapper>
               <S.Box>
                 <h3>상품수</h3>
-                <span>2개</span>
+                <span>{cartList.length}</span>
               </S.Box>
               <S.Box>
                 <h3>상품금액</h3>
