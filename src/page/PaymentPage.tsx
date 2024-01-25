@@ -63,7 +63,7 @@ const PaymentPage = () => {
   return (
     <>
       <PaymentContainer>
-        <div className="App">
+        <div>
           <div id="payment-widget" />
           <p>결제 금액: {totalPrice}원</p>
           <div>
