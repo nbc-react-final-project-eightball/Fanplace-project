@@ -33,6 +33,15 @@ interface registerState {
   detailAddress: string | null;
 }
 
+interface updateProfileDataState {
+  // displayName: string;
+  phoneNumber: number;
+  address: string;
+  detailAddress: string;
+  userInfo: UserInfo | null;
+  // email: string;
+  // password: string;
+}
 interface LogInState {
   userInfo: UserInfo;
   isLogged: boolean;
@@ -75,6 +84,16 @@ export const signUpSlice = createSlice({
       state.detailAddress = action.payload.detailAddress;
       state.phoneNumber = action.payload.phoneNumber;
     },
+    updateProfileData: (
+      state,
+      action: PayloadAction<updateProfileDataState>,
+    ) => {
+      // state.displayName = action.payload.displayName;
+      state.phoneNumber = action.payload.phoneNumber;
+      state.address = action.payload.address;
+      state.detailAddress = action.payload.detailAddress;
+      state.userInfo = action.payload.userInfo;
+    },
     logIn: (state, action: PayloadAction<LogInState>) => {
       state.userInfo = action.payload.userInfo;
       state.isLogged = true;
@@ -94,6 +113,7 @@ export const {
   setIsAddressSuccess,
   setPhoneNumber,
   register,
+  updateProfileData,
   logIn,
   logOut,
 } = signUpSlice.actions;

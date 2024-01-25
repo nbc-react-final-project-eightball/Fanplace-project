@@ -1,6 +1,5 @@
 import { UserInfo } from '@firebase/auth';
 import { InputLabel } from '@mui/material';
-import DeliveryAddress from 'components/auth/DeliveryAddress';
 import { auth } from '../../firebase/config';
 import { useAddressModal } from 'hooks/useAddressModal';
 import { usePasswordUpdate } from 'hooks/usePasswordUpdate';
@@ -8,10 +7,11 @@ import React, { useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { useSelector } from 'react-redux';
 import * as S from 'styledComponent/styledMypage/StProfileSettings';
+import { useProfileUpdate } from 'hooks/useProfileUpdate';
 
 interface SignUpState {
   userInfo: UserInfo;
-  phoneNumber: string | number;
+  phoneNumber: string;
   address: string;
   detailAddress: string;
 }
@@ -24,11 +24,11 @@ const ProfileSettingsForm = () => {
   let userData = useSelector(
     (state: { signUpSlice: SignUpState }) => state.signUpSlice,
   );
-  const { userInfo, phoneNumber, address, detailAddress } = userData;
-  console.log(
-    'userData -------------- displayName, phoneNumber, email',
-    userData,
-  );
+  // const { userInfo, phoneNumber, address, detailAddress } = userData;
+  // console.log(
+  //   'userData -------------- displayName, phoneNumber, email',
+  //   userData,
+  // );
   // react-hook-form
   const {
     handleSubmit,
@@ -39,24 +39,52 @@ const ProfileSettingsForm = () => {
   } = useForm({
     // 실시간 유효성 검사
     mode: 'onChange',
+    defaultValues: {
+      displayName: userData.userInfo?.displayName || '',
+      phoneNumber: userData.phoneNumber || '',
+      address: userData.address || '',
+      detailAddress: userData.detailAddress || '',
+      email: userData.userInfo?.email || '',
+      password: '',
+      passwordConfirmation: '',
+    },
   });
   const { passwordUpdate } = usePasswordUpdate();
+  const { profileUpdate } = useProfileUpdate();
 
-  const [password] = getValues(['password']);
+  const [displayName, phoneNumber, address, detailAddress, email, password] =
+    getValues([
+      'displayName',
+      'phoneNumber',
+      'address',
+      'detailAddress',
+      'email',
+      'password',
+    ]);
+
   const [isEditMode, setIsEditMode] = useState<boolean>(false);
 
   const { openAddressModalHandler } = useAddressModal();
   const submitHandler = async (e: any) => {
     e.preventDefault();
+
     const user = auth.currentUser;
     passwordUpdate(user, password);
+    profileUpdate(
+      displayName,
+      parseInt(phoneNumber, 10),
+      address,
+      detailAddress,
+      email,
+      password,
+    );
   };
   return (
     <S.ProfileSettingsForm onSubmit={submitHandler}>
       <Controller
         name="displayName"
         control={control}
-        defaultValue={userInfo?.displayName}
+        defaultValue={userData.userInfo?.displayName || ''}
         rules={{
           required: '이름을 입력해주세요',
           pattern: {
@@ -85,7 +113,7 @@ const ProfileSettingsForm = () => {
       <Controller
         name="phoneNumber"
         control={control}
-        defaultValue={phoneNumber}
+        defaultValue={userData.phoneNumber || ''}
         rules={{
           required: '전화번호를 입력해주세요!(숫자만)',
           pattern: {
@@ -144,7 +172,7 @@ const ProfileSettingsForm = () => {
         <Controller
           name="detailAddress"
           control={control}
-          defaultValue={detailAddress}
+          defaultValue={userData.detailAddress || ''}
           rules={{
             required: '상세 주소를 입력해주세요',
           }}
@@ -171,7 +199,7 @@ const ProfileSettingsForm = () => {
       <Controller
         name="email"
         control={control}
-        defaultValue={userInfo?.email}
+        defaultValue={userData.userInfo?.email || ''}
         rules={{
           required: '이메일을 입력하세요.',
           pattern: {
@@ -278,7 +306,7 @@ const ProfileSettingsForm = () => {
           type="button"
           onClick={() => setIsEditMode(!isEditMode)}
         >
-          수정하기
+          수정완료
         </S.EditButton>
       ) : (
         <S.EditButton
@@ -286,7 +314,7 @@ const ProfileSettingsForm = () => {
           type="submit"
           onClick={() => setIsEditMode(!isEditMode)}
         >
-          수정완료
+          수정하기
         </S.EditButton>
       )}
 
