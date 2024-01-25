@@ -95,14 +95,7 @@ const Mainpage = () => {
   }, [goodsList]);
   return (
     <>
-      <div
-        style={{
-          width: '100%',
-          height: 'auto',
-          maxWidth: '1200px',
-          margin: '0 auto',
-        }}
-      >
+      <S.Div>
         <MainTopCarousel />
         {!isLoading ? (
           <>
@@ -118,7 +111,7 @@ const Mainpage = () => {
           </>
         )}
         {/* TODO: 나중에 백그라운드 이미지 변경 해야함 */}
-      </div>
+      </S.Div>
     </>
   );
 };

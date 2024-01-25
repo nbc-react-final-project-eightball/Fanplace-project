@@ -8,6 +8,13 @@ export const Div = styled.div`
   height: 32.5rem;
   margin: 0 auto;
   border-radius: 32.5rem;
+  @media (max-width: 768px) {
+    /* 768px 이하 화면 크기에 대한 스타일 */
+  }
+
+  @media (max-width: 480px) {
+    /* 480px 이하 화면 크기에 대한 스타일 */
+  }
 `;
 
 export const PrevButton = styled.button`
@@ -17,6 +24,20 @@ export const PrevButton = styled.button`
   transform: translateY(-50%);
   display: block;
   z-index: 5;
+  width: 1px;
+  svg {
+    width: 50px;
+    height: 50px;
+    @media (max-width: 768px) {
+      /* 768px 이하 화면 크기에 대한 스타일 */
+    }
+
+    @media (max-width: 480px) {
+      /* 480px 이하 화면 크기에 대한 스타일 */
+      width: 25px;
+      height: 25px;
+    }
+  }
 `;
 
 export const NextButton = styled.button`
@@ -26,6 +47,13 @@ export const NextButton = styled.button`
   transform: translateY(-50%);
   display: block;
   z-index: 5;
+  svg {
+    width: 50px;
+    height: 50px;
+    @media (max-width: 768px) {
+      /* 768px 이하 화면 크기에 대한 스타일 */
+    }
+  }
 `;
 export const MainTopCarouselContainer = styled.div`
   position: relative;

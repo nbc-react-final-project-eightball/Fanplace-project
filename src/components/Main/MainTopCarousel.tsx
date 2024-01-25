@@ -129,8 +129,8 @@ const MainTopCarousel = () => {
       <S.PrevButton onClick={handlePrev}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          width="50"
-          height="50"
+          // width="50"
+          // height="50"
           viewBox="0 0 50 50"
           fill="none"
         >

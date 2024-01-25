@@ -4,7 +4,15 @@ export const Div = styled.div`
   margin-top: 100px;
   display: flex;
   justify-content: center;
+
   position: relative;
+  @media (max-width: 768px) {
+    /* 768px 이하 화면 크기에 대한 스타일 */
+  }
+
+  @media (max-width: 480px) {
+    /* 480px 이하 화면 크기에 대한 스타일 */
+  }
 `;
 
 export const SlideInTextDiv = styled.div`
@@ -72,6 +80,18 @@ export const CarouselContainer = styled.div`
   overflow: hidden;
   margin: 0 auto;
   flex-grow: 20;
+
+  @media (max-width: 768px) {
+    /* 768px 이하 화면 크기에 대한 스타일 */
+    flex-grow: 0;
+    width: 90%;
+  }
+
+  @media (max-width: 480px) {
+    /* 480px 이하 화면 크기에 대한 스타일 */
+    flex-grow: 0;
+    width: 70%;
+  }
 `;
 export const CarouselWrapper = styled.div`
   position: relative;
@@ -113,6 +133,15 @@ export const PrevButton = styled.button`
   top: 300px;
   left: -20px;
   z-index: 1;
+  @media (max-width: 768px) {
+    /* 768px 이하 화면 크기에 대한 스타일 */
+    left: 2%;
+  }
+
+  @media (max-width: 480px) {
+    /* 480px 이하 화면 크기에 대한 스타일 */
+    left: 12%;
+  }
 `;
 export const BtnImg = styled.img`
   display: block;
@@ -130,6 +159,14 @@ export const NextButton = styled.button`
   top: 300px;
   right: -20px;
   z-index: 1;
+  @media (max-width: 768px) {
+    /* 768px 이하 화면 크기에 대한 스타일 */
+    right: 2%;
+  }
+
+  @media (max-width: 480px) {
+    /* 480px 이하 화면 크기에 대한 스타일 */
+  }
 `;
 
 export const Title = styled.h2`
@@ -173,17 +210,24 @@ export const AlbumDiv = styled.div`
   display: flex;
   justify-content: center;
   position: relative;
-
   background: #000;
+  @media (max-width: 768px) {
+    /* 768px 이하 화면 크기에 대한 스타일 */
+    width: 768px;
+  }
+
+  @media (max-width: 480px) {
+    /* 480px 이하 화면 크기에 대한 스타일 */
+    width: 480px;
+  }
 `;
 
 export const AlbumContainer = styled.div`
   display: flex;
+
   flex-direction: column;
   justify-content: center;
-
   position: relative;
-
   overflow: hidden;
   margin: 0 auto;
   flex-grow: 20;
@@ -192,6 +236,16 @@ export const AlbumWrapper = styled.div`
   position: relative;
   display: flex;
   margin-left: -660px;
+  @media (max-width: 768px) {
+    /* 768px 이하 화면 크기에 대한 스타일 */
+    margin-left: -280px;
+  }
+
+  @media (max-width: 480px) {
+    /* 480px 이하 화면 크기에 대한 스타일 */
+    width: 25px;
+    height: 25px;
+  }
 `;
 
 export const AlbumCarousel = styled.div`
@@ -241,25 +295,45 @@ export const AlbumSlideTitleText = styled.p`
 export const AlbumPrevButton = styled.button`
   width: 50px;
   height: 50px;
-  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.06);
+
   background-color: #000;
   border-radius: 50%;
   position: absolute;
   top: 300px;
   left: 430px;
   z-index: 1;
+  @media (max-width: 768px) {
+    /* 768px 이하 화면 크기에 대한 스타일 */
+    left: 220px;
+  }
+
+  @media (max-width: 480px) {
+    /* 480px 이하 화면 크기에 대한 스타일 */
+    width: 25px;
+    height: 25px;
+  }
 `;
 
 export const AlbumNextButton = styled.button`
   width: 50px;
   height: 50px;
-  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.06);
+
   background-color: #000;
   border-radius: 50%;
   position: absolute;
   top: 300px;
   right: 410px;
   z-index: 1;
+  @media (max-width: 768px) {
+    /* 768px 이하 화면 크기에 대한 스타일 */
+    right: 210px;
+  }
+
+  @media (max-width: 480px) {
+    /* 480px 이하 화면 크기에 대한 스타일 */
+    width: 25px;
+    height: 25px;
+  }
 `;
 export const AlbumDivTitle = styled.h2`
   color: #fff;
