@@ -30,7 +30,7 @@ export const LayoutContainer = styled.div`
 `;
 export const LayoutSection1 = styled.div`
   width: 100px;
-  margin-top: 120px;
+  margin-top: 80px;
 `;
 export const LayoutSection2 = styled.div`
   height: 100%;

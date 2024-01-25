@@ -1,6 +1,9 @@
 import { UserInfo } from '@firebase/auth';
 import { InputLabel } from '@mui/material';
 import DeliveryAddress from 'components/auth/DeliveryAddress';
+import { auth } from '../../firebase/config';
+import { useAddressModal } from 'hooks/useAddressModal';
+import { usePasswordUpdate } from 'hooks/usePasswordUpdate';
 import React, { useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { useSelector } from 'react-redux';
@@ -10,17 +13,18 @@ interface SignUpState {
   userInfo: UserInfo;
   phoneNumber: string | number;
   address: string;
+  detailAddress: string;
 }
 
 const ProfileSettingsForm = () => {
-  const [detailAddress, setDetailAddress] = useState<string | null>('');
-  const handleDetailAddressChange = (detailAddress: string) => {
-    setDetailAddress(detailAddress);
-  };
+  // const [detailAddress, setDetailAddress] = useState<string | null>('');
+  // const handleDetailAddressChange = (detailAddress: string) => {
+  //   setDetailAddress(detailAddress);
+  // };
   let userData = useSelector(
     (state: { signUpSlice: SignUpState }) => state.signUpSlice,
   );
-  const { userInfo, phoneNumber, address } = userData;
+  const { userInfo, phoneNumber, address, detailAddress } = userData;
   console.log(
     'userData -------------- displayName, phoneNumber, email',
     userData,
@@ -36,9 +40,19 @@ const ProfileSettingsForm = () => {
     // 실시간 유효성 검사
     mode: 'onChange',
   });
+  const { passwordUpdate } = usePasswordUpdate();
+
+  const [password] = getValues(['password']);
   const [isEditMode, setIsEditMode] = useState<boolean>(false);
+
+  const { openAddressModalHandler } = useAddressModal();
+  const submitHandler = async (e: any) => {
+    e.preventDefault();
+    const user = auth.currentUser;
+    passwordUpdate(user, password);
+  };
   return (
-    <S.ProfileSettingsForm>
+    <S.ProfileSettingsForm onSubmit={submitHandler}>
       <Controller
         name="displayName"
         control={control}
@@ -101,7 +115,59 @@ const ProfileSettingsForm = () => {
           </div>
         )}
       />
-      <DeliveryAddress onAddressChange={handleDetailAddressChange} />
+      {/* <DeliveryAddress onAddressChange={handleDetailAddressChange} /> */}
+
+      <S.AddressBoxWrapper>
+        <InputLabel>기본 배송지</InputLabel>
+        <S.TextInputField value={address} disabled={true} />
+
+        {isEditMode && (
+          <S.DeliveryAddressButton
+            type="button"
+            onClick={() => openAddressModalHandler(true)}
+          >
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 32 32"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fill="#9e9e9e"
+                d="m29 27.586l-7.552-7.552a11.018 11.018 0 1 0-1.414 1.414L27.586 29ZM4 13a9 9 0 1 1 9 9a9.01 9.01 0 0 1-9-9"
+              />
+            </svg>
+            우편번호 찾기
+          </S.DeliveryAddressButton>
+        )}
+
+        <Controller
+          name="detailAddress"
+          control={control}
+          defaultValue={detailAddress}
+          rules={{
+            required: '상세 주소를 입력해주세요',
+          }}
+          render={({ field, fieldState }) => (
+            <S.TextInputField
+              disabled={!isEditMode}
+              value={field.value}
+              onChange={field.onChange}
+              // onBlur={blurHandler}
+              error={fieldState.error !== undefined && fieldState.isDirty}
+              helperText={
+                fieldState.isDirty
+                  ? fieldState.error && fieldState.error.message
+                  : ''
+              }
+              InputLabelProps={{ shrink: false }}
+              InputProps={{
+                placeholder: '상세 주소 입력',
+              }}
+            />
+          )}
+        />
+      </S.AddressBoxWrapper>
       <Controller
         name="email"
         control={control}
@@ -198,13 +264,32 @@ const ProfileSettingsForm = () => {
           </div>
         )}
       />
-      <S.EditButton
+      {/* <S.EditButton
         type="button"
         // type={isEditMode ? 'button' : 'submit'}
         onClick={() => setIsEditMode(!isEditMode)}
       >
         {isEditMode ? '수정완료' : '수정하기'}
-      </S.EditButton>
+      </S.EditButton> */}
+
+      {isEditMode ? (
+        <S.EditButton
+          // type="button"
+          type="button"
+          onClick={() => setIsEditMode(!isEditMode)}
+        >
+          수정하기
+        </S.EditButton>
+      ) : (
+        <S.EditButton
+          // type="button"
+          type="submit"
+          onClick={() => setIsEditMode(!isEditMode)}
+        >
+          수정완료
+        </S.EditButton>
+      )}
+
       <S.CancelButton type="button">취소</S.CancelButton>
     </S.ProfileSettingsForm>
   );
