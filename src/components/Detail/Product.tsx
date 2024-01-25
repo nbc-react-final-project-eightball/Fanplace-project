@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import * as S from '../../styledComponent/styledDetail/StDetail';
 import { typeProduct } from '../../Type/TypeInterface';
 

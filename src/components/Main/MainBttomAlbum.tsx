@@ -33,9 +33,17 @@ const MainBttomAlbum: React.FC<MainBttomAlbumProps> = ({ newAlbum }) => {
   // TODO: 앨범상품 이미지를 서버에서 받아와서 뿌려주기
   // console.log('NewAlbum111', NewAlbum[0]);
   const newCopiedSlides = newAlbum
-    ? [slides[4], ...slides, slides[1], slides[2], slides[3], slides[4]]
+    ? [
+        slides[4],
+        ...slides,
+        slides[1],
+        slides[2],
+        slides[3],
+        slides[4],
+        slides[5],
+      ]
     : slides1;
-
+  console.log('newCopiedSlides', newCopiedSlides);
   const copiedSlides = newAlbum ? [...slides] : [];
   const autoSlide = useRef<NodeJS.Timeout | null>(null);
   const slideRef = useRef<HTMLDivElement>(null);
@@ -56,21 +64,21 @@ const MainBttomAlbum: React.FC<MainBttomAlbumProps> = ({ newAlbum }) => {
           setCurrentSlide(slides.length);
           // 다음 자동 스크롤을 위해 다시 애니메이션 적용
           const nextSlide = () => {
-            setCurrentSlide(1);
+            setCurrentSlide(0);
           };
           nextSlide();
           setTimeout(() => {
             if (slideRef.current) {
               slideRef.current.style.transition = 'all 500ms ease-in-out';
             }
-          }, 100);
+          }, 1000);
         }
       } else {
         // 다음 슬라이드로 이동
         if (slideRef.current) {
           slideRef.current.style.transition = 'all 500ms ease-in-out';
         }
-        setCurrentSlide((prev) => prev + 1.5);
+        setCurrentSlide((prev) => prev + 1);
       }
     }, 3000);
     if (currentSlide === 1) {
@@ -93,6 +101,7 @@ const MainBttomAlbum: React.FC<MainBttomAlbumProps> = ({ newAlbum }) => {
       }
     };
   }, [currentSlide, slides.length]);
+
   // useEffect(() => {
   //   if (autoSlide) {
   //     clearTimeout(autoSlide);
@@ -150,57 +159,44 @@ const MainBttomAlbum: React.FC<MainBttomAlbumProps> = ({ newAlbum }) => {
     // setCurrentSlide((prev) => (prev === 1 ? slides.length - 1 : prev - 1));
   };
 
-  const handleScroll = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setCurrentSlide(
-      Math.floor((Number(event.target.value) * slides.length + 3) / 100),
-    );
-  };
   console.log('newCopiedSlides11', newCopiedSlides);
   if (!newAlbum || newAlbum.length === 0) {
     return <div>로딩중</div>;
   }
+
   return (
     <>
       {/* <h1>새로운 앨범!</h1> */}
       <S.AlbumDiv>
-        <S.PrevButton onClick={handlePrev}>
-          <FontAwesomeIcon
-            icon={faChevronCircleLeft}
-            style={{ fontSize: '5rem' }}
-          />
-        </S.PrevButton>
+        <S.AlbumPrevButton onClick={handlePrev}>
+          <S.BtnImg src="/img/L.svg" alt="" />
+        </S.AlbumPrevButton>
         <S.AlbumContainer>
-          <S.AlbumCarousel
-            ref={slideRef}
-            style={{
-              transform: `translateX(-${currentSlide * 25}%)`,
-            }}
-          >
-            {newAlbum &&
-              newCopiedSlides.map((Album, index) => (
-                <S.AlbumSlide key={index}>
-                  <img src={Album.img} alt="img" style={{ width: '100%' }} />
-                  <S.AlbumTitle>
-                    {' '}
-                    {Album.artist} {Album.title}
-                  </S.AlbumTitle>
-                </S.AlbumSlide>
-              ))}
-          </S.AlbumCarousel>
-          <S.CarouselRange
-            type="range"
-            min="1"
-            max="100"
-            value={(currentSlide * 100) / slides.length}
-            onChange={handleScroll}
-          />
+          <S.AlbumDivTitle>NEW ALBUM</S.AlbumDivTitle>
+          <S.AlbumDivTitleText>아티스트 이 달의 앨범</S.AlbumDivTitleText>W
+          <S.AlbumWrapper>
+            <S.AlbumCarousel
+              ref={slideRef}
+              style={{
+                transform: `translateX(-${currentSlide * 300}px)`,
+              }}
+            >
+              {newAlbum &&
+                newCopiedSlides.map((Album, index) => (
+                  <S.AlbumSlide key={index}>
+                    <S.AlbumImg src={Album.img} alt="img" />
+                    <S.AlbumTitle>
+                      {' '}
+                      {Album.artist} {Album.title}
+                    </S.AlbumTitle>
+                  </S.AlbumSlide>
+                ))}
+            </S.AlbumCarousel>
+          </S.AlbumWrapper>
         </S.AlbumContainer>
-        <S.PrevButton onClick={handleNext}>
-          <FontAwesomeIcon
-            icon={faChevronCircleRight}
-            style={{ fontSize: '5rem' }}
-          />
-        </S.PrevButton>
+        <S.AlbumNextButton onClick={handleNext}>
+          <S.BtnImg src="/img/R.svg" alt="" />
+        </S.AlbumNextButton>
       </S.AlbumDiv>
     </>
   );

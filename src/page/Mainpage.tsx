@@ -13,12 +13,16 @@ import {
   where,
 } from 'firebase/firestore';
 import { db } from '../firebase/config';
+import MainBttomSkeleton from 'components/Main/MainBttomSkeleton';
+import MainBttomAlbumSkeleton from 'components/Main/MainBttomAlbumSkeleton';
+import { set } from 'react-hook-form';
 
 const Mainpage = () => {
   const [goodsList, setGoodsList] = useState<DocumentData>([]);
   const [newAlbum, setNewAlbum] = useState<DocumentData>([]);
   const [top10, setTop10] = useState<DocumentData>([]);
   const [BestSeller, setBestSeller] = useState<DocumentData>([]);
+  const [isLoading, setIsLoading] = useState(false);
   const fetchGoods = async () => {
     try {
       const goodsCollection = collection(db, 'goodsList');
@@ -63,7 +67,7 @@ const Mainpage = () => {
       // 앨범
       const cachedAlbumQuery = localStorage.getItem('albumQuery');
       if (cachedAlbumQuery && expiry && new Date().getTime() < Number(expiry)) {
-        setBestSeller(JSON.parse(cachedAlbumQuery));
+        setNewAlbum(JSON.parse(cachedAlbumQuery));
       } else {
         const newAlbumQuery = query(
           goodsCollection,
@@ -74,11 +78,9 @@ const Mainpage = () => {
         const newAlbumSnapshot = await getDocs(newAlbumQuery);
         const newAlbumList = newAlbumSnapshot.docs.map((doc) => doc.data());
         setNewAlbum(newAlbumList);
-        localStorage.setItem(
-          'bestSalbumQueryeller',
-          JSON.stringify(newAlbumList),
-        );
+        localStorage.setItem('albumQuery', JSON.stringify(newAlbumList));
       }
+      setIsLoading(true);
     } catch (error) {
       console.log('상품 가져오기 실패!', error);
     }
@@ -87,7 +89,7 @@ const Mainpage = () => {
   useEffect(() => {
     fetchGoods();
   }, []);
-  console.log('dofqja', newAlbum);
+
   useEffect(() => {
     console.log('캐러', goodsList);
   }, [goodsList]);
@@ -99,25 +101,23 @@ const Mainpage = () => {
           height: 'auto',
           maxWidth: '1200px',
           margin: '0 auto',
-          overflow: 'hidden',
         }}
       >
         <MainTopCarousel />
-        <MainBottomCarousel caroueslList={BestSeller} />
-        <MainBottomCarousel caroueslList={top10} />
-        <MainBttomAlbum newAlbum={newAlbum} />
+        {!isLoading ? (
+          <>
+            <MainBttomSkeleton />
+            <MainBttomSkeleton />
+            <MainBttomAlbumSkeleton />
+          </>
+        ) : (
+          <>
+            <MainBottomCarousel caroueslList={top10} />
+            <MainBottomCarousel caroueslList={BestSeller} />
+            <MainBttomAlbum newAlbum={newAlbum} />
+          </>
+        )}
         {/* TODO: 나중에 백그라운드 이미지 변경 해야함 */}
-        <div
-        // style={{
-        //   backgroundImage: `url('img/bg1.jpg')`,
-        //   backgroundSize: '320',
-        //   backgroundRepeat: 'no-repeat',
-        //   backgroundAttachment: 'fixed',
-        //   backgroundPosition: 'right 25% center',
-        //   height: '20vh',
-        //   width: '100%',
-        // }}
-        />
       </div>
     </>
   );

@@ -4,46 +4,66 @@ export const Div = styled.div`
   margin-top: 100px;
   display: flex;
   justify-content: center;
+  position: relative;
 `;
 
-export const Carousel = styled.div`
-  display: flex;
-  /* transition: all 500ms ease-in-out; */
-`;
 export const SlideInTextDiv = styled.div`
-  /* visibility: hidden; */
-  position: absolute;
-  width: 100%;
-  top: 80%;
-  left: 50%;
-  height: 40%;
-  padding: 5px;
-  transform: translate(-50%, -50%);
-  /* transition: all 0.5s ease-in-out; */
-  background-color: rgba(43, 81, 114, 0.5);
-  color: whitesmoke;
-  text-shadow: 1px 1px 1px black;
-  line-height: 150%;
-  h1 {
-    display: -webkit-box;
-    overflow: hidden;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
-    text-overflow: ellipsis;
-    height: 30px;
-    width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+`;
+export const Img = styled.img`
+  width: 270px;
+  height: 270px;
+  border-radius: 8px;
+  background: lightgray 50%;
+  object-fit: cover;
+  box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.08);
+`;
+export const Artist = styled.p`
+  color: #999;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px; /* 171.429% */
+`;
 
-    font-weight: 500px;
-  }
+export const ProductTitle = styled.h1`
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  text-overflow: ellipsis;
+  height: 43px;
+  color: #333;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px; /* 150% */
+  margin-bottom: 10px;
+`;
+
+export const ReleaseDate = styled.p`
+  color: #555;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 14px; /* 100% */
+  margin-bottom: 20px;
+`;
+//가격
+export const Price = styled.p`
+  color: #333;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 24px; /* 133.333% */
 `;
 export const Slide = styled.div`
   flex: 0 0 auto;
   position: relative;
   width: 25%;
-  margin: 0 0.5rem;
-  &:hover ${SlideInTextDiv} {
-    visibility: visible;
-  }
+
+  margin-top: 40px;
 `;
 
 export const CarouselContainer = styled.div`
@@ -53,7 +73,9 @@ export const CarouselContainer = styled.div`
   margin: 0 auto;
   flex-grow: 20;
 `;
-
+export const CarouselWrapper = styled.div`
+  position: relative;
+`;
 export const CarouselRange = styled.input`
   width: 100%;
   -webkit-appearance: none;
@@ -82,53 +104,183 @@ export const CarouselRange = styled.input`
   }
 `;
 export const PrevButton = styled.button`
+  width: 50px;
+  height: 50px;
+  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.06);
+  background-color: #000;
+  border-radius: 50%;
+  position: absolute;
+  top: 300px;
+  left: -20px;
+  z-index: 1;
+`;
+export const BtnImg = styled.img`
   display: block;
-  flex-grow: 1;
-  flex-shrink: 1;
-  flex-basis: auto;
-  text-align: center;
-  order: 0;
+  margin: auto;
+  width: 32px;
+  height: 32px;
+`;
+export const NextButton = styled.button`
+  width: 50px;
+  height: 50px;
+  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.06);
+  background-color: #000;
+  border-radius: 50%;
+  position: absolute;
+  top: 300px;
+  right: -20px;
+  z-index: 1;
 `;
 
-export const NextButton = styled.button`
-  display: block;
-  flex-grow: 1;
-  flex-shrink: 1;
-  flex-basis: auto;
-  align-self: auto;
-  text-align: center;
-  order: 0;
+export const Title = styled.h2`
+  color: #333;
+  font-family: Pretendard;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 40px; /* 125% */
+  letter-spacing: -0.96px;
+  text-align: left;
+`;
+export const TitleText = styled.p`
+  color: #555;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px; /* 150% */
+  text-align: left;
+`;
+export const SlideContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  justify-content: flex-start;
+  margin-bottom: 40px;
+  width: 100%;
+  gap: 20px;
 `;
 //하단 캐러셀 스타일 end
 
 //앨범 캐러셀 스타일 start
 export const AlbumDiv = styled.div`
+  margin-top: 116px;
+  margin-bottom: 100px;
+  width: 1200px;
+  height: 646px;
+  border-radius: 16px;
+  border: 1px solid #000;
   display: flex;
   justify-content: center;
-  margin-top: 100px;
-  margin-bottom: 100px;
+  position: relative;
+
+  background: #000;
 `;
 
 export const AlbumContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
   position: relative;
-  width: 70%;
+
   overflow: hidden;
   margin: 0 auto;
   flex-grow: 20;
 `;
+export const AlbumWrapper = styled.div`
+  position: relative;
+  display: flex;
+  margin-left: -660px;
+`;
 
 export const AlbumCarousel = styled.div`
   display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  margin-bottom: 40px;
+  gap: 20px;
 `;
 
 export const AlbumSlide = styled.div`
-  flex: 0 0 auto;
+  width: 280px;
+  flex: 0 1 auto;
   position: relative;
-  width: 25%;
-  margin: 0 4rem;
-  /* transform: translateX(-25%); */
+
+  transform: translateX(-25%);
+`;
+export const AlbumImg = styled.img`
+  height: 280px;
+  background: lightgray 50%;
+  object-fit: cover;
+  box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.08);
+  border-radius: 135px;
 `;
 export const AlbumTitle = styled.h2`
   text-align: center;
   margin-top: 10px;
+`;
+
+export const AlbumSlideTitle = styled.h2`
+  color: #333;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 40px; /* 125% */
+  letter-spacing: -0.96px;
+  margin-bottom: 10px;
+`;
+export const AlbumSlideTitleText = styled.p`
+  color: #555;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px; /* 150% */
+`;
+export const AlbumPrevButton = styled.button`
+  width: 50px;
+  height: 50px;
+  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.06);
+  background-color: #000;
+  border-radius: 50%;
+  position: absolute;
+  top: 300px;
+  left: 430px;
+  z-index: 1;
+`;
+
+export const AlbumNextButton = styled.button`
+  width: 50px;
+  height: 50px;
+  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.06);
+  background-color: #000;
+  border-radius: 50%;
+  position: absolute;
+  top: 300px;
+  right: 410px;
+  z-index: 1;
+`;
+export const AlbumDivTitle = styled.h2`
+  color: #fff;
+
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 40px; /* 125% */
+  letter-spacing: -0.96px;
+  text-align: center;
+`;
+export const AlbumDivTitleText = styled.p`
+  color: #aaa;
+
+  text-align: center;
+
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px; /* 150% */
+  text-align: center;
 `;

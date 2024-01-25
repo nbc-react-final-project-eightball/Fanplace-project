@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import * as S from '../styledComponent/styledDetail/StDetail';
 import Product from 'components/Detail/Product';
 import ProductInfo from 'components/Detail/ProductInfo';
@@ -7,21 +7,17 @@ import { RootState } from 'redux/configStore';
 import { setProduct } from '../redux/modules/Detail/DetailSlice';
 import { collection, getDocs } from 'firebase/firestore';
 import Productlist from 'components/Detail/Productlist';
+import { typeProduct } from 'Type/TypeInterface';
+import { set } from 'react-hook-form';
 const Detail = () => {
+  const [detailSend, setDetailSend] = useState<typeProduct | null>(null);
   const dispatch = useDispatch();
+
   const selectedProduct = useSelector(
     (state: RootState) => state.goods.selectedProduct,
   );
-  //새로고침할때마다 상품정보가 사라지는것을 방지하려고 세션스토리지에 저장합니다 !
-  useEffect(() => {
-    if (!selectedProduct) {
-      const storedProduct = sessionStorage.getItem('selectedProduct');
-      if (storedProduct) {
-        dispatch(setProduct(JSON.parse(storedProduct)));
-      }
-    }
-  }, [dispatch]);
 
+  //새로고침할때마다 상품정보가 사라지는것을 방지하려고 세션스토리지에 저장합니다 !
   useEffect(() => {
     if (selectedProduct) {
       sessionStorage.setItem(
@@ -30,12 +26,29 @@ const Detail = () => {
       );
     }
   }, [selectedProduct]);
+  useEffect(() => {
+    if (selectedProduct === null) {
+      const storedProduct = sessionStorage.getItem('selectedProduct');
+      if (storedProduct) {
+        setDetailSend(JSON.parse(storedProduct));
+        dispatch(setProduct(JSON.parse(storedProduct)));
+      }
+    }
+  }, [dispatch]);
 
   return (
     <S.DtailContainer>
-      <Product product={selectedProduct} />
-      <ProductInfo product={selectedProduct} />
-      {/* <Productlist product={selectedProduct} /> */}
+      {selectedProduct ? (
+        <>
+          <Product product={selectedProduct} />
+          <ProductInfo product={selectedProduct} />
+        </>
+      ) : (
+        <>
+          <Product product={detailSend} />
+          <ProductInfo product={detailSend} />
+        </>
+      )}
     </S.DtailContainer>
   );
 };
