@@ -123,8 +123,17 @@ export const RightArea = styled.div`
   min-height: 320px;
   padding: 20px;
   border-radius: 10px;
-  border: 1px solid #efefef;
   background: #fff;
+  padding: 20px;
+
+  .paymentInfo {
+    color: #333;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    margin-bottom: 20px;
+  }
 `;
 
 export const PaymentInfo = styled.h2`
