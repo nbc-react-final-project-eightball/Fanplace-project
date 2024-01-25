@@ -64,10 +64,21 @@ export const useSocialLogin = (
         );
 
         const githubUserData = await getGitHubUserData(githubProviderData?.uid);
+        console.log('githubUserData', githubUserData);
         displayName = githubUserData.login;
-        dispatch(logIn({ userInfo: { ...user.providerData[0], displayName } }));
+        dispatch(
+          logIn({
+            userInfo: { ...user.providerData[0], displayName },
+            isLogged: true,
+          }),
+        );
       } else {
-        dispatch(logIn({ userInfo: user.providerData[0] }));
+        dispatch(
+          logIn({
+            userInfo: user.providerData[0],
+            isLogged: true,
+          }),
+        );
       }
 
       alert('로그인 되었습니다.');
