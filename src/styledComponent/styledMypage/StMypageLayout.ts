@@ -139,6 +139,10 @@ export const MenuBox = styled.ul`
     width: 100%;
     padding: 1.25rem 1.06rem 1.25rem 1.25rem;
   }
+  li a.active {
+    color: #8f86ff;
+    font-weight: 500;
+  }
   &:last-child {
     margin-bottom: 0;
   }
