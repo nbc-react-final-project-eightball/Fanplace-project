@@ -44,6 +44,18 @@ export const TextInputField = styled(TextField)<{ disabled?: boolean }>`
   white-space: pre-wrap;
   box-sizing: border-box;
   background: ${(props) => (props.disabled === true ? '#f1f1f1' : 'none')};
+  &.address {
+    .css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root.Mui-disabled {
+      border-radius: 5px 5px 0 0;
+    }
+  }
+  &.detailAddress {
+    margin-top: -1px;
+    .css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root.Mui-disabled {
+      border-radius: ${(props) =>
+        props.disabled === true ? '0 0 5px 5px' : '5px'};
+    }
+  }
 `;
 export const EditButton = styled.button`
   display: flex;

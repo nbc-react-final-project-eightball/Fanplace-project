@@ -26,11 +26,17 @@ export const Welcome = styled.div`
 
 export const LayoutContainer = styled.div`
   width: 100%;
+  background-color: aqua;
+
   /* padding: 0 1.5rem; */
 `;
 export const LayoutSection1 = styled.div`
+<<<<<<< HEAD
   width: 100px;
   margin-top: 80px;
+=======
+  margin-top: 120px;
+>>>>>>> ff6b18e138cba73d665dc53d0d53b5cc807444bf
 `;
 export const LayoutSection2 = styled.div`
   height: 100%;

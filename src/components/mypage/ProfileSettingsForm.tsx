@@ -69,10 +69,13 @@ const ProfileSettingsForm = () => {
     e.preventDefault();
 
     const user = auth.currentUser;
-    passwordUpdate(user, password);
+    if (password) {
+      passwordUpdate(user, password);
+      console.log(' 수정된 phoneNumber?', phoneNumber);
+    }
     profileUpdate(
       displayName,
-      parseInt(phoneNumber, 10),
+      phoneNumber,
       address,
       detailAddress,
       email,
@@ -147,7 +150,7 @@ const ProfileSettingsForm = () => {
 
       <S.AddressBoxWrapper>
         <InputLabel>기본 배송지</InputLabel>
-        <S.TextInputField value={address} disabled={true} />
+        <S.TextInputField className="address" value={address} disabled={true} />
 
         {isEditMode && (
           <S.DeliveryAddressButton
@@ -179,6 +182,8 @@ const ProfileSettingsForm = () => {
           render={({ field, fieldState }) => (
             <S.TextInputField
               disabled={!isEditMode}
+              className="detailAddress"
+              autoComplete="detailAddress"
               value={field.value}
               onChange={field.onChange}
               // onBlur={blurHandler}
@@ -196,7 +201,7 @@ const ProfileSettingsForm = () => {
           )}
         />
       </S.AddressBoxWrapper>
-      <Controller
+      {/* <Controller
         name="email"
         control={control}
         defaultValue={userData.userInfo?.email || ''}
@@ -224,7 +229,7 @@ const ProfileSettingsForm = () => {
             />
           </div>
         )}
-      />
+      /> */}
       <Controller
         name="password"
         control={control}
@@ -243,6 +248,7 @@ const ProfileSettingsForm = () => {
             <S.TextInputField
               disabled={!isEditMode}
               type="password"
+              autoComplete="new-password"
               value={field.value}
               onChange={field.onChange}
               error={fieldState.error !== undefined && fieldState.isDirty}
@@ -275,6 +281,7 @@ const ProfileSettingsForm = () => {
             <S.TextInputField
               disabled={!isEditMode}
               type="password"
+              autoComplete="new-password"
               value={field.value}
               onChange={field.onChange}
               error={!!(fieldState.isDirty && fieldState.error)}
@@ -318,7 +325,9 @@ const ProfileSettingsForm = () => {
         </S.EditButton>
       )}
 
-      <S.CancelButton type="button">취소</S.CancelButton>
+      <S.CancelButton type="button" onClick={() => setIsEditMode(!isEditMode)}>
+        취소
+      </S.CancelButton>
     </S.ProfileSettingsForm>
   );
 };

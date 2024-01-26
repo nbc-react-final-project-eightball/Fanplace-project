@@ -7,7 +7,7 @@ interface AuthState {
   detailAddress: string | null;
   isAddressSuccess: boolean;
   userInfo: UserInfo | null;
-  phoneNumber: number | null;
+  phoneNumber: string | null;
 }
 
 interface setUserInfo {
@@ -23,19 +23,19 @@ interface setIsAddressSuccess {
 }
 
 interface setPhoneNumber {
-  phoneNumber: number | null;
+  phoneNumber: string | null;
 }
 
 interface registerState {
   userInfo: UserInfo | null;
   address: string | null;
-  phoneNumber: number | null;
+  phoneNumber: string | null;
   detailAddress: string | null;
 }
 
 interface updateProfileDataState {
   // displayName: string;
-  phoneNumber: number;
+  phoneNumber: string;
   address: string;
   detailAddress: string;
   userInfo: UserInfo | null;

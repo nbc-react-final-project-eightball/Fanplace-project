@@ -14,7 +14,7 @@ import { updateProfileData } from '../redux/modules/signup/signUpSlice';
 interface profileUpdateHook {
   profileUpdate: (
     displayName: string,
-    phoneNumber: number,
+    phoneNumber: string,
     address: string,
     detailAddress: string,
     email: string,
@@ -30,7 +30,7 @@ export const useProfileUpdate = (): profileUpdateHook => {
   // 프로필 수정
   const profileUpdate = async (
     displayName: string, // 유저 인포만 저장
-    phoneNumber: number,
+    phoneNumber: string,
     address: string,
     detailAddress: string,
     email: string, // 유저 인포만 저장
@@ -44,19 +44,22 @@ export const useProfileUpdate = (): profileUpdateHook => {
       } else {
         console.log('사용자가 로그인되어 있지 않습니다.');
       }
-      const db = getFirestore();
-      const userDocRef = doc(db, 'user', userId);
-      await updateProfile(user, { displayName });
-      // await updateEmail(user, email);
+
+      await updateProfile(user, { displayName: displayName });
+
+      await user.reload();
+      const updatedUser: any = auth.currentUser;
 
       dispatch(
         updateProfileData({
           address,
           detailAddress,
           phoneNumber,
-          userInfo: user.providerData[0],
+          userInfo: updatedUser.providerData[0],
         }),
       );
+      const db = getFirestore();
+      const userDocRef = doc(db, 'user', userId);
 
       await setDoc(userDocRef, {
         displayName,
