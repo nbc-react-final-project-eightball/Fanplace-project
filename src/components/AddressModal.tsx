@@ -3,21 +3,27 @@ import DaumPostcode from 'react-daum-postcode';
 import * as S from 'styledComponent/styledAddressModal/StAddressModal';
 import { useAddressModal } from 'hooks/useAddressModal';
 import { useDispatch } from 'react-redux';
-import { setAddress } from '../redux/modules/signup/signUpSlice';
+import {
+  setAddress,
+  setIsAddressSuccess,
+} from '../redux/modules/signup/signUpSlice';
 
 interface AddressModalProps {
-  subAddress: any;
+  detailAddress: string;
 }
 
-const AddressModal: React.FC<AddressModalProps> = ({ subAddress }) => {
+const AddressModal: React.FC<AddressModalProps> = ({ detailAddress }) => {
   const { closeAddressModalHandler } = useAddressModal();
   const dispatch = useDispatch();
 
-  console.log('subAddress', subAddress);
+  console.log('detailAddress', detailAddress);
 
   const completeHandler = (data: any) => {
     console.log('data.address', data.address);
-    dispatch(setAddress({ address: data.address, isAddressSuccess: true }));
+    dispatch(
+      setAddress({ address: data.address, detailAddress: detailAddress }),
+    );
+    dispatch(setIsAddressSuccess({ isAddressSuccess: true }));
     closeAddressModalHandler(true);
   };
 

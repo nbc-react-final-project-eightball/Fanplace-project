@@ -62,29 +62,31 @@ const PaymentPage = () => {
   };
   return (
     <>
-      <PaymentArea />
-      <div className="App">
-        <h1>주문서</h1>
-        <p>결제 금액: {totalPrice}원</p>
+      <PaymentContainer>
         <div>
-          {/* <input
+          <div id="payment-widget" />
+          <p>결제 금액: {totalPrice}원</p>
+          <div>
+            {/* <input
             type="checkbox"
             onChange={(event) => {
               setPrice(event.target.checked ? totalPrice - 5_000 : totalPrice + 5_000);
             }}
           /> */}
-          <label>5,000원 할인 쿠폰 적용</label>
-        </div>
-        <div id="payment-widget" />
+            {/* <label>5,000원 할인 쿠폰 적용</label> */}
+          </div>
 
-        <button onClick={adad}>결제하기</button>
-      </div>
+          <button onClick={adad}>결제하기</button>
+        </div>
+      </PaymentContainer>
     </>
   );
 };
 
 export default PaymentPage;
 
-const PaymentArea = styled.div`
-  height: 300px;
+const PaymentContainer = styled.div`
+  width: 720px;
+  height: 305px;
+  padding-left: 165px;
 `;

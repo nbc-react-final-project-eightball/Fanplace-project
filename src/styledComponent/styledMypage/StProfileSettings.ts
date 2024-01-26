@@ -24,4 +24,11 @@ export const TextInputField = styled(TextField)``;
 
 export const ProfileSettingsForm = styled.form`
   margin-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
+
+export const EditButton = styled.button``;
+
+export const CancelButton = styled.button``;

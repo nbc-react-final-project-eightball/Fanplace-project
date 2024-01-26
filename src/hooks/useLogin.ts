@@ -39,7 +39,12 @@ export const useLogin = (): LoginResult => {
         email.trim(),
         password.trim(),
       );
-      dispatch(logIn({ userInfo: signIn.user.providerData[0] }));
+      dispatch(
+        logIn({
+          userInfo: signIn.user.providerData[0],
+          isLogged: true,
+        }),
+      );
       alert('로그인 되었습니다.');
       navigate('/');
       setIsPending(false);

@@ -7,10 +7,12 @@ import { InputLabel } from '@mui/material';
 import DeliveryAddress from './DeliveryAddress';
 import { useSignUp } from 'hooks/useSignUp';
 import { useSelector } from 'react-redux';
+import 'firebase/compat/auth';
+import { register } from '../../redux/modules/signup/signUpSlice';
 
 const AuthForm = () => {
   const [isLoginForm, setIsLoginForm] = useState<boolean>(true);
-
+  const [phoneNumber, setPhoneNumber] = useState<string | null>(null);
   // react-hook-form
   const {
     handleSubmit,
@@ -51,7 +53,10 @@ const AuthForm = () => {
   interface SignUpState {
     address: string;
   }
-
+  const [detailAddress, setDetailAddress] = useState<string>('');
+  const handleDetailAddressChange = (detailAddress: string) => {
+    setDetailAddress(detailAddress);
+  };
   const { address } =
     useSelector((state: { signUpSlice: SignUpState }) => state.signUpSlice) ||
     {};
@@ -73,7 +78,24 @@ const AuthForm = () => {
         ]);
 
         console.log('address______________', address);
-        await signUp(email, displayName, phoneNumber, address, password);
+        // await register({
+        //   email,
+        //   // displayName,
+        //   phoneNumber,
+        //   address,
+        //   detailAddress,
+        //   // password,
+        // });
+        console.log('세부주소 실시간?', detailAddress);
+        signUp(
+          email,
+          displayName,
+          phoneNumber,
+          true,
+          address,
+          detailAddress,
+          password,
+        );
 
         reset();
         setIsLoginForm(true);
@@ -82,6 +104,7 @@ const AuthForm = () => {
       console.log('알 수 없는 오류가 발생하였습니다.', error);
     }
   };
+
   return (
     <>
       <S.AuthForm onSubmit={handleSubmit(submitHandler)}>
@@ -184,7 +207,9 @@ const AuthForm = () => {
                   <InputLabel>전화번호</InputLabel>
                   <S.TextInputField
                     value={field.value}
-                    onChange={field.onChange}
+                    onChange={(e) => {
+                      field.onChange(e);
+                    }}
                     error={fieldState.error !== undefined && fieldState.isDirty}
                     helperText={
                       fieldState.isDirty
@@ -200,7 +225,7 @@ const AuthForm = () => {
                 </div>
               )}
             />
-            <DeliveryAddress />
+            <DeliveryAddress onAddressChange={handleDetailAddressChange} />
             <Controller
               name="email"
               control={control}
