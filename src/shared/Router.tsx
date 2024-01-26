@@ -16,6 +16,8 @@ import Cartpage from 'page/Cartpage';
 import PaymentPage from 'page/PaymentPage';
 import PaymentSuccess from 'page/PaymentSuccess';
 import ChatListPage from 'page/ChatListPage';
+import Artists from 'page/Artists';
+import Announcements from 'page/Announcements';
 
 const Router = () => {
   return (
@@ -38,6 +40,8 @@ const Router = () => {
           <Route path="/Detail/:id" element={<Detail />} />
           <Route path="/success" element={<PaymentSuccess />} />
           <Route path="/chatlist" element={<ChatListPage />} />
+          <Route path="/artists" element={<Artists />} />
+          <Route path="/announcements" element={<Announcements />} />
         </Route>
       </Routes>
     </BrowserRouter>

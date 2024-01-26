@@ -71,13 +71,13 @@ const SideBar = () => {
         <S.SideBarSectionBottom>
           <S.SideBarBtn>
             {' '}
-            <S.SNavLink to="/GoodsList/Artists" onClick={reSet}>
+            <S.SNavLink to="/Artists" onClick={reSet}>
               아티스트
             </S.SNavLink>
           </S.SideBarBtn>
           <S.SideBarBtn>
             {' '}
-            <S.SNavLink to="/GoodsList/Announcements" onClick={reSet}>
+            <S.SNavLink to="/Announcements" onClick={reSet}>
               공지사항/FAQ
             </S.SNavLink>
           </S.SideBarBtn>

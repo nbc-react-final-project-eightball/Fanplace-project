@@ -7,7 +7,7 @@ interface AuthState {
   detailAddress: string | null;
   isAddressSuccess: boolean;
   userInfo: UserInfo | null;
-  phoneNumber: number | null;
+  phoneNumber: string | null;
 }
 
 interface setUserInfo {
@@ -23,16 +23,25 @@ interface setIsAddressSuccess {
 }
 
 interface setPhoneNumber {
-  phoneNumber: number | null;
+  phoneNumber: string | null;
 }
 
 interface registerState {
   userInfo: UserInfo | null;
   address: string | null;
-  phoneNumber: number | null;
+  phoneNumber: string | null;
   detailAddress: string | null;
 }
 
+interface updateProfileDataState {
+  // displayName: string;
+  phoneNumber: string;
+  address: string;
+  detailAddress: string;
+  userInfo: UserInfo | null;
+  // email: string;
+  // password: string;
+}
 interface LogInState {
   userInfo: UserInfo;
   isLogged: boolean;
@@ -75,6 +84,16 @@ export const signUpSlice = createSlice({
       state.detailAddress = action.payload.detailAddress;
       state.phoneNumber = action.payload.phoneNumber;
     },
+    updateProfileData: (
+      state,
+      action: PayloadAction<updateProfileDataState>,
+    ) => {
+      // state.displayName = action.payload.displayName;
+      state.phoneNumber = action.payload.phoneNumber;
+      state.address = action.payload.address;
+      state.detailAddress = action.payload.detailAddress;
+      state.userInfo = action.payload.userInfo;
+    },
     logIn: (state, action: PayloadAction<LogInState>) => {
       state.userInfo = action.payload.userInfo;
       state.isLogged = true;
@@ -94,6 +113,7 @@ export const {
   setIsAddressSuccess,
   setPhoneNumber,
   register,
+  updateProfileData,
   logIn,
   logOut,
 } = signUpSlice.actions;

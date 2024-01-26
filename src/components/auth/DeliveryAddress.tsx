@@ -40,7 +40,7 @@ const DeliveryAddress: React.FC<DeliveryAddressProps> = ({
 
   const { openAddressModalHandler } = useAddressModal();
 
-  const handleBlur = () => {
+  const blurHandler = () => {
     console.log('블러 실행!');
     // 입력이 끝났을 때 콜백 함수 호출하여 상태 전달
     onAddressChange(detailAddress);
@@ -80,7 +80,7 @@ const DeliveryAddress: React.FC<DeliveryAddressProps> = ({
               <S.TextInputField
                 value={field.value}
                 onChange={field.onChange}
-                onBlur={handleBlur}
+                onBlur={blurHandler}
                 error={fieldState.error !== undefined && fieldState.isDirty}
                 helperText={
                   fieldState.isDirty
