@@ -196,6 +196,7 @@ export const ProductsTab = styled.div<ProductsTabProps>`
   }
 
   @media (max-width: 480px) {
+    flex: 0 0 100%;
   }
 `;
 //상품리스트
@@ -207,6 +208,11 @@ export const GoodsListSection3 = styled.section`
     flex-wrap: wrap;
     gap: 20px;
     width: 100%;
+    @media (max-width: 768px) {
+    }
+
+    @media (max-width: 480px) {
+    }
   }
 `;
 export const GoodsListSection3Wrapper = styled.div``;
@@ -223,6 +229,7 @@ export const ProductCard = styled.div`
   }
 
   @media (max-width: 480px) {
+    flex: 0 0 100%;
   }
 `;
 

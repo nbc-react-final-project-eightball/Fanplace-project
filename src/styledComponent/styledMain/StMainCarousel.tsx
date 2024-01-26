@@ -31,6 +31,13 @@ export const Img = styled.img`
     /* 768px 이하 화면 크기에 대한 스타일 */
     height: 168px;
   }
+  @media (max-width: 480px) {
+    /* 480px 이하 화면 크기에 대한 스타일 */
+    width: 100px;
+    height: 100px;
+    max-height: 100px;
+    max-width: 100px;
+  }
 `;
 export const Artist = styled.p`
   color: #999;
@@ -137,14 +144,34 @@ export const PrevButton = styled.button`
   top: 300px;
   left: -20px;
   z-index: 1;
+  svg {
+    width: 50px;
+    height: 50px;
+    margin: 0 auto;
+    @media (max-width: 768px) {
+      /* 768px 이하 화면 크기에 대한 스타일 */
+      width: 45px;
+      height: 45px;
+    }
+    @media (max-width: 480px) {
+      /* 480px 이하 화면 크기에 대한 스타일 */
+      width: 35px;
+      height: 35px;
+    }
+  }
   @media (max-width: 768px) {
     /* 768px 이하 화면 크기에 대한 스타일 */
+    width: 45px;
+    height: 45px;
     left: 2%;
   }
 
   @media (max-width: 480px) {
     /* 480px 이하 화면 크기에 대한 스타일 */
-    left: 12%;
+    width: 35px;
+    height: 35px;
+    top: 50%;
+    left: 2%;
   }
 `;
 export const BtnImg = styled.img`
@@ -163,13 +190,33 @@ export const NextButton = styled.button`
   top: 300px;
   right: -20px;
   z-index: 1;
+  svg {
+    width: 50px;
+    height: 50px;
+    @media (max-width: 768px) {
+      /* 768px 이하 화면 크기에 대한 스타일 */
+      width: 45px;
+      height: 45px;
+    }
+    @media (max-width: 480px) {
+      /* 480px 이하 화면 크기에 대한 스타일 */
+      width: 35px;
+      height: 35px;
+    }
+  }
   @media (max-width: 768px) {
     /* 768px 이하 화면 크기에 대한 스타일 */
+    width: 45px;
+    height: 45px;
     right: 2%;
   }
 
   @media (max-width: 480px) {
     /* 480px 이하 화면 크기에 대한 스타일 */
+    width: 35px;
+    height: 35px;
+    top: 50%;
+    right: 2%;
   }
 `;
 
@@ -242,13 +289,12 @@ export const AlbumWrapper = styled.div`
   margin-left: -660px;
   @media (max-width: 768px) {
     /* 768px 이하 화면 크기에 대한 스타일 */
-    margin-left: -280px;
+    margin-left: -230px;
   }
 
   @media (max-width: 480px) {
     /* 480px 이하 화면 크기에 대한 스타일 */
-    width: 25px;
-    height: 25px;
+    margin-left: -80px;
   }
 `;
 
@@ -274,6 +320,14 @@ export const AlbumImg = styled.img`
   object-fit: cover;
   box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.08);
   border-radius: 135px;
+  @media (max-width: 768px) {
+    /* 768px 이하 화면 크기에 대한 스타일 */
+    height: 180px;
+  }
+
+  @media (max-width: 480px) {
+    /* 480px 이하 화면 크기에 대한 스타일 */
+  }
 `;
 export const AlbumTitle = styled.h2`
   text-align: center;
@@ -313,8 +367,7 @@ export const AlbumPrevButton = styled.button`
 
   @media (max-width: 480px) {
     /* 480px 이하 화면 크기에 대한 스타일 */
-    width: 25px;
-    height: 25px;
+    left: 10%;
   }
 `;
 
@@ -335,8 +388,7 @@ export const AlbumNextButton = styled.button`
 
   @media (max-width: 480px) {
     /* 480px 이하 화면 크기에 대한 스타일 */
-    width: 25px;
-    height: 25px;
+    right: 10%;
   }
 `;
 export const AlbumDivTitle = styled.h2`

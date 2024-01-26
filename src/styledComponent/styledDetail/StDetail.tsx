@@ -5,6 +5,14 @@ export const DtailContainer = styled.div`
   justify-content: center;
   width: 100%;
   padding: 0 2.5rem 0 8.75rem;
+  @media (max-width: 768px) {
+    padding: 1rem 1rem;
+    padding-left: 3rem;
+    flex: 0 0 100%;
+  }
+
+  @media (max-width: 480px) {
+  }
 `;
 
 export const ProductSection1 = styled.section`
@@ -32,6 +40,13 @@ export const ProductContainer = styled.div`
   max-width: 520px;
   height: 100%;
   margin-right: 30px;
+  @media (max-width: 768px) {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  @media (max-width: 480px) {
+  }
 `;
 
 export const ProductSection2 = styled.section`
@@ -40,6 +55,14 @@ export const ProductSection2 = styled.section`
 
   text-align: center;
   overflow: hidden;
+  @media (max-width: 768px) {
+    width: 100%;
+    max-width: 100%;
+    padding: 0px;
+  }
+
+  @media (max-width: 480px) {
+  }
 `;
 
 export const ProductTitle = styled.h1`
@@ -75,6 +98,14 @@ export const ProductInfoContainer = styled.div`
   display: flex;
   flex-direction: column;
   border-radius: 20px;
+  @media (max-width: 768px) {
+    position: static;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  @media (max-width: 480px) {
+  }
 `;
 
 export const ProductInfoSection1 = styled.section`

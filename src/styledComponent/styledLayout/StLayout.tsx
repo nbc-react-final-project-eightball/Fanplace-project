@@ -26,7 +26,6 @@ export const Welcome = styled.div`
 
 export const LayoutContainer = styled.div`
   width: 100%;
-  background-color: aqua;
 
   /* padding: 0 1.5rem; */
 `;

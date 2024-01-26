@@ -11,7 +11,7 @@ interface MainBttomAlbumProps {
   newAlbum?: DocumentData;
 }
 const MainBttomAlbum: React.FC<MainBttomAlbumProps> = ({ newAlbum }) => {
-  const [currentSlide, setCurrentSlide] = useState(2); // 현재 슬라이드의 인덱스
+  const [currentSlide, setCurrentSlide] = useState(1); // 현재 슬라이드의 인덱스
   // const [autoSlide, setAutoSlide] = useState<NodeJS.Timeout | null>(null); // 자동 슬라이드를 위한 타이머
 
   const slides1 = [
@@ -34,13 +34,14 @@ const MainBttomAlbum: React.FC<MainBttomAlbumProps> = ({ newAlbum }) => {
   // console.log('NewAlbum111', NewAlbum[0]);
   const newCopiedSlides = newAlbum
     ? [
-        slides[4],
+        slides[5],
         ...slides,
         slides[1],
         slides[2],
         slides[3],
         slides[4],
         slides[5],
+        slides[6],
       ]
     : slides1;
   console.log('newCopiedSlides', newCopiedSlides);
@@ -64,7 +65,7 @@ const MainBttomAlbum: React.FC<MainBttomAlbumProps> = ({ newAlbum }) => {
           setCurrentSlide(slides.length);
           // 다음 자동 스크롤을 위해 다시 애니메이션 적용
           const nextSlide = () => {
-            setCurrentSlide(0);
+            setCurrentSlide(1);
           };
           nextSlide();
           setTimeout(() => {
@@ -118,11 +119,11 @@ const MainBttomAlbum: React.FC<MainBttomAlbumProps> = ({ newAlbum }) => {
   // }, [currentSlide]);
 
   const handleNext = () => {
-    if (currentSlide >= slides.length - 1) {
+    if (currentSlide >= slides.length) {
       // 마지막 슬라이드에서 다음 버튼을 누르면 첫 번째 슬라이드로 돌아갑니다.
       if (slideRef.current) {
         slideRef.current.style.transition = 'none';
-        setCurrentSlide(0);
+        setCurrentSlide(1);
         setTimeout(() => {
           if (slideRef.current) {
             slideRef.current.style.transition = 'all 500ms ease-in-out';
