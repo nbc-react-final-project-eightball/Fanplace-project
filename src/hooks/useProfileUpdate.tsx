@@ -45,9 +45,18 @@ export const useProfileUpdate = (): profileUpdateHook => {
         console.log('사용자가 로그인되어 있지 않습니다.');
       }
 
-      await updateProfile(user, { displayName: displayName });
+      const existingDisplayName = user.displayName;
 
-      await user.reload();
+      if (displayName !== existingDisplayName) {
+        const updatedUserInfo: UserInfo = {
+          ...user.providerData[0],
+          displayName: displayName,
+        };
+
+        await updateProfile(user, updatedUserInfo);
+
+        await user.reload();
+      }
       const updatedUser: any = auth.currentUser;
 
       dispatch(

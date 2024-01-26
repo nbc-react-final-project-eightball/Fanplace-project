@@ -26,7 +26,7 @@ export const ProfileSettingsContent = styled.div`
   align-items: center;
   justify-content: center;
   padding: 2.5rem 0;
-  border-top: 1px solid #000;
+  border-top: 1px solid #ddd;
 `;
 export const ProfileSettingsForm = styled.form`
   margin-top: 1.5rem;
@@ -65,8 +65,9 @@ export const EditButton = styled.button`
   width: 320px;
   height: 48px;
   text-align: center;
-  border: 1px solid #aaa;
   border-radius: 5px;
+  background: #000;
+  color: #fff;
 `;
 
 export const CancelButton = styled.button`

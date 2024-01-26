@@ -9,7 +9,7 @@ import {
 } from '../redux/modules/signup/signUpSlice';
 
 interface AddressModalProps {
-  detailAddress: string;
+  detailAddress: any;
 }
 
 const AddressModal: React.FC<AddressModalProps> = ({ detailAddress }) => {
