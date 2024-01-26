@@ -543,7 +543,7 @@ const GoodsList = () => {
       contentImg1: '/img/ProductDetail/레드벨벳1_1.jpg',
     },
     {
-      productId: 31,
+      productId: 32,
       category: '포토 카드',
       sideCategory: 'Photo',
       info: '',
@@ -559,7 +559,7 @@ const GoodsList = () => {
       contentImg1: '/img/ProductDetail/BTS2_1.jpg',
     },
     {
-      productId: 32,
+      productId: 33,
       category: '포토 카드',
       sideCategory: 'Photo',
       info: '',
@@ -574,7 +574,7 @@ const GoodsList = () => {
       contentImg1: '/img/ProductDetail/BTS3_1.jpg',
     },
     {
-      productId: 33,
+      productId: 34,
       category: '포토 카드',
       sideCategory: 'Photo',
       info: '',
@@ -589,7 +589,7 @@ const GoodsList = () => {
       contentImg1: '/img/ProductDetail/뉴진스1_1.jpg',
     },
     {
-      productId: 34,
+      productId: 35,
       sideCategory: 'CD&DVD',
       category: 'CD',
       info: '',
@@ -606,7 +606,7 @@ const GoodsList = () => {
       contentImg2: '/img/ProductDetail/뉴진스2_2.jpg',
     },
     {
-      productId: 35,
+      productId: 36,
       sideCategory: 'Sundries',
       category: '응원봉',
       info: '',
@@ -622,7 +622,7 @@ const GoodsList = () => {
       contentImg1: '/img/ProductDetail/스트레이키즈3_1.jpg',
     },
     {
-      productId: 35,
+      productId: 37,
       sideCategory: '포토 카드',
       category: 'Photo',
       info: '',
@@ -639,7 +639,7 @@ const GoodsList = () => {
       contentImg1: '/img/ProductDetail/르세라핌1_1.jpg',
     },
     {
-      productId: 36,
+      productId: 38,
       sideCategory: 'DVD',
       category: 'CD&DVD',
       info: '',
@@ -655,7 +655,7 @@ const GoodsList = () => {
       contentImg1: '/img/ProductDetail/세븐틴1_1.jpg',
     },
     {
-      productId: 37,
+      productId: 39,
       sideCategory: 'DVD',
       category: 'CD&DVD',
       info: '',
@@ -671,7 +671,7 @@ const GoodsList = () => {
       contentImg1: '/img/ProductDetail/세븐틴2_1.jpg',
     },
     {
-      productId: 38,
+      productId: 40,
       sideCategory: 'New',
       category: 'CD&DVD',
       info: '',
@@ -687,7 +687,7 @@ const GoodsList = () => {
       contentImg1: '/img/ProductDetail/더보이즈1_1.jpg',
     },
     {
-      productId: 39,
+      productId: 41,
       sideCategory: 'New',
       category: '포토 카드',
       info: '',
@@ -703,7 +703,7 @@ const GoodsList = () => {
       contentImg1: '/img/ProductDetail/세븐틴3_1.jpg',
     },
     {
-      productId: 40,
+      productId: 42,
       sideCategory: 'New',
       category: 'CD',
       info: '',
@@ -720,7 +720,7 @@ const GoodsList = () => {
       contentImg1: '/img/ProductDetail/스테이씨1_1.jpg',
     },
     {
-      productId: 41,
+      productId: 43,
       sideCategory: 'Photo',
       category: '포토 카드 홀더',
       info: '',
@@ -734,7 +734,7 @@ const GoodsList = () => {
       contentImg1: '/img/ProductDetail/아이브1_1.jpg',
     },
     {
-      productId: 42,
+      productId: 44,
       sideCategory: 'CD&DVD',
       category: 'DVD',
       info: '',
@@ -751,7 +751,7 @@ const GoodsList = () => {
       contentImg1: '/img/ProductDetail/몬스타엑스1_1.jpg',
     },
     {
-      productId: 43,
+      productId: 45,
       sideCategory: 'New',
       category: 'CD',
       info: '',
@@ -909,7 +909,7 @@ const GoodsList = () => {
                 <>
                   <S.ArtistFilterContainer>
                     {artists.map((artist) => (
-                      <S.ArtistFilterArtist>
+                      <S.ArtistFilterArtist key={artist}>
                         <S.ArtistFilterArtistInput
                           type="checkbox"
                           checked={selectedArtists.includes(artist)}
@@ -944,7 +944,6 @@ const GoodsList = () => {
           <S.GoodsListSection2>
             <S.GoodsListSection2Wrapper>
               <S.ProductsTab
-                key="all"
                 onClick={() => {
                   setFilter(null);
                 }}
@@ -977,6 +976,7 @@ const GoodsList = () => {
                     : lastFilteredProduct
                   )?.map((product: typeProduct) => (
                     <S.ProductCard
+                      key={product.productId}
                       onClick={() => {
                         dispatch(setSelectedProduct(product));
                         navigate(`/detail/${product.productId}`);
@@ -991,9 +991,7 @@ const GoodsList = () => {
                             <S.ProductCardInfoArtist>
                               {product.artist}
                             </S.ProductCardInfoArtist>
-                            {/* <S.ProductCardInfo>
-                              {product.info}
-                            </S.ProductCardInfo> */}
+
                             <S.ProductCardTitle>
                               {product.title}
                             </S.ProductCardTitle>
@@ -1002,14 +1000,6 @@ const GoodsList = () => {
                             <S.ProductCardPrice>
                               {product.price}원
                             </S.ProductCardPrice>
-                            {/* {product.teg ? (
-                              <S.ProductCardTeg
-                                src={product.teg}
-                                alt="이미지태그"
-                              />
-                            ) : (
-                              ''
-                            )} */}
                           </S.GoodsListCardSection1_2>
                         </S.GoodsListCardSection1>
                       </div>
