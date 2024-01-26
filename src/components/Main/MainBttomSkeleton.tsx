@@ -10,44 +10,46 @@ const MainBttomSkeleton = () => {
           <S.ButtonPrev>
             <S.BtnImg src="/img/L.svg" alt="" />
           </S.ButtonPrev>
-          <S.SlideContainer>
-            <S.Slide>
-              <S.Img />
-              <S.SlideInTextDiv>
-                <S.Artist></S.Artist>
-                <S.ProductTitle></S.ProductTitle>
-                <S.ReleaseDate></S.ReleaseDate>
-                <S.Price></S.Price>
-              </S.SlideInTextDiv>
-            </S.Slide>
-            <S.Slide>
-              <S.Img />
-              <S.SlideInTextDiv>
-                <S.Artist></S.Artist>
-                <S.ProductTitle></S.ProductTitle>
-                <S.ReleaseDate></S.ReleaseDate>
-                <S.Price></S.Price>
-              </S.SlideInTextDiv>
-            </S.Slide>
-            <S.Slide>
-              <S.Img />
-              <S.SlideInTextDiv>
-                <S.Artist></S.Artist>
-                <S.ProductTitle></S.ProductTitle>
-                <S.ReleaseDate></S.ReleaseDate>
-                <S.Price></S.Price>
-              </S.SlideInTextDiv>
-            </S.Slide>
-            <S.Slide>
-              <S.Img />
-              <S.SlideInTextDiv>
-                <S.Artist></S.Artist>
-                <S.ProductTitle></S.ProductTitle>
-                <S.ReleaseDate></S.ReleaseDate>
-                <S.Price></S.Price>
-              </S.SlideInTextDiv>
-            </S.Slide>
-          </S.SlideContainer>
+          <S.CarouselWrapper1>
+            <S.SlideContainer>
+              <S.Slide>
+                <S.Img />
+                <S.SlideInTextDiv>
+                  <S.Artist></S.Artist>
+                  <S.ProductTitle></S.ProductTitle>
+                  <S.ReleaseDate></S.ReleaseDate>
+                  <S.Price></S.Price>
+                </S.SlideInTextDiv>
+              </S.Slide>
+              <S.Slide>
+                <S.Img />
+                <S.SlideInTextDiv>
+                  <S.Artist></S.Artist>
+                  <S.ProductTitle></S.ProductTitle>
+                  <S.ReleaseDate></S.ReleaseDate>
+                  <S.Price></S.Price>
+                </S.SlideInTextDiv>
+              </S.Slide>
+              <S.Slide>
+                <S.Img />
+                <S.SlideInTextDiv>
+                  <S.Artist></S.Artist>
+                  <S.ProductTitle></S.ProductTitle>
+                  <S.ReleaseDate></S.ReleaseDate>
+                  <S.Price></S.Price>
+                </S.SlideInTextDiv>
+              </S.Slide>
+              <S.Slide>
+                <S.Img />
+                <S.SlideInTextDiv>
+                  <S.Artist></S.Artist>
+                  <S.ProductTitle></S.ProductTitle>
+                  <S.ReleaseDate></S.ReleaseDate>
+                  <S.Price></S.Price>
+                </S.SlideInTextDiv>
+              </S.Slide>
+            </S.SlideContainer>
+          </S.CarouselWrapper1>
           <S.ButtonNext>
             <S.BtnImg src="/img/R.svg" alt="" />
           </S.ButtonNext>

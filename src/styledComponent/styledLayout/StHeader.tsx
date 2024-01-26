@@ -70,11 +70,9 @@ export const HeaderButton = styled.div`
     /* 480px 이하 화면 크기에 대한 스타일 */
     position: fixed;
     width: 100%;
-    height: 30px;
-
+    height: 50px;
     margin: 0 auto;
-    top: 70px;
-    right: -30px;
+    right: 0;
     bottom: 0;
     background-color: #ffffff;
   }

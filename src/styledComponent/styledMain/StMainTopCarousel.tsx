@@ -10,6 +10,8 @@ export const Div = styled.div`
   border-radius: 32.5rem;
   @media (max-width: 768px) {
     /* 768px 이하 화면 크기에 대한 스타일 */
+    width: 21.5rem;
+    height: 21.5rem;
   }
 
   @media (max-width: 480px) {
@@ -30,12 +32,14 @@ export const PrevButton = styled.button`
     height: 50px;
     @media (max-width: 768px) {
       /* 768px 이하 화면 크기에 대한 스타일 */
+      width: 45px;
+      height: 45px;
     }
 
     @media (max-width: 480px) {
       /* 480px 이하 화면 크기에 대한 스타일 */
-      width: 25px;
-      height: 25px;
+      width: 35px;
+      height: 35px;
     }
   }
 `;
@@ -52,6 +56,13 @@ export const NextButton = styled.button`
     height: 50px;
     @media (max-width: 768px) {
       /* 768px 이하 화면 크기에 대한 스타일 */
+      width: 45px;
+      height: 45px;
+    }
+    @media (max-width: 480px) {
+      /* 480px 이하 화면 크기에 대한 스타일 */
+      width: 35px;
+      height: 35px;
     }
   }
 `;

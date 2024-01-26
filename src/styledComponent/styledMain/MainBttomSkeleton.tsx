@@ -4,6 +4,14 @@ export const Div = styled.div`
   margin-top: 100px;
   display: flex;
   justify-content: center;
+  position: relative;
+  @media (max-width: 768px) {
+    /* 768px 이하 화면 크기에 대한 스타일 */
+  }
+
+  @media (max-width: 480px) {
+    /* 480px 이하 화면 크기에 대한 스타일 */
+  }
 `;
 
 export const CarouselContainer = styled.div`
@@ -20,22 +28,53 @@ export const CarouselWrapper = styled.div`
 `;
 
 export const Slide = styled.div`
+  flex: 0 0 auto;
   position: relative;
   width: 25%;
-  margin: 0 1rem;
+
   margin-top: 40px;
+  @media (max-width: 768px) {
+    /* 768px 이하 화면 크기에 대한 스타일 */
+    flex-grow: 1;
+    width: 25%;
+  }
+
+  @media (max-width: 480px) {
+    /* 480px 이하 화면 크기에 대한 스타일 */
+    flex-grow: 0;
+    width: 25%;
+  }
 `;
 
 export const SlideContainer = styled.div`
   display: flex;
-  /* overflow: hidden; */
-  flex-grow: 20;
   justify-content: center;
   align-items: center;
   flex-direction: row;
+  justify-content: flex-start;
   margin-bottom: 40px;
   width: 100%;
+  gap: 20px;
+
+  @media (max-width: 768px) {
+    /* 768px 이하 화면 크기에 대한 스타일 */
+    flex-grow: 0;
+    width: 90%;
+    gap: 20px;
+  }
+
+  @media (max-width: 480px) {
+    /* 480px 이하 화면 크기에 대한 스타일 */
+    flex-grow: 0;
+    width: 70%;
+    gap: 60px;
+  }
 `;
+
+export const CarouselWrapper1 = styled.div`
+  position: relative;
+`;
+
 export const Title = styled.h2`
   color: #333;
   font-size: 32px;
@@ -62,8 +101,19 @@ export const Img = styled.div`
   width: 270px;
   height: 270px;
   border-radius: 8px;
-  background: lightgray 50% / cover no-repeat;
+  background: lightgray 50%;
+  object-fit: cover;
   box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.08);
+  @media (max-width: 768px) {
+    /* 768px 이하 화면 크기에 대한 스타일 */
+    width: 168px;
+    height: 168px;
+  }
+  @media (max-width: 480px) {
+    /* 768px 이하 화면 크기에 대한 스타일 */
+    width: 120px;
+    height: 120px;
+  }
 `;
 
 export const SlideInTextDiv = styled.div`
