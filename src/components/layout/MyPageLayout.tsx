@@ -1,9 +1,11 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import * as S from 'styledComponent/styledMypage/StMypageLayout';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 const MyPageLayout = ({ children }: { children: React.ReactNode }) => {
+  const location = useLocation();
+
   const { userInfo } = useSelector(
     (state: { signUpSlice: any }) => state.signUpSlice,
   );
@@ -122,7 +124,10 @@ const MyPageLayout = ({ children }: { children: React.ReactNode }) => {
             <S.MenuBox>
               {/* <h3>쇼핑정보</h3> */}
               <li>
-                <Link to={'/orderlist'}>
+                <Link
+                  to={'/orderlist'}
+                  className={location.pathname === '/orderlist' ? 'active' : ''}
+                >
                   주문목록/배송조회
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -139,7 +144,10 @@ const MyPageLayout = ({ children }: { children: React.ReactNode }) => {
                 </Link>
               </li>
               <li>
-                <Link to={'/wishList'}>
+                <Link
+                  to={'/wishlist'}
+                  className={location.pathname === '/wishlist' ? 'active' : ''}
+                >
                   위시리스트
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -156,7 +164,10 @@ const MyPageLayout = ({ children }: { children: React.ReactNode }) => {
                 </Link>
               </li>
               <li>
-                <Link to={'/coupon'}>
+                <Link
+                  to={'/coupon'}
+                  className={location.pathname === '/coupon' ? 'active' : ''}
+                >
                   쿠폰
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -173,7 +184,10 @@ const MyPageLayout = ({ children }: { children: React.ReactNode }) => {
                 </Link>
               </li>
               <li>
-                <Link to={'/chatlist'}>
+                <Link
+                  to={'/chatlist'}
+                  className={location.pathname === '/chatlist' ? 'active' : ''}
+                >
                   1:1 문의
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -190,7 +204,12 @@ const MyPageLayout = ({ children }: { children: React.ReactNode }) => {
                 </Link>
               </li>
               <li>
-                <Link to={'/profilesettings'}>
+                <Link
+                  to={'/profilesettings'}
+                  className={
+                    location.pathname === '/profilesettings' ? 'active' : ''
+                  }
+                >
                   정보 수정
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -207,7 +226,10 @@ const MyPageLayout = ({ children }: { children: React.ReactNode }) => {
                 </Link>
               </li>
               <li>
-                <Link to={'/shipping'}>
+                <Link
+                  to={'/shipping'}
+                  className={location.pathname === '/shipping' ? 'active' : ''}
+                >
                   배송지 관리
                   <svg
                     xmlns="http://www.w3.org/2000/svg"

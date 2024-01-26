@@ -1,13 +1,14 @@
 import { UserInfo } from '@firebase/auth';
 import { InputLabel } from '@mui/material';
 import { auth } from '../../firebase/config';
-import { useAddressModal } from 'hooks/useAddressModal';
 import { usePasswordUpdate } from 'hooks/usePasswordUpdate';
 import React, { useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { useSelector } from 'react-redux';
 import * as S from 'styledComponent/styledMypage/StProfileSettings';
 import { useProfileUpdate } from 'hooks/useProfileUpdate';
+import { useAddressModal } from 'hooks/useAddressModal';
+import AddressModal from 'components/AddressModal';
 
 interface SignUpState {
   userInfo: UserInfo;
@@ -16,26 +17,23 @@ interface SignUpState {
   detailAddress: string;
 }
 
+interface ModalState {
+  visible: boolean;
+}
 const ProfileSettingsForm = () => {
-  // const [detailAddress, setDetailAddress] = useState<string | null>('');
-  // const handleDetailAddressChange = (detailAddress: string) => {
-  //   setDetailAddress(detailAddress);
-  // };
   let userData = useSelector(
     (state: { signUpSlice: SignUpState }) => state.signUpSlice,
   );
-  // const { userInfo, phoneNumber, address, detailAddress } = userData;
-  // console.log(
-  //   'userData -------------- displayName, phoneNumber, email',
-  //   userData,
-  // );
+  const modal = useSelector(
+    (state: { modalSlice: ModalState }) => state.modalSlice,
+  );
   // react-hook-form
   const {
     handleSubmit,
     control,
     reset,
     getValues,
-    formState: { errors, isValid },
+    formState: { isDirty },
   } = useForm({
     // 실시간 유효성 검사
     mode: 'onChange',
@@ -52,27 +50,27 @@ const ProfileSettingsForm = () => {
   const { passwordUpdate } = usePasswordUpdate();
   const { profileUpdate } = useProfileUpdate();
 
-  const [displayName, phoneNumber, address, detailAddress, email, password] =
-    getValues([
-      'displayName',
-      'phoneNumber',
-      'address',
-      'detailAddress',
-      'email',
-      'password',
-    ]);
+  const [displayName, phoneNumber, detailAddress, email, password] = getValues([
+    'displayName',
+    'phoneNumber',
+    'detailAddress',
+    'email',
+    'password',
+  ]);
+  const { address } = userData;
 
   const [isEditMode, setIsEditMode] = useState<boolean>(false);
 
   const { openAddressModalHandler } = useAddressModal();
+
   const submitHandler = async (e: any) => {
     e.preventDefault();
 
     const user = auth.currentUser;
     if (password) {
       passwordUpdate(user, password);
-      console.log(' 수정된 phoneNumber?', phoneNumber);
     }
+
     profileUpdate(
       displayName,
       phoneNumber,
@@ -81,6 +79,21 @@ const ProfileSettingsForm = () => {
       email,
       password,
     );
+  };
+
+  const cancelHandler = () => {
+    if (isDirty) {
+      const confirmCancel = window.confirm(
+        '저장되지 않은 수정이 있습니다. 취소하시겠습니까?',
+      );
+      if (confirmCancel) {
+        reset();
+        setIsEditMode(false);
+      }
+    } else {
+      reset();
+      setIsEditMode(false);
+    }
   };
   return (
     <S.ProfileSettingsForm onSubmit={submitHandler}>
@@ -150,12 +163,26 @@ const ProfileSettingsForm = () => {
 
       <S.AddressBoxWrapper>
         <InputLabel>기본 배송지</InputLabel>
-        <S.TextInputField className="address" value={address} disabled={true} />
+
+        <Controller
+          name="address"
+          control={control}
+          defaultValue={userData.address || ''}
+          render={() => (
+            <div>
+              <S.TextInputField
+                className="address"
+                value={userData.address}
+                disabled={true}
+              />
+            </div>
+          )}
+        />
 
         {isEditMode && (
           <S.DeliveryAddressButton
             type="button"
-            onClick={() => openAddressModalHandler(true)}
+            onClick={openAddressModalHandler(true)}
           >
             <svg
               width="18"
@@ -230,75 +257,81 @@ const ProfileSettingsForm = () => {
           </div>
         )}
       /> */}
-      <Controller
-        name="password"
-        control={control}
-        defaultValue={''}
-        rules={{
-          required: '숫자+영문자+특수문자 조합으로 8자리 이상 입력해주세요!',
-          minLength: { value: 8, message: '최소 8자 입력해주세요.' },
-          pattern: {
-            value: /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,25}$/,
-            message: '숫자+영문자+특수문자 조합으로 8자리 이상 입력해주세요!',
-          },
-        }}
-        render={({ field, fieldState }) => (
-          <div>
-            <InputLabel>새 비밀번호</InputLabel>
-            <S.TextInputField
-              disabled={!isEditMode}
-              type="password"
-              autoComplete="new-password"
-              value={field.value}
-              onChange={field.onChange}
-              error={fieldState.error !== undefined && fieldState.isDirty}
-              helperText={
-                fieldState.isDirty
-                  ? fieldState.error && fieldState.error.message
-                  : ''
-              }
-              InputLabelProps={{ shrink: false }}
-              InputProps={{
-                placeholder: '비밀번호를 입력해주세요!',
-              }}
-            />
-          </div>
-        )}
-      />
-      <Controller
-        name="passwordConfirmation"
-        control={control}
-        defaultValue={''}
-        rules={{
-          required: '비밀번호 확인이 일치하지 않습니다!',
-          validate: (value) =>
-            value === getValues('password') ||
-            '비밀번호 확인이 일치하지 않습니다!',
-        }}
-        render={({ field, fieldState }) => (
-          <div>
-            <InputLabel>새 비밀번호 확인</InputLabel>
-            <S.TextInputField
-              disabled={!isEditMode}
-              type="password"
-              autoComplete="new-password"
-              value={field.value}
-              onChange={field.onChange}
-              error={!!(fieldState.isDirty && fieldState.error)}
-              helperText={
-                fieldState.isDirty
-                  ? fieldState.error && fieldState.error.message
-                  : ''
-              }
-              InputLabelProps={{ shrink: false }}
-              InputProps={{
-                // maxLength: 12,
-                placeholder: '비밀번호 확인을 입력해주세요',
-              }}
-            />
-          </div>
-        )}
-      />
+      {isEditMode && (
+        <>
+          <Controller
+            name="password"
+            control={control}
+            defaultValue={''}
+            rules={{
+              required:
+                '숫자+영문자+특수문자 조합으로 8자리 이상 입력해주세요!',
+              minLength: { value: 8, message: '최소 8자 입력해주세요.' },
+              pattern: {
+                value: /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,25}$/,
+                message:
+                  '숫자+영문자+특수문자 조합으로 8자리 이상 입력해주세요!',
+              },
+            }}
+            render={({ field, fieldState }) => (
+              <div>
+                <InputLabel>새 비밀번호</InputLabel>
+                <S.TextInputField
+                  disabled={!isEditMode}
+                  type="password"
+                  autoComplete="new-password"
+                  value={field.value}
+                  onChange={field.onChange}
+                  error={fieldState.error !== undefined && fieldState.isDirty}
+                  helperText={
+                    fieldState.isDirty
+                      ? fieldState.error && fieldState.error.message
+                      : ''
+                  }
+                  InputLabelProps={{ shrink: false }}
+                  InputProps={{
+                    placeholder: '비밀번호를 입력해주세요!',
+                  }}
+                />
+              </div>
+            )}
+          />
+          <Controller
+            name="passwordConfirmation"
+            control={control}
+            defaultValue={''}
+            rules={{
+              required: '비밀번호 확인이 일치하지 않습니다!',
+              validate: (value) =>
+                value === getValues('password') ||
+                '비밀번호 확인이 일치하지 않습니다!',
+            }}
+            render={({ field, fieldState }) => (
+              <div>
+                <InputLabel>새 비밀번호 확인</InputLabel>
+                <S.TextInputField
+                  disabled={!isEditMode}
+                  type="password"
+                  autoComplete="new-password"
+                  value={field.value}
+                  onChange={field.onChange}
+                  error={!!(fieldState.isDirty && fieldState.error)}
+                  helperText={
+                    fieldState.isDirty
+                      ? fieldState.error && fieldState.error.message
+                      : ''
+                  }
+                  InputLabelProps={{ shrink: false }}
+                  InputProps={{
+                    // maxLength: 12,
+                    placeholder: '비밀번호 확인을 입력해주세요',
+                  }}
+                />
+              </div>
+            )}
+          />
+        </>
+      )}
       {/* <S.EditButton
         type="button"
         // type={isEditMode ? 'button' : 'submit'}
@@ -325,9 +358,12 @@ const ProfileSettingsForm = () => {
         </S.EditButton>
       )}
 
-      <S.CancelButton type="button" onClick={() => setIsEditMode(!isEditMode)}>
-        취소
-      </S.CancelButton>
+      {isEditMode && (
+        <S.CancelButton type="button" onClick={cancelHandler}>
+          취소
+        </S.CancelButton>
+      )}
+      {modal.visible && <AddressModal detailAddress={detailAddress} />}
     </S.ProfileSettingsForm>
   );
 };
