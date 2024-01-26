@@ -27,18 +27,28 @@ export const CartContainer = styled.div`
     border: 1px solid #d9d9d9;
     position: relative;
   }
+  @media screen and (max-width: 768px) {
+    width: 768px;
+  }
 `;
 
 export const Cart = styled.div`
   height: 900px;
   top: 112px;
   padding: 0 2.5rem 0 8.75rem;
+  @media screen and (max-width: 768px) {
+    padding: 0 2.5rem 0 2.5rem;
+  }
   display: flex;
   flex-direction: column;
   .allArea {
     display: flex;
     gap: 10px;
     margin: 0 auto;
+    @media screen and (max-width: 768px) {
+      flex-direction: column; /* Stack items vertically for smaller screens */
+      align-items: center; /* Center items vertically */
+    }
   }
 `;
 export const CartTitle = styled.div`
@@ -74,6 +84,10 @@ export const LeftArea = styled.div`
   border: 1px solid #efefef;
   background: #fff;
   padding: 20px;
+  @media screen and (max-width: 768px) {
+    width: 100%; /* Make it full-width for smaller screens */
+    margin-bottom: 20px; /* Add some space between LeftArea and RightArea */
+  }
 
   .artistName {
     width: 100%;
@@ -125,6 +139,10 @@ export const RightArea = styled.div`
   border-radius: 10px;
   background: #fff;
   padding: 20px;
+
+  @media screen and (max-width: 768px) {
+    width: 100%; /* Make it full-width for smaller screens */
+  }
 
   .paymentInfo {
     color: #333;
