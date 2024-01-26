@@ -16,9 +16,9 @@ const SideBar = () => {
   };
   const dispatch = useDispatch();
   const reSet = () => {
+    setSidebarVisible(!isSidebarVisible);
     dispatch(setFilterR(null));
     dispatch(setCurrentPage(1));
-    setSidebarVisible(false);
   };
 
   return (
