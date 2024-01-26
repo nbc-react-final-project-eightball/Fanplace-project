@@ -3,9 +3,8 @@ import React, { useEffect, useRef, useState } from 'react';
 
 const MainTopCarousel = () => {
   const [currentSlide, setCurrentSlide] = useState(1); // 현재 슬라이드의 인덱스
-
-  const [timeId, setTimeId] = useState<NodeJS.Timeout | null>(null);
   const slides = [
+    'img/MainTopCarouseImg/TopC7.jpg',
     'img/MainTopCarouseImg/TopC1.jpg',
     'img/MainTopCarouseImg/TopC2.jpg',
     'img/MainTopCarouseImg/TopC3.jpg',
@@ -34,27 +33,27 @@ const MainTopCarousel = () => {
         // 바로 첫 번째 슬라이드로 이동
         if (slideRef.current) {
           // 이동 애니메이션 제거
-          slideRef.current.style.transition = 'all 500ms ease-in-out';
+
           slideRef.current.style.transition = 'none';
           // 바로 첫 번째 슬라이드로 이동
-          setCurrentSlide(slides.length);
+          setCurrentSlide(1);
           // 다음 자동 스크롤을 위해 다시 애니메이션 적용
           const nextSlide = () => {
-            setCurrentSlide(0);
+            setCurrentSlide(1);
           };
           nextSlide();
           setTimeout(() => {
             if (slideRef.current) {
               slideRef.current.style.transition = 'all 500ms ease-in-out';
             }
-          }, 100);
+          }, 50);
         }
       } else {
         // 다음 슬라이드로 이동
         if (slideRef.current) {
           slideRef.current.style.transition = 'all 500ms ease-in-out';
         }
-        setCurrentSlide((prev) => prev + 2);
+        setCurrentSlide((prev) => prev + 1);
       }
     }, 3000);
     if (currentSlide === 0) {
@@ -82,7 +81,7 @@ const MainTopCarousel = () => {
       // 마지막 슬라이드에서 다음 버튼을 누르면 첫 번째 슬라이드로 돌아갑니다.
       if (slideRef.current) {
         slideRef.current.style.transition = 'none';
-        setCurrentSlide(0);
+        setCurrentSlide(1);
         setTimeout(() => {
           if (slideRef.current) {
             slideRef.current.style.transition = 'all 500ms ease-in-out';
@@ -130,8 +129,8 @@ const MainTopCarousel = () => {
       <S.PrevButton onClick={handlePrev}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          width="50"
-          height="50"
+          // width="50"
+          // height="50"
           viewBox="0 0 50 50"
           fill="none"
         >

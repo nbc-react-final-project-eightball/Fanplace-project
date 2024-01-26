@@ -54,6 +54,30 @@ export const HeaderButton = styled.div`
     background: #fff;
     border-radius: 4rem;
   }
+  @media (max-width: 768px) {
+    /* 768px 이하 화면 크기에 대한 스타일 */
+    position: fixed;
+    width: 100%;
+    height: 50px;
+    margin: 0 auto;
+
+    right: 0;
+    bottom: 0;
+    background-color: #ffffff;
+  }
+
+  @media (max-width: 480px) {
+    /* 480px 이하 화면 크기에 대한 스타일 */
+    position: fixed;
+    width: 100%;
+    height: 30px;
+
+    margin: 0 auto;
+    top: 70px;
+    right: -30px;
+    bottom: 0;
+    background-color: #ffffff;
+  }
 `;
 
 export const LoginButton = styled(Link)`

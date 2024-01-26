@@ -22,7 +22,9 @@ import { RootState } from 'redux/configStore';
 
 const pageSize = 12;
 const GoodsList = () => {
-  const reSetCategory = useSelector((state: RootState) => state.goods.filter);
+  const reSetCategory = useSelector(
+    (state: RootState) => state.goods.filter as string,
+  );
   const [goodsList, setGoodsList] = useState<DocumentData>([]);
   const [filter, setFilter] = React.useState<null | String>(reSetCategory);
   const [showArtistFilter, setShowArtistFilter] = React.useState(false);
@@ -81,25 +83,28 @@ const GoodsList = () => {
     (pageNumber - 1) * pageSize,
     pageNumber * pageSize,
   );
+
+  // sideCategory = 왼쪽 사이드바 카테고리
+  // category = 사이트바 카테고리 필터후 나오는 카테고리
   const ProducList = [
     {
       productId: 1,
-      sideCategory: 'CD',
-      category: 'CD',
+      sideCategory: 'New',
+      category: 'CD&DVD',
       info: '[2/13출시]',
       img: '/img/ProductCardImg/YO1.jpg',
       artist: 'YOASOBI',
       title: 'YOASOBI - 07 YOASOBI THE BOOK 3 / ASIA TOUR 2023-2024 OFFICIAL',
       price: 46000,
       ProductName: '07 YOASOBI THE BOOK 3',
-      teg: '/img/new.svg',
+      teg: 'NewAlbum',
       isSoldOut: false,
       remainingQuantity: 100,
       contentImg1: '/img/ProductDetail/YO1_1.jpg',
     },
     {
       productId: 2,
-      sideCategory: 'CD',
+      sideCategory: 'New',
       category: 'CD',
       info: '[7/13출시]',
       img: '/img/ProductCardImg/YO2.jpg',
@@ -107,29 +112,28 @@ const GoodsList = () => {
       title: 'YOASOBI - 13 アイドル / ASIA TOUR 2023-2024 OFFICIAL MD',
       ProductName: '13 アイドル ',
       price: 30000,
-      teg: '/img/new.svg',
+      teg: 'NewAlbum',
       isSoldOut: false,
       remainingQuantity: 100,
       contentImg1: '/img/ProductDetail/YO2_1.jpg',
     },
     {
       productId: 3,
-      sideCategory: 'Apparel',
+      sideCategory: 'New',
       category: '티셔츠',
       info: '[CONNECTION]',
       img: '/img/ProductCardImg/Boa1.png',
       artist: '보아',
       title: 'BoA',
-      ProductName: '보아티셔츠',
+      ProductName: '보아 티셔츠',
       price: 41000,
-      teg: '/img/new.svg',
       isSoldOut: false,
       remainingQuantity: 100,
       contentImg1: '/img/ProductDetail/Boa1_1.png',
     },
     {
       productId: 4,
-      sideCategory: 'CD',
+      sideCategory: 'CD&DVD',
       category: 'DVD',
       info: '[예약]',
       artist: '있지',
@@ -137,7 +141,7 @@ const GoodsList = () => {
       title: '있지 - BORN TO BE (SPECIAL EDITION) (Mr. Vampire Ver.)',
       ProductName: 'BORN TO BE (SPECIAL EDITION)',
       price: 42000,
-      teg: '/img/new.svg',
+      teg: 'Top10',
       isSoldOut: false,
       remainingQuantity: 100,
       contentImg1: '/img/ProductDetail/있지1_1.jpg',
@@ -145,7 +149,7 @@ const GoodsList = () => {
     {
       productId: 5,
       category: '잠옷',
-      sideCategory: 'Apparel',
+      sideCategory: 'New',
       artist: '에스파',
       img: '/img/ProductCardImg/ESPA.png',
       title: 'PAJAMAS [NINGNING Ver.]',
@@ -157,7 +161,7 @@ const GoodsList = () => {
     },
     {
       productId: 6,
-      sideCategory: 'CD',
+      sideCategory: 'New',
       category: 'CD',
       info: '[2/13출시]',
       artist: '칸나',
@@ -165,14 +169,14 @@ const GoodsList = () => {
       title: '최종화 (The Last Flower)',
       ProductName: '최종화 ',
       price: 55000,
-      teg: '/img/soldouticon.png',
+      teg: 'NewAlbum',
       isSoldOut: false,
-      remainingQuantity: 100,
+      remainingQuantity: 20,
       contentImg1: '/img/ProductDetail/칸나1_1.jpg',
     },
     {
       productId: 7,
-      sideCategory: 'CD',
+      sideCategory: 'CD&DVD',
       category: 'CD',
       info: '[2/13출시]',
       artist: '칸나',
@@ -180,28 +184,29 @@ const GoodsList = () => {
       title: '아이리 칸나 (Airi Kanna) - ADDICT!ON [화이트 컬러 LP]!ON',
       ProductName: 'ADDICT!ON [화이트 컬러 LP]!ON',
       price: 44000,
-      teg: '/img/soldouticon.png',
+      teg: 'NewAlbum',
       isSoldOut: false,
-      remainingQuantity: 100,
+      remainingQuantity: 20,
       contentImg1: '/img/ProductDetail/칸나1_1.jpg',
     },
     {
       productId: 8,
       sideCategory: 'Sundries',
-      category: '텀블러/컵',
+      category: '키링',
       artist: 'BTS',
       img: '/img/ProductCardImg/BTS1.jpg',
       title: 'BTS WORLD 방탄 굿즈 스트랩 키링',
       ProductName: '[BTS월드 공식] BTS WORLD 방탄 굿즈 스트랩 키링',
       price: 8000,
+      teg: 'Top10',
       isSoldOut: false,
       remainingQuantity: 100,
       contentImg1: '/img/ProductDetail/BTS1_1.jpg',
     },
     {
       productId: 9,
-      category: '티셔츠',
-      sideCategory: 'Apparel',
+      category: 'New',
+      sideCategory: '티셔츠',
       artist: '아이즈원',
       img: '/img/ProductCardImg/아이즈원1.jpg',
       title: 'IZONE 아이즈원 COLORIZ 프린팅 후드티',
@@ -214,8 +219,8 @@ const GoodsList = () => {
     },
     {
       productId: 10,
-      category: '텀블러',
-      sideCategory: 'Sundries',
+      category: '텀블러/컵',
+      sideCategory: 'New',
       artist: '트와이스',
       img: '/img/ProductCardImg/트와이스1.jpg',
       title: '트와이스 포토 텀블러 트와 굿즈 ( TWICE GOODS TUMBLER)',
@@ -234,8 +239,8 @@ const GoodsList = () => {
       img: '/img/ProductCardImg/트와이스2.jpg',
       title: '트와이스 -  목걸이',
       ProductName: '트와이스 -  목걸이',
+      teg: 'Top10',
       price: 25000,
-      teg: '/img/new.svg',
       isSoldOut: false,
       remainingQuantity: 100,
       contentImg1: '/img/ProductDetail/트와이스2_1.jpg',
@@ -257,7 +262,7 @@ const GoodsList = () => {
     },
     {
       productId: 13,
-      category: '포토카드',
+      category: '포토 카드',
       sideCategory: 'Photo',
       artist: '트와이스',
       img: '/img/ProductCardImg/트와이스4.jpg',
@@ -271,7 +276,7 @@ const GoodsList = () => {
     },
     {
       productId: 14,
-      category: 'CD',
+      category: 'CD&DVD',
       sideCategory: 'CD',
       info: '',
       artist: '트와이스',
@@ -285,7 +290,7 @@ const GoodsList = () => {
     },
     {
       productId: 15,
-      category: 'CD',
+      category: 'CD&DVD',
       sideCategory: 'CD',
       artist: '트와이스',
       img: '/img/ProductCardImg/트와이스6.jpg',
@@ -299,7 +304,7 @@ const GoodsList = () => {
     },
     {
       productId: 16,
-      category: 'CD',
+      category: 'CD&DVD',
       sideCategory: 'CD',
       artist: '스트레이키즈',
       img: '/img/ProductCardImg/스트레이키즈1.jpg',
@@ -312,7 +317,7 @@ const GoodsList = () => {
     },
     {
       productId: 17,
-      category: 'CD',
+      category: 'CD&DVD',
       sideCategory: 'CD',
       info: '',
       artist: '스트레이키즈',
@@ -326,7 +331,7 @@ const GoodsList = () => {
     },
     {
       productId: 18,
-      category: '포토카드',
+      category: '포토 카드',
       sideCategory: 'Photo',
       info: '',
       artist: '블랙핑크',
@@ -334,13 +339,14 @@ const GoodsList = () => {
       title: '블랙핑크 (BLACKPINK) - 더 게임 포토카드 (세트)',
       ProductName: '블랙핑크 - 더 게임 포토카드 컬렉션',
       price: 45000,
+      teg: 'BestSeller',
       isSoldOut: false,
       remainingQuantity: 100,
       contentImg1: '/img/ProductDetail/블랙핑크1_1.jpg',
     },
     {
       productId: 19,
-      category: 'CD',
+      category: 'CD&DVD',
       sideCategory: 'DVD',
       info: '',
       artist: '블랙핑크',
@@ -348,22 +354,21 @@ const GoodsList = () => {
       title: '블랙핑크 - BORN PINK / 2집 정규앨범 (KiT ALBUM)',
       ProductName: '블랙핑크 - BORN PINK ',
       price: 34900,
-
+      teg: 'BestSeller',
       isSoldOut: false,
       remainingQuantity: 100,
       contentImg1: '/img/ProductDetail/블랙핑크2_1.jpg',
     },
     {
       productId: 20,
-      category: '포토카드',
+      category: '포토 카드',
       sideCategory: 'Photo',
       info: '[2/21 출시]',
       artist: '샤이니',
-      img: 'img/ProductCardImg/샤이니1.jpg',
+      img: '/img/ProductCardImg/샤이니1.jpg',
       title: '샤이니 SHINEE 굿즈 스페셜 포토카드 60장 세트 굿즈',
       ProductName: '샤이니 SHINEE 굿즈 스페셜 포토카드  세트 굿즈',
       price: 9000,
-      teg: '/img/new.svg',
       isSoldOut: false,
       remainingQuantity: 100,
       contentImg1: '/img/ProductDetail/샤이니1_1.jpg',
@@ -371,7 +376,7 @@ const GoodsList = () => {
     },
     {
       productId: 21,
-      sideCategory: 'CD',
+      sideCategory: 'CD&DVD',
       category: 'CD',
       info: '',
       artist: '샤이니',
@@ -379,7 +384,6 @@ const GoodsList = () => {
       title: '샤이니 - DON’T CALL ME / 7집 정규앨범 (JEWEL CASE VER.)',
       ProductName: '샤이니 - DON’T CALL ME ',
       price: 13000,
-
       isSoldOut: false,
       remainingQuantity: 100,
       contentImg1: '/img/ProductDetail/샤이니2_1.jpg',
@@ -402,7 +406,7 @@ const GoodsList = () => {
     },
     {
       productId: 23,
-      category: '포토카드',
+      category: '포토 카드',
       sideCategory: 'Photo',
       info: ' [6/1 출시]',
       artist: '샤이니',
@@ -410,14 +414,14 @@ const GoodsList = () => {
       title: '샤이니(SHINee) - [2020 시즌그리팅(SEASONS GREETINGS 2020)',
       ProductName: '[2020 시즌그리팅(SEASONS GREETINGS 2020)',
       price: 40000,
-      teg: '/img/new.svg',
+      teg: 'BestSeller',
       isSoldOut: false,
       remainingQuantity: 100,
       contentImg1: '/img/ProductDetail/샤이니4_1.jpg',
     },
     {
       productId: 24,
-      category: '포토카드',
+      category: '포토 카드',
       sideCategory: 'Photo',
       info: ' [6/12 출시]',
       artist: '샤이니',
@@ -426,7 +430,7 @@ const GoodsList = () => {
         '[특전증정] [SHINee] 2024 SEASONS GREETINGS 미공개 폴라로이드 포토카드 3종 세트​',
       ProductName: '미공개 폴라로이드 포토카드 3종 세트',
       price: 42000,
-      teg: '/img/new.svg',
+      teg: 'BestSeller',
       isSoldOut: false,
       remainingQuantity: 100,
       contentImg1: '/img/ProductDetail/샤이니5_1.jpg',
@@ -434,14 +438,14 @@ const GoodsList = () => {
     {
       productId: 25,
       category: 'CD',
-      sideCategory: 'CD',
+      sideCategory: 'CD&DVD',
       info: ' [6/5 출시]',
       artist: '샤이니',
       img: '/img/ProductCardImg/샤이니6.jpg',
       title: '온유 (ONEW) - 미니앨범2집_[DICE] (Photo Book Ver.)​',
       ProductName: '온유 (ONEW) - 미니앨범2집',
       price: 35000,
-      teg: '/img/new.svg',
+      teg: 'BestSeller',
       isSoldOut: false,
       remainingQuantity: 100,
       contentImg1: '/img/ProductDetail/샤이니6_1.jpg',
@@ -449,14 +453,14 @@ const GoodsList = () => {
     {
       productId: 26,
       category: 'CD',
-      sideCategory: 'CD',
+      sideCategory: 'CD&DVD',
       info: '',
       artist: '샤이니',
       img: '/img/ProductCardImg/샤이니7.jpg',
       title: '샤이니(SHINee) - 정규 5집 [1 of 1] (카세트테이프 한정반)',
       ProductName: '샤이니(SHINee) - 정규 5집 ',
       price: 37000,
-
+      teg: 'BestSeller',
       isSoldOut: false,
       remainingQuantity: 100,
       contentImg1: '/img/ProductDetail/샤이니7_1.jpg',
@@ -472,6 +476,7 @@ const GoodsList = () => {
         '11 ID 포토 키링 (RIIZE Ver.) / 2024 SEASON S GREETINGS OFFICIAL MD​',
       ProductName: '11 ID 포토 키링 (RIIZE Ver.) ',
       price: 9000,
+      teg: 'BestSeller',
       isSoldOut: false,
       remainingQuantity: 100,
       contentImg1: '/img/ProductDetail/라이즈1_1.jpg',
@@ -487,7 +492,7 @@ const GoodsList = () => {
         '[RIIZE Get A Guitar] ACRYLIC KEY RING + PHOTO CARD SET [앤톤 ver.]​',
       ProductName: 'ACRYLIC KEY RING + PHOTO CARD SET [앤톤 ver.] ',
       price: 12000,
-      teg: '/img/new.svg',
+
       isSoldOut: false,
       remainingQuantity: 100,
       contentImg1: '/img/ProductDetail/라이즈2_1.jpg',
@@ -495,24 +500,279 @@ const GoodsList = () => {
     {
       productId: 29,
       category: 'CD',
-      sideCategory: 'CD',
+      sideCategory: 'CD&DVD',
       info: '',
       artist: '라이즈',
       img: '/img/ProductCardImg/라이즈3.jpg',
       title: 'RIIZE (라이즈) - 싱글앨범 1집 : Get A Guitar​',
       ProductName: 'Get A Guitar',
       price: 24900,
-      teg: '/img/new.svg',
       isSoldOut: false,
       remainingQuantity: 100,
       contentImg1: '/img/ProductDetail/라이즈3_1.jpg',
       contentImg2: '/img/ProductDetail/라이즈3_2.jpg',
     },
+    {
+      productId: 30,
+      category: 'CD',
+      sideCategory: 'CD&DVD',
+      info: '',
+      artist: '엑소',
+      img: '/img/ProductCardImg/엑소1.jpg',
+      title: '엑소(EXO) - 정규7집 [EXIST] (Photo Book Ver.) (RANDOM)​',
+      ProductName: '엑소(EXO) - 정규7집 [EXIST]',
+      price: 17800,
+      isSoldOut: false,
+      remainingQuantity: 100,
+      contentImg1: '/img/ProductDetail/엑소1_1.jpg',
+    },
+    {
+      productId: 31,
+      category: 'CD',
+      sideCategory: 'New',
+      info: '',
+      artist: '레드벨벳',
+      img: '/img/ProductCardImg/레드벨벳1.jpg',
+      title:
+        '레드벨벳 (Red Velvet) - 정규3집 Chill Kill (Photo Book Ver.) 2종세트​',
+      ProductName: '레드벨벳 (Red Velvet) - 정규3집 Chill Kill',
+      price: 30000,
+      teg: 'NewAlbum',
+      isSoldOut: false,
+      remainingQuantity: 100,
+      contentImg1: '/img/ProductDetail/레드벨벳1_1.jpg',
+    },
+    {
+      productId: 32,
+      category: '포토 카드',
+      sideCategory: 'Photo',
+      info: '',
+      artist: 'BTS',
+      img: '/img/ProductCardImg/BTS2.jpg',
+      title:
+        '(포카+포토액자only) 지민 BTS 방탄소년단 FACE 페이스오프 Like Crazy 특전 포토카드​',
+      ProductName: '지민 BTS 방탄소년단 FACE 페이스오프 ',
+      price: 6500,
+      teg: 'Top10',
+      isSoldOut: false,
+      remainingQuantity: 100,
+      contentImg1: '/img/ProductDetail/BTS2_1.jpg',
+    },
+    {
+      productId: 33,
+      category: '포토 카드',
+      sideCategory: 'Photo',
+      info: '',
+      artist: 'BTS',
+      img: '/img/ProductCardImg/BTS3.jpg',
+      title: '방탄소년단(BTS) - Proof Compact Edition 랜덤발송',
+      ProductName: '지민 BTS 방탄소년단 FACE 페이스오프 ',
+      price: 25000,
+      teg: 'Top10',
+      isSoldOut: false,
+      remainingQuantity: 100,
+      contentImg1: '/img/ProductDetail/BTS3_1.jpg',
+    },
+    {
+      productId: 34,
+      category: '포토 카드',
+      sideCategory: 'Photo',
+      info: '',
+      artist: '뉴진스',
+      img: '/img/ProductCardImg/뉴진스1.jpg',
+      title: '뉴진스 - OMG Weverse Albums ver',
+      ProductName: '뉴진스 - OMG Weverse Albums ver',
+      price: 9300,
+      teg: 'Top10',
+      isSoldOut: false,
+      remainingQuantity: 100,
+      contentImg1: '/img/ProductDetail/뉴진스1_1.jpg',
+    },
+    {
+      productId: 35,
+      sideCategory: 'CD&DVD',
+      category: 'CD',
+      info: '',
+      artist: '뉴진스',
+      img: '/img/ProductCardImg/뉴진스2.jpg',
+      title:
+        '뉴진스 2집 EP (NewJeans) - 2nd EP 겟업[Get Up] 버니비치백 (Bunny Beach Bag ver.',
+      ProductName: '뉴진스 2집 EP (NewJeans)',
+      price: 55000,
+      isSoldOut: false,
+      teg: 'Top10',
+      remainingQuantity: 100,
+      contentImg1: '/img/ProductDetail/뉴진스2_1.jpg',
+      contentImg2: '/img/ProductDetail/뉴진스2_2.jpg',
+    },
+    {
+      productId: 36,
+      sideCategory: 'Sundries',
+      category: '응원봉',
+      info: '',
+      artist: '스트레이키즈',
+      img: '/img/ProductCardImg/스트레이키즈3.jpg',
+      title:
+        '스트레이키즈(Stray Kids) OFFICIAL MD - 응원봉 OFFICIAL LIGHT STICK ver.2',
+      ProductName: '스트레이키즈 OFFICIAL MD - 응원봉',
+      price: 35000,
+      teg: 'Top10',
+      isSoldOut: false,
+      remainingQuantity: 100,
+      contentImg1: '/img/ProductDetail/스트레이키즈3_1.jpg',
+    },
+    {
+      productId: 37,
+      sideCategory: '포토 카드',
+      category: 'Photo',
+      info: '',
+      artist: '르세라핌',
+      img: '/img/ProductCardImg/르세라핌1.jpg',
+      title:
+        '[특전증정] 르세라핌(LE SSERAFIM) - [LE SSERAFIMs DAY OFF IN JEJU PHOTOBOOK] ** 카드 리폼 스티커 1종 증정',
+      ProductName:
+        '르세라핌(LE SSERAFIM) - [LE SSERAFIMs DAY OFF IN JEJU PHOTOBOOK]',
+      price: 9000,
+      teg: 'Top10',
+      isSoldOut: false,
+      remainingQuantity: 100,
+      contentImg1: '/img/ProductDetail/르세라핌1_1.jpg',
+    },
+    {
+      productId: 38,
+      sideCategory: 'DVD',
+      category: 'CD&DVD',
+      info: '',
+      artist: '세븐틴',
+      img: '/img/ProductCardImg/세븐틴1.jpg',
+      title:
+        '세븐틴 (SEVENTEEN) - [2018 SEVENTEEN CONCERT IDEAL CUT IN SEOUL DVD] (3 DISC)',
+      ProductName:
+        '세븐틴 (SEVENTEEN) - [2018 SEVENTEEN CONCERT IDEAL CUT IN SEOUL DVD] (3 DISC)',
+      price: 45000,
+      isSoldOut: false,
+      remainingQuantity: 100,
+      contentImg1: '/img/ProductDetail/세븐틴1_1.jpg',
+    },
+    {
+      productId: 39,
+      sideCategory: 'DVD',
+      category: 'CD&DVD',
+      info: '',
+      artist: '세븐틴',
+      img: '/img/ProductCardImg/세븐틴2.jpg',
+      title:
+        '세븐틴(SEVENTEEN) - 2022 SVT 6TH FAN MEETING [SEVENTEEN in CARAT LAND] (MEMORY BOOK+ DVD)',
+      ProductName:
+        '세븐틴(SEVENTEEN) - 2022 SVT 6TH FAN MEETING [SEVENTEEN in CARAT LAND] (MEMORY BOOK+ DVD)',
+      price: 45000,
+      isSoldOut: false,
+      remainingQuantity: 100,
+      contentImg1: '/img/ProductDetail/세븐틴2_1.jpg',
+    },
+    {
+      productId: 40,
+      sideCategory: 'New',
+      category: 'CD&DVD',
+      info: '',
+      artist: '더보이즈',
+      img: '/img/ProductCardImg/더보이즈1.jpg',
+      title: '더보이즈(THE BOYZ) - 2024 SEASON’S GREETINGS [THE BOYZ POTTERY]',
+      ProductName:
+        '더보이즈(THE BOYZ) - 2024 SEASON’S GREETINGS [THE BOYZ POTTERY]',
+      teg: 'NewAlbum',
+      price: 45000,
+      isSoldOut: false,
+      remainingQuantity: 100,
+      contentImg1: '/img/ProductDetail/더보이즈1_1.jpg',
+    },
+    {
+      productId: 41,
+      sideCategory: 'New',
+      category: '포토 카드',
+      info: '',
+      artist: '세븐틴',
+      img: '/img/ProductCardImg/세븐틴3.jpg',
+      title:
+        'SEVENTEEN - SEVENTEEN 2024 SEASON’S GREETINGS + 2024 WALL CALENDAR (SET)',
+      ProductName:
+        'SEVENTEEN - SEVENTEEN 2024 SEASON’S GREETINGS + 2024 WALL CALENDAR (SET)',
+      price: 67000,
+      isSoldOut: false,
+      remainingQuantity: 100,
+      contentImg1: '/img/ProductDetail/세븐틴3_1.jpg',
+    },
+    {
+      productId: 42,
+      sideCategory: 'New',
+      category: 'CD',
+      info: '',
+      artist: '스테이씨',
+      img: '/img/ProductCardImg/스테이씨1.jpg',
+      title:
+        '스테이씨(STAYC) - The 3rd Mini Album [TEENFRESH] (6종 중 랜덤 1종) (Digipak Ver.)',
+      ProductName:
+        '스테이씨(STAYC) - The 3rd Mini Album [TEENFRESH] (6종 중 랜덤 1종) (Digipak Ver.)',
+      teg: 'NewAlbum',
+      price: 67000,
+      isSoldOut: false,
+      remainingQuantity: 100,
+      contentImg1: '/img/ProductDetail/스테이씨1_1.jpg',
+    },
+    {
+      productId: 43,
+      sideCategory: 'Photo',
+      category: '포토 카드 홀더',
+      info: '',
+      artist: '아이브',
+      img: '/img/ProductCardImg/아이브1.jpg',
+      title: 'IVE(아이브) - THE 1st EP [I VE MINE] (PLVE ver.)',
+      ProductName: 'IVE(아이브) - THE 1st EP [I VE MINE] (PLVE ver.)',
+      price: 6000,
+      isSoldOut: false,
+      remainingQuantity: 100,
+      contentImg1: '/img/ProductDetail/아이브1_1.jpg',
+    },
+    {
+      productId: 44,
+      sideCategory: 'CD&DVD',
+      category: 'DVD',
+      info: '',
+      artist: '몬스타엑스',
+      img: '/img/ProductCardImg/몬스타엑스1.jpg',
+      title:
+        '몬스타엑스 (MONSTA X) - 2023 MONSTA X 7TH OFFICIAL FANCLUB MONBEBE FAN-CONCERT Blu-ray',
+      ProductName:
+        '몬스타엑스 (MONSTA X) - 2023 MONSTA X 7TH OFFICIAL FANCLUB MONBEBE FAN-CONCERT Blu-ray',
+      price: 45000,
+      teg: 'Top10',
+      isSoldOut: false,
+      remainingQuantity: 100,
+      contentImg1: '/img/ProductDetail/몬스타엑스1_1.jpg',
+    },
+    {
+      productId: 45,
+      sideCategory: 'New',
+      category: 'CD',
+      info: '',
+      artist: '(여자)아이들',
+      img: '/img/ProductCardImg/여자아이들1.jpg',
+      title:
+        '(여자)아이들((G)I-DLE) - 스페셜 앨범 [HEAT] (DIGIPAK - Member Ver.) (5종 중 1종 랜덤)',
+      ProductName:
+        '(여자)아이들((G)I-DLE) - 스페셜 앨범 [HEAT] (DIGIPAK - Member Ver.) (5종 중 1종 랜덤)',
+      teg: 'NewAlbum',
+      price: 14000,
+
+      isSoldOut: false,
+      remainingQuantity: 100,
+      contentImg1: '/img/ProductDetail/여자아이들1_1.jpg',
+    },
   ];
 
   const categories = [
     {
-      name: 'CD',
+      name: 'CD&DVD',
       Category: ['CD', 'DVD'],
     },
     {
@@ -521,22 +781,19 @@ const GoodsList = () => {
     },
     {
       name: 'Sundries',
-      Category: [
-        '악세사리',
-        '응원봉',
-        '키링',
-        '텀블러/컵',
-        '핸드폰케이스',
-        '그립톡',
-      ],
+      Category: ['악세사리', '키링', '텀블러/컵', '핸드폰케이스', '그립톡'],
     },
     {
       name: 'Apparel',
       Category: ['모자', '후드티', '잠옷', '티셔츠'],
     },
     {
+      name: 'Pompoms',
+      Category: ['응원봉'],
+    },
+    {
       name: 'New',
-      Category: ['New'],
+      Category: ['CD', 'DVD', '티셔츠', '텀블러/컵', '잠옷'],
     },
   ];
   const artists = [
@@ -558,7 +815,6 @@ const GoodsList = () => {
     '르세라핌',
     '투바투',
     '세븐틴',
-    '방탄소년단',
     '더보이즈',
     '스테이씨',
     '제로베이스원',
@@ -653,7 +909,7 @@ const GoodsList = () => {
                 <>
                   <S.ArtistFilterContainer>
                     {artists.map((artist) => (
-                      <S.ArtistFilterArtist>
+                      <S.ArtistFilterArtist key={artist}>
                         <S.ArtistFilterArtistInput
                           type="checkbox"
                           checked={selectedArtists.includes(artist)}
@@ -676,19 +932,18 @@ const GoodsList = () => {
           </S.ArtistFilter>
         </S.GoodsListSection1>
         <div style={{ flexGrow: '1' }}>
-          {/* <button
+          <button
             onClick={() => {
               saveProduct(ProducList);
             }}
           >
             {' '}
             상품추가 테스트용
-          </button> */}
+          </button>
 
           <S.GoodsListSection2>
             <S.GoodsListSection2Wrapper>
               <S.ProductsTab
-                key="all"
                 onClick={() => {
                   setFilter(null);
                 }}
@@ -721,6 +976,7 @@ const GoodsList = () => {
                     : lastFilteredProduct
                   )?.map((product: typeProduct) => (
                     <S.ProductCard
+                      key={product.productId}
                       onClick={() => {
                         dispatch(setSelectedProduct(product));
                         navigate(`/detail/${product.productId}`);
@@ -735,9 +991,7 @@ const GoodsList = () => {
                             <S.ProductCardInfoArtist>
                               {product.artist}
                             </S.ProductCardInfoArtist>
-                            {/* <S.ProductCardInfo>
-                              {product.info}
-                            </S.ProductCardInfo> */}
+
                             <S.ProductCardTitle>
                               {product.title}
                             </S.ProductCardTitle>
@@ -746,14 +1000,6 @@ const GoodsList = () => {
                             <S.ProductCardPrice>
                               {product.price}원
                             </S.ProductCardPrice>
-                            {/* {product.teg ? (
-                              <S.ProductCardTeg
-                                src={product.teg}
-                                alt="이미지태그"
-                              />
-                            ) : (
-                              ''
-                            )} */}
                           </S.GoodsListCardSection1_2>
                         </S.GoodsListCardSection1>
                       </div>
