@@ -27,6 +27,10 @@ export const Img = styled.img`
   background: lightgray 50%;
   object-fit: cover;
   box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.08);
+  @media (max-width: 768px) {
+    /* 768px 이하 화면 크기에 대한 스타일 */
+    height: 168px;
+  }
 `;
 export const Artist = styled.p`
   color: #999;
