@@ -53,7 +53,7 @@ const MyPageLayout = ({ children }: { children: React.ReactNode }) => {
             <h4>
               8<span>건</span>
             </h4>
-            <span>장바구니에 추가해보세요!</span>
+            <p>장바구니에 추가해보세요!</p>
             <S.MoreLink to={'/profilesettings'}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -74,9 +74,9 @@ const MyPageLayout = ({ children }: { children: React.ReactNode }) => {
             <h4>
               14<span>장</span>
             </h4>
-            <span>
+            <p>
               소멸예정 쿠폰 <span>0장</span>
-            </span>
+            </p>
             <S.MoreLink to={'/profilesettings'}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -97,9 +97,9 @@ const MyPageLayout = ({ children }: { children: React.ReactNode }) => {
             <h4>
               3<span>건</span>
             </h4>
-            <span>
+            <p>
               답변완료 <span>3건</span>
-            </span>
+            </p>
             <S.MoreLink to={'/profilesettings'}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -128,7 +128,7 @@ const MyPageLayout = ({ children }: { children: React.ReactNode }) => {
                   to={'/orderlist'}
                   className={location.pathname === '/orderlist' ? 'active' : ''}
                 >
-                  주문목록/배송조회
+                  주문목록/<S.MobileBr></S.MobileBr>배송조회
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="24"
