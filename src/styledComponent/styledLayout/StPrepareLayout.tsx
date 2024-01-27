@@ -8,7 +8,7 @@ export const PrepareWrapper = styled.div`
   justify-content: center;
   gap: 20px;
   width: 100%;
-  min-height: 80vh;
+  min-height: 60vh;
   h2 {
     margin-top: 1.25rem;
     font-size: 1.5rem;
@@ -34,7 +34,7 @@ export const NotFoundWrapper = styled.div`
   justify-content: center;
   gap: 20px;
   width: 100%;
-  min-height: 80vh;
+  min-height: 60vh;
   padding: 0 2.5rem 0 8.75rem;
   h2 {
     margin-top: 1.25rem;

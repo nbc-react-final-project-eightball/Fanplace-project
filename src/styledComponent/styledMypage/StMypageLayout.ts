@@ -12,6 +12,14 @@ export const InfoBoxBackground = styled.div`
   height: 15rem;
   padding: 0 2.5rem 0 8.75rem;
   background: #f9f9f9;
+  @media (max-width: 1024px) {
+    height: auto;
+    padding: 2.5rem 2.5rem 2.5rem 8.75rem;
+  }
+  @media (max-width: 768px) {
+    height: auto;
+    padding: 2.5rem 1.5rem 2.5rem 1.5rem;
+  }
 `;
 export const MyInfoBoxWrapper = styled.div`
   display: flex;
@@ -25,7 +33,7 @@ export const MyInfoBoxWrapper = styled.div`
     background: #fff;
     border: 1px solid #efefef;
     border-radius: 0.5rem;
-    padding: 2rem;
+    padding: 2rem 1rem 2rem 2rem;
     box-sizing: border-box;
   }
   & > a:first-child {
@@ -49,9 +57,58 @@ export const MyInfoBoxWrapper = styled.div`
     color: #8f86ff;
     font-size: 1.25rem;
   }
-  & > a span {
+  & > a p {
     color: #999;
     font-size: 0.875rem;
+  }
+  @media (max-width: 1024px) {
+    flex-wrap: wrap;
+    > a {
+      width: calc(33.3333% - 6.6666px);
+      padding: 1.75rem 1rem 1.75rem 1.75rem;
+    }
+    > a:last-child {
+      display: none;
+    }
+  }
+
+  @media (max-width: 640px) {
+    > a {
+      width: calc(50% - 5px);
+    }
+    > a:last-child {
+      display: block;
+    }
+  }
+  @media (max-width: 480px) {
+    > a {
+      position: relative;
+      display: flex;
+      width: 100%;
+      height: 5.25rem;
+      padding: 1.25rem;
+    }
+    > a:first-child {
+      align-items: center;
+      padding: 1.25rem;
+      gap: 0.5rem;
+    }
+    > a h4 {
+      position: absolute;
+      top: 50%;
+      right: 3rem;
+      transform: translateY(-50%);
+      margin: 0;
+      font-size: 1rem;
+      line-height: 1.5;
+    }
+    > a h4 span {
+      font-size: 1rem;
+    }
+    > a:not(:first-child) p {
+      position: absolute;
+      bottom: 1.25rem;
+    }
   }
 `;
 export const MyInfoBox = styled(Link)`
@@ -73,6 +130,11 @@ export const MyInfoImgBox = styled.div`
     height: 100%;
     object-fit: cover;
   }
+  @media (max-width: 480px) {
+    width: 2.625rem;
+    height: 2.625rem;
+    margin-bottom: 0;
+  }
 `;
 export const InfoText = styled.div`
   display: flex;
@@ -85,26 +147,44 @@ export const InfoText = styled.div`
     color: #aaa;
     font-weight: 300;
   }
+  @media (max-width: 480px) {
+    margin-bottom: 0;
+  }
 `;
-export const MyWishListBox = styled(Link)``;
+export const MyWishListBox = styled(Link)`
+  @media (max-width: 480px) {
+  }
+`;
 export const MyCouponBox = styled(Link)``;
 export const MyChatBox = styled(Link)``;
 export const MoreLink = styled(Link)`
   position: absolute;
   top: 1.5rem;
   right: 1.5rem;
+  @media (max-width: 460px) {
+    top: 50%;
+    transform: translateY(-50%);
+    right: 1.25rem;
+  }
 `;
 
 export const MainContentBox = styled.div`
   width: 100%;
   padding: 0 2.5rem 0 8.75rem;
   margin-bottom: 6.25rem;
+
+  @media (max-width: 768px) {
+    padding: 0 1.5rem;
+  }
 `;
 
 export const MainContentInnerBox = styled.div`
   display: flex;
   max-width: 75rem;
   margin: 3.5rem auto 0;
+  @media (max-width: 1024px) {
+    flex-wrap: wrap;
+  }
 `;
 
 export const MenuList = styled.div`
@@ -117,6 +197,10 @@ export const MenuList = styled.div`
   h3 {
     font-size: 1.25rem;
     margin-bottom: 1.25rem;
+  }
+  @media (max-width: 1024px) {
+    width: 100%;
+    padding-right: 0;
   }
 `;
 export const MenuBox = styled.ul`
@@ -138,12 +222,31 @@ export const MenuBox = styled.ul`
     justify-content: space-between;
     width: 100%;
     padding: 1.25rem 1.06rem 1.25rem 1.25rem;
+    word-break: keep-all;
   }
   li a.active {
     color: #8f86ff;
     font-weight: 500;
   }
-  &:last-child {
-    margin-bottom: 0;
+  @media (max-width: 1024px) {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 3.5rem;
+    li {
+      width: 33.3333%;
+    }
+  }
+
+  @media (max-width: 768px) {
+    li {
+      width: 50%;
+    }
+  }
+`;
+
+export const MobileBr = styled.br`
+  display: none;
+  @media (max-width: 480px) {
+    display: block;
   }
 `;

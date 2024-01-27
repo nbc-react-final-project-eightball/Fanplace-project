@@ -27,18 +27,28 @@ export const TitleWrapper = styled.div`
   div p {
     color: #999;
     font-size: 0.875rem;
+    word-break: keep-all;
   }
   a {
     position: relative;
-    top: -5px;
+    top: -8px;
     right: unset;
+  }
+  border-bottom: 1px solid #000;
+  @media (max-width: 480px) {
+    div {
+      align-items: center;
+      gap: 0.625rem;
+    }
+    div h3 {
+      min-width: 4.25rem;
+    }
   }
 `;
 
 export const TableWrapper = styled.div``;
 export const TableHead = styled.div`
   height: 3rem;
-  border-top: 1px solid #000;
   border-bottom: 1px solid #ddd;
   color: #555;
   ul {
@@ -57,6 +67,9 @@ export const TableHead = styled.div`
   }
   ul li:nth-child(2) {
     flex: 2;
+  }
+  @media (max-width: 640px) {
+    display: none;
   }
 `;
 export const TableBody = styled.div`
