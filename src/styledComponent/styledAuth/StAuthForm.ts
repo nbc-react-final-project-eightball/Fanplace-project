@@ -59,6 +59,11 @@ export const AuthFormTitle = styled.h2`
     line-height: 1.5;
     color: #aaa;
   }
+  @media (max-width: 480px) {
+    p {
+      font-size: 0.875rem;
+    }
+  }
 `;
 
 export const MobileBr = styled.br`
@@ -98,10 +103,6 @@ export const TextInputField = styled(TextField)`
   .css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root.Mui-error
     .MuiOutlinedInput-notchedOutline {
     border-color: #d32f2f;
-  }
-  .css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root:hover
-    .MuiOutlinedInput-notchedOutline {
-    border-color: rgba(0, 0, 0, 0.1);
   }
   .css-1d3z3hw-MuiOutlinedInput-notchedOutline:hover {
     border: none;
