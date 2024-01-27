@@ -11,7 +11,7 @@ export const InfoBoxBackground = styled.div`
   width: 100%;
   height: 15rem;
   padding: 0 2.5rem 0 8.75rem;
-  background: #f7f7f7;
+  background: #f9f9f9;
 `;
 export const MyInfoBoxWrapper = styled.div`
   display: flex;

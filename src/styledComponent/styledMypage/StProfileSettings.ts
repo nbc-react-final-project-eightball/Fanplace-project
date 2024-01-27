@@ -43,7 +43,7 @@ export const TextInputField = styled(TextField)<{ disabled?: boolean }>`
   border-radius: 5px;
   white-space: pre-wrap;
   box-sizing: border-box;
-  background: ${(props) => (props.disabled === true ? '#f1f1f1' : 'none')};
+  background: ${(props) => (props.disabled === true ? '#f5f5f5' : 'none')};
   &.address {
     .css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root.Mui-disabled {
       border-radius: 5px 5px 0 0;
