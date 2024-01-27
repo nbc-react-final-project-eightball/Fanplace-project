@@ -14,6 +14,9 @@ export const ProfileSettingsWrapper = styled.div`
       width: 100%;
     }
   }
+  .css-1wc848c-MuiFormHelperText-root {
+    font-family: 'Pretendard', sans-serif;
+  }
   .css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root {
     width: 100%;
     border: 1px solid #e1e1e1;
