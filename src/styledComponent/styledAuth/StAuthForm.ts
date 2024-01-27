@@ -9,7 +9,7 @@ export const AuthFormBox = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 640px;
+  width: 37.5rem;
   height: 100%;
   padding: 80px 0;
   background: #fff;
@@ -22,6 +22,7 @@ export const AuthFormBox = styled.div`
   }
   @media (max-width: 480px) {
     border-radius: 8px;
+    max-width: 22.5rem;
   }
 `;
 export const AuthForm = styled.form`
@@ -39,8 +40,8 @@ export const AuthForm = styled.form`
   @media (max-width: 480px) {
     width: calc(100% - 1.5rem);
     & > div {
-      width: calc(100% - 2.5rem);
-      max-width: 320px;
+      width: calc(100% - 1.5rem);
+      max-width: 22.5rem;
     }
   }
   .css-1u3bzj6-MuiFormControl-root-MuiTextField-root {
@@ -51,10 +52,24 @@ export const AuthForm = styled.form`
 export const AuthFormTitle = styled.h2`
   font-size: 24px;
   text-align: center;
+  p {
+    margin-top: 1rem;
+    font-size: 1rem;
+    font-weight: normal;
+    line-height: 1.5;
+    color: #aaa;
+  }
+`;
+
+export const MobileBr = styled.br`
+  display: none;
+  @media (max-width: 480px) {
+    display: block;
+  }
 `;
 
 export const LoginInput = styled.input`
-  width: 320px;
+  width: 22.5rem;
   height: 40px;
   padding: 0 20px;
   border: none;
@@ -62,29 +77,31 @@ export const LoginInput = styled.input`
 
 export const TextInputField = styled(TextField)`
   & .MuiOutlinedInput-root {
-    width: 320px;
+    width: 22.5rem;
     max-height: 48px;
     margin-top: 12px;
     /* background: #f5f5f5; */
-    border: 1px solid #f1f1f1;
+    border: 1px solid #e1e1e1;
     border-radius: 5px;
     white-space: pre-wrap;
     resize: none;
-
+    &:hover {
+      border-color: #999;
+    }
     @media (max-width: 480px) {
       width: 100%;
     }
   }
   .css-1d3z3hw-MuiOutlinedInput-notchedOutline {
-    border: 1px solid #efefef;
-  }
-  .css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root.Mui-focused
-    .MuiOutlinedInput-notchedOutline {
-    /* border-color: #5eb470; */
+    border-color: transparent;
   }
   .css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root.Mui-error
     .MuiOutlinedInput-notchedOutline {
     border-color: #d32f2f;
+  }
+  .css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root:hover
+    .MuiOutlinedInput-notchedOutline {
+    border-color: rgba(0, 0, 0, 0.1);
   }
   .css-1d3z3hw-MuiOutlinedInput-notchedOutline:hover {
     border: none;
@@ -101,10 +118,18 @@ export const TextInputField = styled(TextField)`
     font: unset;
     font-family: 'pretendard', san-serif;
     padding: 12.5px 14px;
+    border: none;
+    color: #777;
+
+    @media (max-width: 480px) {
+      font-size: 0.9375rem;
+    }
   }
   .MuiFormHelperText-root.Mui-error {
     position: absolute;
     top: 100%;
+    width: 100%;
+    margin-right: 0;
   }
 `;
 
@@ -119,26 +144,34 @@ export const LoginButton = styled.button<LoginButtonProps>`
   justify-content: center;
   align-items: center;
   gap: 6px;
-  width: 320px;
+  width: 22.5rem;
   height: 48px;
   text-align: center;
   border: 1px solid #dbdbde;
   border-radius: 5px;
   background: ${(props) => props.color || 'none'};
   color: ${(props) => (props.color ? '#ffffff' : '')};
+  transition: all 200ms;
+  &.googleLogin:hover {
+    background: #f9f9f9;
+  }
+  &.githubLogin:hover {
+    background: #444;
+  }
   &.login {
     margin-top: 1rem;
     border: 1px solid #8f86ff;
     color: #8f86ff;
-    transition: all 200ms;
     &:hover {
-      background: #8f86ff;
-      color: #fff;
+      background: #f2f1ff;
     }
+  }
+  &:active {
+    transform: scale(1.008);
   }
   @media (max-width: 480px) {
     max-width: 318px;
-    width: calc(100% - 2.5rem);
+    width: calc(100% - 1.5rem);
   }
   img {
     width: ${(props) => props.width || 'auto'};
@@ -150,15 +183,25 @@ export const SignUpButton = styled.button<LoginButtonProps>`
   justify-content: center;
   align-items: center;
   gap: 6px;
-  width: 320px;
+  width: 22.5rem;
   height: 48px;
   margin-top: -0.5rem;
   text-align: center;
   border-radius: 5px;
-  border: 1px solid ${(props) => (props.disabled ? 'none' : '#333')};
-  background-color: ${(props) => (props.disabled ? '#eee' : 'none')};
-  color: ${(props) => (props.disabled ? '#999' : '#111')};
+  background-color: ${(props) => (props.disabled ? '#eee' : '#000')};
+  color: ${(props) => (props.disabled ? '#999' : '#fff')};
   cursor: ${(props) => (props.disabled ? 'default' : 'pointer')};
+  transition: all 200ms;
+  &:hover {
+    background-color: ${(props) => (props.disabled ? '#eee' : '#333')};
+  }
+  &:active {
+    transform: ${(props) => (props.disabled ? 'scale(1)' : 'scale(1.005)')};
+  }
+  @media (max-width: 480px) {
+    max-width: 318px;
+    width: calc(100% - 1.5rem);
+  }
 `;
 
 export const GuideWrapper = styled.div`
@@ -186,7 +229,7 @@ export const GuideButton = styled.button`
 export const SeparatorLine = styled.div`
   position: relative;
   width: 100%;
-  max-width: 320px;
+  max-width: 22.5rem;
   margin-bottom: 0.625rem;
   color: #bbb;
   font-size: 14px;
@@ -219,14 +262,20 @@ export const DeliveryAddressButton = styled.button`
   display: flex;
   align-items: center;
   gap: 6px;
-  width: 320px;
+  width: 22.5rem;
   height: 48px;
   margin-top: 12px;
   padding: 0 20px;
+  font-weight: 300;
   border-radius: 5px;
-  background: #f5f5f5;
-  color: #9e9e9e;
+  border: 1px solid #e1e1e1;
+  background-color: #f7f7f7;
+  color: #c9c9c9;
   box-sizing: border-box;
+  @media (max-width: 480px) {
+    width: 100%;
+    font-size: 0.9375rem;
+  }
 `;
 
 export const FlexBox = styled.div`

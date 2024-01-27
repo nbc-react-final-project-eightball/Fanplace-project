@@ -7,7 +7,7 @@ export const ProfileSettingsWrapper = styled.div`
     font-family: inherit;
   }
   .css-1u3bzj6-MuiFormControl-root-MuiTextField-root {
-    width: 320px;
+    width: 22.5rem;
     height: auto;
   }
   .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input {
@@ -36,14 +36,14 @@ export const ProfileSettingsForm = styled.form`
 `;
 
 export const TextInputField = styled(TextField)<{ disabled?: boolean }>`
-  width: 320px;
+  width: 22.5rem;
   height: 48px;
   padding: 0 20px;
   border: none;
   border-radius: 5px;
   white-space: pre-wrap;
   box-sizing: border-box;
-  background: ${(props) => (props.disabled === true ? '#f5f5f5' : 'none')};
+  border: 1px solid #f1f1f1;
   &.address {
     .css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root.Mui-disabled {
       border-radius: 5px 5px 0 0;
@@ -62,7 +62,7 @@ export const EditButton = styled.button`
   justify-content: center;
   align-items: center;
   gap: 6px;
-  width: 320px;
+  width: 22.5rem;
   height: 48px;
   text-align: center;
   border-radius: 5px;
@@ -75,7 +75,7 @@ export const CancelButton = styled.button`
   justify-content: center;
   align-items: center;
   gap: 6px;
-  width: 320px;
+  width: 22.5rem;
   height: 48px;
   text-align: center;
   border: 1px solid #aaa;
@@ -86,7 +86,7 @@ export const DeliveryAddressButton = styled.button`
   display: flex;
   align-items: center;
   gap: 6px;
-  width: 320px;
+  width: 22.5rem;
   height: 48px;
   padding: 0 20px;
   margin-top: -1px;
@@ -105,7 +105,7 @@ export const AddressBoxWrapper = styled.div`
   }
 `;
 export const PasswordResetButton = styled.button`
-  width: 320px;
+  width: 22.5rem;
   height: 48px;
   padding: 0 20px;
   margin-top: -1px;

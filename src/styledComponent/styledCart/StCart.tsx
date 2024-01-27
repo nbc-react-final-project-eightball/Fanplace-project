@@ -119,8 +119,8 @@ export const LeftArea = styled.div`
   }
 `;
 export const RightArea = styled.div`
-  width: 320px;
-  min-height: 320px;
+  width: 22.5rem;
+  min-height: 25rem;
   padding: 20px;
   border-radius: 10px;
   background: #fff;

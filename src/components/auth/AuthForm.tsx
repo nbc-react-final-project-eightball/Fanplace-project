@@ -111,6 +111,18 @@ const AuthForm = () => {
         <S.AuthForm onSubmit={handleSubmit(submitHandler)}>
           <S.AuthFormTitle>
             {isLoginForm ? '로그인' : '회원가입'}
+            {isLoginForm ? (
+              <p>
+                로그인하고 <S.MobileBr />
+                팬시플레이스를 이용해보세요!
+              </p>
+            ) : (
+              <p>
+                팬시플레이스 회원으로 가입하시면
+                <br />
+                다양한 서비스를 이용하실 수 있습니다
+              </p>
+            )}
           </S.AuthFormTitle>
           {isLoginForm ? (
             <>
@@ -378,9 +390,14 @@ const AuthForm = () => {
           {isLoginForm ? (
             <>
               <S.SeparatorLine>OR</S.SeparatorLine>
-              <S.LoginButton type="button" width={'24px'} onClick={googleLogin}>
+              <S.LoginButton
+                type="button"
+                width={'24px'}
+                onClick={googleLogin}
+                className="googleLogin"
+              >
                 {googleIsPending ? (
-                  'Loading...'
+                  '로딩중...'
                 ) : (
                   <>
                     <img
@@ -396,6 +413,7 @@ const AuthForm = () => {
                 color={'#333333'}
                 width={'18px'}
                 onClick={githubLogin}
+                className="githubLogin"
               >
                 {githubIsPending ? (
                   'Loading...'
