@@ -124,7 +124,16 @@ export const CarouselWrapper = styled.div`
 
   @media (max-width: 480px) {
     /* 480px 이하 화면 크기에 대한 스타일 */
-    margin-left: -700px;
+    margin-left: -650px;
+  }
+
+  @media (max-width: 414px) {
+    /* 414px 이하 화면 크기에 대한 스타일 */
+    margin-left: -600px;
+  }
+  @media (max-width: 364px) {
+    /* 480px 이하 화면 크기에 대한 스타일 */
+    margin-left: -650px;
   }
 `;
 export const CarouselRange = styled.input`
@@ -267,6 +276,14 @@ export const SlideContainer = styled.div`
   margin-bottom: 40px;
   width: 100%;
   gap: 20px;
+  @media (max-width: 480px) {
+    /* 480px 이하 화면 크기에 대한 스타일 */
+    gap: 110px;
+  }
+  @media (max-width: 364px) {
+    /* 480px 이하 화면 크기에 대한 스타일 */
+    gap: 130px;
+  }
 `;
 //하단 캐러셀 스타일 end
 
@@ -316,6 +333,18 @@ export const AlbumWrapper = styled.div`
   @media (max-width: 480px) {
     /* 480px 이하 화면 크기에 대한 스타일 */
     margin-left: -80px;
+  }
+  @media (max-width: 386px) {
+    /* 480px 이하 화면 크기에 대한 스타일 */
+    margin-left: -130px;
+  }
+  @media (max-width: 414px) {
+    /* 480px 이하 화면 크기에 대한 스타일 */
+    margin-left: -110px;
+  }
+  @media (max-width: 364px) {
+    /* 480px 이하 화면 크기에 대한 스타일 */
+    margin-left: -140px;
   }
 `;
 

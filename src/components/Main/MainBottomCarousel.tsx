@@ -185,7 +185,18 @@ const MainBottomCarousel: React.FC<MainBottomCarouselProps> = ({
           <S.SlideContainer
             ref={slideRef}
             style={{
-              transform: `translateX(-${currentSlide * 255}px)`,
+              transform: `translateX(-${
+                currentSlide *
+                (window.innerWidth <= 364
+                  ? 37
+                  : window.innerWidth <= 414
+                    ? 35
+                    : window.innerWidth <= 480
+                      ? 34
+                      : window.innerWidth <= 768
+                        ? 27
+                        : 20)
+              }%)`,
               transition: 'all 500ms ease-in-out',
             }}
           >
