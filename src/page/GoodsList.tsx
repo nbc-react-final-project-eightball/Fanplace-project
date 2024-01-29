@@ -932,14 +932,14 @@ const GoodsList = () => {
           </S.ArtistFilter>
         </S.GoodsListSection1>
         <div style={{ flexGrow: '1' }}>
-          <button
+          {/* <button
             onClick={() => {
               saveProduct(ProducList);
             }}
           >
             {' '}
             상품추가 테스트용
-          </button>
+          </button> */}
 
           <S.GoodsListSection2>
             <S.GoodsListSection2Wrapper>

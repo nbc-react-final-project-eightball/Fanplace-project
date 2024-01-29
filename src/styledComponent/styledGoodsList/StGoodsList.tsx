@@ -12,6 +12,12 @@ export const GoodsListContainer = styled.div`
   padding: 0 2.5rem 0 8.75rem;
   margin: 0 auto;
   position: relative;
+  @media (max-width: 768px) {
+    padding: 2.5rem;
+  }
+
+  @media (max-width: 480px) {
+  }
 `;
 
 export const GoodsListContainerSection = styled.section`
@@ -19,6 +25,13 @@ export const GoodsListContainerSection = styled.section`
   width: 100%;
   height: 100%;
   margin-top: 1.5rem;
+  @media (max-width: 768px) {
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  @media (max-width: 480px) {
+  }
 `;
 //아티스트 선별? // 페이지 위치 알려주는곳 ? 여기는 flex 써도 될듯?
 export const GoodsListSection1 = styled.section`
@@ -28,6 +41,14 @@ export const GoodsListSection1 = styled.section`
   margin-bottom: 20px;
   & + div {
     margin-left: 1.25rem;
+  }
+  @media (max-width: 768px) {
+    & + div {
+      margin-left: 0;
+    }
+  }
+
+  @media (max-width: 480px) {
   }
 `;
 //아티스트 필터
@@ -45,6 +66,12 @@ export const ArtistFilterBtn = styled.button<ArtistFilterProps>`
   width: 100%;
   height: 100%;
   padding: 10px;
+  @media (max-width: 768px) {
+    position: relative;
+  }
+
+  @media (max-width: 480px) {
+  }
 `;
 export const ArtistFilterWrapper = styled.div`
   position: relative;
@@ -54,6 +81,14 @@ export const ArtistFilterContainer = styled.div`
   width: 100%;
   background-color: white;
   border-radius: 0 0 20px 20px;
+  @media (max-width: 768px) {
+    position: absolute;
+    top: 30px;
+    z-index: 2;
+  }
+
+  @media (max-width: 480px) {
+  }
 `;
 export const ArtistFilterArtist = styled.div`
   display: flex;
@@ -128,6 +163,11 @@ export const GoodsListSection2Wrapper = styled.div`
   width: 100%;
   gap: 10px;
   margin-bottom: 2.5rem;
+  @media (max-width: 768px) {
+  }
+
+  @media (max-width: 480px) {
+  }
 `;
 interface ProductsTabProps {
   selected?: boolean;
@@ -151,6 +191,13 @@ export const ProductsTab = styled.div<ProductsTabProps>`
     background-color: #333;
     color: #ffffff;
   }
+  @media (max-width: 768px) {
+    flex: 0 0 49%;
+  }
+
+  @media (max-width: 480px) {
+    flex: 0 0 100%;
+  }
 `;
 //상품리스트
 export const GoodsListSection3 = styled.section`
@@ -161,6 +208,11 @@ export const GoodsListSection3 = styled.section`
     flex-wrap: wrap;
     gap: 20px;
     width: 100%;
+    @media (max-width: 768px) {
+    }
+
+    @media (max-width: 480px) {
+    }
   }
 `;
 export const GoodsListSection3Wrapper = styled.div``;
@@ -172,6 +224,13 @@ export const ProductCard = styled.div`
   flex-direction: column;
   width: calc((100% - 40px) / 3);
   cursor: pointer;
+  @media (max-width: 768px) {
+    flex: 0 0 48%;
+  }
+
+  @media (max-width: 480px) {
+    flex: 0 0 100%;
+  }
 `;
 
 export const ProductCardImg = styled.img`
@@ -253,13 +312,23 @@ export const GoodsListSection4 = styled.section`
   width: 100%;
   gap: 24px;
   margin: 80px auto 100px;
+  @media (max-width: 768px) {
+    justify-content: center;
+  }
+
+  @media (max-width: 480px) {
+  }
 `;
 
 export const GoodsListSection4Btn = styled.button`
-  background-color: white;
   margin-right: 10px;
   cursor: pointer;
   &:hover {
+  }
+  @media (max-width: 768px) {
+  }
+
+  @media (max-width: 480px) {
   }
 `;
 

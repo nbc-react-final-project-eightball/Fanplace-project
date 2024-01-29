@@ -4,7 +4,7 @@ export const Div = styled.div`
   width: 100%;
   height: auto;
   max-width: 1200px;
-
+  margin: 0 auto;
   @media (max-width: 768px) {
     /* 768px 이하 화면 크기에 대한 스타일 */
     width: 100%;

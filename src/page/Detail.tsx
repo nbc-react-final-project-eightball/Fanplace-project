@@ -11,6 +11,7 @@ import { typeProduct } from 'Type/TypeInterface';
 import { set } from 'react-hook-form';
 const Detail = () => {
   const [detailSend, setDetailSend] = useState<typeProduct | null>(null);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
   const dispatch = useDispatch();
 
   const selectedProduct = useSelector(
@@ -35,18 +36,38 @@ const Detail = () => {
       }
     }
   }, [dispatch]);
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   return (
     <S.DtailContainer>
       {selectedProduct ? (
         <>
-          <Product product={selectedProduct} />
-          <ProductInfo product={selectedProduct} />
+          {isMobile ? (
+            <>
+              <Product product={selectedProduct} />
+              {/* <ProductInfo product={selectedProduct} /> */}
+            </>
+          ) : (
+            <>
+              <Product product={selectedProduct} />
+              <ProductInfo product={selectedProduct} />
+            </>
+          )}
         </>
       ) : (
         <>
           <Product product={detailSend} />
-          <ProductInfo product={detailSend} />
+          {!isMobile && <ProductInfo product={detailSend} />}
         </>
       )}
     </S.DtailContainer>

@@ -7,6 +7,8 @@ import { nanoid } from 'nanoid';
 import '../App.css';
 import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';
+import * as S from '../../src/styledComponent/styledCart/StCart';
+
 const clientKey = 'test_gck_docs_Ovk5rk1EwkEbP0W43n07xlzm';
 const customerKey = 'HyZccn4pYtFcWyfFC1q1-';
 const PaymentPage = () => {
@@ -63,20 +65,31 @@ const PaymentPage = () => {
   return (
     <>
       <PaymentContainer>
+        <S.RightArea>
+          <S.PaymentInfo>결제정보</S.PaymentInfo>
+          <S.BoxWrapper>
+            <S.Box>
+              <h3>상품수</h3>
+              <span></span>
+            </S.Box>
+            <S.Box>
+              <h3>상품금액</h3>
+              <span>{totalPrice.toLocaleString()}원</span>
+            </S.Box>
+            <S.Box>
+              <h3>배송비</h3>
+              <span></span>
+            </S.Box>
+            <S.Box>
+              <h2>
+                총 결제 금액 <span>{totalPrice.toLocaleString()}원</span>
+              </h2>
+            </S.Box>
+          </S.BoxWrapper>
+          <S.PaymentButton onClick={adad}>구매하기</S.PaymentButton>
+        </S.RightArea>
         <div>
           <div id="payment-widget" />
-          <p>결제 금액: {totalPrice}원</p>
-          <div>
-            {/* <input
-            type="checkbox"
-            onChange={(event) => {
-              setPrice(event.target.checked ? totalPrice - 5_000 : totalPrice + 5_000);
-            }}
-          /> */}
-            {/* <label>5,000원 할인 쿠폰 적용</label> */}
-          </div>
-
-          <button onClick={adad}>결제하기</button>
         </div>
       </PaymentContainer>
     </>
