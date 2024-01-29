@@ -24,7 +24,9 @@ const Cartpage = () => {
   const user: string | undefined = auth.currentUser?.uid;
   const navigate = useNavigate();
   const paymentHandeler = () => {
-    navigate('/payment', { state: { totalPrice } });
+    navigate('/payment', {
+      state: { totalPrice, cartList, shippingCost, totalPayment },
+    });
   };
   const [selectAll, setSelectAll] = useState<boolean>(false);
 
@@ -94,9 +96,6 @@ const Cartpage = () => {
   }, []);
   //cartList에 담긴게 없으면 0
   if (cartList.length === 0) return null;
-
-  console.log('cartList', cartList);
-  console.log('cartList[0].artist', cartList[0].artist);
   //총금액을 계산하는 로직
   let totalPrice = 0;
   for (let i = 0; i < cartList.length; i++) {
@@ -220,9 +219,9 @@ const Cartpage = () => {
               ))}
             </S.CartList>
             <S.TotalAmount>
-              <div className="amount1">
-                <div>상품금액</div>
-                <div>{totalPrice.toLocaleString()}원</div>
+              <div>
+                <div className="div1">상품금액</div>
+                <div className="div2">{totalPrice.toLocaleString()}원</div>
               </div>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -239,8 +238,8 @@ const Cartpage = () => {
                 />
               </svg>
               <div>
-                <div>할인금액</div>
-                <div>0원</div>
+                <div className="div1">할인금액</div>
+                <div className="div2">0원</div>
               </div>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -257,8 +256,8 @@ const Cartpage = () => {
                 />
               </svg>
               <div>
-                <div>배송비</div>
-                <div>{shippingCost.toLocaleString()}원</div>
+                <div className="div1">배송비</div>
+                <div className="div2">{shippingCost.toLocaleString()}원</div>
               </div>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -273,8 +272,8 @@ const Cartpage = () => {
                 />
               </svg>
               <div>
-                <div>주문금액</div>
-                <div>{totalPayment.toLocaleString()}원</div>
+                <div className="div1">주문금액</div>
+                <div className="div2">{totalPayment.toLocaleString()}원</div>
               </div>
             </S.TotalAmount>
           </S.LeftArea>
