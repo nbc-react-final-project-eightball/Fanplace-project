@@ -29,14 +29,15 @@ export const Img = styled.img`
   box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.08);
   @media (max-width: 768px) {
     /* 768px 이하 화면 크기에 대한 스타일 */
-    height: 168px;
+    width: 240px;
+    height: 240px;
   }
   @media (max-width: 480px) {
     /* 480px 이하 화면 크기에 대한 스타일 */
-    width: 100px;
-    height: 100px;
-    max-height: 100px;
-    max-width: 100px;
+    width: 250px;
+    height: 250px;
+    /* max-height: 100px;
+    max-width: 100px; */
   }
 `;
 export const Artist = styled.p`
@@ -81,8 +82,17 @@ export const Slide = styled.div`
   flex: 0 0 auto;
   position: relative;
   width: 25%;
-
   margin-top: 40px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  @media (max-width: 768px) {
+    /* 768px 이하 화면 크기에 대한 스타일 */
+  }
+  @media (max-width: 480px) {
+    /* 480px 이하 화면 크기에 대한 스타일 */
+    width: 23%;
+  }
 `;
 
 export const CarouselContainer = styled.div`
@@ -106,6 +116,16 @@ export const CarouselContainer = styled.div`
 `;
 export const CarouselWrapper = styled.div`
   position: relative;
+  margin-left: -660px;
+  @media (max-width: 768px) {
+    /* 768px 이하 화면 크기에 대한 스타일 */
+    margin-left: -250px;
+  }
+
+  @media (max-width: 480px) {
+    /* 480px 이하 화면 크기에 대한 스타일 */
+    margin-left: -700px;
+  }
 `;
 export const CarouselRange = styled.input`
   width: 100%;

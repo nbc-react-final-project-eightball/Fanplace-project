@@ -45,12 +45,14 @@ const MainBottomCarousel: React.FC<MainBottomCarouselProps> = ({
   const afterSlide1 = slides[0];
   const afterSlide2 = slides[1];
   const afterSlide3 = slides[2];
+  const afterSlide4 = slides[3];
   const copiedSlides = [
     beforeSlide1,
     ...slides,
     afterSlide1,
     afterSlide2,
     afterSlide3,
+    afterSlide4,
   ];
   // TODO: 상품 이미지를 서버에서 받아와서 뿌려주기
 
@@ -100,7 +102,7 @@ const MainBottomCarousel: React.FC<MainBottomCarouselProps> = ({
         setTimeout(() => {
           if (slideRef.current) {
             slideRef.current.style.transition = 'none';
-            setCurrentSlide(0);
+            setCurrentSlide(1);
           }
         }, 500);
 
@@ -183,7 +185,7 @@ const MainBottomCarousel: React.FC<MainBottomCarouselProps> = ({
           <S.SlideContainer
             ref={slideRef}
             style={{
-              transform: `translateX(-${currentSlide * 25}%)`,
+              transform: `translateX(-${currentSlide * 255}px)`,
               transition: 'all 500ms ease-in-out',
             }}
           >
@@ -197,7 +199,7 @@ const MainBottomCarousel: React.FC<MainBottomCarouselProps> = ({
                   }}
                 >
                   <S.Img
-                    style={{ width: '100%' }}
+                    // style={{ width: '100%' }}
                     src={list.img}
                     alt={`Slide ${index}`}
                   />

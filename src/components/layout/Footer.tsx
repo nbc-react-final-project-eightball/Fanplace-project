@@ -12,7 +12,7 @@ const Footer = () => {
           <p>카카오 문의</p>
         </S.ContactInfo>
         <S.LegalInfo>
-          <p>주소 : 서울특별시 종로구 관철동 | 대표이사 : 김두한</p>
+          <p>주소 : 서울특별시 종로구 관철동 | 대표이사 : 르탄이</p>
           <p>사업자등록번호 : 123-45-6789</p>
         </S.LegalInfo>
         <S.Copyright>
