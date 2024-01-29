@@ -86,6 +86,7 @@ export const Slide = styled.div`
   justify-content: center;
   align-items: center;
   display: flex;
+
   @media (max-width: 768px) {
     /* 768px 이하 화면 크기에 대한 스타일 */
   }
@@ -116,7 +117,7 @@ export const CarouselContainer = styled.div`
 `;
 export const CarouselWrapper = styled.div`
   position: relative;
-  margin-left: -660px;
+  margin-left: -560px;
   @media (max-width: 768px) {
     /* 768px 이하 화면 크기에 대한 스타일 */
     margin-left: -250px;
@@ -370,6 +371,7 @@ export const AlbumImg = styled.img`
   object-fit: cover;
   box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.08);
   border-radius: 135px;
+  position: relative;
   @media (max-width: 768px) {
     /* 768px 이하 화면 크기에 대한 스타일 */
     height: 180px;
@@ -380,8 +382,24 @@ export const AlbumImg = styled.img`
   }
 `;
 export const AlbumTitle = styled.h2`
-  text-align: center;
+  overflow: hidden;
+  width: 100%;
+  white-space: nowrap;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  text-overflow: ellipsis;
+  height: 43px;
+  position: absolute;
+  left: -0px;
   margin-top: 10px;
+  @media (max-width: 768px) {
+    /* 768px 이하 화면 크기에 대한 스타일 */
+    left: -30px;
+  }
+
+  @media (max-width: 480px) {
+    /* 480px 이하 화면 크기에 대한 스타일 */
+  }
 `;
 
 export const AlbumSlideTitle = styled.h2`

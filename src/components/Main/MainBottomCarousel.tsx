@@ -195,7 +195,7 @@ const MainBottomCarousel: React.FC<MainBottomCarouselProps> = ({
                       ? 34
                       : window.innerWidth <= 768
                         ? 27
-                        : 20)
+                        : 16.5)
               }%)`,
               transition: 'all 500ms ease-in-out',
             }}
