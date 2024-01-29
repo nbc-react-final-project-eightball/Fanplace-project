@@ -96,13 +96,13 @@ const MainBottomCarousel: React.FC<MainBottomCarouselProps> = ({
     console.log('슬라이드 인덱스', currentSlide);
   }, [currentSlide]);
   const handleNext = () => {
-    if (currentSlide >= slides.length) {
+    if (currentSlide >= slides.length - 1) {
       if (slideRef.current) {
         resetIndex();
         setTimeout(() => {
           if (slideRef.current) {
             slideRef.current.style.transition = 'none';
-            setCurrentSlide(1);
+            setCurrentSlide(0);
           }
         }, 500);
 
