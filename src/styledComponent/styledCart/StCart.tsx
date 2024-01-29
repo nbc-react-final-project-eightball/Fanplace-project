@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const CartContainer = styled.div`
   width: 100%;
   /* height: 0.433; */
-  background: #f7f7f7;
+  background: #f9f9f9;
   flex-shrink: 0;
 
   input[type='checkbox'] {
@@ -106,7 +106,7 @@ export const LeftArea = styled.div`
     align-items: center;
     justify-content: center;
     gap: 12px;
-    padding-right: 56px;
+    padding-right: 10px;
   }
   .circle {
     width: 22px;
@@ -133,8 +133,8 @@ export const LeftArea = styled.div`
   }
 `;
 export const RightArea = styled.div`
-  width: 320px;
-  min-height: 320px;
+  width: 22.5rem;
+  min-height: 25rem;
   padding: 20px;
   border-radius: 10px;
   background: #fff;
@@ -236,9 +236,20 @@ export const TotalAmount = styled.div`
   justify-content: space-between;
   width: 100%;
   padding: 20px;
-  .amount1 {
-    /* display: flex;
-    justify-content: space-between;
-    padding: 20px; */
+  .div1 {
+    color: #999;
+    font-family: Pretendard;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+  }
+  .div2 {
+    color: #333;
+    font-family: Pretendard;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
   }
 `;

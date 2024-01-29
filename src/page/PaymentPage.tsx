@@ -62,6 +62,7 @@ const PaymentPage = () => {
       console.log(err);
     }
   };
+
   return (
     <>
       <PaymentContainer>
@@ -99,7 +100,15 @@ const PaymentPage = () => {
 export default PaymentPage;
 
 const PaymentContainer = styled.div`
-  width: 720px;
-  height: 305px;
+  width: 1200px;
   padding-left: 165px;
+  background: #f9f9f9;
+  height: 100%;
+
+  @media screen and (max-width: 768px) {
+    width: 768px;
+  }
+  @media screen and (max-width: 480px) {
+    width: 480px;
+  }
 `;

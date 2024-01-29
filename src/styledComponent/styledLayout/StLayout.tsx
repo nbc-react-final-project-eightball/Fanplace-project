@@ -20,14 +20,12 @@ export const Welcome = styled.div`
   border-radius: 2.5rem;
   font-size: 0.87rem;
   color: #777;
-  background: #f7f7f7;
+  background: #f9f9f9;
   z-index: 9;
 `;
 
 export const LayoutContainer = styled.div`
   width: 100%;
-
-  /* background-color: aqua; */
   padding-bottom: 200px;
 `;
 export const LayoutSection1 = styled.div`
