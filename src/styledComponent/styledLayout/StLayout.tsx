@@ -35,7 +35,6 @@ export const Welcome = styled.div`
 export const LayoutContainer = styled.div`
   width: 100%;
   padding-bottom: 200px;
-  /* padding: 0 1.5rem; */
 `;
 export const LayoutSection1 = styled.div`
   width: 100px;
