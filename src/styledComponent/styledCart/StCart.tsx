@@ -30,6 +30,10 @@ export const CartContainer = styled.div`
   @media screen and (max-width: 768px) {
     width: 768px;
   }
+  @media screen and (max-width: 480px) {
+    width: 480px;
+  }
+  padding-bottom: 100px;
 `;
 
 export const Cart = styled.div`
@@ -46,8 +50,8 @@ export const Cart = styled.div`
     gap: 10px;
     margin: 0 auto;
     @media screen and (max-width: 768px) {
-      flex-direction: column; /* Stack items vertically for smaller screens */
-      align-items: center; /* Center items vertically */
+      flex-direction: column;
+      align-items: center;
     }
   }
 `;
