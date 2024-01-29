@@ -8,22 +8,14 @@ import {
   setIsAddressSuccess,
 } from '../redux/modules/signup/signUpSlice';
 
-interface AddressModalProps {
-  detailAddress: any;
-}
-
-const AddressModal: React.FC<AddressModalProps> = ({ detailAddress }) => {
+const AddressModal = () => {
   const { closeAddressModalHandler } = useAddressModal();
   const dispatch = useDispatch();
 
-  console.log('detailAddress', detailAddress);
-
   const completeHandler = (data: any) => {
     console.log('data.address', data.address);
-    dispatch(
-      setAddress({ address: data.address, detailAddress: detailAddress }),
-    );
-    dispatch(setIsAddressSuccess({ isAddressSuccess: true }));
+    dispatch(setAddress({ address: data.address, detailAddress: null }));
+    dispatch(setIsAddressSuccess(true));
     closeAddressModalHandler(true);
   };
 

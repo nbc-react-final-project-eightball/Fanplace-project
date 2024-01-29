@@ -4,6 +4,7 @@ import { goodsSlice } from './modules/GoodsList/GoodsListSlice';
 import { productSlice } from './modules/Detail/DetailSlice';
 import { modalSlice } from './modules/modal/modalSlice';
 import { signUpSlice } from './modules/signup/signUpSlice';
+import { shippingSlice } from './modules/shipping/shippingSlice';
 
 const store = configureStore({
   reducer: {
@@ -11,6 +12,7 @@ const store = configureStore({
     productDetailTotal: productSlice.reducer,
     modalSlice: modalSlice.reducer,
     signUpSlice: signUpSlice.reducer,
+    shippingSlice: shippingSlice.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

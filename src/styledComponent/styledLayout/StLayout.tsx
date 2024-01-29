@@ -34,7 +34,6 @@ export const Welcome = styled.div`
 
 export const LayoutContainer = styled.div`
   width: 100%;
-  padding-bottom: 200px;
 `;
 export const LayoutSection1 = styled.div`
   width: 100px;
@@ -63,34 +62,43 @@ export const LayoutSection2 = styled.div`
 
 //Footer start
 export const FooterContainer = styled.div`
-  background-color: #202020;
-  padding: 20px;
+  background: #202020;
+  padding: 40px 0;
   color: white;
   width: 100%;
-  height: 200px;
+  height: auto;
 `;
 export const FooterContent = styled.div`
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
   max-width: 1200px;
   margin: 0 auto;
+  font-size: 14px;
+  color: #999;
 `;
 export const ContactInfo = styled.div`
   line-height: 1.5em;
-  flex-basis: 50%;
 `;
-export const ContactTitle = styled.h3`
-  margin-bottom: 10px;
+export const ContactTitle = styled.p`
+  margin-bottom: 6px;
 `;
 
+export const FooterInnerWrapper = styled.div`
+  display: flex;
+  gap: 54px;
+`;
 export const LegalInfo = styled.div`
-  line-height: 1.5em;
-  flex-basis: 50%;
-  text-align: right;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+`;
+export const FooterInfo = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
 `;
 export const Copyright = styled.p`
-  margin-top: 10px;
+  margin-top: 40px;
+  color: #bbb;
 `;
 //FOOTER END
