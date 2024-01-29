@@ -13,6 +13,7 @@ export const SelectHeader = styled.div`
 
 export const StOptions = styled.ul`
   position: absolute;
+  top: 100%;
   right: 0;
   display: flex;
   flex-direction: column;
@@ -21,6 +22,13 @@ export const StOptions = styled.ul`
   color: #fff;
   padding: 10px;
   border-radius: 8px;
+  @media (max-width: 768px) {
+    /* 768px 이하 화면 크기에 대한 스타일 */
+    top: unset;
+    right: 50%;
+    transform: translateX(50%);
+    bottom: 40px;
+  }
 `;
 
 export const StOption = styled.li`

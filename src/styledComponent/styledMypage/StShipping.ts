@@ -23,7 +23,7 @@ export const TitleWrapper = styled.div`
   div h3 {
     font-size: 1.125rem;
   }
-  border-bottom: 1px solid #000;
+  border-bottom: 1px solid #ddd;
   @media (max-width: 480px) {
     div {
       align-items: center;
@@ -38,6 +38,7 @@ export const TitleWrapper = styled.div`
 export const TableWrapper = styled.div``;
 export const TableHead = styled.div`
   height: 3rem;
+  border-top: 1px solid #000;
   border-bottom: 1px solid #ddd;
   color: #555;
   ul {
@@ -53,18 +54,19 @@ export const TableHead = styled.div`
     width: 100%;
     height: 100%;
     font-size: 0.875rem;
+    color: #777;
   }
   ul li:nth-child(1) {
-    flex: 1.5;
+    flex: 1;
   }
   ul li:nth-child(2) {
-    flex: 1;
+    flex: 0.8;
   }
   ul li:nth-child(3) {
-    flex: 4.5;
+    flex: 4;
   }
   ul li:nth-child(4) {
-    flex: 1;
+    flex: 2.2;
   }
   ul li:nth-child(5) {
     flex: 2;
@@ -85,6 +87,18 @@ export const TableBody = styled.div`
     flex-direction: column;
   }
 `;
+
+export const GuideLetter = styled.p`
+  width: 100%;
+  padding: 0.5rem 1rem;
+  margin: 1rem 0;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  background: #f9f9f9;
+  color: #777;
+  word-break: keep-all;
+`;
+
 export const AddButton = styled.button`
   position: absolute;
   top: 0;
@@ -121,10 +135,11 @@ export const AddressList = styled.div`
   > div {
     display: flex;
     align-items: center;
-    /* gap: 40px; */
-    color: #333;
     padding: 1.25rem 0;
+    color: #555;
+    font-size: 0.9375rem;
     border-bottom: 1px solid #efefef;
+    word-break: keep-all;
     * {
       text-align: center;
     }
@@ -133,16 +148,16 @@ export const AddressList = styled.div`
     }
   }
   > div > *:nth-child(1) {
-    flex: 1.5;
+    flex: 1;
   }
   > div > *:nth-child(2) {
-    flex: 1;
+    flex: 0.8;
   }
   > div > *:nth-child(3) {
-    flex: 4.5;
+    flex: 4;
   }
   > div > *:nth-child(4) {
-    flex: 1;
+    flex: 2.2;
   }
   > div > *:nth-child(5) {
     flex: 2;
@@ -180,10 +195,11 @@ export const AddressList = styled.div`
       right: 24px;
       top: 24px;
       display: flex;
-      gap: 30px;
+      justify-content: space-between;
       flex-direction: column;
       flex: unset;
       width: auto;
+      height: calc(100% - 48px);
     }
 
     > div {
@@ -244,6 +260,7 @@ export const buttonWrapper = styled.div`
   display: flex;
   justify-content: center;
   gap: 4px;
+  font-size: 14px;
   > button {
     padding: 4px 8px;
   }
@@ -261,4 +278,8 @@ export const DeleteButton = styled.button`
     border: none;
     background: none;
   }
+`;
+
+export const GuideEmpty = styled.p`
+  margin: 2.5rem 0;
 `;

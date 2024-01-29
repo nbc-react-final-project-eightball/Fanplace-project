@@ -182,7 +182,7 @@ const ProfileSettingsForm = () => {
         {isEditMode && (
           <S.DeliveryAddressButton
             type="button"
-            onClick={openAddressModalHandler(true)}
+            onClick={() => openAddressModalHandler(true)}
           >
             <svg
               width="18"
@@ -356,7 +356,7 @@ const ProfileSettingsForm = () => {
           취소
         </S.CancelButton>
       )}
-      {modal.visible && <AddressModal detailAddress={detailAddress} />}
+      {modal.visible && <AddressModal />}
     </S.ProfileSettingsForm>
   );
 };

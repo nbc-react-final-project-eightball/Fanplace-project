@@ -48,6 +48,9 @@ export const AuthForm = styled.form`
     width: 100%;
     align-items: center;
   }
+  .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input.Mui-disabled {
+    -webkit-text-fill-color: #777;
+  }
 `;
 export const AuthFormTitle = styled.h2`
   font-size: 24px;
@@ -97,6 +100,8 @@ export const TextInputField = styled(TextField)`
       width: 100%;
     }
   }
+  .css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root.Mui-disabled
+    .MuiOutlinedInput-notchedOutline,
   .css-1d3z3hw-MuiOutlinedInput-notchedOutline {
     border-color: transparent;
   }
@@ -270,7 +275,7 @@ export const DeliveryAddressButton = styled.button`
   font-weight: 300;
   border-radius: 5px;
   border: 1px solid #e1e1e1;
-  background-color: #f7f7f7;
+  /* background-color: #f7f7f7; */
   color: #c9c9c9;
   box-sizing: border-box;
   @media (max-width: 480px) {

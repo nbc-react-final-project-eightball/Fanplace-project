@@ -151,6 +151,28 @@ a,button {
 img {
   vertical-align: top;
 }
-`;
+/* ===== Scrollbar CSS ===== */
+  /* Firefox */
+  * {
+  scrollbar-width: auto;
+  scrollbar-color: #c2c2c2 #ffffff;
+}
 
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+*::-webkit-scrollbar-track {
+  background: #ffffff;
+  margin: 10px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #c2c2c2;
+  border-radius: 10px;
+  border: 3px solid #ffffff;
+}
+`;
 export default GlobalStyle;
