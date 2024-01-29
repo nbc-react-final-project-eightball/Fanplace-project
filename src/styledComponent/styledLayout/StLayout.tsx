@@ -5,6 +5,14 @@ export const Layout = styled.div`
   flex-direction: column;
   height: auto;
   align-items: center;
+  @media (max-width: 768px) {
+    /* 768px 이하 화면 크기에 대한 스타일 */
+    max-width: 100%;
+  }
+  @media (max-width: 480px) {
+    /* 480px 이하 화면 크기에 대한 스타일 */
+    max-width: 100%;
+  }
 `;
 
 export const Welcome = styled.div`
@@ -32,10 +40,26 @@ export const LayoutContainer = styled.div`
 export const LayoutSection1 = styled.div`
   width: 100px;
   margin-top: 80px;
+  @media (max-width: 768px) {
+    /* 768px 이하 화면 크기에 대한 스타일 */
+    max-width: 100%;
+  }
+  @media (max-width: 480px) {
+    /* 480px 이하 화면 크기에 대한 스타일 */
+    max-width: 100%;
+  }
 `;
 export const LayoutSection2 = styled.div`
   height: 100%;
-  width: 100%;
+  max-width: 100%;
+  @media (max-width: 768px) {
+    /* 768px 이하 화면 크기에 대한 스타일 */
+    max-width: 100%;
+  }
+  @media (max-width: 480px) {
+    /* 480px 이하 화면 크기에 대한 스타일 */
+    max-width: 100%;
+  }
 `;
 
 //Footer start

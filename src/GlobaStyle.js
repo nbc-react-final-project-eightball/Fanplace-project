@@ -151,6 +151,14 @@ a,button {
 img {
   vertical-align: top;
 }
+html, body { max-width: 100%; overflow-x: hidden; }
+body { 
+overflow: hidden; 
+width: 100%; 
+-webkit-box-sizing: border-box; 
+-moz-box-sizing: border-box; 
+box-sizing: border-box; 
+}
 `;
 
 export default GlobalStyle;
