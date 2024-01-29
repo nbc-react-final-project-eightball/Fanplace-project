@@ -60,23 +60,24 @@ const PaymentPage = () => {
       console.log(err);
     }
   };
+
   return (
     <>
       <PaymentContainer>
+        <p>결제 금액: {totalPrice}원</p>
         <div>
-          <div id="payment-widget" />
-          <p>결제 금액: {totalPrice}원</p>
-          <div>
-            {/* <input
+          {/* <input
             type="checkbox"
             onChange={(event) => {
               setPrice(event.target.checked ? totalPrice - 5_000 : totalPrice + 5_000);
             }}
           /> */}
-            {/* <label>5,000원 할인 쿠폰 적용</label> */}
-          </div>
+          {/* <label>5,000원 할인 쿠폰 적용</label> */}
+        </div>
 
-          <button onClick={adad}>결제하기</button>
+        <button onClick={adad}>결제하기</button>
+        <div>
+          <div id="payment-widget" />
         </div>
       </PaymentContainer>
     </>
