@@ -79,7 +79,7 @@ export const Price = styled.p`
   line-height: 24px; /* 133.333% */
 `;
 export const Slide = styled.div`
-  flex: 0 0 auto;
+  /* flex: 0 0 auto; */
   position: relative;
   width: 25%;
   margin-top: 40px;
@@ -290,6 +290,7 @@ export const AlbumDiv = styled.div`
   @media (max-width: 480px) {
     /* 480px 이하 화면 크기에 대한 스타일 */
     width: 480px;
+    width: 100%;
   }
 `;
 
