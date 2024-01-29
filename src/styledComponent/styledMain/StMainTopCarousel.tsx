@@ -42,6 +42,11 @@ export const PrevButton = styled.button`
       height: 35px;
     }
   }
+  @media (max-width: 370px) {
+    /* 360px 이하 화면 크기에 대한 스타일 */
+
+    left: -12px;
+  }
 `;
 
 export const NextButton = styled.button`
@@ -64,6 +69,11 @@ export const NextButton = styled.button`
       width: 35px;
       height: 35px;
     }
+  }
+  @media (max-width: 370px) {
+    /* 360px 이하 화면 크기에 대한 스타일 */
+
+    right: -12px;
   }
 `;
 export const MainTopCarouselContainer = styled.div`
