@@ -27,18 +27,28 @@ export const CartContainer = styled.div`
     border: 1px solid #d9d9d9;
     position: relative;
   }
+  @media screen and (max-width: 768px) {
+    width: 768px;
+  }
 `;
 
 export const Cart = styled.div`
   height: 900px;
   top: 112px;
   padding: 0 2.5rem 0 8.75rem;
+  @media screen and (max-width: 768px) {
+    padding: 0 2.5rem 0 2.5rem;
+  }
   display: flex;
   flex-direction: column;
   .allArea {
     display: flex;
     gap: 10px;
     margin: 0 auto;
+    @media screen and (max-width: 768px) {
+      flex-direction: column; /* Stack items vertically for smaller screens */
+      align-items: center; /* Center items vertically */
+    }
   }
 `;
 export const CartTitle = styled.div`
@@ -74,6 +84,10 @@ export const LeftArea = styled.div`
   border: 1px solid #efefef;
   background: #fff;
   padding: 20px;
+  @media screen and (max-width: 768px) {
+    width: 100%; /* Make it full-width for smaller screens */
+    margin-bottom: 20px; /* Add some space between LeftArea and RightArea */
+  }
 
   .artistName {
     width: 100%;
@@ -92,7 +106,7 @@ export const LeftArea = styled.div`
     align-items: center;
     justify-content: center;
     gap: 12px;
-    padding-right: 56px;
+    padding-right: 10px;
   }
   .circle {
     width: 22px;
@@ -125,6 +139,10 @@ export const RightArea = styled.div`
   border-radius: 10px;
   background: #fff;
   padding: 20px;
+
+  @media screen and (max-width: 768px) {
+    width: 100%; /* Make it full-width for smaller screens */
+  }
 
   .paymentInfo {
     color: #333;
@@ -218,9 +236,20 @@ export const TotalAmount = styled.div`
   justify-content: space-between;
   width: 100%;
   padding: 20px;
-  .amount1 {
-    /* display: flex;
-    justify-content: space-between;
-    padding: 20px; */
+  .div1 {
+    color: #999;
+    font-family: Pretendard;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+  }
+  .div2 {
+    color: #333;
+    font-family: Pretendard;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
   }
 `;
