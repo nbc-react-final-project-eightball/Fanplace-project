@@ -332,13 +332,6 @@ const ProfileSettingsForm = () => {
           />
         </>
       )}
-      {/* <S.EditButton
-        type="button"
-        // type={isEditMode ? 'button' : 'submit'}
-        onClick={() => setIsEditMode(!isEditMode)}
-      >
-        {isEditMode ? '수정완료' : '수정하기'}
-      </S.EditButton> */}
 
       {isEditMode ? (
         <S.EditButton

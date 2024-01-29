@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const CartContainer = styled.div`
   width: 100%;
   /* height: 0.433; */
-  background: #f7f7f7;
+  background: #f9f9f9;
   flex-shrink: 0;
 
   input[type='checkbox'] {
@@ -119,8 +119,8 @@ export const LeftArea = styled.div`
   }
 `;
 export const RightArea = styled.div`
-  width: 320px;
-  min-height: 320px;
+  width: 22.5rem;
+  min-height: 25rem;
   padding: 20px;
   border-radius: 10px;
   background: #fff;
