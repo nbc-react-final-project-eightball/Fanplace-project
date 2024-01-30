@@ -50,7 +50,6 @@ export const LayoutSection1 = styled.div`
 export const LayoutSection2 = styled.div`
   height: 100%;
   max-width: 100%;
-  padding: 0px 2.5rem 0px 8.75rem;
   @media (max-width: 768px) {
     /* 768px 이하 화면 크기에 대한 스타일 */
     max-width: 100%;
