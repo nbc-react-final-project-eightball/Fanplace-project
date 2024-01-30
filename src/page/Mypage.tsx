@@ -1,4 +1,5 @@
 import MyPageLayout from 'components/layout/MyPageLayout';
+import RecentProducts from 'components/mypage/RecentProducts';
 import * as S from 'styledComponent/styledMypage/StMypage';
 
 const Mypage = () => {
@@ -40,6 +41,7 @@ const Mypage = () => {
           </S.TableBody>
         </S.TableWrapper>
       </S.OrderList>
+      <RecentProducts />
     </MyPageLayout>
   );
 };
