@@ -26,7 +26,7 @@ export const Img = styled.img`
   border-radius: 8px;
   background: lightgray 50%;
   object-fit: cover;
-  box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.08);
+  box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.06);
   @media (max-width: 768px) {
     /* 768px 이하 화면 크기에 대한 스타일 */
     width: 240px;
@@ -295,7 +295,6 @@ export const AlbumDiv = styled.div`
   width: 1200px;
   height: 646px;
   border-radius: 16px;
-  border: 1px solid #000;
   display: flex;
   justify-content: center;
   position: relative;
@@ -369,7 +368,7 @@ export const AlbumImg = styled.img`
   height: 280px;
   background: lightgray 50%;
   object-fit: cover;
-  box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.08);
+  box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.06);
   border-radius: 135px;
   position: relative;
   @media (max-width: 768px) {
