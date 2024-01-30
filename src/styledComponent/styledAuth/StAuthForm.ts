@@ -48,6 +48,9 @@ export const AuthForm = styled.form`
     width: 100%;
     align-items: center;
   }
+  .css-i44wyl {
+    width: 100%;
+  }
   .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input.Mui-disabled {
     -webkit-text-fill-color: #777;
   }
@@ -88,8 +91,6 @@ export const TextInputField = styled(TextField)`
     width: 22.5rem;
     max-height: 48px;
     margin-top: 12px;
-    /* background: #f5f5f5; */
-    border: 1px solid #e1e1e1;
     border-radius: 5px;
     white-space: pre-wrap;
     resize: none;
@@ -98,6 +99,10 @@ export const TextInputField = styled(TextField)`
     }
     @media (max-width: 480px) {
       width: 100%;
+    }
+    input {
+      height: 48px;
+      box-sizing: border-box;
     }
   }
   .css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root.Mui-disabled
@@ -117,8 +122,13 @@ export const TextInputField = styled(TextField)`
     margin-top: 5px;
     margin-left: 0;
   }
+  .css-1x5jdmq {
+    font: unset;
+    font-family: 'pretendard', sans-serif;
+  }
   .css-1x5jdmq:-webkit-autofill {
-    height: 100%;
+    height: 48px;
+    box-sizing: border-box;
   }
   .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input {
     font: unset;
@@ -274,7 +284,7 @@ export const DeliveryAddressButton = styled.button`
   padding: 0 20px;
   font-weight: 300;
   border-radius: 5px;
-  border: 1px solid #e1e1e1;
+  border: 1px solid #bebebe;
   /* background-color: #f7f7f7; */
   color: #c9c9c9;
   box-sizing: border-box;
