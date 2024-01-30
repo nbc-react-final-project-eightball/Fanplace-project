@@ -43,6 +43,9 @@ export const Cart = styled.div`
   @media screen and (max-width: 768px) {
     padding: 0 2.5rem 0 2.5rem;
   }
+  @media screen and (max-width: 480px) {
+    padding: 0 2.5rem 0 1rem;
+  }
   display: flex;
   flex-direction: column;
   .allArea {
@@ -52,6 +55,9 @@ export const Cart = styled.div`
     @media screen and (max-width: 768px) {
       flex-direction: column;
       align-items: center;
+    }
+    @media screen and (max-width: 480px) {
+      width: 450px;
     }
   }
 `;
@@ -104,6 +110,11 @@ export const LeftArea = styled.div`
   .titleWrapper {
     display: flex;
     flex-direction: column;
+    @media screen and (max-width: 480px) {
+      div {
+        width: 150px;
+      }
+    }
   }
   .circleArea {
     display: flex;
