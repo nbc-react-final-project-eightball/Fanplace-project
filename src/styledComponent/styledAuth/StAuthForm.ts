@@ -105,17 +105,9 @@ export const TextInputField = styled(TextField)`
       box-sizing: border-box;
     }
   }
-  .css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root.Mui-disabled
-    .MuiOutlinedInput-notchedOutline,
-  .css-1d3z3hw-MuiOutlinedInput-notchedOutline {
-    border-color: transparent;
-  }
   .css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root.Mui-error
     .MuiOutlinedInput-notchedOutline {
     border-color: #d32f2f;
-  }
-  .css-1d3z3hw-MuiOutlinedInput-notchedOutline:hover {
-    border: none;
   }
   .css-1wc848c-MuiFormHelperText-root.Mui-error {
     font-family: inherit;

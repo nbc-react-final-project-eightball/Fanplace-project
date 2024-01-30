@@ -176,7 +176,7 @@ const MainBottomCarousel: React.FC<MainBottomCarouselProps> = ({
           </>
         ) : (
           <>
-            <S.Title>BestSeller</S.Title>
+            <S.Title>NEW ARRIVAL</S.Title>
             <S.TitleText>이번주 새로운 상품을 만나보세요!</S.TitleText>
           </>
         )}
@@ -217,7 +217,7 @@ const MainBottomCarousel: React.FC<MainBottomCarouselProps> = ({
                   <S.SlideInTextDiv>
                     <S.Artist>{list.artist}</S.Artist>
                     {/* <h1>{list.artist}</h1> */}
-                    <S.ProductTitle>품명 {list.title}</S.ProductTitle>
+                    <S.ProductTitle>{list.title}</S.ProductTitle>
                     <S.ReleaseDate>발매일</S.ReleaseDate>
                     <S.Price>{list.price} 원</S.Price>
                   </S.SlideInTextDiv>
