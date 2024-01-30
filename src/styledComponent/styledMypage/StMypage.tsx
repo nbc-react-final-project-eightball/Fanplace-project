@@ -6,6 +6,10 @@ export const MoreLink = styled(Link)`
   top: 1.5rem;
   right: 1.5rem;
 `;
+
+export const RightWrapper = styled.div`
+  width: 100%;
+`;
 export const OrderList = styled.div`
   width: 100%;
 `;
@@ -76,7 +80,9 @@ export const TableBody = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 2.5rem;
+  padding: 4rem 0;
+  margin-bottom: 100px;
+  border-bottom: 1px solid #eee;
   p {
     color: #999;
   }
