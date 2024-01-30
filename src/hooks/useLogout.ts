@@ -14,18 +14,24 @@ export const useLogout = () => {
     (state: { signUpSlice: LogOutState }) => state.signUpSlice,
   );
   const userProfile = !!user;
-  const logout = async () => {
+  const handleLogout = async () => {
     try {
       await signOut(auth);
       dispatch(logOut());
 
       navigate('/');
-      alert('로그아웃 되었습니다.');
       console.log('user logged out');
     } catch (error: any) {
       console.log(error.message);
     }
   };
 
+  const logout = () => {
+    const confirmLogout = window.confirm('로그아웃 하시겠습니까?');
+    if (confirmLogout) {
+      handleLogout();
+      alert('로그아웃 되었습니다.');
+    }
+  };
   return { logout };
 };

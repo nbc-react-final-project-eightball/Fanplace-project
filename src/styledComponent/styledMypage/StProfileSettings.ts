@@ -35,6 +35,38 @@ export const ProfileSettingsWrapper = styled.div`
   .MuiOutlinedInput-notchedOutline {
     border-color: transparent;
   }
+  .css-13maa2j {
+    font-family: 'pretendard', san-serif;
+  }
+  .css-1v4ccyo {
+    width: 100%;
+    height: 48px;
+    font-family: 'pretendard', san-serif;
+  }
+  .css-1v4ccyo.Mui-disabled {
+    width: 100%;
+    height: 48px;
+    font-family: 'pretendard', san-serif;
+  }
+  .css-1x5jdmq {
+    height: 48px;
+    box-sizing: border-box;
+  }
+  .css-1x5jdmq.Mui-disabled {
+    height: 48px;
+    box-sizing: border-box;
+  }
+  .css-i44wyl {
+    border: 1px solid #bebebe;
+    margin-top: 12px;
+  }
+  .css-1v4ccyo.Mui-disabled .MuiOutlinedInput-notchedOutline {
+    width: 100%;
+    height: 48px;
+    border: none;
+    box-sizing: border-box;
+    inset: unset;
+  }
 `;
 export const TitleWrapper = styled.div`
   margin-bottom: 1.25rem;
@@ -90,7 +122,7 @@ export const TextInputField = styled(TextField)<{ disabled?: boolean }>`
     }
   }
   &.detailAddress {
-    margin-top: -1px;
+    margin-top: 12px;
     .css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root.Mui-disabled {
       border-radius: ${(props) =>
         props.disabled === true ? '0 0 5px 5px' : '5px'};

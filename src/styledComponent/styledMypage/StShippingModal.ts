@@ -54,6 +54,10 @@ export const ModalBackground = styled.div`
   .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input.Mui-disabled {
     -webkit-text-fill-color: #777;
   }
+  .css-i44wyl {
+    box-sizing: border-box;
+    width: 100%;
+  }
 `;
 
 export const ModalContainer = styled.div`
@@ -75,6 +79,9 @@ export const ModalContainer = styled.div`
   z-index: 12;
   overflow-y: auto;
   overflow-x: hidden;
+  > div {
+    width: 100%;
+  }
   @media (max-width: 768px) {
     width: calc(100% - 2.5rem);
     max-width: 640px;
@@ -129,12 +136,11 @@ export const DeliveryAddressButton = styled.button`
   padding: 0 20px;
   margin-top: 12px;
   border-radius: 5px;
-  border: 1px solid #e1e1e1;
+  border: 1px solid #bebebe;
   color: #9e9e9e;
   box-sizing: border-box;
-  @media (max-width: 480px) {
+  @media (max-width: 768px) {
     width: 100%;
-    /* max-width: 360px; */
   }
 `;
 
@@ -161,7 +167,6 @@ export const buttonWrapper = styled.div`
   }
   @media (max-width: 768px) {
     width: 100%;
-    max-width: 22.5rem;
   }
 `;
 
