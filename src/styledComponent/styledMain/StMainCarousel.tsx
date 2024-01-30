@@ -133,7 +133,7 @@ export const CarouselWrapper = styled.div`
     margin-left: -600px;
   }
   @media (max-width: 364px) {
-    /* 480px 이하 화면 크기에 대한 스타일 */
+    /* 364px 이하 화면 크기에 대한 스타일 */
     margin-left: -650px;
   }
 `;

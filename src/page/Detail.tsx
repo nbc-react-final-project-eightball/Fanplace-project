@@ -9,6 +9,7 @@ import { collection, getDocs } from 'firebase/firestore';
 import Productlist from 'components/Detail/Productlist';
 import { typeProduct } from 'Type/TypeInterface';
 import { set } from 'react-hook-form';
+import ProductRecentItems from 'components/Detail/ProductRecentItems';
 const Detail = () => {
   const [detailSend, setDetailSend] = useState<typeProduct | null>(null);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
@@ -61,6 +62,7 @@ const Detail = () => {
             <>
               <Product product={selectedProduct} />
               <ProductInfo product={selectedProduct} />
+              {/* <ProductRecentItems product={selectedProduct} /> */}
             </>
           )}
         </>
@@ -68,6 +70,7 @@ const Detail = () => {
         <>
           <Product product={detailSend} />
           {!isMobile && <ProductInfo product={detailSend} />}
+          {/* <ProductRecentItems product={selectedProduct} /> */}
         </>
       )}
     </S.DtailContainer>

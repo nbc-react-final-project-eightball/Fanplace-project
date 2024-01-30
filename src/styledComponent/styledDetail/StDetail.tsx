@@ -50,7 +50,6 @@ export const ProductContainer = styled.div`
 `;
 
 export const ProductSection2 = styled.section`
-  padding: 20px;
   justify-content: center;
 
   text-align: center;
@@ -259,4 +258,100 @@ export const ProductInfoSection3Btn3 = styled.button`
     color: #ffffff;
     background-color: #8f86ff;
   }
+`;
+
+export const DetailReviewContainer = styled.div`
+  width: 100%;
+  background-color: #9cd1ff;
+  height: 100vh;
+`;
+export const DetailReviewInPut = styled.input`
+  width: 100%;
+  height: 100px;
+  border-radius: 30px;
+  border: 1px solid #999;
+  padding: 20px;
+  font-size: 16px;
+  font-weight: 800;
+
+  &:focus {
+    outline: 1px solid #999;
+  }
+`;
+export const DetailReviewRatingInput = styled.input`
+  /* 라디오타입의 인풋박스 */
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 1px solid #999;
+  padding: 20px;
+  font-size: 16px;
+  font-weight: 800;
+
+  &:focus {
+    outline: 1px solid #999;
+  }
+`;
+export const DetailReviewRatingLabel = styled.label``;
+
+export const DetailReviewBtn = styled.button`
+  width: 20%;
+  height: 100px;
+  border-radius: 30px;
+  font-weight: normal;
+  background-color: #000000;
+  transition: all 0.2s;
+  color: #ffffff;
+  &:hover {
+    color: #ffffff;
+    background-color: #333;
+  }
+`;
+export const DetailReviewRating = styled.div`
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const DetailReviewForm = styled.form`
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+`;
+export const DetailReviewList = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  border-radius: 30px;
+`;
+
+export const DetailReviewContent = styled.div`
+  display: flex;
+  gap: 20px;
+`;
+export const DetailReviewContentSectionContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+`;
+export const DetailReviewContentSection1 = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+export const DetailReviewContentSection2 = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+export const DetailReviewImg = styled.img`
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
 `;
