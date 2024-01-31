@@ -262,8 +262,8 @@ export const ProductInfoSection3Btn3 = styled.button`
 
 export const DetailReviewContainer = styled.div`
   width: 100%;
-  background-color: #9cd1ff;
-  height: 100vh;
+
+  height: 100%;
 `;
 export const DetailReviewInPut = styled.input`
   width: 100%;
@@ -273,6 +273,7 @@ export const DetailReviewInPut = styled.input`
   padding: 20px;
   font-size: 16px;
   font-weight: 800;
+  flex: 1;
 
   &:focus {
     outline: 1px solid #999;
@@ -292,7 +293,12 @@ export const DetailReviewRatingInput = styled.input`
     outline: 1px solid #999;
   }
 `;
-export const DetailReviewRatingLabel = styled.label``;
+export const DetailReviewRatingLabel = styled.label`
+  color: #ccc;
+  &:hover {
+    color: #fc0;
+  }
+`;
 
 export const DetailReviewBtn = styled.button`
   width: 20%;
@@ -318,8 +324,13 @@ export const DetailReviewForm = styled.form`
   padding: 20px;
   display: flex;
   flex-direction: column;
-  align-items: center;
+
   gap: 20px;
+`;
+export const DetailReviewFormSection1 = styled.div`
+  display: flex;
+  gap: 10px;
+  flex: 1;
 `;
 export const DetailReviewList = styled.div`
   display: flex;
@@ -329,13 +340,14 @@ export const DetailReviewList = styled.div`
 
   width: 100%;
   height: 100%;
-  background-color: #fff;
+
   border-radius: 30px;
 `;
 
 export const DetailReviewContent = styled.div`
   display: flex;
   gap: 20px;
+  width: 100%;
 `;
 export const DetailReviewContentSectionContainer = styled.div`
   display: flex;
@@ -346,12 +358,73 @@ export const DetailReviewContentSection1 = styled.div`
   display: flex;
   flex-direction: column;
 `;
-export const DetailReviewContentSection2 = styled.div`
+export const DetailReviewContentSection1_1 = styled.div`
+  display: flex;
+  flex-direction: row;
+
+  @media (max-width: 768px) {
+    align-items: start;
+  }
+`;
+export const DetailReviewContentSection1_2 = styled.div`
   display: flex;
   flex-direction: column;
+`;
+export const DetailReviewContentSection2 = styled.div`
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 `;
 export const DetailReviewImg = styled.img`
   width: 50px;
   height: 50px;
   border-radius: 50%;
+`;
+
+export const DetailReviewDeleteBtn = styled.button`
+  width: 20px;
+  height: 30px;
+  border-radius: 30px;
+  font-weight: normal;
+  background-color: #000000;
+  transition: all 0.2s;
+
+  color: #ffffff;
+  &:hover {
+    color: #ffffff;
+    background-color: #333;
+  }
+  @media (max-width: 768px) {
+    width: 100px;
+  }
+  @media (max-width: 480px) {
+    width: 30px;
+  }
+`;
+export const DetailReviewerNameH1 = styled.h1`
+  width: 100%;
+  font-size: 16px;
+  font-weight: 800;
+  text-align: left;
+
+  @media (max-width: 768px) {
+    width: 100px;
+  }
+  @media (max-width: 480px) {
+    width: 60px;
+  }
+`;
+export const DetailReviewercreatedAtP = styled.p`
+  width: 100%;
+  font-size: 12px;
+  font-weight: 800;
+  text-align: left;
+
+  @media (max-width: 768px) {
+    width: 350px;
+  }
+  @media (max-width: 480px) {
+    width: 140px;
+  }
 `;

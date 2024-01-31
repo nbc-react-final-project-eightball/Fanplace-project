@@ -5,11 +5,8 @@ import ProductInfo from 'components/Detail/ProductInfo';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from 'redux/configStore';
 import { setProduct } from '../redux/modules/Detail/DetailSlice';
-import { collection, getDocs } from 'firebase/firestore';
-import Productlist from 'components/Detail/Productlist';
 import { typeProduct } from 'Type/TypeInterface';
-import { set } from 'react-hook-form';
-import ProductRecentItems from 'components/Detail/ProductRecentItems';
+
 const Detail = () => {
   const [detailSend, setDetailSend] = useState<typeProduct | null>(null);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
@@ -53,20 +50,22 @@ const Detail = () => {
   useEffect(() => {
     const recentItemsString = localStorage.getItem(`${userInfo?.uid}`);
     const recentItems = recentItemsString ? JSON.parse(recentItemsString) : [];
-    const updatedItems = [...recentItems, selectedProduct];
-    if (updatedItems.length > 5) {
-      updatedItems.shift(); // Remove the oldest item
-    }
 
-    localStorage.setItem(`${userInfo?.uid}`, JSON.stringify(updatedItems));
-
-    setTimeout(
-      () => {
-        localStorage.removeItem('recentItems');
-      },
-      24 * 60 * 60 * 1000,
+    // selectedProduct가 이미 recentItems에 있는지 확인
+    const isAlreadySaved = recentItems.some(
+      (item: typeProduct) => item.productId === selectedProduct?.productId,
     );
-  }, []);
+
+    // selectedProduct가 recentItems에 없으면 추가
+    if (!isAlreadySaved) {
+      const updatedItems = [...recentItems, selectedProduct];
+      if (updatedItems.length > 4) {
+        updatedItems.shift();
+      }
+
+      localStorage.setItem(`${userInfo?.uid}`, JSON.stringify(updatedItems));
+    }
+  }, [selectedProduct, userInfo]);
 
   return (
     <S.DtailContainer>

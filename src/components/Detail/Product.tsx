@@ -22,6 +22,7 @@ import { db } from '../../firebase/config';
 import { useSelector } from 'react-redux';
 import { RootState } from 'redux/configStore';
 import { nanoid } from '@reduxjs/toolkit';
+import StarRate from './StarRate';
 
 interface ProductProps {
   product: typeProduct | null;
@@ -45,10 +46,10 @@ const Product: React.FC<ProductProps> = ({ product }) => {
   const [productReviewOpen, setProductReviewOpen] = useState(false);
   const [reviews, setReviews] = useState<DocumentData>([]);
   const [newReview, setNewReview] = useState('');
-  const [rating, setRating] = React.useState(5);
+  const [rating, setRating] = React.useState<number>(0);
+
   const id = nanoid();
 
-  // console.log('유저인포', userInfo);
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth <= 768);
@@ -60,7 +61,7 @@ const Product: React.FC<ProductProps> = ({ product }) => {
       window.removeEventListener('resize', handleResize);
     };
   }, []);
-  const goodsReviewsCollection = collection(db, 'reviews');
+
   const getReviews = useCallback(async () => {
     const productRef = doc(db, 'reviews', String(product?.productId));
     const productSnap = await getDoc(productRef);
@@ -80,10 +81,6 @@ const Product: React.FC<ProductProps> = ({ product }) => {
     }
   }, [product?.productId]);
 
-  const handleRatingChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const value = Number(event.target.value);
-    setRating(value);
-  };
   useEffect(() => {
     getReviews();
   }, [newReview === '']);
@@ -92,6 +89,10 @@ const Product: React.FC<ProductProps> = ({ product }) => {
   }, []);
   const handleReviewSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!userInfo?.uid) {
+      alert('로그인 후 이용해주세요.');
+      return;
+    }
     if (!rating) {
       alert('별점을 선택해주세요.');
       return;
@@ -101,7 +102,6 @@ const Product: React.FC<ProductProps> = ({ product }) => {
       const productSnap = await getDoc(productRef);
       console.log('프로덕트스냅', productSnap);
       if (productSnap.exists()) {
-        // If the document already exists, append the new review to the reviews array
         await updateDoc(productRef, {
           reviews: arrayUnion({
             displayName: userInfo?.displayName,
@@ -128,16 +128,6 @@ const Product: React.FC<ProductProps> = ({ product }) => {
           ],
         });
       }
-      // const addReview = await collection(db, 'reviews');
-      // await addDoc(addReview, {
-      //   displayName: userInfo?.displayName,
-      //   review: newReview,
-      //   userId: userInfo?.uid ? userInfo.uid : null,
-      //   productId: product?.productId,
-      //   createdAt: new Date().toLocaleString(),
-      //   photoURL: userInfo?.photoURL,
-      //   rating: rating,
-      // });
     } catch (error) {
       console.log(error);
     }
@@ -166,6 +156,7 @@ const Product: React.FC<ProductProps> = ({ product }) => {
       console.error('리뷰 삭제 오류:', error);
     }
   };
+
   return (
     <S.ProductContainer>
       <S.ProductSection1>
@@ -190,16 +181,23 @@ const Product: React.FC<ProductProps> = ({ product }) => {
       <S.ProductSection2>
         <S.ProductTitle>
           <span
+            style={{
+              borderBottom:
+                productReviewOpen == false ? '1px solid #000' : 'none',
+            }}
             onClick={() => {
-              setProductReviewOpen(!productReviewOpen);
+              setProductReviewOpen(false);
             }}
           >
             상세설명
           </span>
           <span
-            style={{ border: 'none' }}
+            style={{
+              borderBottom:
+                productReviewOpen == true ? '1px solid #000' : 'none',
+            }}
             onClick={() => {
-              setProductReviewOpen(!productReviewOpen);
+              setProductReviewOpen(true);
             }}
           >
             상품리뷰({reviews.length})
@@ -210,20 +208,13 @@ const Product: React.FC<ProductProps> = ({ product }) => {
           <>
             <S.DetailReviewContainer>
               <S.DetailReviewForm onSubmit={handleReviewSubmit}>
-                <S.DetailReviewRating>
-                  {[1, 2, 3, 4, 5].map((value) => (
-                    <S.DetailReviewRatingLabel htmlFor={`rating-${value}`}>
-                      {'⭐'.repeat(value)}
-                      <S.DetailReviewRatingInput
-                        type="radio"
-                        name="rating"
-                        value={value}
-                        onChange={handleRatingChange}
-                      />
-                    </S.DetailReviewRatingLabel>
-                  ))}
-                </S.DetailReviewRating>
-                <div>
+                <>
+                  <h1>사용 해보셧나요? 후기를 작성해주세요!</h1>
+                  <S.DetailReviewRating>
+                    <StarRate rating={rating} setRating={setRating} />
+                  </S.DetailReviewRating>
+                </>
+                <S.DetailReviewFormSection1>
                   <S.DetailReviewInPut
                     value={newReview}
                     onChange={(e) => {
@@ -237,7 +228,7 @@ const Product: React.FC<ProductProps> = ({ product }) => {
                   />
 
                   <S.DetailReviewBtn type="submit">저 장</S.DetailReviewBtn>
-                </div>
+                </S.DetailReviewFormSection1>
               </S.DetailReviewForm>
               <S.DetailReviewList>
                 {reviews.map((review: Review) => (
@@ -245,24 +236,52 @@ const Product: React.FC<ProductProps> = ({ product }) => {
                     <S.DetailReviewImg src={review.photoURL} alt="" />
                     <S.DetailReviewContentSectionContainer>
                       <S.DetailReviewContentSection1>
-                        <p>{review.displayName}</p>
-                        <div>
-                          <p>{'⭐'.repeat(review.rating || 0)}</p>
-                          <p>{review.createdAt?.toLocaleString()}</p>
-                        </div>
+                        <S.DetailReviewContentSection1_1>
+                          <S.DetailReviewerNameH1>
+                            {review.displayName}
+                          </S.DetailReviewerNameH1>
+                          <S.DetailReviewercreatedAtP>
+                            {review.createdAt?.toLocaleString()}
+                          </S.DetailReviewercreatedAtP>
+                          {userInfo?.uid === review?.userId && (
+                            <S.DetailReviewDeleteBtn
+                              onClick={() => {
+                                handleReviewDelete(review.reviewsId);
+                              }}
+                            >
+                              삭제
+                            </S.DetailReviewDeleteBtn>
+                          )}
+                        </S.DetailReviewContentSection1_1>
+                        <S.DetailReviewContentSection1_2>
+                          <p style={{ textAlign: 'left' }}>
+                            {Array.from(
+                              { length: review.rating || 0 },
+                              (_, idx) => (
+                                <svg
+                                  key={idx}
+                                  xmlns="http://www.w3.org/2000/svg"
+                                  width="20"
+                                  height="20"
+                                  viewBox="0 0 14 13"
+                                  fill="#FFD700"
+                                >
+                                  {
+                                    <path
+                                      id={`${idx}Star`}
+                                      d="M9,2l2.163,4.279L16,6.969,12.5,10.3l.826,4.7L9,12.779,4.674,15,5.5,10.3,2,6.969l4.837-.69Z"
+                                      transform="translate(-2 -2)"
+                                    />
+                                  }
+                                </svg>
+                              ),
+                            )}
+                          </p>
+                        </S.DetailReviewContentSection1_2>
                       </S.DetailReviewContentSection1>
                       <S.DetailReviewContentSection2>
                         <p>{review.review}</p>
-                        <p>{review.reviewsId}</p>
-                        {userInfo?.uid === review?.userId && (
-                          <button
-                            onClick={() => {
-                              handleReviewDelete(review.reviewsId);
-                            }}
-                          >
-                            삭제
-                          </button>
-                        )}
+                        {/* <p>{review.reviewsId}</p> */}
                       </S.DetailReviewContentSection2>
                     </S.DetailReviewContentSectionContainer>
                   </S.DetailReviewContent>
