@@ -396,7 +396,7 @@ export const DetailReviewDeleteBtn = styled.button`
     background-color: #ffffff;
   }
   @media (max-width: 768px) {
-    width: 100px;
+    width: 30px;
   }
   @media (max-width: 480px) {
     width: 30px;
@@ -409,7 +409,7 @@ export const DetailReviewerNameH1 = styled.h1`
   text-align: left;
 
   @media (max-width: 768px) {
-    width: 100px;
+    width: 150px;
   }
   @media (max-width: 480px) {
     width: 60px;
@@ -428,6 +428,6 @@ export const DetailReviewercreatedAtP = styled.p`
     width: 230px;
   }
   @media (max-width: 480px) {
-    width: 200px;
+    width: 210px;
   }
 `;
