@@ -144,11 +144,14 @@ const Product: React.FC<ProductProps> = ({ product }) => {
           (review: any) => review.reviewsId !== reviewId,
         );
 
-        await updateDoc(productRef, {
-          reviews: newReviews,
-        });
-        setReviews(newReviews);
-        alert('리뷰가 성공적으로 삭제되었습니다.');
+        const confirmDelete = window.confirm('정말로 리뷰를 삭제하시겠습니까?');
+        if (confirmDelete) {
+          await updateDoc(productRef, {
+            reviews: newReviews,
+          });
+          setReviews(newReviews);
+          alert('리뷰가 성공적으로 삭제되었습니다.');
+        }
       } else {
         alert('리뷰를 찾을 수 없습니다.');
       }
@@ -249,7 +252,7 @@ const Product: React.FC<ProductProps> = ({ product }) => {
                                 handleReviewDelete(review.reviewsId);
                               }}
                             >
-                              삭제
+                              X
                             </S.DetailReviewDeleteBtn>
                           )}
                         </S.DetailReviewContentSection1_1>

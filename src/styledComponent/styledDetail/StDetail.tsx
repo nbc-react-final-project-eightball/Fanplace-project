@@ -383,8 +383,8 @@ export const DetailReviewImg = styled.img`
 `;
 
 export const DetailReviewDeleteBtn = styled.button`
-  width: 20px;
-  height: 30px;
+  width: 50px;
+  height: 20px;
   border-radius: 30px;
   font-weight: normal;
   background-color: #000000;
@@ -392,8 +392,8 @@ export const DetailReviewDeleteBtn = styled.button`
 
   color: #ffffff;
   &:hover {
-    color: #ffffff;
-    background-color: #333;
+    color: #000000;
+    background-color: #ffffff;
   }
   @media (max-width: 768px) {
     width: 100px;
@@ -424,7 +424,10 @@ export const DetailReviewercreatedAtP = styled.p`
   @media (max-width: 768px) {
     width: 350px;
   }
+  @media (max-width: 638px) {
+    width: 230px;
+  }
   @media (max-width: 480px) {
-    width: 140px;
+    width: 200px;
   }
 `;
