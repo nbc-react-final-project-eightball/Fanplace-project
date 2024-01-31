@@ -22,7 +22,7 @@ import { db } from '../../firebase/config';
 import { useSelector } from 'react-redux';
 import { RootState } from 'redux/configStore';
 import { nanoid } from '@reduxjs/toolkit';
-import { set } from 'react-hook-form';
+
 interface ProductProps {
   product: typeProduct | null;
 }

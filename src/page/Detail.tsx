@@ -14,11 +14,13 @@ const Detail = () => {
   const [detailSend, setDetailSend] = useState<typeProduct | null>(null);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
   const dispatch = useDispatch();
-
+  const userInfo = useSelector(
+    (state: RootState) => state.signUpSlice.userInfo,
+  );
   const selectedProduct = useSelector(
     (state: RootState) => state.goods.selectedProduct,
   );
-
+  console.log('user', userInfo?.uid);
   //새로고침할때마다 상품정보가 사라지는것을 방지하려고 세션스토리지에 저장합니다 !
   useEffect(() => {
     if (selectedProduct) {
@@ -47,6 +49,23 @@ const Detail = () => {
     return () => {
       window.removeEventListener('resize', handleResize);
     };
+  }, []);
+  useEffect(() => {
+    const recentItemsString = localStorage.getItem(`${userInfo?.uid}`);
+    const recentItems = recentItemsString ? JSON.parse(recentItemsString) : [];
+    const updatedItems = [...recentItems, selectedProduct];
+    if (updatedItems.length > 5) {
+      updatedItems.shift(); // Remove the oldest item
+    }
+
+    localStorage.setItem(`${userInfo?.uid}`, JSON.stringify(updatedItems));
+
+    setTimeout(
+      () => {
+        localStorage.removeItem('recentItems');
+      },
+      24 * 60 * 60 * 1000,
+    );
   }, []);
 
   return (
