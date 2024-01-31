@@ -4,19 +4,11 @@ import { typeProduct } from '../../Type/TypeInterface';
 import ProductInfo from './ProductInfo';
 import {
   DocumentData,
-  addDoc,
-  arrayRemove,
   arrayUnion,
-  collection,
-  deleteDoc,
   doc,
   getDoc,
-  getDocs,
-  limit,
-  query,
   setDoc,
   updateDoc,
-  where,
 } from 'firebase/firestore';
 import { db } from '../../firebase/config';
 import { useSelector } from 'react-redux';
@@ -77,16 +69,14 @@ const Product: React.FC<ProductProps> = ({ product }) => {
         }) || [];
       setReviews(reviewsList);
     } else {
-      setReviews(['']);
+      setReviews([]);
     }
   }, [product?.productId]);
 
   useEffect(() => {
     getReviews();
   }, [newReview === '']);
-  useEffect(() => {
-    console.log('리뷰', reviews);
-  }, []);
+  useEffect(() => {}, []);
   const handleReviewSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!userInfo?.uid) {
@@ -100,7 +90,7 @@ const Product: React.FC<ProductProps> = ({ product }) => {
     try {
       const productRef = doc(db, 'reviews', String(product?.productId));
       const productSnap = await getDoc(productRef);
-      console.log('프로덕트스냅', productSnap);
+
       if (productSnap.exists()) {
         await updateDoc(productRef, {
           reviews: arrayUnion({
@@ -133,6 +123,7 @@ const Product: React.FC<ProductProps> = ({ product }) => {
     }
     setNewReview('');
   };
+  console.log('reviews', reviews);
   const handleReviewDelete = async (reviewId: string) => {
     try {
       const productRef = doc(db, 'reviews', String(product?.productId));
@@ -203,7 +194,7 @@ const Product: React.FC<ProductProps> = ({ product }) => {
               setProductReviewOpen(true);
             }}
           >
-            상품리뷰({reviews.length})
+            상품리뷰({reviews.length === 0 ? 0 : reviews?.length})
           </span>
         </S.ProductTitle>
         {/* 디테일 이미지1개는 무조건 들어가서 뒤에껏들은  있으면 나오게 해둿습니다*/}
@@ -233,63 +224,71 @@ const Product: React.FC<ProductProps> = ({ product }) => {
                   <S.DetailReviewBtn type="submit">저 장</S.DetailReviewBtn>
                 </S.DetailReviewFormSection1>
               </S.DetailReviewForm>
-              <S.DetailReviewList>
-                {reviews.map((review: Review) => (
-                  <S.DetailReviewContent key={review.productId}>
-                    <S.DetailReviewImg src={review.photoURL} alt="" />
-                    <S.DetailReviewContentSectionContainer>
-                      <S.DetailReviewContentSection1>
-                        <S.DetailReviewContentSection1_1>
-                          <S.DetailReviewerNameH1>
-                            {review.displayName}
-                          </S.DetailReviewerNameH1>
-                          <S.DetailReviewercreatedAtP>
-                            {review.createdAt?.toLocaleString()}
-                          </S.DetailReviewercreatedAtP>
-                          {userInfo?.uid === review?.userId && (
-                            <S.DetailReviewDeleteBtn
-                              onClick={() => {
-                                handleReviewDelete(review.reviewsId);
-                              }}
-                            >
-                              X
-                            </S.DetailReviewDeleteBtn>
-                          )}
-                        </S.DetailReviewContentSection1_1>
-                        <S.DetailReviewContentSection1_2>
-                          <p style={{ textAlign: 'left' }}>
-                            {Array.from(
-                              { length: review.rating || 0 },
-                              (_, idx) => (
-                                <svg
-                                  key={idx}
-                                  xmlns="http://www.w3.org/2000/svg"
-                                  width="20"
-                                  height="20"
-                                  viewBox="0 0 14 13"
-                                  fill="#FFD700"
-                                >
-                                  {
-                                    <path
-                                      id={`${idx}Star`}
-                                      d="M9,2l2.163,4.279L16,6.969,12.5,10.3l.826,4.7L9,12.779,4.674,15,5.5,10.3,2,6.969l4.837-.69Z"
-                                      transform="translate(-2 -2)"
-                                    />
-                                  }
-                                </svg>
-                              ),
+
+              {reviews.length === 0 ? (
+                ''
+              ) : (
+                <S.DetailReviewList>
+                  {reviews.map((review: Review) => (
+                    <S.DetailReviewContent key={review.productId}>
+                      <S.DetailReviewImg
+                        src={review.photoURL}
+                        alt="프로필 이미지"
+                        referrerPolicy="no-referrer"
+                      />
+                      <S.DetailReviewContentSectionContainer>
+                        <S.DetailReviewContentSection1>
+                          <S.DetailReviewContentSection1_1>
+                            <S.DetailReviewerNameH1>
+                              {review.displayName}
+                            </S.DetailReviewerNameH1>
+                            <S.DetailReviewercreatedAtP>
+                              {review.createdAt?.toLocaleString()}
+                            </S.DetailReviewercreatedAtP>
+                            {userInfo?.uid === review?.userId && (
+                              <S.DetailReviewDeleteBtn
+                                onClick={() => {
+                                  handleReviewDelete(review.reviewsId);
+                                }}
+                              >
+                                X
+                              </S.DetailReviewDeleteBtn>
                             )}
-                          </p>
-                        </S.DetailReviewContentSection1_2>
-                      </S.DetailReviewContentSection1>
-                      <S.DetailReviewContentSection2>
-                        <p>{review.review}</p>
-                        {/* <p>{review.reviewsId}</p> */}
-                      </S.DetailReviewContentSection2>
-                    </S.DetailReviewContentSectionContainer>
-                  </S.DetailReviewContent>
-                ))}
-              </S.DetailReviewList>
+                          </S.DetailReviewContentSection1_1>
+                          <S.DetailReviewContentSection1_2>
+                            <p style={{ textAlign: 'left' }}>
+                              {Array.from(
+                                { length: review.rating || 0 },
+                                (_, idx) => (
+                                  <svg
+                                    key={idx}
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="20"
+                                    height="20"
+                                    viewBox="0 0 14 13"
+                                    fill="#FFD700"
+                                  >
+                                    {
+                                      <path
+                                        id={`${idx}Star`}
+                                        d="M9,2l2.163,4.279L16,6.969,12.5,10.3l.826,4.7L9,12.779,4.674,15,5.5,10.3,2,6.969l4.837-.69Z"
+                                        transform="translate(-2 -2)"
+                                      />
+                                    }
+                                  </svg>
+                                ),
+                              )}
+                            </p>
+                          </S.DetailReviewContentSection1_2>
+                        </S.DetailReviewContentSection1>
+                        <S.DetailReviewContentSection2>
+                          <p>{review.review}</p>
+                        </S.DetailReviewContentSection2>
+                      </S.DetailReviewContentSectionContainer>
+                    </S.DetailReviewContent>
+                  ))}
+                </S.DetailReviewList>
+              )}
             </S.DetailReviewContainer>
           </>
         )}
