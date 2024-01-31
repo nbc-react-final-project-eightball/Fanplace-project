@@ -169,7 +169,7 @@ const MainBottomCarousel: React.FC<MainBottomCarouselProps> = ({
         </svg>
       </S.PrevButton>
       <S.CarouselContainer>
-        {caroueslList[0].teg === `Top10` ? (
+        {caroueslList[0].tag === `Top10` ? (
           <>
             <S.Title>BEST 10</S.Title>
             <S.TitleText>판매율 높은 베스트 10!</S.TitleText>
@@ -203,7 +203,7 @@ const MainBottomCarousel: React.FC<MainBottomCarouselProps> = ({
             {copiedSlides?.map((list: any, index: number) => (
               <S.Slide key={index}>
                 <Link
-                  to={`/Detail/${list.productId}`}
+                  to={`/Detail/${list?.productId}`}
                   style={{ textDecoration: 'none', color: 'black' }}
                   onClick={() => {
                     dispatch(setSelectedProduct(list));
@@ -211,15 +211,15 @@ const MainBottomCarousel: React.FC<MainBottomCarouselProps> = ({
                 >
                   <S.Img
                     // style={{ width: '100%' }}
-                    src={list.img}
+                    src={list?.img}
                     alt={`Slide ${index}`}
                   />
                   <S.SlideInTextDiv>
-                    <S.Artist>{list.artist}</S.Artist>
+                    <S.Artist>{list?.artist}</S.Artist>
                     {/* <h1>{list.artist}</h1> */}
-                    <S.ProductTitle>{list.title}</S.ProductTitle>
+                    <S.ProductTitle>{list?.title}</S.ProductTitle>
                     <S.ReleaseDate>발매일</S.ReleaseDate>
-                    <S.Price>{list.price} 원</S.Price>
+                    <S.Price>{list?.price} 원</S.Price>
                   </S.SlideInTextDiv>
                 </Link>
               </S.Slide>
