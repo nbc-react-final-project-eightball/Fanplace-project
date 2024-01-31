@@ -11,7 +11,7 @@ export interface typeProduct {
   title: string; //상품제목
   price: number; //가격
   ProductName: string; //상품이름
-  teg?: string; // NewAlbum ,Top10, BestSeller
+  tag?: string; // NewAlbum ,Top10, BestSeller
   isSoldOut?: boolean; //품절여부
   remainingQuantity?: number; //남은수량
   contentImg1?: string; //상품설명이미지
