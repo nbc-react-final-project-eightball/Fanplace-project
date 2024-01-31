@@ -4,15 +4,7 @@ export const Div = styled.div`
   margin-top: 100px;
   display: flex;
   justify-content: center;
-
   position: relative;
-  @media (max-width: 768px) {
-    /* 768px 이하 화면 크기에 대한 스타일 */
-  }
-
-  @media (max-width: 480px) {
-    /* 480px 이하 화면 크기에 대한 스타일 */
-  }
 `;
 
 export const SlideInTextDiv = styled.div`
@@ -28,16 +20,12 @@ export const Img = styled.img`
   object-fit: cover;
   box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.06);
   @media (max-width: 768px) {
-    /* 768px 이하 화면 크기에 대한 스타일 */
     width: 240px;
     height: 240px;
   }
   @media (max-width: 480px) {
-    /* 480px 이하 화면 크기에 대한 스타일 */
     width: 250px;
     height: 250px;
-    /* max-height: 100px;
-    max-width: 100px; */
   }
 `;
 export const Artist = styled.p`
@@ -87,11 +75,7 @@ export const Slide = styled.div`
   align-items: center;
   display: flex;
 
-  @media (max-width: 768px) {
-    /* 768px 이하 화면 크기에 대한 스타일 */
-  }
   @media (max-width: 480px) {
-    /* 480px 이하 화면 크기에 대한 스타일 */
     width: 23%;
   }
 `;
@@ -104,13 +88,11 @@ export const CarouselContainer = styled.div`
   flex-grow: 20;
 
   @media (max-width: 768px) {
-    /* 768px 이하 화면 크기에 대한 스타일 */
     flex-grow: 0;
     width: 90%;
   }
 
   @media (max-width: 480px) {
-    /* 480px 이하 화면 크기에 대한 스타일 */
     flex-grow: 0;
     width: 70%;
   }
@@ -119,21 +101,17 @@ export const CarouselWrapper = styled.div`
   position: relative;
   margin-left: -560px;
   @media (max-width: 768px) {
-    /* 768px 이하 화면 크기에 대한 스타일 */
     margin-left: -250px;
   }
 
   @media (max-width: 480px) {
-    /* 480px 이하 화면 크기에 대한 스타일 */
     margin-left: -650px;
   }
 
   @media (max-width: 414px) {
-    /* 414px 이하 화면 크기에 대한 스타일 */
     margin-left: -600px;
   }
   @media (max-width: 364px) {
-    /* 364px 이하 화면 크기에 대한 스타일 */
     margin-left: -650px;
   }
 `;
@@ -224,25 +202,21 @@ export const NextButton = styled.button`
     width: 50px;
     height: 50px;
     @media (max-width: 768px) {
-      /* 768px 이하 화면 크기에 대한 스타일 */
       width: 45px;
       height: 45px;
     }
     @media (max-width: 480px) {
-      /* 480px 이하 화면 크기에 대한 스타일 */
       width: 35px;
       height: 35px;
     }
   }
   @media (max-width: 768px) {
-    /* 768px 이하 화면 크기에 대한 스타일 */
     width: 45px;
     height: 45px;
     right: 2%;
   }
 
   @media (max-width: 480px) {
-    /* 480px 이하 화면 크기에 대한 스타일 */
     width: 35px;
     height: 35px;
     top: 50%;
@@ -278,11 +252,9 @@ export const SlideContainer = styled.div`
   width: 100%;
   gap: 20px;
   @media (max-width: 480px) {
-    /* 480px 이하 화면 크기에 대한 스타일 */
     gap: 110px;
   }
   @media (max-width: 364px) {
-    /* 480px 이하 화면 크기에 대한 스타일 */
     gap: 130px;
   }
 `;
@@ -300,12 +272,10 @@ export const AlbumDiv = styled.div`
   position: relative;
   background: #000;
   @media (max-width: 768px) {
-    /* 768px 이하 화면 크기에 대한 스타일 */
     width: 768px;
   }
 
   @media (max-width: 480px) {
-    /* 480px 이하 화면 크기에 대한 스타일 */
     width: 480px;
     width: 100%;
   }
@@ -313,7 +283,6 @@ export const AlbumDiv = styled.div`
 
 export const AlbumContainer = styled.div`
   display: flex;
-
   flex-direction: column;
   justify-content: center;
   position: relative;
@@ -326,24 +295,19 @@ export const AlbumWrapper = styled.div`
   display: flex;
   margin-left: -660px;
   @media (max-width: 768px) {
-    /* 768px 이하 화면 크기에 대한 스타일 */
     margin-left: -230px;
   }
 
   @media (max-width: 480px) {
-    /* 480px 이하 화면 크기에 대한 스타일 */
     margin-left: -80px;
   }
   @media (max-width: 386px) {
-    /* 480px 이하 화면 크기에 대한 스타일 */
     margin-left: -130px;
   }
   @media (max-width: 414px) {
-    /* 480px 이하 화면 크기에 대한 스타일 */
     margin-left: -110px;
   }
   @media (max-width: 364px) {
-    /* 480px 이하 화면 크기에 대한 스타일 */
     margin-left: -140px;
   }
 `;
@@ -361,7 +325,6 @@ export const AlbumSlide = styled.div`
   width: 280px;
   flex: 0 1 auto;
   position: relative;
-
   transform: translateX(-25%);
 `;
 export const AlbumImg = styled.img`
@@ -372,12 +335,7 @@ export const AlbumImg = styled.img`
   border-radius: 135px;
   position: relative;
   @media (max-width: 768px) {
-    /* 768px 이하 화면 크기에 대한 스타일 */
     height: 180px;
-  }
-
-  @media (max-width: 480px) {
-    /* 480px 이하 화면 크기에 대한 스타일 */
   }
 `;
 export const AlbumTitle = styled.h2`
@@ -392,12 +350,7 @@ export const AlbumTitle = styled.h2`
   left: -0px;
   margin-top: 10px;
   @media (max-width: 768px) {
-    /* 768px 이하 화면 크기에 대한 스타일 */
     left: -30px;
-  }
-
-  @media (max-width: 480px) {
-    /* 480px 이하 화면 크기에 대한 스타일 */
   }
 `;
 
@@ -428,12 +381,10 @@ export const AlbumPrevButton = styled.button`
   left: 430px;
   z-index: 1;
   @media (max-width: 768px) {
-    /* 768px 이하 화면 크기에 대한 스타일 */
     left: 220px;
   }
 
   @media (max-width: 480px) {
-    /* 480px 이하 화면 크기에 대한 스타일 */
     left: 10%;
   }
 `;
@@ -449,18 +400,15 @@ export const AlbumNextButton = styled.button`
   right: 410px;
   z-index: 1;
   @media (max-width: 768px) {
-    /* 768px 이하 화면 크기에 대한 스타일 */
     right: 210px;
   }
 
   @media (max-width: 480px) {
-    /* 480px 이하 화면 크기에 대한 스타일 */
     right: 10%;
   }
 `;
 export const AlbumDivTitle = styled.h2`
   color: #fff;
-
   text-align: center;
   font-family: Pretendard;
   font-size: 32px;
@@ -472,9 +420,7 @@ export const AlbumDivTitle = styled.h2`
 `;
 export const AlbumDivTitleText = styled.p`
   color: #aaa;
-
   text-align: center;
-
   font-size: 16px;
   font-style: normal;
   font-weight: 400;

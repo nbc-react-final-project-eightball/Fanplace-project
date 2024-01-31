@@ -155,11 +155,7 @@ const MainBottomCarousel: React.FC<MainBottomCarouselProps> = ({
                     dispatch(setSelectedProduct(list));
                   }}
                 >
-                  <S.Img
-                    // style={{ width: '100%' }}
-                    src={list?.img}
-                    alt={`Slide ${index}`}
-                  />
+                  <S.Img src={list?.img} alt={`Slide ${index}`} />
                   <S.SlideInTextDiv>
                     <S.Artist>{list?.artist}</S.Artist>
                     {/* <h1>{list.artist}</h1> */}

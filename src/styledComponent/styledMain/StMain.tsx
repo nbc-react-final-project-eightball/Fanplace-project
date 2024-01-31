@@ -7,7 +7,6 @@ export const Div = styled.div`
   margin: 0 auto;
   padding: 0px 2.5rem 0px 8.75rem;
   @media (max-width: 768px) {
-    /* 768px 이하 화면 크기에 대한 스타일 */
     width: 100%;
     height: auto;
     max-width: 768px;
@@ -16,7 +15,6 @@ export const Div = styled.div`
   }
 
   @media (max-width: 480px) {
-    /* 480px 이하 화면 크기에 대한 스타일 */
     width: 100%;
     height: auto;
     max-width: 480px;

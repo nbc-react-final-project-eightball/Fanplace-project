@@ -5,13 +5,6 @@ export const Div = styled.div`
   display: flex;
   justify-content: center;
   position: relative;
-  @media (max-width: 768px) {
-    /* 768px 이하 화면 크기에 대한 스타일 */
-  }
-
-  @media (max-width: 480px) {
-    /* 480px 이하 화면 크기에 대한 스타일 */
-  }
 `;
 
 export const CarouselContainer = styled.div`
@@ -34,13 +27,11 @@ export const Slide = styled.div`
 
   margin-top: 40px;
   @media (max-width: 768px) {
-    /* 768px 이하 화면 크기에 대한 스타일 */
     flex-grow: 1;
     width: 25%;
   }
 
   @media (max-width: 480px) {
-    /* 480px 이하 화면 크기에 대한 스타일 */
     flex-grow: 0;
     width: 25%;
   }
@@ -57,15 +48,12 @@ export const SlideContainer = styled.div`
   gap: 20px;
 
   @media (max-width: 768px) {
-    /* 768px 이하 화면 크기에 대한 스타일 */
     flex-grow: 0;
     width: 90%;
     gap: 20px;
   }
 
   @media (max-width: 480px) {
-    /* 480px 이하 화면 크기에 대한 스타일 */
-    flex-grow: 0;
     width: 70%;
     gap: 60px;
   }
@@ -105,12 +93,10 @@ export const Img = styled.div`
   object-fit: cover;
   box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.06);
   @media (max-width: 768px) {
-    /* 768px 이하 화면 크기에 대한 스타일 */
     width: 168px;
     height: 168px;
   }
   @media (max-width: 480px) {
-    /* 768px 이하 화면 크기에 대한 스타일 */
     width: 120px;
     height: 120px;
   }
