@@ -8,6 +8,7 @@ interface Props {
   totalPrice: number;
   shippingCost: number;
   totalPayment: number;
+  hasCheckbox: boolean;
 }
 
 const CartListInfo = ({
@@ -16,6 +17,7 @@ const CartListInfo = ({
   totalPrice,
   shippingCost,
   totalPayment,
+  hasCheckbox,
 }: Props) => {
   const [selectAll, setSelectAll] = useState<boolean>(false);
 
@@ -57,26 +59,34 @@ const CartListInfo = ({
 
   return (
     <S.LeftContainer>
-      <div className="artistName">
-        <input
-          type="checkbox"
-          id="checkboxTop"
-          checked={selectAll}
-          onChange={selectAllChangeHandler}
-        />
-        <label htmlFor="checkboxTop" />
-        <span>전체선택</span>
-      </div>
+      {hasCheckbox && (
+        <div className="artistName">
+          <input
+            type="checkbox"
+            id="checkboxTop"
+            checked={selectAll}
+            onChange={selectAllChangeHandler}
+          />
+          <label htmlFor="checkboxTop" />
+          <span>전체선택</span>
+        </div>
+      )}
+
       <S.CartList>
         {cartList.map((cartItem) => (
           <S.CartWrapper key={cartItem.id}>
-            <input
-              type="checkbox"
-              id={`checkbox${cartItem.productId}`}
-              checked={cartItem.selected}
-              onChange={() => checkboxChangeHanlder(cartItem.productId)}
-            />
-            <label htmlFor={`checkbox${cartItem.productId}`} />
+            {hasCheckbox && (
+              <>
+                <input
+                  type="checkbox"
+                  id={`checkbox${cartItem.productId}`}
+                  checked={cartItem.selected}
+                  onChange={() => checkboxChangeHanlder(cartItem.productId)}
+                />
+                <label htmlFor={`checkbox${cartItem.productId}`} />
+              </>
+            )}
+
             <S.Image src={`${cartItem.img}`}></S.Image>
             <div className="titleWrapper">
               <div className="title">{cartItem.title}</div>

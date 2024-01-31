@@ -55,7 +55,7 @@ export const Process = styled.div`
     font-size: 16px;
     font-weight: 400;
   }
-  span:first-child {
+  span.action {
     color: #000;
     font-size: 16px;
     font-weight: 600;
@@ -153,23 +153,14 @@ export const LeftContainer = styled.div`
 `;
 export const RightContainer = styled.div`
   width: 22.5rem;
-  height: 100%;
+  height: 50%;
   min-height: 25rem;
   padding: 20px;
   border-radius: 10px;
   background: #fff;
 
   @media screen and (max-width: 768px) {
-    width: 100%; /* Make it full-width for smaller screens */
-  }
-
-  .paymentInfo {
-    color: #333;
-    font-size: 20px;
-    font-style: normal;
-    font-weight: 600;
-    line-height: normal;
-    margin-bottom: 20px;
+    width: 100%;
   }
 `;
 

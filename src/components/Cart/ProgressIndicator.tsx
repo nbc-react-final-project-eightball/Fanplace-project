@@ -1,11 +1,14 @@
 import * as S from '../../styledComponent/styledCart/StCart';
 
-const TopSide = () => {
+interface Props {
+  title: string;
+}
+const ProgressIndicator = ({ title }: Props) => {
   return (
     <S.CartTitle>
-      <span className="span1">장바구니</span>
+      <span>{title}</span>
       <S.Process>
-        <span>장바구니</span>
+        <span className={title === '장바구니' ? 'action' : ''}>장바구니</span>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="16"
@@ -18,7 +21,7 @@ const TopSide = () => {
             fill="#999999"
           />
         </svg>
-        <span>주문결제</span>
+        <span className={title === '주문결제' ? 'action' : ''}>주문결제</span>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="16"
@@ -31,10 +34,10 @@ const TopSide = () => {
             fill="#999999"
           />
         </svg>
-        <span>주문완료</span>
+        <span className={title === '주문완료' ? 'action' : ''}>주문완료</span>
       </S.Process>
     </S.CartTitle>
   );
 };
 
-export default TopSide;
+export default ProgressIndicator;
