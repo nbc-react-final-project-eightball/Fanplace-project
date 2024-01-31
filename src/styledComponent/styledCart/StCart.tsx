@@ -3,8 +3,71 @@ import styled from 'styled-components';
 export const CartContainer = styled.div`
   width: 100%;
   /* height: 0.433; */
+  padding-bottom: 300px;
   background: #f9f9f9;
   flex-shrink: 0;
+`;
+
+export const Cart = styled.div`
+  height: 900px;
+  top: 112px;
+  padding: 0 2.5rem 0 8.75rem;
+  @media screen and (max-width: 768px) {
+    padding: 0 2.5rem 0 2.5rem;
+  }
+  @media screen and (max-width: 480px) {
+    padding: 0 2.5rem 0 1rem;
+  }
+  display: flex;
+  flex-direction: column;
+`;
+
+export const Wrapper = styled.div`
+  display: flex;
+  gap: 10px;
+  margin: 0 auto;
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+    align-items: center;
+  }
+  @media screen and (max-width: 480px) {
+    width: 450px;
+  }
+`;
+
+export const CartTitle = styled.div`
+  width: 100%;
+  max-width: 1070px;
+  color: #000;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  margin: 40px auto 20px;
+  display: flex;
+  justify-content: space-between;
+`;
+export const Process = styled.div`
+  display: flex;
+  align-items: center;
+  span {
+    color: #999;
+    font-size: 16px;
+    font-weight: 400;
+  }
+  span:first-child {
+    color: #000;
+    font-size: 16px;
+    font-weight: 600;
+  }
+`;
+export const LeftContainer = styled.div`
+  width: 720px;
+  height: 100%;
+  border-radius: 10px;
+  border: 1px solid #efefef;
+  background: #fff;
+  padding: 20px;
 
   input[type='checkbox'] {
     display: none;
@@ -34,69 +97,10 @@ export const CartContainer = styled.div`
     width: 480px;
   }
   padding-bottom: 100px;
-`;
 
-export const Cart = styled.div`
-  height: 900px;
-  top: 112px;
-  padding: 0 2.5rem 0 8.75rem;
   @media screen and (max-width: 768px) {
-    padding: 0 2.5rem 0 2.5rem;
-  }
-  @media screen and (max-width: 480px) {
-    padding: 0 2.5rem 0 1rem;
-  }
-  display: flex;
-  flex-direction: column;
-  .allArea {
-    display: flex;
-    gap: 10px;
-    margin: 0 auto;
-    @media screen and (max-width: 768px) {
-      flex-direction: column;
-      align-items: center;
-    }
-    @media screen and (max-width: 480px) {
-      width: 450px;
-    }
-  }
-`;
-export const CartTitle = styled.div`
-  width: 100%;
-  max-width: 1070px;
-  color: #000;
-  font-size: 20px;
-  font-style: normal;
-  font-weight: 600;
-  line-height: normal;
-  margin: 40px auto 20px;
-  display: flex;
-  justify-content: space-between;
-`;
-export const Process = styled.div`
-  display: flex;
-  align-items: center;
-  span {
-    color: #999;
-    font-size: 16px;
-    font-weight: 400;
-  }
-  span:first-child {
-    color: #000;
-    font-size: 16px;
-    font-weight: 600;
-  }
-`;
-export const LeftArea = styled.div`
-  width: 720px;
-  height: 100%;
-  border-radius: 10px;
-  border: 1px solid #efefef;
-  background: #fff;
-  padding: 20px;
-  @media screen and (max-width: 768px) {
-    width: 100%; /* Make it full-width for smaller screens */
-    margin-bottom: 20px; /* Add some space between LeftArea and RightArea */
+    width: 100%;
+    margin-bottom: 20px;
   }
 
   .artistName {
@@ -147,13 +151,13 @@ export const LeftArea = styled.div`
     justify-content: center;
   }
 `;
-export const RightArea = styled.div`
+export const RightContainer = styled.div`
   width: 22.5rem;
+  height: 100%;
   min-height: 25rem;
   padding: 20px;
   border-radius: 10px;
   background: #fff;
-  padding: 20px;
 
   @media screen and (max-width: 768px) {
     width: 100%; /* Make it full-width for smaller screens */
@@ -229,7 +233,7 @@ export const CartList = styled.ul`
 
 export const CartWrapper = styled.li`
   display: flex;
-  padding: 20px 0;
+  padding: 20px 0 20px 0;
 `;
 export const Image = styled.img`
   width: 60px;

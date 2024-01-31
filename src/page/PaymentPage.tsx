@@ -66,7 +66,7 @@ const PaymentPage = () => {
   return (
     <>
       <PaymentContainer>
-        <S.RightArea>
+        <S.PaymentInfo>
           <S.PaymentInfo>결제정보</S.PaymentInfo>
           <S.BoxWrapper>
             <S.Box>
@@ -88,7 +88,7 @@ const PaymentPage = () => {
             </S.Box>
           </S.BoxWrapper>
           <S.PaymentButton onClick={adad}>구매하기</S.PaymentButton>
-        </S.RightArea>
+        </S.PaymentInfo>
         <div>
           <div id="payment-widget" />
         </div>
