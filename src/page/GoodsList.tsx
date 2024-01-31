@@ -537,8 +537,8 @@ const GoodsList = () => {
     },
     {
       productId: 29,
-      sideCategory: 'CD',
-      category: 'CD&DVD',
+      sideCategory: 'CD&DVD',
+      category: 'CD',
       info: '',
       artist: '라이즈',
       img: '/img/ProductCardImg/riize3.jpg',
@@ -1051,14 +1051,14 @@ const GoodsList = () => {
           </S.ArtistFilter>
         </S.GoodsListSection1>
         <div style={{ flexGrow: '1' }}>
-          <button
+          {/* <button
             onClick={() => {
               saveProduct(ProducList);
             }}
           >
             {' '}
             상품추가 테스트용
-          </button>
+          </button> */}
 
           <S.GoodsListSection2>
             <S.GoodsListSection2Wrapper>
