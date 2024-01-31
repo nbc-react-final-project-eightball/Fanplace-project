@@ -21,7 +21,7 @@ const Mainpage = () => {
   const [goodsList, setGoodsList] = useState<DocumentData>([]);
   const [newAlbum, setNewAlbum] = useState<DocumentData>([]);
   const [top10, setTop10] = useState<DocumentData>([]);
-  const [BestSeller, setBestSeller] = useState<DocumentData>([]);
+  const [NewArrival, setNewArrival] = useState<DocumentData>([]);
   const [isLoading, setIsLoading] = useState(false);
   const fetchGoods = async () => {
     try {
@@ -35,7 +35,7 @@ const Mainpage = () => {
       } else {
         const top10Query = query(
           goodsCollection,
-          where('teg', '==', 'Top10'),
+          where('tag', '==', 'Top10'),
           orderBy('productId', 'desc'),
           limit(10),
         );
@@ -48,21 +48,21 @@ const Mainpage = () => {
           (new Date().getTime() + 60 * 60 * 1000).toString(),
         );
       }
-      // 베스트셀러
-      const cachedBestSeller = localStorage.getItem('bestSeller');
-      if (cachedBestSeller && expiry && new Date().getTime() < Number(expiry)) {
-        setBestSeller(JSON.parse(cachedBestSeller));
+      // NewArrival
+      const cachedNewArrival = localStorage.getItem('NewArrival');
+      if (cachedNewArrival && expiry && new Date().getTime() < Number(expiry)) {
+        setNewArrival(JSON.parse(cachedNewArrival));
       } else {
-        const bestSellerQuery = query(
+        const NewArrivalQuery = query(
           goodsCollection,
-          where('teg', '==', 'BestSeller'),
+          where('tag', '==', 'NewArrival'),
           orderBy('productId', 'desc'),
           limit(10),
         );
-        const bestSellerSnapshot = await getDocs(bestSellerQuery);
-        const bestSellerList = bestSellerSnapshot.docs.map((doc) => doc.data());
-        setBestSeller(bestSellerList);
-        localStorage.setItem('bestSeller', JSON.stringify(bestSellerList));
+        const NewArrivalSnapshot = await getDocs(NewArrivalQuery);
+        const NewArrivalList = NewArrivalSnapshot.docs.map((doc) => doc.data());
+        setNewArrival(NewArrivalList);
+        localStorage.setItem('NewArrival', JSON.stringify(NewArrivalList));
       }
       // 앨범
       const cachedAlbumQuery = localStorage.getItem('albumQuery');
@@ -71,7 +71,7 @@ const Mainpage = () => {
       } else {
         const newAlbumQuery = query(
           goodsCollection,
-          where('teg', '==', 'NewAlbum'),
+          where('tag', '==', 'NewAlbum'),
           orderBy('productId', 'desc'),
           limit(10),
         );
@@ -106,7 +106,7 @@ const Mainpage = () => {
         ) : (
           <>
             <MainBottomCarousel caroueslList={top10} />
-            <MainBottomCarousel caroueslList={BestSeller} />
+            <MainBottomCarousel caroueslList={NewArrival} />
             <MainBttomAlbum newAlbum={newAlbum} />
           </>
         )}

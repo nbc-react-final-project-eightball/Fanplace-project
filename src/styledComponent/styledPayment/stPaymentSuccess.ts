@@ -53,7 +53,7 @@ export const OrderNumber = styled.p`
 export const GuideText = styled.p`
   font-size: 14px;
   color: #999;
-  line-height: 24px;
+  line-height: 1.5;
   text-align: center;
   margin-bottom: 48px;
 `;

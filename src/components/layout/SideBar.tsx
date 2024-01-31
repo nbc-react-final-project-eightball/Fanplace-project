@@ -60,7 +60,7 @@ const SideBar = () => {
           </S.SideBarBtn>
           <S.SideBarBtn>
             {' '}
-            <S.SNavLink to="/GoodsList/Photo" onClick={reSet}>
+            <S.SNavLink to="/GoodsList/PhotoCard" onClick={reSet}>
               포토카드
             </S.SNavLink>
           </S.SideBarBtn>

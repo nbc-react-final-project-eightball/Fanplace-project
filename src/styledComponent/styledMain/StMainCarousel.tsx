@@ -45,7 +45,7 @@ export const Artist = styled.p`
   font-size: 14px;
   font-style: normal;
   font-weight: 500;
-  line-height: 24px; /* 171.429% */
+  line-height: 1.5; /* 171.429% */
 `;
 
 export const ProductTitle = styled.h1`
@@ -58,7 +58,7 @@ export const ProductTitle = styled.h1`
   font-size: 16px;
   font-style: normal;
   font-weight: 500;
-  line-height: 24px; /* 150% */
+  line-height: 1.5; /* 150% */
   margin-bottom: 10px;
 `;
 
@@ -76,7 +76,7 @@ export const Price = styled.p`
   font-size: 18px;
   font-style: normal;
   font-weight: 600;
-  line-height: 24px; /* 133.333% */
+  line-height: 1.5; /* 133.333% */
 `;
 export const Slide = styled.div`
   /* flex: 0 0 auto; */
@@ -265,7 +265,7 @@ export const TitleText = styled.p`
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
-  line-height: 24px; /* 150% */
+  line-height: 1.5; /* 150% */
   text-align: left;
 `;
 export const SlideContainer = styled.div`
@@ -415,7 +415,7 @@ export const AlbumSlideTitleText = styled.p`
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
-  line-height: 24px; /* 150% */
+  line-height: 1.5; /* 150% */
 `;
 export const AlbumPrevButton = styled.button`
   width: 50px;
@@ -478,6 +478,6 @@ export const AlbumDivTitleText = styled.p`
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
-  line-height: 24px; /* 150% */
+  line-height: 1.5; /* 150% */
   text-align: center;
 `;
