@@ -1,18 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react';
 import * as S from '../../styledComponent/styledMain/StMainCarousel';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
-import {
-  faChevronCircleLeft,
-  faChevronCircleRight,
-} from '@fortawesome/free-solid-svg-icons';
 import { DocumentData } from 'firebase/firestore';
 interface MainBttomAlbumProps {
   newAlbum?: DocumentData;
 }
 const MainBttomAlbum: React.FC<MainBttomAlbumProps> = ({ newAlbum }) => {
   const [currentSlide, setCurrentSlide] = useState(1); // 현재 슬라이드의 인덱스
-  // const [autoSlide, setAutoSlide] = useState<NodeJS.Timeout | null>(null); // 자동 슬라이드를 위한 타이머
 
   const slides1 = [
     'img/Album8.jpg',
@@ -30,8 +23,7 @@ const MainBttomAlbum: React.FC<MainBttomAlbumProps> = ({ newAlbum }) => {
     'img/Album4.jpg',
   ];
   const slides = newAlbum?.slice(0, 7);
-  // TODO: 앨범상품 이미지를 서버에서 받아와서 뿌려주기
-  // console.log('NewAlbum111', NewAlbum[0]);
+
   const newCopiedSlides = newAlbum
     ? [
         slides[5],
@@ -44,8 +36,7 @@ const MainBttomAlbum: React.FC<MainBttomAlbumProps> = ({ newAlbum }) => {
         slides[6],
       ]
     : slides1;
-  console.log('newCopiedSlides', newCopiedSlides);
-  const copiedSlides = newAlbum ? [...slides] : [];
+
   const autoSlide = useRef<NodeJS.Timeout | null>(null);
   const slideRef = useRef<HTMLDivElement>(null);
 
@@ -102,22 +93,6 @@ const MainBttomAlbum: React.FC<MainBttomAlbumProps> = ({ newAlbum }) => {
       }
     };
   }, [currentSlide, slides.length]);
-
-  // useEffect(() => {
-  //   if (autoSlide) {
-  //     clearTimeout(autoSlide);
-  //   } // 슬라이드가 전환되기 전에 타이머를 제거
-  //   setAutoSlide(
-  //     setTimeout(() => {
-  //       setCurrentSlide((currentSlide + 1) % slides.length);
-  //       if (currentSlide === null) {
-  //         clearTimeout(currentSlide);
-  //         moveSlide(0);
-  //       }
-  //     }, 3000), // 3초 후에 슬라이드를 전환
-  //   );
-  // }, [currentSlide]);
-
   const handleNext = () => {
     if (currentSlide >= slides.length) {
       // 마지막 슬라이드에서 다음 버튼을 누르면 첫 번째 슬라이드로 돌아갑니다.
@@ -136,7 +111,6 @@ const MainBttomAlbum: React.FC<MainBttomAlbumProps> = ({ newAlbum }) => {
       }
       setCurrentSlide((prev) => prev + 1);
     }
-    // setCurrentSlide((prev) => (prev === slides.length + 1 ? 0 : prev + 1));
   };
 
   const handlePrev = () => {
@@ -160,20 +134,16 @@ const MainBttomAlbum: React.FC<MainBttomAlbumProps> = ({ newAlbum }) => {
     // setCurrentSlide((prev) => (prev === 1 ? slides.length - 1 : prev - 1));
   };
 
-  console.log('newCopiedSlides11', newCopiedSlides);
   if (!newAlbum || newAlbum.length === 0) {
     return <div>로딩중</div>;
   }
 
   return (
     <>
-      {/* <h1>새로운 앨범!</h1> */}
       <S.AlbumDiv>
         <S.AlbumPrevButton onClick={handlePrev}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            // width="50"
-            // height="50"
             viewBox="0 0 50 50"
             fill="none"
           >

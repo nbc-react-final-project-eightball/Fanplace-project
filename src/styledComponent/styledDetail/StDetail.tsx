@@ -50,7 +50,6 @@ export const ProductContainer = styled.div`
 `;
 
 export const ProductSection2 = styled.section`
-  padding: 20px;
   justify-content: center;
 
   text-align: center;
@@ -258,5 +257,177 @@ export const ProductInfoSection3Btn3 = styled.button`
   &:hover {
     color: #ffffff;
     background-color: #8f86ff;
+  }
+`;
+
+export const DetailReviewContainer = styled.div`
+  width: 100%;
+
+  height: 100%;
+`;
+export const DetailReviewInPut = styled.input`
+  width: 100%;
+  height: 100px;
+  border-radius: 30px;
+  border: 1px solid #999;
+  padding: 20px;
+  font-size: 16px;
+  font-weight: 800;
+  flex: 1;
+
+  &:focus {
+    outline: 1px solid #999;
+  }
+`;
+export const DetailReviewRatingInput = styled.input`
+  /* 라디오타입의 인풋박스 */
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 1px solid #999;
+  padding: 20px;
+  font-size: 16px;
+  font-weight: 800;
+
+  &:focus {
+    outline: 1px solid #999;
+  }
+`;
+export const DetailReviewRatingLabel = styled.label`
+  color: #ccc;
+  &:hover {
+    color: #fc0;
+  }
+`;
+
+export const DetailReviewBtn = styled.button`
+  width: 20%;
+  height: 100px;
+  border-radius: 30px;
+  font-weight: normal;
+  background-color: #000000;
+  transition: all 0.2s;
+  color: #ffffff;
+  &:hover {
+    color: #ffffff;
+    background-color: #333;
+  }
+`;
+export const DetailReviewRating = styled.div`
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const DetailReviewForm = styled.form`
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+
+  gap: 20px;
+`;
+export const DetailReviewFormSection1 = styled.div`
+  display: flex;
+  gap: 10px;
+  flex: 1;
+`;
+export const DetailReviewList = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+
+  width: 100%;
+  height: 100%;
+
+  border-radius: 30px;
+`;
+
+export const DetailReviewContent = styled.div`
+  display: flex;
+  gap: 20px;
+  width: 100%;
+`;
+export const DetailReviewContentSectionContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+`;
+export const DetailReviewContentSection1 = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+export const DetailReviewContentSection1_1 = styled.div`
+  display: flex;
+  flex-direction: row;
+
+  @media (max-width: 768px) {
+    align-items: start;
+  }
+`;
+export const DetailReviewContentSection1_2 = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+export const DetailReviewContentSection2 = styled.div`
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+`;
+export const DetailReviewImg = styled.img`
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+`;
+
+export const DetailReviewDeleteBtn = styled.button`
+  width: 50px;
+  height: 20px;
+  border-radius: 30px;
+  font-weight: normal;
+  background-color: #000000;
+  transition: all 0.2s;
+
+  color: #ffffff;
+  &:hover {
+    color: #000000;
+    background-color: #ffffff;
+  }
+  @media (max-width: 768px) {
+    width: 30px;
+  }
+  @media (max-width: 480px) {
+    width: 30px;
+  }
+`;
+export const DetailReviewerNameH1 = styled.h1`
+  width: 100%;
+  font-size: 16px;
+  font-weight: 800;
+  text-align: left;
+
+  @media (max-width: 768px) {
+    width: 150px;
+  }
+  @media (max-width: 480px) {
+    width: 60px;
+  }
+`;
+export const DetailReviewercreatedAtP = styled.p`
+  width: 100%;
+  font-size: 12px;
+  font-weight: 800;
+  text-align: left;
+
+  @media (max-width: 768px) {
+    width: 350px;
+  }
+  @media (max-width: 638px) {
+    width: 230px;
+  }
+  @media (max-width: 480px) {
+    width: 210px;
   }
 `;
