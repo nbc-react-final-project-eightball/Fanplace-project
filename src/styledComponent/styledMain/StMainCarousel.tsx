@@ -62,7 +62,7 @@ export const ProductTitle = styled.h1`
 `;
 
 export const ReleaseDate = styled.p`
-  color: #555;
+  color: #999;
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
@@ -94,7 +94,7 @@ export const Price = styled.p`
       color: rgba(190, 190, 190, 0.93);
       font-size: 14px;
       font-weight: 400;
-      text-decoration-line: strikethrough;
+      text-decoration: line-through;
     }
   }
 `;

@@ -59,43 +59,68 @@ export const HeaderButton = styled.div`
     /* 768px 이하 화면 크기에 대한 스타일 */
     position: fixed;
     width: 100%;
-    height: 50px;
+    height: 64px;
     margin: 0 auto;
 
     right: 0;
     bottom: 0;
     background-color: #ffffff;
+    @media (max-width: 768px) {
+      box-shadow: 0px -4px 8px 2px rgba(0, 0, 0, 0.04);
+    }
     gap: 0;
     & > * {
       width: 25%;
       padding: 0;
     }
+
+    @media (max-width: 768px) {
+      & > * {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 2px;
+      }
+      svg {
+        width: 28px;
+        height: 28px;
+      }
+    }
   }
 
   @media (max-width: 480px) {
     /* 480px 이하 화면 크기에 대한 스타일 */
-    position: fixed;
     width: 100%;
-    height: 50px;
     margin: 0 auto;
-    right: 0;
-    bottom: 0;
-    background-color: #ffffff;
   }
 `;
 
 export const LoginButton = styled(Link)`
-  gap: 0.5rem;
+  gap: 4px;
   font-size: 0.875rem;
 `;
 
 export const Exchange = styled.div`
-  gap: 0.5rem;
+  gap: 4px;
 `;
 
 export const ProfileCard = styled.div`
-  gap: 0.5rem;
+  gap: 4px;
+  @media screen and (max-width: 768px) {
+    a {
+      height: 28px;
+    }
+  }
 `;
 export const LogoutButton = styled.button`
   font-size: 0.875rem;
+`;
+
+export const MobileName = styled.p`
+  display: none;
+  @media screen and (max-width: 768px) {
+    display: block;
+    font-size: 14px;
+  }
 `;

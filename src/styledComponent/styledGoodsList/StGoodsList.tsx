@@ -12,11 +12,13 @@ export const GoodsListContainer = styled.div`
   padding: 0 2.5rem 0 8.75rem;
   margin: 0 auto;
   position: relative;
+
   @media (max-width: 768px) {
     padding: 2.5rem;
   }
 
   @media (max-width: 480px) {
+    padding: 1.5rem;
   }
 `;
 
@@ -82,12 +84,19 @@ export const ArtistFilterContainer = styled.div`
   background-color: white;
   border-radius: 0 0 20px 20px;
   @media (max-width: 768px) {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    width: 402px;
+    padding: 20px;
     position: absolute;
     top: 30px;
     z-index: 2;
+    border-radius: 8px;
   }
 
   @media (max-width: 480px) {
+    width: 280px;
   }
 `;
 export const ArtistFilterArtist = styled.div`
@@ -95,6 +104,10 @@ export const ArtistFilterArtist = styled.div`
   align-items: center;
   width: 100%;
   height: 100%;
+  @media (max-width: 768px) {
+    width: auto;
+    min-width: 118px;
+  }
 `;
 
 export const ArtistFilterArtistInput = styled.input`
@@ -163,6 +176,7 @@ export const GoodsListSection2Wrapper = styled.div`
   width: 100%;
   gap: 10px;
   margin-bottom: 2.5rem;
+  justify-content: space-between;
   @media (max-width: 768px) {
   }
 
@@ -176,27 +190,33 @@ export const ProductsTab = styled.div<ProductsTabProps>`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: calc((100% - 20px) / 3);
+  width: calc((100% - 40px) / 3);
   height: 2.5rem;
   font-size: 1rem;
   text-align: center;
   line-height: 1;
   border: 1px solid #ccc;
   border-radius: 3rem;
-  transition: all 0.2s;
   color: ${(props) => (props.selected ? '#ffffff' : '#000000')};
   cursor: pointer;
-  background-color: ${(props) => (props.selected ? '#333' : '#ffffff')};
+  background-color: ${(props) => (props.selected ? '#000' : '#ffffff')};
+  transition: all 200ms;
   &:hover {
-    background-color: #333;
-    color: #ffffff;
+    background-color: ${(props) => (props.selected ? '#333' : '#eee')};
+  }
+  &:active {
+    transform: scale(1.008);
+  }
+  @media (max-width: 1024px) {
+    width: calc((100% - 20px) / 2);
   }
   @media (max-width: 768px) {
-    flex: 0 0 49%;
+    /* flex: 0 0 49%; */
   }
 
   @media (max-width: 480px) {
-    flex: 0 0 100%;
+    /* flex: 0 0 100%; */
+    width: 100%;
   }
 `;
 //상품리스트
@@ -224,8 +244,8 @@ export const ProductCard = styled.div`
   flex-direction: column;
   width: calc((100% - 40px) / 3);
   cursor: pointer;
-  @media (max-width: 768px) {
-    flex: 0 0 48%;
+  @media (max-width: 1024px) {
+    width: calc((100% - 20px) / 2);
   }
 
   @media (max-width: 480px) {
@@ -250,10 +270,10 @@ export const ProductCardImgBox = styled.div`
   box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.04);
 `;
 export const ProductCardInfoArtist = styled.div`
-  color: #999;
+  margin-bottom: 4px;
+  color: #aaa;
   font-size: 14px;
   font-style: normal;
-  font-weight: 500;
   line-height: 1.5; /* 171.429% */
 `;
 export const ProductCardInfo = styled.span`
@@ -277,6 +297,12 @@ export const ProductCardTitle = styled.h1`
   font-weight: 500;
 `;
 
+export const ProductReleaseDate = styled.div`
+  margin-top: 10px;
+  color: #999;
+  font-size: 14px;
+  font-weight: 400;
+`;
 export const ProductCardPrice = styled.p`
   width: 100%;
   height: 100%;
@@ -302,7 +328,7 @@ export const ProductCardPrice = styled.p`
       color: rgba(190, 190, 190, 0.93);
       font-size: 14px;
       font-weight: 400;
-      text-decoration-line: strikethrough;
+      text-decoration: line-through;
     }
   }
 `;
@@ -324,7 +350,7 @@ export const GoodsListCardSection1_1 = styled.section`
   line-height: 1.5; /* 150% */
 `;
 export const GoodsListCardSection1_2 = styled.section`
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 `;
 //상품리스트 1,2,3,4,5 버튼
 export const GoodsListSection4 = styled.section`

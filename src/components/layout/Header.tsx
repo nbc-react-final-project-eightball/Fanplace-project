@@ -48,6 +48,7 @@ const Header = () => {
                   strokeLinejoin="round"
                 />
               </svg>
+              <S.MobileName>검색</S.MobileName>
             </button>
             {isLogged ? (
               <ProfileCard />
@@ -103,6 +104,7 @@ const Header = () => {
                   strokeLinejoin="round"
                 />
               </svg>
+              <S.MobileName>장바구니</S.MobileName>
             </Link>
             <CustomSelect />
           </S.HeaderButton>

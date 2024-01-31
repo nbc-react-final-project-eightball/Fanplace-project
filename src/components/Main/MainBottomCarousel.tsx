@@ -218,7 +218,10 @@ const MainBottomCarousel: React.FC<MainBottomCarouselProps> = ({
                     <S.Artist>{list?.artist}</S.Artist>
                     {/* <h1>{list.artist}</h1> */}
                     <S.ProductTitle>{list?.title}</S.ProductTitle>
-                    <S.ReleaseDate>발매일 {list?.releaseDate}</S.ReleaseDate>
+                    <S.ReleaseDate>
+                      발매일&nbsp;&nbsp;
+                      {list?.ReleaseDate || '2024-02-12'}
+                    </S.ReleaseDate>
                     <S.Price>
                       {list?.salePrice ? (
                         <div>

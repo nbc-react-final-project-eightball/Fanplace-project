@@ -1120,6 +1120,10 @@ const GoodsList = () => {
                             <S.ProductCardTitle>
                               {product.title}
                             </S.ProductCardTitle>
+                            <S.ProductReleaseDate>
+                              발매일&nbsp;&nbsp;
+                              {product?.ReleaseDate || '2024-02-12'}
+                            </S.ProductReleaseDate>
                           </S.GoodsListCardSection1_1>
                           <S.GoodsListCardSection1_2>
                             <S.ProductCardPrice>

@@ -19,6 +19,7 @@ export interface typeProduct {
   contentImg1?: string; //상품설명이미지
   contentImg2?: string;
   contentImg3?: string; //최대 이미지 3개까지 넣을수있게 해둿습니다
+  ReleaseDate: string; // 출시일
 }
 //굿즈리스트에서 상품 정보 보낼때 타입
 

@@ -137,6 +137,7 @@ body {
   margin: 0;
   box-sizing: border-box;
   font-family: 'Pretendard', sans-serif; /* 폰트 설정 */
+  word-break: keep-all;
 }
 ul {
   padding-left: 0;

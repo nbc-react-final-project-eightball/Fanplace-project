@@ -4,11 +4,15 @@ export const DtailContainer = styled.div`
   display: flex;
   justify-content: center;
   width: 100%;
+  height: 100%;
   padding: 0 2.5rem 0 8.75rem;
+  @media (max-width: 1024px) {
+    padding: 0 0.5rem 0 6.75rem;
+  }
+
   @media (max-width: 768px) {
-    padding: 1rem 1rem;
-    padding-left: 3rem;
-    flex: 0 0 100%;
+    /* padding: 1rem 1rem;
+    padding-left: 3rem; */
   }
 
   @media (max-width: 480px) {
@@ -97,7 +101,7 @@ export const ProductTitle = styled.h1`
   border-bottom: 1px solid #e9e9e9;
   margin-bottom: 30px;
   button {
-    padding: 10px 20px;
+    padding: 12px 20px;
     cursor: pointer;
     color: #777;
   }
@@ -115,11 +119,12 @@ export const ProductDetailImg = styled.img`
 `;
 
 export const ProductInfoContainer = styled.div`
+  position: -webkit-sticky;
   position: sticky;
   top: 80px;
   width: 39.89%;
-  max-width: 400px;
-  height: 700px;
+  max-width: 440px;
+  height: 100%;
   display: flex;
   flex-direction: column;
   border-radius: 20px;
@@ -135,7 +140,6 @@ export const ProductInfoContainer = styled.div`
 
 export const ProductInfoSection1 = styled.section`
   width: 100%;
-  height: 200px;
 `;
 export const ProductInfoSection1_1 = styled.section`
   color: #aaa;
@@ -146,7 +150,7 @@ export const ProductInfoSection1_1 = styled.section`
 export const ProductInfoSection1_2 = styled.section`
   margin-top: 20px;
   h1 {
-    font-size: 18px;
+    font-size: 20px;
     line-height: 1.5;
     margin-bottom: 4px;
   }
@@ -159,11 +163,16 @@ export const ProductInfoSection1_2 = styled.section`
 `;
 export const ProductInfoSection1_3 = styled.section`
   margin-top: 40px;
-  h1 {
+
+  h3 {
+    color: #333;
     font-size: 20px;
-    color: #8f86ff;
+    font-weight: 700;
   }
   > div {
+    display: flex;
+    gap: 10px;
+    align-items: baseline;
     span {
       color: #ff6565;
       font-size: 18px;
@@ -171,14 +180,14 @@ export const ProductInfoSection1_3 = styled.section`
     }
     h3 {
       color: #333;
-      font-size: 18px;
-      font-weight: 600;
+      font-size: 20px;
+      font-weight: 700;
     }
     p {
       color: rgba(190, 190, 190, 0.93);
       font-size: 14px;
       font-weight: 400;
-      text-decoration-line: strikethrough;
+      text-decoration: line-through;
     }
   }
 `;
@@ -186,7 +195,6 @@ export const ProductInfoSection2 = styled.section`
   padding-top: 40px;
   padding-bottom: 20px;
   width: 100%;
-  height: 350px;
 `;
 export const ProductInfoSection2_1 = styled.section`
   padding-bottom: 40px;
@@ -223,12 +231,22 @@ export const ProductInfoSection2_2CartBox = styled.div`
 `;
 export const ProductInfoSection2_2CartBoxSection1 = styled.section`
   margin-bottom: 20px;
+  line-height: 1.5;
+  p {
+    font-size: 14px;
+  }
+
+  @media (max-width: 768px) {
+  }
 `;
 export const ProductInfoSection2_2CartBoxSection2 = styled.section`
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  h1 {
+    font-size: 14px;
+  }
 `;
 
 export const ProductInfoBtn = styled.button`
@@ -255,7 +273,6 @@ export const ProductInfoSection3 = styled.section`
   display: flex;
   flex-direction: column;
   text-align: center;
-  justify-content: center;
 
   font-size: 16px;
   font-weight: 800;
@@ -274,23 +291,32 @@ export const ProductInfoSection3Btn1 = styled.button`
   font-size: 18px;
   font-weight: normal;
   background-color: #000000;
-  transition: all 0.2s;
+  transition: all 200ms;
   &:hover {
     background-color: #333;
   }
+  &:active {
+    transform: scale(1.008);
+  }
 `;
 export const ProductInfoSection3Btn2 = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
   width: 50%;
   height: 48px;
   border-radius: 30px;
   font-weight: normal;
   color: #000;
-  border: 1px solid #999;
+  border: 1px solid #aaa;
   background-color: #ffffff;
-  transition: all 0.2s;
+  transition: all 200ms;
   &:hover {
-    color: #ffffff;
-    background-color: #333;
+    background: #eee;
+  }
+  &:active {
+    transform: scale(1.008);
   }
 `;
 export const ProductP = styled.p`
@@ -308,6 +334,10 @@ export const ProductH1 = styled.h1`
   font-size: 18px;
 `;
 export const ProductInfoSection3Btn3 = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
   width: 50%;
   height: 48px;
   border-radius: 30px;
@@ -315,9 +345,11 @@ export const ProductInfoSection3Btn3 = styled.button`
   color: #8f86ff;
   border: 1px solid #8f86ff;
 
-  transition: all 0.2s;
+  transition: all 200ms;
   &:hover {
-    color: #ffffff;
-    background-color: #8f86ff;
+    background: #f2f1ff;
+  }
+  &:active {
+    transform: scale(1.008);
   }
 `;

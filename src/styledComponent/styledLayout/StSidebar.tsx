@@ -31,7 +31,7 @@ export const SideBarContainer = styled.div<SideBarContainerProps>`
   gap: 3rem;
   z-index: 30;
   padding-left: 1.5rem;
-  padding-top: 80px;
+  padding-top: 40px;
 
   @media (max-width: 768px) {
     /* 768px 이하 화면 크기에 대한 스타일 */
@@ -116,11 +116,11 @@ interface SNavLinkStyleProps {
   activeStyle?: boolean;
 }
 export const SNavLink = styled(NavLink)<SNavLinkStyleProps>`
-  color: ${(props) => (props.activeStyle ? '#e31313' : '#000000')};
+  color: ${(props) => (props.activeStyle ? '#8f86ff' : '#000000')};
   text-decoration: none;
 
   &.active {
-    color: red;
+    color: #8f86ff;
   }
 `;
 //sidebar end
