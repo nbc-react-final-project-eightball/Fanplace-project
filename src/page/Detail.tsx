@@ -53,7 +53,7 @@ const Detail = () => {
 
     // selectedProduct가 이미 recentItems에 있는지 확인
     const isAlreadySaved = recentItems.some(
-      (item: typeProduct) => item.productId === selectedProduct?.productId,
+      (item: typeProduct) => item?.productId === selectedProduct?.productId,
     );
 
     // selectedProduct가 recentItems에 없으면 추가
