@@ -181,7 +181,7 @@ export const ProductsTab = styled.div<ProductsTabProps>`
   font-size: 1rem;
   text-align: center;
   line-height: 1;
-  border: 1px solid #555;
+  border: 1px solid #ccc;
   border-radius: 3rem;
   transition: all 0.2s;
   color: ${(props) => (props.selected ? '#ffffff' : '#000000')};
@@ -254,7 +254,7 @@ export const ProductCardInfoArtist = styled.div`
   font-size: 14px;
   font-style: normal;
   font-weight: 500;
-  line-height: 24px; /* 171.429% */
+  line-height: 1.5; /* 171.429% */
 `;
 export const ProductCardInfo = styled.span`
   flex: 2;
@@ -300,7 +300,7 @@ export const GoodsListCardSection1_1 = styled.section`
   font-size: 16px;
   font-style: normal;
   font-weight: 500;
-  line-height: 24px; /* 150% */
+  line-height: 1.5; /* 150% */
 `;
 export const GoodsListCardSection1_2 = styled.section`
   margin-bottom: 10px;

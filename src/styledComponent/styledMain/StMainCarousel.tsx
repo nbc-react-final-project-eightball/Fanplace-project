@@ -26,17 +26,18 @@ export const Img = styled.img`
   border-radius: 8px;
   background: lightgray 50%;
   object-fit: cover;
-  box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.08);
+  box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.06);
   @media (max-width: 768px) {
     /* 768px 이하 화면 크기에 대한 스타일 */
-    height: 168px;
+    width: 240px;
+    height: 240px;
   }
   @media (max-width: 480px) {
     /* 480px 이하 화면 크기에 대한 스타일 */
-    width: 100px;
-    height: 100px;
-    max-height: 100px;
-    max-width: 100px;
+    width: 250px;
+    height: 250px;
+    /* max-height: 100px;
+    max-width: 100px; */
   }
 `;
 export const Artist = styled.p`
@@ -44,7 +45,7 @@ export const Artist = styled.p`
   font-size: 14px;
   font-style: normal;
   font-weight: 500;
-  line-height: 24px; /* 171.429% */
+  line-height: 1.5; /* 171.429% */
 `;
 
 export const ProductTitle = styled.h1`
@@ -57,7 +58,7 @@ export const ProductTitle = styled.h1`
   font-size: 16px;
   font-style: normal;
   font-weight: 500;
-  line-height: 24px; /* 150% */
+  line-height: 1.5; /* 150% */
   margin-bottom: 10px;
 `;
 
@@ -75,14 +76,24 @@ export const Price = styled.p`
   font-size: 18px;
   font-style: normal;
   font-weight: 600;
-  line-height: 24px; /* 133.333% */
+  line-height: 1.5; /* 133.333% */
 `;
 export const Slide = styled.div`
-  flex: 0 0 auto;
+  /* flex: 0 0 auto; */
   position: relative;
   width: 25%;
-
   margin-top: 40px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+
+  @media (max-width: 768px) {
+    /* 768px 이하 화면 크기에 대한 스타일 */
+  }
+  @media (max-width: 480px) {
+    /* 480px 이하 화면 크기에 대한 스타일 */
+    width: 23%;
+  }
 `;
 
 export const CarouselContainer = styled.div`
@@ -106,6 +117,25 @@ export const CarouselContainer = styled.div`
 `;
 export const CarouselWrapper = styled.div`
   position: relative;
+  margin-left: -560px;
+  @media (max-width: 768px) {
+    /* 768px 이하 화면 크기에 대한 스타일 */
+    margin-left: -250px;
+  }
+
+  @media (max-width: 480px) {
+    /* 480px 이하 화면 크기에 대한 스타일 */
+    margin-left: -650px;
+  }
+
+  @media (max-width: 414px) {
+    /* 414px 이하 화면 크기에 대한 스타일 */
+    margin-left: -600px;
+  }
+  @media (max-width: 364px) {
+    /* 480px 이하 화면 크기에 대한 스타일 */
+    margin-left: -650px;
+  }
 `;
 export const CarouselRange = styled.input`
   width: 100%;
@@ -235,7 +265,7 @@ export const TitleText = styled.p`
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
-  line-height: 24px; /* 150% */
+  line-height: 1.5; /* 150% */
   text-align: left;
 `;
 export const SlideContainer = styled.div`
@@ -247,6 +277,14 @@ export const SlideContainer = styled.div`
   margin-bottom: 40px;
   width: 100%;
   gap: 20px;
+  @media (max-width: 480px) {
+    /* 480px 이하 화면 크기에 대한 스타일 */
+    gap: 110px;
+  }
+  @media (max-width: 364px) {
+    /* 480px 이하 화면 크기에 대한 스타일 */
+    gap: 130px;
+  }
 `;
 //하단 캐러셀 스타일 end
 
@@ -257,7 +295,6 @@ export const AlbumDiv = styled.div`
   width: 1200px;
   height: 646px;
   border-radius: 16px;
-  border: 1px solid #000;
   display: flex;
   justify-content: center;
   position: relative;
@@ -270,6 +307,7 @@ export const AlbumDiv = styled.div`
   @media (max-width: 480px) {
     /* 480px 이하 화면 크기에 대한 스타일 */
     width: 480px;
+    width: 100%;
   }
 `;
 
@@ -296,6 +334,18 @@ export const AlbumWrapper = styled.div`
     /* 480px 이하 화면 크기에 대한 스타일 */
     margin-left: -80px;
   }
+  @media (max-width: 386px) {
+    /* 480px 이하 화면 크기에 대한 스타일 */
+    margin-left: -130px;
+  }
+  @media (max-width: 414px) {
+    /* 480px 이하 화면 크기에 대한 스타일 */
+    margin-left: -110px;
+  }
+  @media (max-width: 364px) {
+    /* 480px 이하 화면 크기에 대한 스타일 */
+    margin-left: -140px;
+  }
 `;
 
 export const AlbumCarousel = styled.div`
@@ -318,8 +368,9 @@ export const AlbumImg = styled.img`
   height: 280px;
   background: lightgray 50%;
   object-fit: cover;
-  box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.08);
+  box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.06);
   border-radius: 135px;
+  position: relative;
   @media (max-width: 768px) {
     /* 768px 이하 화면 크기에 대한 스타일 */
     height: 180px;
@@ -330,8 +381,24 @@ export const AlbumImg = styled.img`
   }
 `;
 export const AlbumTitle = styled.h2`
-  text-align: center;
+  overflow: hidden;
+  width: 100%;
+  white-space: nowrap;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  text-overflow: ellipsis;
+  height: 43px;
+  position: absolute;
+  left: -0px;
   margin-top: 10px;
+  @media (max-width: 768px) {
+    /* 768px 이하 화면 크기에 대한 스타일 */
+    left: -30px;
+  }
+
+  @media (max-width: 480px) {
+    /* 480px 이하 화면 크기에 대한 스타일 */
+  }
 `;
 
 export const AlbumSlideTitle = styled.h2`
@@ -348,7 +415,7 @@ export const AlbumSlideTitleText = styled.p`
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
-  line-height: 24px; /* 150% */
+  line-height: 1.5; /* 150% */
 `;
 export const AlbumPrevButton = styled.button`
   width: 50px;
@@ -411,6 +478,6 @@ export const AlbumDivTitleText = styled.p`
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
-  line-height: 24px; /* 150% */
+  line-height: 1.5; /* 150% */
   text-align: center;
 `;

@@ -151,6 +151,36 @@ a,button {
 img {
   vertical-align: top;
 }
-`;
+html, body { max-width: 100%; overflow-x: hidden; }
+body { 
+overflow: hidden; 
+width: 100%; 
+-webkit-box-sizing: border-box; 
+-moz-box-sizing: border-box; 
+box-sizing: border-box; 
+}
+/* ===== Scrollbar CSS ===== */
+  /* Firefox */
+  * {
+  scrollbar-width: auto;
+  scrollbar-color: #c2c2c2 #ffffff;
+}
 
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+*::-webkit-scrollbar-track {
+  background: #ffffff;
+  margin: 10px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #c2c2c2;
+  border-radius: 10px;
+  border: 3px solid #ffffff;
+}
+`;
 export default GlobalStyle;

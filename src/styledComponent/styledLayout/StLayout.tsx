@@ -5,6 +5,14 @@ export const Layout = styled.div`
   flex-direction: column;
   height: auto;
   align-items: center;
+  @media (max-width: 768px) {
+    /* 768px 이하 화면 크기에 대한 스타일 */
+    max-width: 100%;
+  }
+  @media (max-width: 480px) {
+    /* 480px 이하 화면 크기에 대한 스타일 */
+    max-width: 100%;
+  }
 `;
 
 export const Welcome = styled.div`
@@ -20,54 +28,77 @@ export const Welcome = styled.div`
   border-radius: 2.5rem;
   font-size: 0.87rem;
   color: #777;
-  background: #f7f7f7;
+  background: #f9f9f9;
   z-index: 9;
 `;
 
 export const LayoutContainer = styled.div`
   width: 100%;
-  padding-bottom: 200px;
-  /* padding: 0 1.5rem; */
 `;
 export const LayoutSection1 = styled.div`
   width: 100px;
   margin-top: 80px;
+  @media (max-width: 768px) {
+    /* 768px 이하 화면 크기에 대한 스타일 */
+    max-width: 100%;
+  }
+  @media (max-width: 480px) {
+    /* 480px 이하 화면 크기에 대한 스타일 */
+    max-width: 100%;
+  }
 `;
 export const LayoutSection2 = styled.div`
   height: 100%;
-  width: 100%;
+  max-width: 100%;
+  @media (max-width: 768px) {
+    /* 768px 이하 화면 크기에 대한 스타일 */
+    max-width: 100%;
+  }
+  @media (max-width: 480px) {
+    /* 480px 이하 화면 크기에 대한 스타일 */
+    max-width: 100%;
+  }
 `;
 
 //Footer start
 export const FooterContainer = styled.div`
-  background-color: #202020;
-  padding: 20px;
+  background: #202020;
+  padding: 40px 0;
   color: white;
   width: 100%;
-  height: 200px;
+  height: auto;
 `;
 export const FooterContent = styled.div`
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
   max-width: 1200px;
   margin: 0 auto;
+  font-size: 14px;
+  color: #999;
 `;
 export const ContactInfo = styled.div`
   line-height: 1.5em;
-  flex-basis: 50%;
 `;
-export const ContactTitle = styled.h3`
-  margin-bottom: 10px;
+export const ContactTitle = styled.p`
+  margin-bottom: 6px;
 `;
 
+export const FooterInnerWrapper = styled.div`
+  display: flex;
+  gap: 54px;
+`;
 export const LegalInfo = styled.div`
-  line-height: 1.5em;
-  flex-basis: 50%;
-  text-align: right;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+`;
+export const FooterInfo = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
 `;
 export const Copyright = styled.p`
-  margin-top: 10px;
+  margin-top: 40px;
+  color: #bbb;
 `;
 //FOOTER END

@@ -7,7 +7,7 @@ export const ModalBackground = styled.div`
   width: 100%;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.5);
-  z-index: 10;
+  z-index: 20;
   cursor: pointer;
 `;
 export const ModalContainer = styled.div`
@@ -20,7 +20,27 @@ export const ModalContainer = styled.div`
   transform: translate(-50%, -50%);
   background-color: white;
   border-radius: 8px;
-  z-index: 11;
+  z-index: 22;
+  @media (max-width: 768px) {
+    width: calc(100% - 2.5rem);
+    max-width: 640px;
+    /* margin: 0 1.5rem; */
+  }
+  @media (max-width: 480px) {
+    width: calc(100% - 1.5rem);
+
+    & #__daum__layer_1 {
+      width: 100% !important;
+      min-width: unset !important;
+      & iframe {
+        width: 100% !important;
+        min-width: unset !important;
+      }
+      & .form_search .post_search {
+        width: calc(100% - 1.5rem);
+      }
+    }
+  }
 `;
 
 export const LoginTitle = styled.h2``;

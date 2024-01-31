@@ -92,7 +92,7 @@ export const TitleText = styled.p`
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
-  line-height: 24px; /* 150% */
+  line-height: 1.5; /* 150% */
   height: 24px;
   background: lightgray 50% / cover no-repeat;
   width: 50px;
@@ -103,7 +103,7 @@ export const Img = styled.div`
   border-radius: 8px;
   background: lightgray 50%;
   object-fit: cover;
-  box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.08);
+  box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.06);
   @media (max-width: 768px) {
     /* 768px 이하 화면 크기에 대한 스타일 */
     width: 168px;
@@ -126,7 +126,7 @@ export const Artist = styled.p`
   font-size: 14px;
   font-style: normal;
   font-weight: 500;
-  line-height: 24px; /* 171.429% */
+  line-height: 1.5; /* 171.429% */
   background: lightgray 50% / cover no-repeat;
   height: 24px;
   margin-bottom: 10px;
@@ -137,7 +137,7 @@ export const ProductTitle = styled.h1`
   font-size: 16px;
   font-style: normal;
   font-weight: 500;
-  line-height: 24px; /* 150% */
+  line-height: 1.5; /* 150% */
   margin-bottom: 10px;
   width: 250px;
   height: 24px;
@@ -161,7 +161,7 @@ export const Price = styled.p`
   font-size: 18px;
   font-style: normal;
   font-weight: 600;
-  line-height: 24px; /* 133.333% */
+  line-height: 1.5; /* 133.333% */
   width: 100px;
   height: 24px;
   background: lightgray 50% / cover no-repeat;

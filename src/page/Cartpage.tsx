@@ -8,7 +8,7 @@ import * as S from '../../src/styledComponent/styledCart/StCart';
 //Cart Type들
 interface TypeCart {
   id: string;
-  category: string; //카테고리
+  sideCategory: string; //카테고리
   img: string; //이미지
   artist: string; //아티스트
   title: string; //상품이름

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const CartContainer = styled.div`
   width: 100%;
   /* height: 0.433; */
-  background: #f7f7f7;
+  background: #f9f9f9;
   flex-shrink: 0;
 
   input[type='checkbox'] {
@@ -30,6 +30,10 @@ export const CartContainer = styled.div`
   @media screen and (max-width: 768px) {
     width: 768px;
   }
+  @media screen and (max-width: 480px) {
+    width: 480px;
+  }
+  padding-bottom: 100px;
 `;
 
 export const Cart = styled.div`
@@ -39,6 +43,9 @@ export const Cart = styled.div`
   @media screen and (max-width: 768px) {
     padding: 0 2.5rem 0 2.5rem;
   }
+  @media screen and (max-width: 480px) {
+    padding: 0 2.5rem 0 1rem;
+  }
   display: flex;
   flex-direction: column;
   .allArea {
@@ -46,8 +53,11 @@ export const Cart = styled.div`
     gap: 10px;
     margin: 0 auto;
     @media screen and (max-width: 768px) {
-      flex-direction: column; /* Stack items vertically for smaller screens */
-      align-items: center; /* Center items vertically */
+      flex-direction: column;
+      align-items: center;
+    }
+    @media screen and (max-width: 480px) {
+      width: 450px;
     }
   }
 `;
@@ -100,6 +110,11 @@ export const LeftArea = styled.div`
   .titleWrapper {
     display: flex;
     flex-direction: column;
+    @media screen and (max-width: 480px) {
+      div {
+        width: 150px;
+      }
+    }
   }
   .circleArea {
     display: flex;
@@ -133,8 +148,8 @@ export const LeftArea = styled.div`
   }
 `;
 export const RightArea = styled.div`
-  width: 320px;
-  min-height: 320px;
+  width: 22.5rem;
+  min-height: 25rem;
   padding: 20px;
   border-radius: 10px;
   background: #fff;

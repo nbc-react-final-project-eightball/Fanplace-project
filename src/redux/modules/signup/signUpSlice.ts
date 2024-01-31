@@ -68,11 +68,8 @@ export const signUpSlice = createSlice({
       state.address = action.payload.address;
       state.detailAddress = action.payload.detailAddress;
     },
-    setIsAddressSuccess: (
-      state,
-      action: PayloadAction<setIsAddressSuccess>,
-    ) => {
-      state.isAddressSuccess = true;
+    setIsAddressSuccess: (state, action: PayloadAction<boolean>) => {
+      state.isAddressSuccess = action.payload;
     },
     setPhoneNumber: (state, action: PayloadAction<setPhoneNumber>) => {
       state.phoneNumber = action.payload.phoneNumber;

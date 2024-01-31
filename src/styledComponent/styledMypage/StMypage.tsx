@@ -6,6 +6,10 @@ export const MoreLink = styled(Link)`
   top: 1.5rem;
   right: 1.5rem;
 `;
+
+export const RightWrapper = styled.div`
+  width: 100%;
+`;
 export const OrderList = styled.div`
   width: 100%;
 `;
@@ -27,18 +31,28 @@ export const TitleWrapper = styled.div`
   div p {
     color: #999;
     font-size: 0.875rem;
+    word-break: keep-all;
   }
   a {
     position: relative;
-    top: -5px;
+    top: -8px;
     right: unset;
+  }
+  border-bottom: 1px solid #000;
+  @media (max-width: 480px) {
+    div {
+      align-items: center;
+      gap: 0.625rem;
+    }
+    div h3 {
+      min-width: 4.25rem;
+    }
   }
 `;
 
 export const TableWrapper = styled.div``;
 export const TableHead = styled.div`
   height: 3rem;
-  border-top: 1px solid #000;
   border-bottom: 1px solid #ddd;
   color: #555;
   ul {
@@ -58,12 +72,17 @@ export const TableHead = styled.div`
   ul li:nth-child(2) {
     flex: 2;
   }
+  @media (max-width: 640px) {
+    display: none;
+  }
 `;
 export const TableBody = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 2.5rem;
+  padding: 4rem 0;
+  margin-bottom: 100px;
+  border-bottom: 1px solid #eee;
   p {
     color: #999;
   }

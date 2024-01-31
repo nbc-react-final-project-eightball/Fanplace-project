@@ -3,6 +3,26 @@ import styled from 'styled-components';
 interface SideBarContainerProps {
   toggleSidebar: boolean;
 }
+
+interface SideBarOverlayProps {
+  toggleSidebar: boolean;
+}
+
+export const SideBarOverlay = styled.div<SideBarOverlayProps>`
+  @media (max-width: 768px) {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    transition: 0.5s;
+    z-index: 24;
+    cursor: pointer;
+    opacity: ${(props) => (props.toggleSidebar ? '0' : '1')};
+    visibility: ${(props) => (props.toggleSidebar ? 'hidden' : 'visible')};
+  }
+`;
 export const SideBarContainer = styled.div<SideBarContainerProps>`
   position: fixed;
   display: flex;
@@ -15,19 +35,15 @@ export const SideBarContainer = styled.div<SideBarContainerProps>`
 
   @media (max-width: 768px) {
     /* 768px 이하 화면 크기에 대한 스타일 */
-    opacity: ${(props) => (props.toggleSidebar ? 0 : 1)};
-    visibility: ${(props) => (props.toggleSidebar ? 'hidden' : 'visible')};
     padding-top: 80px;
     width: 100%;
     height: 100%;
     width: 200px;
     margin: 0 auto;
     top: 0;
-    right: 0;
+    right: ${(props) => (props.toggleSidebar ? '-100%' : '0')};
     background-color: #ffffff;
-    transition:
-      opacity 0.3s,
-      visibility 0.3s;
+    transition: all 500ms;
   }
 
   @media (max-width: 480px) {
@@ -39,8 +55,6 @@ export const SideBarContainer = styled.div<SideBarContainerProps>`
     height: 100%;
     width: 180px;
     margin: 0 auto;
-    top: 0px;
-    right: 0;
     background-color: #ffffff;
     transition:
       opacity 0.3s,

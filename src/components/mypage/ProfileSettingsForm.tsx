@@ -182,7 +182,7 @@ const ProfileSettingsForm = () => {
         {isEditMode && (
           <S.DeliveryAddressButton
             type="button"
-            onClick={openAddressModalHandler(true)}
+            onClick={() => openAddressModalHandler(true)}
           >
             <svg
               width="18"
@@ -332,13 +332,6 @@ const ProfileSettingsForm = () => {
           />
         </>
       )}
-      {/* <S.EditButton
-        type="button"
-        // type={isEditMode ? 'button' : 'submit'}
-        onClick={() => setIsEditMode(!isEditMode)}
-      >
-        {isEditMode ? '수정완료' : '수정하기'}
-      </S.EditButton> */}
 
       {isEditMode ? (
         <S.EditButton
@@ -363,7 +356,7 @@ const ProfileSettingsForm = () => {
           취소
         </S.CancelButton>
       )}
-      {modal.visible && <AddressModal detailAddress={detailAddress} />}
+      {modal.visible && <AddressModal />}
     </S.ProfileSettingsForm>
   );
 };

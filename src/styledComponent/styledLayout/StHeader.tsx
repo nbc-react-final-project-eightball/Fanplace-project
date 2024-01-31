@@ -44,12 +44,13 @@ export const BrandLogo = styled(Link)`
 export const HeaderButton = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
   align-items: center;
   gap: 0.75rem;
   cursor: pointer;
 
   & > * {
+    display: flex;
+    justify-content: center;
     padding: 0.375rem;
     background: #fff;
     border-radius: 4rem;
@@ -64,6 +65,11 @@ export const HeaderButton = styled.div`
     right: 0;
     bottom: 0;
     background-color: #ffffff;
+    gap: 0;
+    & > * {
+      width: 25%;
+      padding: 0;
+    }
   }
 
   @media (max-width: 480px) {
@@ -79,24 +85,15 @@ export const HeaderButton = styled.div`
 `;
 
 export const LoginButton = styled(Link)`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   gap: 0.5rem;
   font-size: 0.875rem;
 `;
 
 export const Exchange = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   gap: 0.5rem;
 `;
 
 export const ProfileCard = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   gap: 0.5rem;
 `;
 export const LogoutButton = styled.button`

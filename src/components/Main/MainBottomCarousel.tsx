@@ -45,12 +45,14 @@ const MainBottomCarousel: React.FC<MainBottomCarouselProps> = ({
   const afterSlide1 = slides[0];
   const afterSlide2 = slides[1];
   const afterSlide3 = slides[2];
+  const afterSlide4 = slides[3];
   const copiedSlides = [
     beforeSlide1,
     ...slides,
     afterSlide1,
     afterSlide2,
     afterSlide3,
+    afterSlide4,
   ];
   // TODO: 상품 이미지를 서버에서 받아와서 뿌려주기
 
@@ -94,7 +96,7 @@ const MainBottomCarousel: React.FC<MainBottomCarouselProps> = ({
     console.log('슬라이드 인덱스', currentSlide);
   }, [currentSlide]);
   const handleNext = () => {
-    if (currentSlide >= slides.length) {
+    if (currentSlide >= slides.length - 1) {
       if (slideRef.current) {
         resetIndex();
         setTimeout(() => {
@@ -167,14 +169,14 @@ const MainBottomCarousel: React.FC<MainBottomCarouselProps> = ({
         </svg>
       </S.PrevButton>
       <S.CarouselContainer>
-        {caroueslList[0].teg === `Top10` ? (
+        {caroueslList[0].tag === `Top10` ? (
           <>
             <S.Title>BEST 10</S.Title>
             <S.TitleText>판매율 높은 베스트 10!</S.TitleText>
           </>
         ) : (
           <>
-            <S.Title>BestSeller</S.Title>
+            <S.Title>NEW ARRIVAL</S.Title>
             <S.TitleText>이번주 새로운 상품을 만나보세요!</S.TitleText>
           </>
         )}
@@ -183,30 +185,41 @@ const MainBottomCarousel: React.FC<MainBottomCarouselProps> = ({
           <S.SlideContainer
             ref={slideRef}
             style={{
-              transform: `translateX(-${currentSlide * 25}%)`,
+              transform: `translateX(-${
+                currentSlide *
+                (window.innerWidth <= 364
+                  ? 37
+                  : window.innerWidth <= 414
+                    ? 35
+                    : window.innerWidth <= 480
+                      ? 34
+                      : window.innerWidth <= 768
+                        ? 27
+                        : 16.5)
+              }%)`,
               transition: 'all 500ms ease-in-out',
             }}
           >
             {copiedSlides?.map((list: any, index: number) => (
               <S.Slide key={index}>
                 <Link
-                  to={`/Detail/${list.productId}`}
+                  to={`/Detail/${list?.productId}`}
                   style={{ textDecoration: 'none', color: 'black' }}
                   onClick={() => {
                     dispatch(setSelectedProduct(list));
                   }}
                 >
                   <S.Img
-                    style={{ width: '100%' }}
-                    src={list.img}
+                    // style={{ width: '100%' }}
+                    src={list?.img}
                     alt={`Slide ${index}`}
                   />
                   <S.SlideInTextDiv>
-                    <S.Artist>{list.artist}</S.Artist>
+                    <S.Artist>{list?.artist}</S.Artist>
                     {/* <h1>{list.artist}</h1> */}
-                    <S.ProductTitle>품명 {list.title}</S.ProductTitle>
+                    <S.ProductTitle>{list?.title}</S.ProductTitle>
                     <S.ReleaseDate>발매일</S.ReleaseDate>
-                    <S.Price>{list.price} 원</S.Price>
+                    <S.Price>{list?.price} 원</S.Price>
                   </S.SlideInTextDiv>
                 </Link>
               </S.Slide>
