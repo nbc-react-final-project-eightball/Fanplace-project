@@ -29,13 +29,16 @@ const ProductInfo: React.FC<ProductProps> = ({ product }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [quantity, setQuantity] = useState(1);
-  const [totalPrice, setTotalPrice] = useState(product?.price || 0);
+  const [totalPrice, setTotalPrice] = useState(
+    product?.salePrice || product?.price || 0,
+  );
   const auth = getAuth();
   const user = auth.currentUser;
+
   const quantityPlusHandler = () => {
     const newQuantity = quantity + 1;
     setQuantity(newQuantity);
-    setTotalPrice(newQuantity * (product?.price || 0));
+    setTotalPrice(newQuantity * (product?.salePrice || product?.price || 0));
   };
 
   //더하기
@@ -43,7 +46,7 @@ const ProductInfo: React.FC<ProductProps> = ({ product }) => {
     if (quantity > 1) {
       const newQuantity = quantity - 1;
       setQuantity(newQuantity);
-      setTotalPrice(newQuantity * (product?.price || 0));
+      setTotalPrice(newQuantity * (product?.salePrice || product?.price || 0));
     }
   };
   //빼기
@@ -146,17 +149,60 @@ const ProductInfo: React.FC<ProductProps> = ({ product }) => {
         <S.ProductInfoSection1_1> {product?.artist}</S.ProductInfoSection1_1>
         <S.ProductInfoSection1_2>
           {' '}
-          <h1 style={{ fontSize: '18px' }}>{product?.title}</h1>
+          <h1>{product?.title}</h1>
+          <h4>{product?.titleEn}</h4>
         </S.ProductInfoSection1_2>
         <S.ProductInfoSection1_3>
           {' '}
-          <h1 style={{ fontSize: '20px' }}> {product?.price}원 </h1>
+          <h1>
+            {' '}
+            {product?.salePrice ? (
+              <div>
+                <span>
+                  {Math.floor(
+                    ((product?.price - product?.salePrice) / product?.price) *
+                      100,
+                  )}
+                  %
+                </span>
+                <h3>{product.salePrice.toLocaleString()}원</h3>
+                <p>{product.price.toLocaleString()}원</p>
+              </div>
+            ) : (
+              <p>{product?.price.toLocaleString()}원</p>
+            )}
+          </h1>
         </S.ProductInfoSection1_3>
       </S.ProductInfoSection1>
       <S.ProductInfoSection2>
         <S.ProductInfoSection2_1>
+          <h1>배송 안내</h1>
+          <ul>
+            <li>
+              <span>배송비</span> <span>3,000원 / 주문 시 결제</span>
+            </li>
+            <li>
+              <span>&nbsp;</span>
+              <span>(50,000원 이상 주문 시 무료배송)</span>
+            </li>
+            {product?.Checklist1 && (
+              <>
+                <li>
+                  {' '}
+                  <span>상품 확인사항(1)</span> :
+                  <span>{product?.Checklist1}</span>{' '}
+                </li>
+                <li>
+                  <span>상품 확인사항(2) </span>:{' '}
+                  <span>{product?.Checklist2}</span>
+                </li>
+              </>
+            )}
+          </ul>
+        </S.ProductInfoSection2_1>
+        <S.ProductInfoSection2_1>
           {' '}
-          <h1 style={{ fontSize: '14px' }}>상품 정보</h1>
+          <h1>상품 정보</h1>
           <ul>
             <li>
               {' '}
@@ -203,7 +249,7 @@ const ProductInfo: React.FC<ProductProps> = ({ product }) => {
                   <FontAwesomeIcon icon={faPlus} />
                 </S.ProductInfoBtn>
               </div>
-              <h1>{totalPrice}원</h1>
+              <h1>{totalPrice.toLocaleString()}원</h1>
             </S.ProductInfoSection2_2CartBoxSection2>
           </S.ProductInfoSection2_2CartBox>
         </S.ProductInfoSection2_2>
@@ -211,7 +257,7 @@ const ProductInfo: React.FC<ProductProps> = ({ product }) => {
       <S.ProductInfoSection2_3>
         <S.ProductP>
           <span>총 금액 </span>
-          <S.ProductH1> {totalPrice}원</S.ProductH1>
+          <S.ProductH1> {totalPrice.toLocaleString()}원</S.ProductH1>
         </S.ProductP>
       </S.ProductInfoSection2_3>
       <S.ProductInfoSection3>

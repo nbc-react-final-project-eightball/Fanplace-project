@@ -148,7 +148,7 @@ const MainTopCarousel = () => {
         <S.MainTopCarousel
           ref={slideRef}
           style={{
-            transform: `translateX(-${currentSlide * 99.9038}%)`,
+            transform: `translateX(-${currentSlide * 100}%)`,
             transition: 'all 500ms ease-in-out',
           }}
         >

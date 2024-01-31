@@ -284,6 +284,27 @@ export const ProductCardPrice = styled.p`
   font-weight: 600;
   font-size: 18px;
   margin-bottom: 10px;
+  > div {
+    display: flex;
+    gap: 10px;
+    align-items: baseline;
+    span {
+      color: #ff6565;
+      font-size: 18px;
+      font-weight: 600;
+    }
+    h3 {
+      color: #333;
+      font-size: 18px;
+      font-weight: 600;
+    }
+    p {
+      color: rgba(190, 190, 190, 0.93);
+      font-size: 14px;
+      font-weight: 400;
+      text-decoration-line: strikethrough;
+    }
+  }
 `;
 export const ProductCardTeg = styled.img`
   width: 25%;

@@ -9,7 +9,9 @@ export interface typeProduct {
   img: string; //이미지
   artist: string; //아티스트
   title: string; //상품제목
+  titleEn: string; //상품영어제목
   price: number; //가격
+  salePrice: number; //세일가격
   ProductName: string; //상품이름
   tag?: string; // NewAlbum ,Top10, BestSeller
   isSoldOut?: boolean; //품절여부

@@ -218,8 +218,24 @@ const MainBottomCarousel: React.FC<MainBottomCarouselProps> = ({
                     <S.Artist>{list?.artist}</S.Artist>
                     {/* <h1>{list.artist}</h1> */}
                     <S.ProductTitle>{list?.title}</S.ProductTitle>
-                    <S.ReleaseDate>발매일</S.ReleaseDate>
-                    <S.Price>{list?.price} 원</S.Price>
+                    <S.ReleaseDate>발매일 {list?.releaseDate}</S.ReleaseDate>
+                    <S.Price>
+                      {list?.salePrice ? (
+                        <div>
+                          <span>
+                            {Math.floor(
+                              ((list?.price - list?.salePrice) / list?.price) *
+                                100,
+                            )}
+                            %
+                          </span>
+                          <h3>{list.salePrice.toLocaleString()}원</h3>
+                          <p>{list.price.toLocaleString()}원</p>
+                        </div>
+                      ) : (
+                        <p>{list?.price.toLocaleString()}원</p>
+                      )}
+                    </S.Price>
                   </S.SlideInTextDiv>
                 </Link>
               </S.Slide>

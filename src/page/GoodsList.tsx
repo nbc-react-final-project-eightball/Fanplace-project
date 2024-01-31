@@ -116,6 +116,7 @@ const GoodsList = () => {
       ProductName: '정규 4집 - [골든에이지] 아카이빙 버전 ',
       price: 23800,
       // 19% 할인 19,300
+      salePrice: 19300,
       tag: 'NewAlbum',
       isSoldOut: false,
       remainingQuantity: 100,
@@ -146,7 +147,8 @@ const GoodsList = () => {
       title: '있지 - BORN TO BE (스폐셜 에디션) (Mr. Vampire Ver.)',
       titleEn: 'ITZY - BORN TO BE (SPECIAL EDITION) (Mr. Vampire Ver.)',
       ProductName: 'BORN TO BE (스폐셜 에디션)',
-      price: 42000,
+      price: 12800,
+      salePrice: 10400,
       tag: 'Top10',
       isSoldOut: false,
       remainingQuantity: 100,
@@ -178,6 +180,7 @@ const GoodsList = () => {
       titleEn: 'The 4th Mini Album [Drama] (Giant Ver.)',
       ProductName: '미니 4집 [Drama] (Giant Ver.)',
       price: 20200,
+      salePrice: 16400,
       // 16400원 19%
       tag: 'NewAlbum',
       isSoldOut: false,
@@ -227,6 +230,7 @@ const GoodsList = () => {
       titleEn: 'JIMIN (BTS) - FACE / 1st Album',
       ProductName: 'FACE / 1집 솔로앨범',
       price: 22000,
+      salePrice: 18600,
       // 18,600 15%
       tag: '/img/new.svg',
       isSoldOut: false,
@@ -485,6 +489,7 @@ const GoodsList = () => {
       isSoldOut: false,
       remainingQuantity: 100,
       contentImg1: '/img/ProductDetail/shinee6_1.jpg',
+      releaseDate: '2022.04.11',
     },
     {
       productId: 26,
@@ -624,7 +629,8 @@ const GoodsList = () => {
       title: '뉴진스 - OMG Weverse Albums.ver',
       titleEn: 'NEWJEANS - OMG Weverse Albums.ver',
       ProductName: 'OMG Weverse Albums ver',
-      price: 9300,
+      price: 13500,
+      salePrice: 11000,
       tag: 'Top10',
       isSoldOut: false,
       remainingQuantity: 100,
@@ -1117,7 +1123,24 @@ const GoodsList = () => {
                           </S.GoodsListCardSection1_1>
                           <S.GoodsListCardSection1_2>
                             <S.ProductCardPrice>
-                              {product.price}원
+                              {product?.salePrice ? (
+                                <div>
+                                  <span>
+                                    {Math.floor(
+                                      ((product?.price - product?.salePrice) /
+                                        product?.price) *
+                                        100,
+                                    )}
+                                    %
+                                  </span>
+                                  <h3>
+                                    {product.salePrice.toLocaleString()}원
+                                  </h3>
+                                  <p>{product.price.toLocaleString()}원</p>
+                                </div>
+                              ) : (
+                                <p>{product?.price.toLocaleString()}원</p>
+                              )}
                             </S.ProductCardPrice>
                           </S.GoodsListCardSection1_2>
                         </S.GoodsListCardSection1>

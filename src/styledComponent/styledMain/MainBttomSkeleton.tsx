@@ -165,12 +165,33 @@ export const Price = styled.p`
   width: 100px;
   height: 24px;
   background: lightgray 50% / cover no-repeat;
+  > div {
+    display: flex;
+    gap: 10px;
+    align-items: baseline;
+    span {
+      color: #ff6565;
+      font-size: 18px;
+      font-weight: 600;
+    }
+    h3 {
+      color: #333;
+      font-size: 18px;
+      font-weight: 600;
+    }
+    p {
+      color: rgba(190, 190, 190, 0.93);
+      font-size: 14px;
+      font-weight: 400;
+      text-decoration-line: strikethrough;
+    }
+  }
 `;
 
 export const CarouselRange = styled.input`
   width: 100%;
   -webkit-appearance: none;
-  background: #b4b4b4;
+  background: #eeeeee;
   margin: 0 auto;
   &::-webkit-slider-runnable-track {
     width: 100%;
@@ -179,14 +200,10 @@ export const CarouselRange = styled.input`
   }
 
   &::-webkit-slider-thumb {
-    border: 1px solid #000000;
     width: 100px;
-
     background: #000000;
     cursor: pointer;
-    box-shadow:
-      1px 1px 1px #000000,
-      0px 0px 1px #0d0d0d;
+    box-shadow: none;
     transition:
       background 0.5s ease-in-out,
       border 0.5s ease-in-out,

@@ -41,11 +41,10 @@ export const Img = styled.img`
   }
 `;
 export const Artist = styled.p`
-  color: #999;
+  color: #aaa;
   font-size: 14px;
-  font-style: normal;
-  font-weight: 500;
   line-height: 1.5; /* 171.429% */
+  margin-bottom: 4px;
 `;
 
 export const ProductTitle = styled.h1`
@@ -77,12 +76,32 @@ export const Price = styled.p`
   font-style: normal;
   font-weight: 600;
   line-height: 1.5; /* 133.333% */
+  > div {
+    display: flex;
+    gap: 10px;
+    align-items: baseline;
+    span {
+      color: #ff6565;
+      font-size: 18px;
+      font-weight: 600;
+    }
+    h3 {
+      color: #333;
+      font-size: 18px;
+      font-weight: 600;
+    }
+    p {
+      color: rgba(190, 190, 190, 0.93);
+      font-size: 14px;
+      font-weight: 400;
+      text-decoration-line: strikethrough;
+    }
+  }
 `;
 export const Slide = styled.div`
   /* flex: 0 0 auto; */
   position: relative;
   width: 25%;
-  margin-top: 40px;
   justify-content: center;
   align-items: center;
   display: flex;
@@ -140,7 +159,7 @@ export const CarouselWrapper = styled.div`
 export const CarouselRange = styled.input`
   width: 100%;
   -webkit-appearance: none;
-  background: #b4b4b4;
+  background: #eeeeee;
   margin: 0 auto;
   &::-webkit-slider-runnable-track {
     width: 100%;
@@ -258,9 +277,11 @@ export const Title = styled.h2`
   font-weight: 700;
   line-height: 40px; /* 125% */
   letter-spacing: -0.96px;
+  margin-bottom: 10px;
   text-align: left;
 `;
 export const TitleText = styled.p`
+  margin-bottom: 40px;
   color: #555;
   font-size: 16px;
   font-style: normal;
@@ -292,7 +313,7 @@ export const SlideContainer = styled.div`
 export const AlbumDiv = styled.div`
   margin-top: 116px;
   margin-bottom: 100px;
-  width: 1200px;
+  width: 100%;
   height: 646px;
   border-radius: 16px;
   display: flex;
@@ -361,8 +382,7 @@ export const AlbumSlide = styled.div`
   width: 280px;
   flex: 0 1 auto;
   position: relative;
-
-  transform: translateX(-25%);
+  transform: translateX(-50%);
 `;
 export const AlbumImg = styled.img`
   height: 280px;
@@ -424,8 +444,9 @@ export const AlbumPrevButton = styled.button`
   background-color: #000;
   border-radius: 50%;
   position: absolute;
-  top: 300px;
-  left: 430px;
+  top: 50%;
+  left: 45%;
+  /* transform: translate(-100%); */
   z-index: 1;
   @media (max-width: 768px) {
     /* 768px 이하 화면 크기에 대한 스타일 */

@@ -106,7 +106,7 @@ export const MainTopCarouselItemText = styled.div``;
 export const CarouselRange = styled.input`
   width: 100%;
   -webkit-appearance: none;
-  background: #b4b4b4;
+  background: #eeeeee;
   margin: 0 auto;
   &::-webkit-slider-runnable-track {
     width: 100%;
