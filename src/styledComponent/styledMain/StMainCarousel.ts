@@ -126,7 +126,7 @@ export const CarouselWrapper = styled.div`
   position: relative;
   margin-left: -560px;
   @media (max-width: 768px) {
-    margin-left: -250px;
+    margin-left: -350px;
   }
 
   @media (max-width: 480px) {
@@ -144,7 +144,7 @@ export const CarouselRange = styled.input`
   width: 100%;
   -webkit-appearance: none;
   appearance: none;
-  background: #b4b4b4;
+  background: var(--color-medium-gray-ee);
   margin: 0 auto;
   &::-webkit-slider-runnable-track {
     width: 100%;
@@ -369,14 +369,26 @@ export const AlbumImg = styled.img`
 export const AlbumTitle = styled.h2`
   overflow: hidden;
   width: 100%;
-  white-space: nowrap;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
-  text-overflow: ellipsis;
-  height: 43px;
   position: absolute;
+  color: #fff;
   left: -0px;
   margin-top: 10px;
+  text-align: center;
+  p {
+    font-size: 14px;
+    font-weight: normal;
+    color: var(--color-primary-medium-99);
+    margin: 10px 0;
+  }
+  h4 {
+    font-size: 16px;
+    white-space: pre-wrap;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    text-overflow: ellipsis;
+    height: 46px;
+    line-height: 1.5;
+  }
   @media (max-width: 768px) {
     left: -30px;
   }
@@ -397,6 +409,7 @@ export const AlbumSlideTitleText = styled.p`
   font-style: normal;
   font-weight: 400;
   line-height: 1.5; /* 150% */
+  margin-bottom: 40px;
 `;
 export const AlbumPrevButton = styled.button`
   width: 50px;

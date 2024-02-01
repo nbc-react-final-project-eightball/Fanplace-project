@@ -51,18 +51,25 @@ export const LayoutSection2 = styled.div`
 //Footer start
 export const FooterContainer = styled.div`
   background: #202020;
-  padding: 40px 0;
+  padding: 40px 2.5rem;
   color: var(--color-white);
   width: 100%;
   height: auto;
+  @media (max-width: 768px) {
+    margin-bottom: 64px;
+  }
 `;
 export const FooterContent = styled.div`
   display: flex;
   flex-direction: column;
   max-width: 1200px;
+  width: 100%;
   margin: 0 auto;
   font-size: 14px;
-  color: var(--color-primary-medium-99);
+  p {
+    color: #999;
+    line-height: 1.5;
+  }
 `;
 export const ContactInfo = styled.div`
   line-height: 1.5em;
@@ -74,6 +81,9 @@ export const ContactTitle = styled.p`
 export const FooterInnerWrapper = styled.div`
   display: flex;
   gap: 54px;
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
 `;
 export const LegalInfo = styled.div`
   display: flex;

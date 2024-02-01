@@ -173,7 +173,7 @@ const MainBttomAlbum: React.FC<MainBttomAlbumProps> = ({ newAlbum }) => {
                     <S.AlbumImg src={Album.img} alt="img" />
                     <S.AlbumTitle>
                       {' '}
-                      {Album.artist} {Album.title}
+                      <p>{Album.artist} </p> <h4>{Album.title}</h4>
                     </S.AlbumTitle>
                   </S.AlbumSlide>
                 ))}

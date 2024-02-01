@@ -39,6 +39,7 @@ const ProfileCard = () => {
               strokeLinejoin="round"
             />
           </svg>
+          <S.MobileName>마이페이지</S.MobileName>
         </Link>
         <S.LogoutButton onClick={logout}>로그아웃</S.LogoutButton>
       </S.ProfileCard>
