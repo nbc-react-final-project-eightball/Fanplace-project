@@ -15,12 +15,6 @@ const MainTopCarousel = () => {
     'img/MainTopCarouseImg/TopC1.webp',
   ];
   // TODO: 상품 이미지를 서버에서 받아와서 뿌려주기
-  const SLIDE_NUM = slides.length;
-  const beforeSlide = slides[SLIDE_NUM - 1];
-  // 원래 배열의 첫 부분
-  const afterSlide = slides[0];
-  // 앞뒤에 안붙여주면 슬라이드가 끊겨보임
-  const copiedSlides = [beforeSlide, ...slides, , beforeSlide, afterSlide];
   const slideRef = useRef<HTMLDivElement>(null);
   const autoSlide = useRef<NodeJS.Timeout | null>(null);
   useEffect(() => {
@@ -94,7 +88,6 @@ const MainTopCarousel = () => {
       }
       setCurrentSlide((prev) => prev + 1);
     }
-    // setCurrentSlide((prev) => (prev === slides.length + 1 ? 0 : prev + 1));
   };
   const handlePrev = () => {
     if (currentSlide === 0) {
@@ -114,26 +107,13 @@ const MainTopCarousel = () => {
       }
       setCurrentSlide((prev) => prev - 1);
     }
-    // setCurrentSlide((prev) => (prev === 1 ? slides.length - 1 : prev - 1));
-  };
-
-  const handleScroll = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setCurrentSlide(
-      Math.floor((Number(event.target.value) * slides.length) / 100),
-    );
   };
 
   return (
     <S.Div>
       {' '}
-      <S.PrevButton onClick={handlePrev}>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          // width="50"
-          // height="50"
-          viewBox="0 0 50 50"
-          fill="none"
-        >
+      <S.PrevButton onClick={handlePrev} aria-label="이전슬라이드로 이동">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" fill="none">
           <path
             d="M25 0C38.8071 1.81058e-06 50 11.1929 50 25C50 38.8071 38.8071 50 25 50C11.1929 50 -1.81058e-06 38.8071 0 25C1.81058e-06 11.1929 11.1929 -1.81058e-06 25 0Z"
             fill="var(--color-primary)"
@@ -158,30 +138,14 @@ const MainTopCarousel = () => {
                 style={{ width: '100%' }}
                 src={slide}
                 alt={`Slide ${index}`}
+                loading="lazy"
               />
-              {/* TODO:파이어베이스에 데이터 생기면 맵돌리기 */}
-              <S.MainTopCarouselItemText>
-                <h1>영어</h1>
-              </S.MainTopCarouselItemText>
             </S.MainTopCarouselItem>
           ))}
         </S.MainTopCarousel>
-        <S.CarouselRange
-          type="range"
-          min="1"
-          max="100"
-          value={(currentSlide * 100) / slides.length}
-          onChange={handleScroll}
-        />
       </S.MainTopCarouselContainer>
-      <S.NextButton onClick={handleNext}>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          // width="50"
-          // height="50"
-          viewBox="0 0 50 50"
-          fill="none"
-        >
+      <S.NextButton onClick={handleNext} aria-label="다음슬라이드로 이동">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" fill="none">
           <path
             d="M25 50C11.1929 50 -6.03528e-07 38.8071 0 25C6.03528e-07 11.1929 11.1929 -6.03528e-07 25 0C38.8071 6.03528e-07 50 11.1929 50 25C50 38.8071 38.8071 50 25 50Z"
             fill="var(--color-primary)"

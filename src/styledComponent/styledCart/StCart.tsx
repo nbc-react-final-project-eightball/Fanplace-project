@@ -9,6 +9,10 @@ export const CartContainer = styled.div`
 `;
 
 export const Cart = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   height: 900px;
   top: 112px;
   padding: 0 2.5rem 0 8.75rem;
@@ -18,8 +22,6 @@ export const Cart = styled.div`
   @media screen and (max-width: 480px) {
     padding: 0 1.5rem;
   }
-  display: flex;
-  flex-direction: column;
 `;
 
 export const Wrapper = styled.div`
@@ -39,7 +41,6 @@ export const Wrapper = styled.div`
 
 export const CartTitle = styled.div`
   width: 100%;
-  max-width: 1070px;
   color: var(--color-primary);
   font-size: 20px;
   font-style: normal;

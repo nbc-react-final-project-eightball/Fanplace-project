@@ -220,9 +220,3 @@ export const ButtonNext = styled.button`
   right: -10px;
   z-index: 1;
 `;
-export const BtnImg = styled.img`
-  display: block;
-  margin: auto;
-  width: 32px;
-  height: 32px;
-`;

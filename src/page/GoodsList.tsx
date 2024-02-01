@@ -1060,10 +1060,10 @@ const GoodsList = () => {
       </S.GoodsCategory>
       <S.GoodsListContainerSection>
         <S.GoodsListSection1>
-          <S.ArtistFilter isOpen={showArtistFilter}>
+          <S.ArtistFilter $isOpen={showArtistFilter}>
             <S.ArtistFilterWrapper>
               <S.ArtistFilterBtn
-                isOpen={!showArtistFilter}
+                $isOpen={!showArtistFilter}
                 onClick={() => setShowArtistFilter(!showArtistFilter)}
               >
                 아티스트 필터

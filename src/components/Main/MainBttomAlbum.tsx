@@ -141,7 +141,10 @@ const MainBttomAlbum: React.FC<MainBttomAlbumProps> = ({ newAlbum }) => {
   return (
     <>
       <S.AlbumDiv>
-        <S.AlbumPrevButton onClick={handlePrev}>
+        <S.AlbumPrevButton
+          onClick={handlePrev}
+          aria-label="이전슬라이드로 이동"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 50 50"
@@ -180,7 +183,10 @@ const MainBttomAlbum: React.FC<MainBttomAlbumProps> = ({ newAlbum }) => {
             </S.AlbumCarousel>
           </S.AlbumWrapper>
         </S.AlbumContainer>
-        <S.AlbumNextButton onClick={handleNext}>
+        <S.AlbumNextButton
+          onClick={handleNext}
+          aria-label="다음슬라이드로 이동"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="50"
