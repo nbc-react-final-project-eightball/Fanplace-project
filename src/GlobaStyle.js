@@ -88,6 +88,7 @@ video {
   border: 0;
   font-size: 100%;
   vertical-align: baseline;
+  color: var(--color-primary);
 }
 /* HTML5 display-role reset for older browsers */
 article,
@@ -137,6 +138,7 @@ body {
   margin: 0;
   box-sizing: border-box;
   font-family: 'Pretendard', sans-serif; /* 폰트 설정 */
+  word-break: keep-all;
 }
 ul {
   padding-left: 0;
@@ -158,12 +160,13 @@ width: 100%;
 -webkit-box-sizing: border-box; 
 -moz-box-sizing: border-box; 
 box-sizing: border-box; 
+  background: var(--color-white);
 }
 /* ===== Scrollbar CSS ===== */
   /* Firefox */
   * {
   scrollbar-width: auto;
-  scrollbar-color: #c2c2c2 #ffffff;
+  scrollbar-color: #c2c2c2 var(--color-white);
 }
 
 /* Chrome, Edge, and Safari */
@@ -173,14 +176,17 @@ box-sizing: border-box;
 }
 
 *::-webkit-scrollbar-track {
-  background: #ffffff;
+  background: var(--color-white);
   margin: 10px;
 }
 
 *::-webkit-scrollbar-thumb {
   background-color: #c2c2c2;
   border-radius: 10px;
-  border: 3px solid #ffffff;
+  border: 3px solid var(--color-white);
+}
+.MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline: {
+  border-color: var(--color-medium-gray-be);
 }
 `;
 export default GlobalStyle;

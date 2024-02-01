@@ -52,7 +52,7 @@ export const ModalBackground = styled.div`
     border-color: transparent;
   }
   .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input.Mui-disabled {
-    -webkit-text-fill-color: #777;
+    -webkit-text-fill-color: var(--color-primary-medium-77);
   }
   .css-i44wyl {
     box-sizing: border-box;
@@ -74,7 +74,7 @@ export const ModalContainer = styled.div`
   max-height: calc(100vh - 20px);
   padding: 40px;
   transform: translate(-50%, -50%);
-  background-color: white;
+  background-color: var(--color-white);
   border-radius: 8px;
   z-index: 12;
   overflow-y: auto;
@@ -136,7 +136,7 @@ export const DeliveryAddressButton = styled.button`
   padding: 0 20px;
   margin-top: 12px;
   border-radius: 5px;
-  border: 1px solid #bebebe;
+  border: 1px solid var(--color-medium-gray-be);
   color: #9e9e9e;
   box-sizing: border-box;
   @media (max-width: 768px) {
@@ -153,7 +153,7 @@ export const TextInputField = styled(TextField)`
   border-radius: 5px;
   white-space: pre-wrap;
   box-sizing: border-box;
-  border: 1px solid #f1f1f1;
+  border: 1px solid var(--color-light-gray-f1);
 `;
 
 export const buttonWrapper = styled.div`
@@ -179,15 +179,19 @@ export const EditButton = styled.button`
   height: 48px;
   text-align: center;
   border-radius: 5px;
-  background: #000;
-  color: #fff;
+  background: var(--color-primary);
+  color: var(--color-white);
   box-sizing: border-box;
 
-  background-color: ${(props) => (props.disabled ? '#eee' : '#000')};
+  background-color: ${(props) =>
+    props.disabled ? 'var(--color-medium-gray-ee)' : 'var(--color-primary)'};
   color: ${(props) => (props.disabled ? '#999' : '#fff')};
   transition: all 200ms;
   &:hover {
-    background-color: ${(props) => (props.disabled ? '#eee' : '#333')};
+    background-color: ${(props) =>
+      props.disabled
+        ? 'var(--color-medium-gray-ee)'
+        : 'var(--color-primary-medium-33)'};
   }
   &:active {
     transform: ${(props) => (props.disabled ? 'scale(1)' : 'scale(1.005)')};
@@ -205,12 +209,12 @@ export const CancelButton = styled.button`
   width: 50%;
   height: 48px;
   text-align: center;
-  border: 1px solid #aaa;
+  border: 1px solid var(--color-medium-gray-aa);
   border-radius: 5px;
   box-sizing: border-box;
   transition: all 200ms;
   &:hover {
-    background: #f9f9f9;
+    background: var(--color-light-gray-f9);
   }
 
   &:active {

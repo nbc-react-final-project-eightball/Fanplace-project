@@ -15,7 +15,7 @@ const MyPageLayout = ({ children }: { children: React.ReactNode }) => {
         <S.MyInfoBoxWrapper>
           <S.MyInfoBox to={'/profilesettings'}>
             <S.MyInfoImgBox>
-              <img src="img/MainTopCarouseImg/TopC1.jpg" alt="profile image" />
+              <img src="img/MainTopCarouseImg/TopC1.webp" alt="profile image" />
             </S.MyInfoImgBox>
             <p>
               <S.InfoText>

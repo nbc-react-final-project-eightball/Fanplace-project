@@ -22,18 +22,27 @@ export const PrepareWrapper = styled.div`
     }
   }
   p {
-    color: #999;
+    color: var(--color-primary-medium-99);
     line-height: 1.5;
   }
+  @media (max-width: 768px) {
+    svg {
+      width: 48px;
+      height: 48px;
+    }
+    h2 {
+      margin-top: 0;
+      font-size: 1.375rem;
+    }
+  }
   @media (max-width: 480px) {
-    min-height: 30vh;
     svg {
       width: 40px;
       height: 40px;
     }
     h2 {
       margin-top: 0;
-      font-size: 1.375rem;
+      font-size: 1.25rem;
     }
   }
 `;
@@ -59,9 +68,30 @@ export const NotFoundWrapper = styled.div`
     }
   }
   p {
-    color: #999;
+    color: var(--color-primary-medium-99);
     text-align: center;
     line-height: 1.5;
+  }
+  @media (max-width: 768px) {
+    padding: 2.5rem;
+    h2 {
+      margin-top: 0;
+      text-align: center;
+      line-height: 1.5;
+    }
+    svg {
+      width: 48px;
+      height: 48px;
+    }
+  }
+  @media (max-width: 480px) {
+    h2 {
+      font-size: 1.25rem;
+    }
+    svg {
+      width: 40px;
+      height: 40px;
+    }
   }
 `;
 
@@ -74,6 +104,10 @@ export const ToHomeLink = styled(Link)`
   width: 100%;
   height: 48px;
   text-align: center;
-  border: 1px solid #000;
+  border: 1px solid var(--color-primary);
   border-radius: 5px;
+  @media (max-width: 480px) {
+    width: 160px;
+    height: 40px;
+  }
 `;

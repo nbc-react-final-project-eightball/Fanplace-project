@@ -8,11 +8,12 @@ interface SNavLinkStyleProps {
   $activeStyle?: boolean;
 }
 export const SNavLink = styled(NavLink)<SNavLinkStyleProps>`
-  color: ${(props) => (props.$activeStyle ? '#e31313' : '#000000')};
+  color: ${(props) =>
+    props.$activeStyle ? '#8f86ff' : 'var(--color-primary)'};
   text-decoration: none;
 
   &.active {
-    color: red;
+    color: var(--color-accent);
   }
 `;
 export const Div = styled.div``;
@@ -39,7 +40,7 @@ export const SideBarContainer = styled(Div)<SideBarOverlayProps>`
   gap: 3rem;
   z-index: 30;
   padding-left: 1.5rem;
-  padding-top: 80px;
+  padding-top: 40px;
 
   @media (max-width: 768px) {
     /* 768px 이하 화면 크기에 대한 스타일 */
@@ -50,7 +51,7 @@ export const SideBarContainer = styled(Div)<SideBarOverlayProps>`
     margin: 0 auto;
     top: 0;
     right: ${(props) => (props?.$toggleSidebar ? '-100%' : '0')};
-    background-color: #ffffff;
+    background-color: var(--color-white);
     transition: all 500ms;
   }
 
@@ -61,7 +62,7 @@ export const SideBarContainer = styled(Div)<SideBarOverlayProps>`
     padding-top: 80px;
     width: 180px;
     margin: 0 auto;
-    background-color: #ffffff;
+    background-color: var(--color-white);
     transition:
       opacity 0.3s,
       visibility 0.3s;
@@ -110,5 +111,8 @@ export const SideBarSectionBottom = styled.ul`
   height: 50%;
   flex-grow: 3;
 `;
+interface SNavLinkStyleProps {
+  activeStyle?: boolean;
+}
 
 //sidebar end

@@ -22,9 +22,12 @@ export const Welcome = styled.div`
   padding: 0 2rem;
   border-radius: 2.5rem;
   font-size: 0.87rem;
-  color: #777;
-  background: #f9f9f9;
+  color: var(--color-primary-medium-77);
+  background: var(--color-light-gray-f9);
   z-index: 9;
+  @media (max-width: 1024px) {
+    display: none;
+  }
 `;
 
 export const LayoutContainer = styled.div`
@@ -49,7 +52,7 @@ export const LayoutSection2 = styled.div`
 export const FooterContainer = styled.div`
   background: #202020;
   padding: 40px 0;
-  color: white;
+  color: var(--color-white);
   width: 100%;
   height: auto;
 `;
@@ -59,7 +62,7 @@ export const FooterContent = styled.div`
   max-width: 1200px;
   margin: 0 auto;
   font-size: 14px;
-  color: #999;
+  color: var(--color-primary-medium-99);
 `;
 export const ContactInfo = styled.div`
   line-height: 1.5em;
@@ -84,6 +87,6 @@ export const FooterInfo = styled.div`
 `;
 export const Copyright = styled.p`
   margin-top: 40px;
-  color: #bbb;
+  color: var(--color-medium-gray-bb);
 `;
 //FOOTER END

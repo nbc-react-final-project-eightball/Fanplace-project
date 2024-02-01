@@ -410,7 +410,7 @@ const AuthForm = () => {
               </S.LoginButton>
               <S.LoginButton
                 type="button"
-                color={'#333333'}
+                color={'var(--color-primary-medium-33)'}
                 width={'18px'}
                 onClick={githubLogin}
                 className="githubLogin"

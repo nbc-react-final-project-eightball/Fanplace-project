@@ -4,6 +4,9 @@ import * as S from '../styledComponent/styledLayout/StLayout';
 import Footer from '../components/layout/Footer';
 import Header from '../components/layout/Header';
 import SideBar from '../components/layout/SideBar';
+import ScrollToTop from 'components/layout/ScrollToTop';
+import DarkMode from 'components/layout/DarkMode';
+
 const Layout = () => {
   return (
     <S.Layout>
@@ -17,6 +20,8 @@ const Layout = () => {
           <Outlet />
         </S.LayoutSection2>
       </S.LayoutContainer>
+      <DarkMode />
+      <ScrollToTop />
       <Footer />
     </S.Layout>
   );
