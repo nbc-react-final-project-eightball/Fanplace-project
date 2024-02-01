@@ -4,15 +4,15 @@ import React, { useEffect, useRef, useState } from 'react';
 const MainTopCarousel = () => {
   const [currentSlide, setCurrentSlide] = useState(1); // 현재 슬라이드의 인덱스
   const slides = [
-    'img/MainTopCarouseImg/TopC7.jpg',
-    'img/MainTopCarouseImg/TopC1.jpg',
-    'img/MainTopCarouseImg/TopC2.jpg',
-    'img/MainTopCarouseImg/TopC3.jpg',
-    'img/MainTopCarouseImg/TopC4.jpg',
-    'img/MainTopCarouseImg/TopC5.jpg',
-    'img/MainTopCarouseImg/TopC6.jpg',
-    'img/MainTopCarouseImg/TopC7.jpg',
-    'img/MainTopCarouseImg/TopC1.jpg',
+    'img/MainTopCarouseImg/TopC7.webp',
+    'img/MainTopCarouseImg/TopC1.webp',
+    'img/MainTopCarouseImg/TopC2.webp',
+    'img/MainTopCarouseImg/TopC3.webp',
+    'img/MainTopCarouseImg/TopC4.webp',
+    'img/MainTopCarouseImg/TopC5.webp',
+    'img/MainTopCarouseImg/TopC6.webp',
+    'img/MainTopCarouseImg/TopC7.webp',
+    'img/MainTopCarouseImg/TopC1.webp',
   ];
   // TODO: 상품 이미지를 서버에서 받아와서 뿌려주기
   const SLIDE_NUM = slides.length;

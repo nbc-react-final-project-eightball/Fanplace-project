@@ -13,8 +13,6 @@ const StarRate = ({ rating, setRating }: any) => {
   };
   useEffect(() => {
     setRatesResArr(calcStarRates);
-    console.log(ratesResArr);
-    console.log(rating);
   }, [rating]);
 
   return (

@@ -74,13 +74,11 @@ const Detail = () => {
           {isMobile ? (
             <>
               <Product product={selectedProduct} />
-              {/* <ProductInfo product={selectedProduct} /> */}
             </>
           ) : (
             <>
               <Product product={selectedProduct} />
               <ProductInfo product={selectedProduct} />
-              {/* <ProductRecentItems product={selectedProduct} /> */}
             </>
           )}
         </>
@@ -88,7 +86,6 @@ const Detail = () => {
         <>
           <Product product={detailSend} />
           {!isMobile && <ProductInfo product={detailSend} />}
-          {/* <ProductRecentItems product={selectedProduct} /> */}
         </>
       )}
     </S.DtailContainer>

@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import * as S from '../../styledComponent/styledDetail/StDetail';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { config } from '@fortawesome/fontawesome-svg-core';
 import '@fortawesome/fontawesome-svg-core/styles.css';
 import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
-import { ProducToShoppingCart, typeProduct } from 'Type/TypeInterface';
-import { useDispatch, useSelector } from 'react-redux';
+import { typeProduct } from 'Type/TypeInterface';
+import { useDispatch } from 'react-redux';
 import { setProduct } from '../../redux/modules/Detail/DetailSlice';
 import { useNavigate } from 'react-router-dom';
 import { db } from '../../firebase/config';
@@ -17,8 +16,6 @@ import {
   setDoc,
   updateDoc,
 } from 'firebase/firestore';
-import axios from 'axios';
-import { RootState } from 'redux/configStore';
 import { getAuth } from 'firebase/auth';
 
 interface ProductProps {
