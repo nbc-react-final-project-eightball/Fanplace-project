@@ -1,114 +1,59 @@
-import { useEffect, useRef } from 'react';
-import {
-  loadPaymentWidget,
-  PaymentWidgetInstance,
-} from '@tosspayments/payment-widget-sdk';
-import { nanoid } from 'nanoid';
-import '../App.css';
-import { useLocation } from 'react-router-dom';
-import styled from 'styled-components';
-import * as S from '../../src/styledComponent/styledCart/StCart';
+import * as S from '../../src/styledComponent/styledPayment/stPayment';
+import PaymentInfo from 'components/Cart/PaymentInfo';
+import TossApi from 'components/payment/TossApi';
+import useCartList from 'hooks/useCartList';
+import ProgressIndicator from 'components/Cart/ProgressIndicator';
+import CartListInfo from 'components/Cart/CartListInfo';
+import { TypeCart } from 'Type/TypeInterface';
 
-const clientKey = 'test_gck_docs_Ovk5rk1EwkEbP0W43n07xlzm';
-const customerKey = 'HyZccn4pYtFcWyfFC1q1-';
+const getTotalPrice = (cartList: TypeCart[]) => {
+  let totalPrice = 0;
+  for (let i = 0; i < cartList.length; i++) {
+    totalPrice += cartList[i].price * cartList[i].quantity;
+  }
+  return totalPrice;
+};
+
 const PaymentPage = () => {
-  const paymentWidgetRef = useRef<PaymentWidgetInstance | null>(null);
-  const paymentMethodsWidgetRef = useRef<ReturnType<
-    PaymentWidgetInstance['renderPaymentMethods']
-  > | null>(null);
+  const title = '주문결제';
+  //아래부분 수정예정
+  const { cartList, setCartList } = useCartList();
+  const totalPrice = getTotalPrice(cartList);
+  if (cartList.length === 0) return null;
 
-  //   const [price, setPrice] = useState(50_000);
-  const location = useLocation();
-  const { totalPrice } = location.state || { totalPrice: 0 };
-  useEffect(() => {
-    (async () => {
-      const paymentWidget = await loadPaymentWidget(clientKey, customerKey);
-
-      const paymentMethodsWidget = paymentWidget.renderPaymentMethods(
-        '#payment-widget',
-        totalPrice,
-      );
-
-      paymentWidgetRef.current = paymentWidget;
-      paymentMethodsWidgetRef.current = paymentMethodsWidget;
-    })();
-  }, []);
-  useEffect(() => {
-    const paymentMethodsWidget = paymentMethodsWidgetRef.current;
-
-    if (paymentMethodsWidget == null) {
-      return;
-    }
-
-    paymentMethodsWidget.updateAmount(
-      totalPrice,
-      paymentMethodsWidget.UPDATE_REASON.COUPON,
-    );
-  }, [totalPrice]);
-
-  const adad = async () => {
-    const paymentWidget = paymentWidgetRef.current;
-
-    try {
-      await paymentWidget?.requestPayment({
-        orderId: nanoid(), //주문번호
-        orderName: '토스 티셔츠 외 2건', //주문명
-        customerName: '김토스', //주문자명
-        customerEmail: 'customer123@gmail.com', //주문자 이메일
-        successUrl: `${window.location.origin}/success`, //성공시 이동할 url
-        failUrl: `${window.location.origin}/fail`, //실패시 이동할 url
-      });
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
+  //주문금액이 5만원이하면 배송비 3000원붙음
+  const shippingCost = totalPrice <= 50000 ? 3000 : 0;
+  const totalPayment = totalPrice + shippingCost;
+  //윗부분 수정예정
   return (
     <>
-      <PaymentContainer>
-        <S.RightArea>
-          <S.PaymentInfo>결제정보</S.PaymentInfo>
-          <S.BoxWrapper>
-            <S.Box>
-              <h3>상품수</h3>
-              <span></span>
-            </S.Box>
-            <S.Box>
-              <h3>상품금액</h3>
-              <span>{totalPrice.toLocaleString()}원</span>
-            </S.Box>
-            <S.Box>
-              <h3>배송비</h3>
-              <span></span>
-            </S.Box>
-            <S.Box>
-              <h2>
-                총 결제 금액 <span>{totalPrice.toLocaleString()}원</span>
-              </h2>
-            </S.Box>
-          </S.BoxWrapper>
-          <S.PaymentButton onClick={adad}>구매하기</S.PaymentButton>
-        </S.RightArea>
-        <div>
-          <div id="payment-widget" />
-        </div>
-      </PaymentContainer>
+      <S.PaymentContainer>
+        <S.Payment>
+          <ProgressIndicator title={title} />
+          <S.Wrapper>
+            <CartListInfo
+              cartList={cartList}
+              setCartList={setCartList}
+              totalPrice={totalPrice}
+              shippingCost={shippingCost}
+              totalPayment={totalPayment}
+              hasCheckbox={false}
+            />
+            <S.PaymentSection>
+              <PaymentInfo
+                cartList={cartList}
+                totalPrice={totalPrice}
+                shippingCost={shippingCost}
+                totalPayment={totalPayment}
+              />
+              <S.Address>배송지</S.Address>
+            </S.PaymentSection>
+          </S.Wrapper>
+        </S.Payment>
+        <TossApi />
+      </S.PaymentContainer>
     </>
   );
 };
 
 export default PaymentPage;
-
-const PaymentContainer = styled.div`
-  width: 1200px;
-  padding-left: 165px;
-  background: #f9f9f9;
-  height: 100%;
-
-  @media screen and (max-width: 768px) {
-    width: 768px;
-  }
-  @media screen and (max-width: 480px) {
-    width: 480px;
-  }
-`;
