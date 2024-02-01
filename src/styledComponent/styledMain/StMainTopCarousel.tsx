@@ -87,32 +87,3 @@ export const MainTopCarouselItem = styled.div`
     object-fit: cover;
   }
 `;
-
-export const MainTopCarouselItemText = styled.div``;
-
-export const CarouselRange = styled.input`
-  width: 100%;
-  -webkit-appearance: none;
-  background: #b4b4b4;
-  margin: 0 auto;
-  &::-webkit-slider-runnable-track {
-    width: 100%;
-    height: 2px;
-    cursor: pointer;
-  }
-
-  &::-webkit-slider-thumb {
-    border: 4px solid #000000;
-    width: 100px;
-    background: #000000;
-    cursor: pointer;
-    box-shadow:
-      3px 3px 1px #000000,
-      0px 0px 1px #0d0d0d;
-    transition:
-      background 0.5s ease-in-out,
-      border 0.5s ease-in-out,
-      left 0.5s ease-in-out;
-    -webkit-appearance: none;
-  }
-`;

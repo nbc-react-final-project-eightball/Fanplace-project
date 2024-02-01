@@ -1,14 +1,22 @@
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
-interface SideBarContainerProps {
-  toggleSidebar: boolean;
-}
 
 interface SideBarOverlayProps {
-  toggleSidebar: boolean;
+  $toggleSidebar?: boolean;
 }
+interface SNavLinkStyleProps {
+  $activeStyle?: boolean;
+}
+export const SNavLink = styled(NavLink)<SNavLinkStyleProps>`
+  color: ${(props) => (props.$activeStyle ? '#e31313' : '#000000')};
+  text-decoration: none;
 
-export const SideBarOverlay = styled.div<SideBarOverlayProps>`
+  &.active {
+    color: red;
+  }
+`;
+export const Div = styled.div``;
+export const SideBarOverlay = styled(Div)<SideBarOverlayProps>`
   @media (max-width: 768px) {
     position: fixed;
     top: 0;
@@ -19,11 +27,11 @@ export const SideBarOverlay = styled.div<SideBarOverlayProps>`
     transition: 0.5s;
     z-index: 24;
     cursor: pointer;
-    opacity: ${(props) => (props.toggleSidebar ? '0' : '1')};
-    visibility: ${(props) => (props.toggleSidebar ? 'hidden' : 'visible')};
+    opacity: ${(props) => (props?.$toggleSidebar ? '0' : '1')};
+    visibility: ${(props) => (props?.$toggleSidebar ? 'hidden' : 'visible')};
   }
 `;
-export const SideBarContainer = styled.div<SideBarContainerProps>`
+export const SideBarContainer = styled(Div)<SideBarOverlayProps>`
   position: fixed;
   display: flex;
   flex-direction: column;
@@ -41,15 +49,15 @@ export const SideBarContainer = styled.div<SideBarContainerProps>`
     width: 200px;
     margin: 0 auto;
     top: 0;
-    right: ${(props) => (props.toggleSidebar ? '-100%' : '0')};
+    right: ${(props) => (props?.$toggleSidebar ? '-100%' : '0')};
     background-color: #ffffff;
     transition: all 500ms;
   }
 
   @media (max-width: 480px) {
     /* 480px 이하 화면 크기에 대한 스타일 */
-    opacity: ${(props) => (props.toggleSidebar ? 0 : 1)};
-    visibility: ${(props) => (props.toggleSidebar ? 'hidden' : 'visible')};
+    opacity: ${(props) => (props.$toggleSidebar ? 0 : 1)};
+    visibility: ${(props) => (props.$toggleSidebar ? 'hidden' : 'visible')};
     padding-top: 80px;
     width: 180px;
     margin: 0 auto;
@@ -102,15 +110,5 @@ export const SideBarSectionBottom = styled.ul`
   height: 50%;
   flex-grow: 3;
 `;
-interface SNavLinkStyleProps {
-  activeStyle?: boolean;
-}
-export const SNavLink = styled(NavLink)<SNavLinkStyleProps>`
-  color: ${(props) => (props.activeStyle ? '#e31313' : '#000000')};
-  text-decoration: none;
 
-  &.active {
-    color: red;
-  }
-`;
 //sidebar end

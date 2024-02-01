@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 type ArtistFilterProps = {
-  isOpen: boolean;
+  $isOpen: boolean;
   onClick?: () => void;
 };
 export const GoodsListContainer = styled.div`
@@ -15,9 +15,6 @@ export const GoodsListContainer = styled.div`
   @media (max-width: 768px) {
     padding: 2.5rem;
   }
-
-  @media (max-width: 480px) {
-  }
 `;
 
 export const GoodsListContainerSection = styled.section`
@@ -28,9 +25,6 @@ export const GoodsListContainerSection = styled.section`
   @media (max-width: 768px) {
     flex-direction: column;
     justify-content: center;
-  }
-
-  @media (max-width: 480px) {
   }
 `;
 //아티스트 선별? // 페이지 위치 알려주는곳 ? 여기는 flex 써도 될듯?
@@ -52,7 +46,7 @@ export const GoodsListSection1 = styled.section`
   }
 `;
 //아티스트 필터
-export const ArtistFilter = styled.button<ArtistFilterProps>`
+export const ArtistFilter = styled.div<ArtistFilterProps>`
   width: 140px;
   height: 100%;
   font-size: 14px;
@@ -69,9 +63,6 @@ export const ArtistFilterBtn = styled.button<ArtistFilterProps>`
   @media (max-width: 768px) {
     position: relative;
   }
-
-  @media (max-width: 480px) {
-  }
 `;
 export const ArtistFilterWrapper = styled.div`
   position: relative;
@@ -85,9 +76,6 @@ export const ArtistFilterContainer = styled.div`
     position: absolute;
     top: 30px;
     z-index: 2;
-  }
-
-  @media (max-width: 480px) {
   }
 `;
 export const ArtistFilterArtist = styled.div`
@@ -151,9 +139,6 @@ export const ArtistFilterArtistLabel = styled.label`
   }
 `;
 
-//페이지 위치 알려주는곳
-export const PageLocation = styled.div``;
-//상품종류 필터 ex) 후드티 모자 티셔츠 잠옷 등
 export const GoodsListSection2 = styled.section`
   width: 100%;
 `;
@@ -163,11 +148,6 @@ export const GoodsListSection2Wrapper = styled.div`
   width: 100%;
   gap: 10px;
   margin-bottom: 2.5rem;
-  @media (max-width: 768px) {
-  }
-
-  @media (max-width: 480px) {
-  }
 `;
 interface ProductsTabProps {
   selected?: boolean;
@@ -208,11 +188,6 @@ export const GoodsListSection3 = styled.section`
     flex-wrap: wrap;
     gap: 20px;
     width: 100%;
-    @media (max-width: 768px) {
-    }
-
-    @media (max-width: 480px) {
-    }
   }
 `;
 export const GoodsListSection3Wrapper = styled.div``;
@@ -273,7 +248,6 @@ export const ProductCardTitle = styled.h1`
   text-overflow: ellipsis;
   height: 43px;
   width: 100%;
-
   font-weight: 500;
 `;
 
@@ -315,21 +289,11 @@ export const GoodsListSection4 = styled.section`
   @media (max-width: 768px) {
     justify-content: center;
   }
-
-  @media (max-width: 480px) {
-  }
 `;
 
 export const GoodsListSection4Btn = styled.button`
   margin-right: 10px;
   cursor: pointer;
-  &:hover {
-  }
-  @media (max-width: 768px) {
-  }
-
-  @media (max-width: 480px) {
-  }
 `;
 
 export const NotProduct = styled.div`

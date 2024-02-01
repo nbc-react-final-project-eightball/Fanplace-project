@@ -24,7 +24,7 @@ const Header = () => {
         </S.Header>
         <S.Header>
           <S.HeaderButton>
-            <button>
+            <button aria-label="검색">
               <svg
                 id="search"
                 xmlns="http://www.w3.org/2000/svg"
@@ -52,7 +52,7 @@ const Header = () => {
             {isLogged ? (
               <ProfileCard />
             ) : (
-              <S.LoginButton to={'/login'}>
+              <S.LoginButton to={'/login'} aria-label="마이페이지">
                 <svg
                   id="auth"
                   xmlns="http://www.w3.org/2000/svg"
@@ -86,7 +86,7 @@ const Header = () => {
                 {/* 로그인 */}
               </S.LoginButton>
             )}
-            <Link to={'/cart'}>
+            <Link to={'/cart'} aria-label="장바구니">
               <svg
                 id="shopping"
                 xmlns="http://www.w3.org/2000/svg"

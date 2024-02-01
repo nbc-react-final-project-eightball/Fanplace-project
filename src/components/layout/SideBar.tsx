@@ -11,10 +11,11 @@ const SideBar = () => {
   const { sideCategory } = useParams<{ sideCategory: string }>();
   const [active, setActive] = useState<string>('');
   const [isSidebarVisible, setSidebarVisible] = useState<boolean>(true);
+  const dispatch = useDispatch();
   const toggleSidebar = () => {
     setSidebarVisible(!isSidebarVisible);
   };
-  const dispatch = useDispatch();
+
   const reSet = () => {
     setSidebarVisible(!isSidebarVisible);
     dispatch(setFilterR(null));
@@ -42,16 +43,19 @@ const SideBar = () => {
           </svg>
         </div>
       </S.ShowSidebarButton>
-      <S.SideBarOverlay
-        toggleSidebar={isSidebarVisible}
-        onClick={toggleSidebar}
-      ></S.SideBarOverlay>
-      <S.SideBarContainer toggleSidebar={isSidebarVisible}>
+      <S.SideBarOverlay $toggleSidebar={isSidebarVisible}>
+        <button
+          onClick={() => {
+            toggleSidebar();
+          }}
+        ></button>
+      </S.SideBarOverlay>
+      <S.SideBarContainer $toggleSidebar={isSidebarVisible}>
         <S.SideBarSectionTop>
           <S.SideBarBtn>
             <S.SNavLink
               to="/GoodsList/New"
-              activeStyle={active === sideCategory}
+              $activeStyle={active === sideCategory}
               onClick={reSet}
             >
               New

@@ -18,16 +18,14 @@ interface MainBottomCarouselProps {
 
 const MainBottomCarousel: React.FC<MainBottomCarouselProps> = ({
   caroueslList,
-  isLoading,
 }) => {
   const dispatch = useDispatch();
-  const [currentSlide, setCurrentSlide] = useState(0); // 현재 슬라이드의 인덱스
+  const [currentSlide, setCurrentSlide] = useState(0);
 
   const slides = caroueslList ? caroueslList?.slice(0, 10) : [];
 
   const SLIDE_NUM = slides.length;
   const beforeSlide1 = slides[SLIDE_NUM - 1];
-
   const afterSlide1 = slides[0];
   const afterSlide2 = slides[1];
   const afterSlide3 = slides[2];
@@ -102,7 +100,7 @@ const MainBottomCarousel: React.FC<MainBottomCarouselProps> = ({
   return (
     <S.Div>
       {' '}
-      <S.PrevButton onClick={handlePrev}>
+      <S.PrevButton onClick={handlePrev} aria-label="이전 슬라이드로 이동">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" fill="none">
           <path
             d="M25 0C38.8071 1.81058e-06 50 11.1929 50 25C50 38.8071 38.8071 50 25 50C11.1929 50 -1.81058e-06 38.8071 0 25C1.81058e-06 11.1929 11.1929 -1.81058e-06 25 0Z"
@@ -158,7 +156,6 @@ const MainBottomCarousel: React.FC<MainBottomCarouselProps> = ({
                   <S.Img src={list?.img} alt={`Slide ${index}`} />
                   <S.SlideInTextDiv>
                     <S.Artist>{list?.artist}</S.Artist>
-                    {/* <h1>{list.artist}</h1> */}
                     <S.ProductTitle>{list?.title}</S.ProductTitle>
                     <S.ReleaseDate>발매일</S.ReleaseDate>
                     <S.Price>{list?.price} 원</S.Price>
@@ -174,9 +171,10 @@ const MainBottomCarousel: React.FC<MainBottomCarouselProps> = ({
           max="100"
           value={(currentSlide * 100) / slides.length}
           onChange={handleScroll}
+          aria-label="슬라이드 조절"
         />
       </S.CarouselContainer>
-      <S.NextButton onClick={handleNext}>
+      <S.NextButton onClick={handleNext} aria-label="다음슬라이드로 이동">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="50"
