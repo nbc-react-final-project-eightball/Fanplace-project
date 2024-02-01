@@ -106,7 +106,7 @@ interface SNavLinkStyleProps {
   activeStyle?: boolean;
 }
 export const SNavLink = styled(NavLink)<SNavLinkStyleProps>`
-  color: ${(props) => (props.activeStyle ? '#8f86ff' : '#000000')};
+  color: ${(props) => (props.activeStyle ? '#8f86ff' : 'var(--color-primary)')};
   text-decoration: none;
 
   &.active {

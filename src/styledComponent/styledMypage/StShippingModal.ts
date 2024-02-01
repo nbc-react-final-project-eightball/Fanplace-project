@@ -74,7 +74,7 @@ export const ModalContainer = styled.div`
   max-height: calc(100vh - 20px);
   padding: 40px;
   transform: translate(-50%, -50%);
-  background-color: white;
+  background-color: var(--color-white);
   border-radius: 8px;
   z-index: 12;
   overflow-y: auto;
@@ -189,7 +189,9 @@ export const EditButton = styled.button`
   transition: all 200ms;
   &:hover {
     background-color: ${(props) =>
-      props.disabled ? 'var(--color-medium-gray-ee)' : '#333'};
+      props.disabled
+        ? 'var(--color-medium-gray-ee)'
+        : 'var(--color-primary-medium-33)'};
   }
   &:active {
     transform: ${(props) => (props.disabled ? 'scale(1)' : 'scale(1.005)')};

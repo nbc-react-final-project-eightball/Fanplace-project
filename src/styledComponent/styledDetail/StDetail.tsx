@@ -105,10 +105,6 @@ export const ProductTitle = styled.h1`
     cursor: pointer;
     color: var(--color-primary-medium-77);
   }
-  button.active {
-    color: var(--color-primary);
-    border-bottom: 2px solid var(--color-primary);
-  }
 `;
 
 export const ProductDetailImg = styled.img`
@@ -153,6 +149,7 @@ export const ProductInfoSection1_2 = styled.section`
     font-size: 20px;
     line-height: 1.5;
     margin-bottom: 4px;
+    color: var(--color-primary);
   }
   h4 {
     font-size: 14px;
@@ -206,6 +203,7 @@ export const ProductInfoSection2_1 = styled.section`
     font-weight: normal;
     font-size: 14px;
     margin-bottom: 4px;
+    color: var(--color-primary);
   }
   li {
     display: flex;
@@ -234,6 +232,7 @@ export const ProductInfoSection2_2CartBoxSection1 = styled.section`
   line-height: 1.5;
   p {
     font-size: 14px;
+    color: var(--color-primary-medium-99);
   }
 
   @media (max-width: 768px) {
@@ -243,9 +242,13 @@ export const ProductInfoSection2_2CartBoxSection2 = styled.section`
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: 22;
+  justify-content: space-between;
   h1 {
     font-size: 14px;
+    color: var(--color-primary);
+  }
+  p {
+    color: var(--color-primary);
   }
 `;
 
@@ -254,7 +257,7 @@ export const ProductInfoBtn = styled.button`
   margin-left: 10px;
   border: 1px solid #dedddd;
   color: #dedddd;
-  background-color: #ffff;
+  background-color: var(--color-white);
   text-align: center;
   width: 22px;
   height: 22px;
@@ -283,7 +286,6 @@ export const ProductInfoSection3_1 = styled.section`
   margin-top: 20px;
 `;
 export const ProductInfoSection3Btn1 = styled.button`
-  color: white;
   border-radius: 30px;
   height: 56px;
   width: 100%;
@@ -291,6 +293,7 @@ export const ProductInfoSection3Btn1 = styled.button`
   font-size: 18px;
   font-weight: normal;
   background-color: var(--color-primary);
+  color: var(--color-white);
   transition: all 200ms;
   &:hover {
     background-color: var(--color-primary-medium-33);
@@ -332,6 +335,7 @@ export const ProductP = styled.p`
 `;
 export const ProductH1 = styled.h1`
   font-size: 18px;
+  color: var(--color-primary);
 `;
 export const ProductInfoSection3Btn3 = styled.button`
   display: flex;
@@ -399,7 +403,7 @@ export const DetailReviewBtn = styled.button`
   height: 100px;
   border-radius: 30px;
   font-weight: normal;
-  background-color: #000000;
+  background-color: var(--color-primary);
   transition: all 0.2s;
   color: #ffffff;
   &:hover {
@@ -481,12 +485,12 @@ export const DetailReviewDeleteBtn = styled.button`
   height: 20px;
   border-radius: 30px;
   font-weight: normal;
-  background-color: #000000;
+  background-color: var(--color-primary);
   transition: all 0.2s;
 
   color: #ffffff;
   &:hover {
-    color: #000000;
+    color: var(--color-primary);
     background-color: #ffffff;
   }
   @media (max-width: 768px) {

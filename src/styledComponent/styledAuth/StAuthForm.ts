@@ -197,13 +197,16 @@ export const SignUpButton = styled.button<LoginButtonProps>`
   text-align: center;
   border-radius: 5px;
   background-color: ${(props) =>
-    props.disabled ? 'var(--color-medium-gray-ee)' : '#000'};
-  color: ${(props) => (props.disabled ? '#999' : '#fff')};
+    props.disabled ? 'var(--color-medium-gray-ee)' : 'var(--color-primary)'};
+  color: ${(props) =>
+    props.disabled ? 'var(--color-primary-medium-99)' : 'var(--color-white)'};
   cursor: ${(props) => (props.disabled ? 'default' : 'pointer')};
   transition: all 200ms;
   &:hover {
     background-color: ${(props) =>
-      props.disabled ? 'var(--color-medium-gray-ee)' : '#333'};
+      props.disabled
+        ? 'var(--color-medium-gray-ee)'
+        : 'var(--color-primary-medium-33)'};
   }
   &:active {
     transform: ${(props) => (props.disabled ? 'scale(1)' : 'scale(1.005)')};

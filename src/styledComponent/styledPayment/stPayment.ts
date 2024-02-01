@@ -4,7 +4,7 @@ export const PaymentContainer = styled.div`
   width: 100%;
   /* height: 0.433; */
   padding-bottom: 300px;
-  background: #f9f9f9;
+  background: var(--color-light-gray-f9);
   flex-shrink: 0;
 `;
 
@@ -50,7 +50,7 @@ export const Address = styled.div`
   min-height: 25rem;
   padding: 20px;
   border-radius: 10px;
-  background: #fff;
+  background: var(--color-white);
 
   @media screen and (max-width: 768px) {
     width: 100%;

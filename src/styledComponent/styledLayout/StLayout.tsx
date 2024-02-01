@@ -52,7 +52,7 @@ export const LayoutSection2 = styled.div`
 export const FooterContainer = styled.div`
   background: #202020;
   padding: 40px 0;
-  color: white;
+  color: var(--color-white);
   width: 100%;
   height: auto;
 `;

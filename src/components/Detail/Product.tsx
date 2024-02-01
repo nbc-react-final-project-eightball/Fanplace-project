@@ -177,19 +177,24 @@ const Product: React.FC<ProductProps> = ({ product }) => {
           <button
             style={{
               borderBottom:
-                productReviewOpen === false ? '1px solid #000' : 'none',
+                productReviewOpen === false
+                  ? '1px solid var(--color-primary)'
+                  : 'none',
+              fontWeight: productReviewOpen === false ? '500' : 'normal',
             }}
             onClick={() => {
               setProductReviewOpen(false);
             }}
-            className="active"
           >
             상세설명
           </button>
           <button
             style={{
               borderBottom:
-                productReviewOpen === true ? '1px solid #000' : 'none',
+                productReviewOpen === true
+                  ? '1px solid var(--color-primary)'
+                  : 'none',
+              fontWeight: productReviewOpen === false ? 'normal' : '500',
             }}
             onClick={() => {
               setProductReviewOpen(true);

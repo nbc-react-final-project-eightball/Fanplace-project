@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const ScrollToTopButton = styled.button<{ isVisible: boolean }>`
   position: fixed;
   right: 16px;
-  bottom: 82px;
+  bottom: 106px;
   display: flex;
   opacity: ${(props) => (props.isVisible ? '1' : '0')};
   align-items: center;
@@ -15,4 +15,7 @@ export const ScrollToTopButton = styled.button<{ isVisible: boolean }>`
   border: 1px solid var(--color-primary-medium-55);
   transition: all 200ms;
   z-index: 99;
+  @media (max-width: 768px) {
+    bottom: 146px;
+  }
 `;

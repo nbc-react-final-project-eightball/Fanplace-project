@@ -148,7 +148,9 @@ export const EditButton = styled.button`
   transition: all 200ms;
   &:hover {
     background-color: ${(props) =>
-      props.disabled ? 'var(--color-medium-gray-ee)' : '#333'};
+      props.disabled
+        ? 'var(--color-medium-gray-ee)'
+        : 'var(--color-primary-medium-33)'};
   }
   &:active {
     transform: ${(props) => (props.disabled ? 'scale(1)' : 'scale(1.005)')};

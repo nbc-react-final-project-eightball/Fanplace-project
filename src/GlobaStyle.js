@@ -88,6 +88,7 @@ video {
   border: 0;
   font-size: 100%;
   vertical-align: baseline;
+  color: var(--color-primary);
 }
 /* HTML5 display-role reset for older browsers */
 article,
@@ -159,6 +160,7 @@ width: 100%;
 -webkit-box-sizing: border-box; 
 -moz-box-sizing: border-box; 
 box-sizing: border-box; 
+  background: var(--color-white);
 }
 /* ===== Scrollbar CSS ===== */
   /* Firefox */
@@ -182,6 +184,9 @@ box-sizing: border-box;
   background-color: #c2c2c2;
   border-radius: 10px;
   border: 3px solid var(--color-white);
+}
+.MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline: {
+  border-color: var(--color-medium-gray-be);
 }
 `;
 export default GlobalStyle;

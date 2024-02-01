@@ -81,7 +81,7 @@ export const ArtistFilterWrapper = styled.div`
 `;
 export const ArtistFilterContainer = styled.div`
   width: 100%;
-  background-color: white;
+  background-color: var(--color-white);
   border-radius: 0 0 20px 20px;
   @media (max-width: 768px) {
     display: flex;
@@ -156,7 +156,7 @@ export const ArtistFilterArtistLabel = styled.label`
     width: 20px;
     height: 20px;
     border-radius: 2px;
-    border: 1px solid #d9d9d9;
+    border: 1px solid var(--color-light-gray-e9);
   }
   p {
     margin-left: 35px;
@@ -196,14 +196,17 @@ export const ProductsTab = styled.div<ProductsTabProps>`
   line-height: 1;
   border: 1px solid #ccc;
   border-radius: 3rem;
-  color: ${(props) => (props.selected ? 'var(--color-white)' : '#000000')};
+  color: ${(props) =>
+    props.selected ? 'var(--color-white)' : 'var(--color-primary)'};
   cursor: pointer;
   background-color: ${(props) =>
-    props.selected ? '#000' : 'var(--color-white)'};
+    props.selected ? 'var(--color-primary)' : 'var(--color-white)'};
   transition: all 200ms;
   &:hover {
     background-color: ${(props) =>
-      props.selected ? '#333' : 'var(--color-medium-gray-ee)'};
+      props.selected
+        ? 'var(--color-primary-medium-33)'
+        : 'var(--color-medium-gray-ee)'};
   }
   &:active {
     transform: scale(1.008);

@@ -7,6 +7,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: var(--color-white);
 }
 
 code {
@@ -18,6 +19,7 @@ code {
   --color-primary: #000;
   --color-primary-medium-33: #333;
   --color-primary-medium-55: #555;
+  --color-primary-medium-58: #585858;
   --color-primary-medium-77: #777;
   --color-primary-medium-99: #999;
   --color-accent: #8f86ff;
@@ -52,11 +54,32 @@ code {
   --font-xs: 12px;
 }
 
-/* 라이트모드 변수선언 */
-.light-mode {
+/* 다크모드 변수선언 */
+.dark-mode {
+  --color-primary: #fff;
+  --color-primary-medium-33: #dedede;
+  --color-primary-medium-55: #bebebe;
+  --color-primary-medium-58: #bbb;
+  --color-primary-medium-77: #aaa;
+  --color-primary-medium-99: #999;
+
+  --color-white: #000;
+
+  --color-light-gray-f9: #222;
+  --color-light-gray-f7: #222;
+  --color-light-gray-f5: #222;
+  --color-light-gray-f1: #333;
+  --color-light-gray-ef: #444;
+  --color-light-gray-e9: #555;
+
+  --color-medium-gray-ee: #666;
+  --color-medium-gray-dd: #777;
+  --color-medium-gray-be: #888;
+  --color-medium-gray-bb: #999;
+  --color-medium-gray-aa: #aaa;
 }
 
-html:not(.light-mode) {
+html:not(.dark-mode) {
 }
 
 /* 공통 */

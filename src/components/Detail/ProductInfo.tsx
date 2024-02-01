@@ -205,7 +205,7 @@ const ProductInfo: React.FC<ProductProps> = ({ product }) => {
             <li>
               {' '}
               <span>발매일</span>
-              <span>{product?.ReleaseDate || '2024-02-12'}</span>{' '}
+              <span>{product?.releaseDate || '2024-02-12'}</span>{' '}
             </li>
             {product?.Checklist1 && (
               <>
@@ -278,7 +278,7 @@ const ProductInfo: React.FC<ProductProps> = ({ product }) => {
               </g>
               <defs>
                 <clipPath id="clip0_277_366">
-                  <rect width="16" height="16" fill="white" />
+                  <rect width="16" height="16" fill="var(--color-white)" />
                 </clipPath>
               </defs>
             </svg>

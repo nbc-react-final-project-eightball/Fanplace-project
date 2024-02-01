@@ -45,7 +45,7 @@ export const ProductTitle = styled.h1`
   -webkit-line-clamp: 2;
   text-overflow: ellipsis;
   height: 43px;
-  color: #333;
+  color: var(--color-primary-medium-33);
   font-size: 16px;
   font-style: normal;
   font-weight: 500;
@@ -54,7 +54,7 @@ export const ProductTitle = styled.h1`
 `;
 
 export const ReleaseDate = styled.p`
-  color: #555;
+  color: var(--color-primary-medium-55);
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
@@ -63,11 +63,33 @@ export const ReleaseDate = styled.p`
 `;
 //가격
 export const Price = styled.p`
-  color: #333;
+  color: var(--color-primary-medium-33);
   font-size: 18px;
   font-style: normal;
   font-weight: 600;
   line-height: 1.5; /* 133.333% */
+
+  > div {
+    display: flex;
+    gap: 10px;
+    align-items: baseline;
+    span {
+      color: #ff6565;
+      font-size: 18px;
+      font-weight: 600;
+    }
+    h3 {
+      color: var(--color-primary-medium-33);
+      font-size: 18px;
+      font-weight: 600;
+    }
+    p {
+      color: rgba(190, 190, 190, 0.93);
+      font-size: 14px;
+      font-weight: 400;
+      text-decoration: line-through;
+    }
+  }
 `;
 export const Slide = styled.div`
   /* flex: 0 0 auto; */
@@ -131,13 +153,13 @@ export const CarouselRange = styled.input`
   }
 
   &::-webkit-slider-thumb {
-    border: 1px solid #000000;
+    border: 1px solid var(--color-primary);
     width: 100px;
 
-    background: #000000;
+    background: var(--color-primary);
     cursor: pointer;
     box-shadow:
-      1px 1px 1px #000000,
+      1px 1px 1px var(--color-primary),
       0px 0px 1px #0d0d0d;
     transition:
       background 0.5s ease-in-out,
@@ -151,7 +173,7 @@ export const PrevButton = styled.button`
   width: 50px;
   height: 50px;
   box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.06);
-  background-color: #000;
+  background-color: var(--color-primary);
   border-radius: 50%;
   position: absolute;
   top: 300px;
@@ -197,7 +219,7 @@ export const NextButton = styled.button`
   width: 50px;
   height: 50px;
   box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.06);
-  background-color: #000;
+  background-color: var(--color-primary);
   border-radius: 50%;
   position: absolute;
   top: 300px;
@@ -230,7 +252,7 @@ export const NextButton = styled.button`
 `;
 
 export const Title = styled.h2`
-  color: #333;
+  color: var(--color-primary-medium-33);
   font-family: Pretendard;
   font-size: 32px;
   font-style: normal;
@@ -240,7 +262,7 @@ export const Title = styled.h2`
   text-align: left;
 `;
 export const TitleText = styled.p`
-  color: #555;
+  color: var(--color-primary-medium-55);
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
@@ -276,6 +298,7 @@ export const AlbumDiv = styled.div`
   justify-content: center;
   position: relative;
   background: #000;
+  border: 1px solid var(--color-primary);
   @media (max-width: 768px) {
     width: 768px;
   }
@@ -360,7 +383,7 @@ export const AlbumTitle = styled.h2`
 `;
 
 export const AlbumSlideTitle = styled.h2`
-  color: #333;
+  color: var(--color-primary-medium-33);
   font-size: 32px;
   font-style: normal;
   font-weight: 700;
@@ -369,7 +392,7 @@ export const AlbumSlideTitle = styled.h2`
   margin-bottom: 10px;
 `;
 export const AlbumSlideTitleText = styled.p`
-  color: #555;
+  color: var(--color-primary-medium-55);
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
@@ -379,7 +402,7 @@ export const AlbumPrevButton = styled.button`
   width: 50px;
   height: 50px;
 
-  background-color: #000;
+  background-color: var(--color-primary);
   border-radius: 50%;
   position: absolute;
   top: 300px;
@@ -398,7 +421,7 @@ export const AlbumNextButton = styled.button`
   width: 50px;
   height: 50px;
 
-  background-color: #000;
+  background-color: var(--color-primary);
   border-radius: 50%;
   position: absolute;
   top: 300px;
@@ -415,9 +438,7 @@ export const AlbumNextButton = styled.button`
 export const AlbumDivTitle = styled.h2`
   color: #fff;
   text-align: center;
-  font-family: Pretendard;
   font-size: 32px;
-  font-style: normal;
   font-weight: 700;
   line-height: 40px; /* 125% */
   letter-spacing: -0.96px;
