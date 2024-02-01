@@ -4,6 +4,7 @@ import CartListInfo from 'components/Cart/CartListInfo';
 import ProgressIndicator from 'components/Cart/ProgressIndicator';
 import useCartList from 'hooks/useCartList';
 import { TypeCart } from 'Type/TypeInterface';
+import CartEmpty from 'components/Cart/CartEmpty';
 
 //총금액을 계산하는 로직
 const getTotalPrice = (cartList: TypeCart[]) => {
@@ -19,7 +20,7 @@ const Cartpage = () => {
   const totalPrice = getTotalPrice(cartList);
 
   //cartList에 담긴게 없으면 0
-  if (cartList.length === 0) return null;
+  // if (cartList.length === 0) return null;
 
   //주문금액이 5만원이하면 배송비 3000원붙음
   const shippingCost = totalPrice <= 50000 ? 3000 : 0;
@@ -27,27 +28,32 @@ const Cartpage = () => {
 
   const title = '장바구니';
 
+  console.log('cartList.length', cartList.length);
   return (
     <S.CartContainer>
-      <S.Cart>
-        <ProgressIndicator title={title} />
-        <S.Wrapper>
-          <CartListInfo
-            cartList={cartList}
-            setCartList={setCartList}
-            totalPrice={totalPrice}
-            shippingCost={shippingCost}
-            totalPayment={totalPayment}
-            hasCheckbox={true}
-          />
-          <PaymentInfo
-            cartList={cartList}
-            totalPrice={totalPrice}
-            shippingCost={shippingCost}
-            totalPayment={totalPayment}
-          />
-        </S.Wrapper>
-      </S.Cart>
+      {cartList.length == 0 ? (
+        <CartEmpty />
+      ) : (
+        <S.Cart>
+          <ProgressIndicator title={title} />
+          <S.Wrapper>
+            <CartListInfo
+              cartList={cartList}
+              setCartList={setCartList}
+              totalPrice={totalPrice}
+              shippingCost={shippingCost}
+              totalPayment={totalPayment}
+              hasCheckbox={true}
+            />
+            <PaymentInfo
+              cartList={cartList}
+              totalPrice={totalPrice}
+              shippingCost={shippingCost}
+              totalPayment={totalPayment}
+            />
+          </S.Wrapper>
+        </S.Cart>
+      )}
     </S.CartContainer>
   );
 };
