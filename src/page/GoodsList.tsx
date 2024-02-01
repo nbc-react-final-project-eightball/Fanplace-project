@@ -40,16 +40,16 @@ const GoodsList = () => {
   useEffect(() => {
     setFilter(null);
   }, [sideCategory]);
-  // const saveProduct = async (productList: typeProduct[]) => {
-  //   try {
-  //     const addGoodsList = await collection(db, 'goodsList');
-  //     for (const product of productList) {
-  //       await addDoc(addGoodsList, product);
-  //     }
-  //   } catch (error) {
-  //     console.error('상품을 저장하는 데 실패했습니다:', error);
-  //   }
-  // };
+  const saveProduct = async (productList: typeProduct[]) => {
+    try {
+      const addGoodsList = await collection(db, 'goodsList');
+      for (const product of productList) {
+        await addDoc(addGoodsList, product);
+      }
+    } catch (error) {
+      console.error('상품을 저장하는 데 실패했습니다:', error);
+    }
+  };
 
   const fetchGoods = async () => {
     try {
@@ -810,7 +810,7 @@ const GoodsList = () => {
     },
     {
       productId: 46,
-      sideCategory: 'CD/DVD',
+      sideCategory: 'New',
       category: 'CD',
       info: '[2/13출시]',
       artist: '칸나',
