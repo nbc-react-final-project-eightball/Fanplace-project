@@ -322,7 +322,7 @@ export const AlbumWrapper = styled.div`
   display: flex;
   margin-left: -660px;
   @media (max-width: 768px) {
-    margin-left: -230px;
+    margin-left: -255px;
   }
 
   @media (max-width: 480px) {
