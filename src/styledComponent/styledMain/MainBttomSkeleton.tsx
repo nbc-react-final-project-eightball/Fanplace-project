@@ -84,7 +84,7 @@ export const Title = styled.h2`
   letter-spacing: -0.96px;
   margin-bottom: 10px;
   height: 40px;
-  background: #eee;
+  background: var(--color-medium-gray-ee);
   width: 100px;
 `;
 export const TitleText = styled.p`
@@ -94,14 +94,14 @@ export const TitleText = styled.p`
   font-weight: 400;
   line-height: 1.5; /* 150% */
   height: 24px;
-  background: #eee;
+  background: var(--color-medium-gray-ee);
   width: 50px;
 `;
 export const Img = styled.div`
   width: 270px;
   height: 270px;
   border-radius: 8px;
-  background: #eee;
+  background: var(--color-medium-gray-ee);
   object-fit: cover;
   box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.06);
   @media (max-width: 768px) {
@@ -127,7 +127,7 @@ export const Artist = styled.p`
   font-style: normal;
   font-weight: 500;
   line-height: 1.5; /* 171.429% */
-  background: #eee;
+  background: var(--color-medium-gray-ee);
   height: 24px;
   margin-bottom: 10px;
 `;
@@ -141,7 +141,7 @@ export const ProductTitle = styled.h1`
   margin-bottom: 10px;
   width: 250px;
   height: 24px;
-  background: #eee;
+  background: var(--color-medium-gray-ee);
 `;
 
 export const ReleaseDate = styled.p`
@@ -153,7 +153,7 @@ export const ReleaseDate = styled.p`
   margin-bottom: 20px;
   width: 100px;
   height: 14px;
-  background: #eee;
+  background: var(--color-medium-gray-ee);
 `;
 //가격
 export const Price = styled.p`
@@ -164,7 +164,7 @@ export const Price = styled.p`
   line-height: 1.5; /* 133.333% */
   width: 100px;
   height: 24px;
-  background: #eee;
+  background: var(--color-medium-gray-ee);
   > div {
     display: flex;
     gap: 10px;
@@ -191,7 +191,7 @@ export const Price = styled.p`
 export const CarouselRange = styled.input`
   width: 100%;
   -webkit-appearance: none;
-  background: #eeeeee;
+  background: var(--color-medium-gray-ee);
   margin: 0 auto;
   &::-webkit-slider-runnable-track {
     width: 100%;
@@ -201,7 +201,7 @@ export const CarouselRange = styled.input`
 
   &::-webkit-slider-thumb {
     width: 100px;
-    background: #000000;
+    background: var(--color-primary);
     cursor: pointer;
     box-shadow: none;
     transition:
@@ -216,7 +216,7 @@ export const ButtonPrev = styled.button`
   width: 50px;
   height: 50px;
   box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.06);
-  background-color: #000;
+  background-color: var(--color-primary);
   border-radius: 50%;
   position: absolute;
   top: 150px;
@@ -227,7 +227,7 @@ export const ButtonNext = styled.button`
   width: 50px;
   height: 50px;
   box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.06);
-  background-color: #000;
+  background-color: var(--color-primary);
   border-radius: 50%;
   position: absolute;
   top: 150px;

@@ -60,7 +60,7 @@ export const ArtistFilter = styled.button<ArtistFilterProps>`
   font-size: 14px;
   border-radius: 8px;
   color: #555;
-  background: #fff;
+  background: var(--color-white);
   box-sizing: border-box;
 `;
 export const ArtistFilterBtn = styled.button<ArtistFilterProps>`
@@ -118,7 +118,7 @@ export const ArtistFilterArtistInput = styled.input`
     left: 10px;
     display: block;
     content: url('/img/common/checked.svg');
-    border: 1px solid #000;
+    border: 1px solid var(--color-primary);
     border-radius: 3px;
     width: 20px;
     height: 20px;
@@ -196,12 +196,14 @@ export const ProductsTab = styled.div<ProductsTabProps>`
   line-height: 1;
   border: 1px solid #ccc;
   border-radius: 3rem;
-  color: ${(props) => (props.selected ? '#ffffff' : '#000000')};
+  color: ${(props) => (props.selected ? 'var(--color-white)' : '#000000')};
   cursor: pointer;
-  background-color: ${(props) => (props.selected ? '#000' : '#ffffff')};
+  background-color: ${(props) =>
+    props.selected ? '#000' : 'var(--color-white)'};
   transition: all 200ms;
   &:hover {
-    background-color: ${(props) => (props.selected ? '#333' : '#eee')};
+    background-color: ${(props) =>
+      props.selected ? '#333' : 'var(--color-medium-gray-ee)'};
   }
   &:active {
     transform: scale(1.008);
@@ -265,12 +267,12 @@ export const ProductCardImgBox = styled.div`
   padding-bottom: 100%;
   margin-bottom: 20px;
   border-radius: 8px;
-  background-color: #f5f5f5;
+  background: var(--color-light-gray-f5);
   box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.04);
 `;
 export const ProductCardInfoArtist = styled.div`
   margin-bottom: 4px;
-  color: #aaa;
+  color: var(--color-medium-gray-aa);
   font-size: 14px;
   font-style: normal;
   line-height: 1.5; /* 171.429% */

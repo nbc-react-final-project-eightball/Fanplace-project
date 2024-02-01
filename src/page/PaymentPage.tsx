@@ -102,7 +102,7 @@ export default PaymentPage;
 const PaymentContainer = styled.div`
   width: 1200px;
   padding-left: 165px;
-  background: #f9f9f9;
+  background: var(--color-light-gray-f9);
   height: 100%;
 
   @media screen and (max-width: 768px) {

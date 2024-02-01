@@ -22,7 +22,7 @@ export const TitleWrapper = styled.div`
     font-size: 0.875rem;
     word-break: keep-all;
   }
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid var(--color-medium-gray-dd);
   @media (max-width: 480px) {
     div {
       align-items: center;

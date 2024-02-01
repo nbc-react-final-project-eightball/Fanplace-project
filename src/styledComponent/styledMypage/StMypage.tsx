@@ -38,7 +38,7 @@ export const TitleWrapper = styled.div`
     top: -8px;
     right: unset;
   }
-  border-bottom: 1px solid #000;
+  border-bottom: 1px solid var(--color-primary);
   @media (max-width: 480px) {
     div {
       align-items: center;
@@ -53,7 +53,7 @@ export const TitleWrapper = styled.div`
 export const TableWrapper = styled.div``;
 export const TableHead = styled.div`
   height: 3rem;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid var(--color-medium-gray-dd);
   color: #555;
   ul {
     display: flex;
@@ -82,7 +82,7 @@ export const TableBody = styled.div`
   justify-content: center;
   padding: 4rem 0;
   margin-bottom: 100px;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid var(--color-medium-gray-ee);
   p {
     color: #999;
   }

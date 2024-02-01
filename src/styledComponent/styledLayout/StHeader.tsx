@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const HeaderContainer = styled.div`
-  color: #000;
+  color: var(--color-primary);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -14,9 +14,9 @@ export const HeaderContainer = styled.div`
   transition: all 200ms;
   box-shadow: var(--box-shadow);
   @media (max-width: 768px) {
-    background: #fff;
+    background: var(--color-white);
     box-shadow: 0px 4px 8px 2px rgba(0, 0, 0, 0.02);
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid var(--color-medium-gray-ee);
   }
 `;
 export const Wrapper = styled.div`
@@ -58,7 +58,7 @@ export const HeaderButton = styled.div`
     display: flex;
     justify-content: center;
     padding: 0.375rem;
-    background: #fff;
+    background: var(--color-white);
     border-radius: 4rem;
   }
   @media (max-width: 768px) {
@@ -70,7 +70,7 @@ export const HeaderButton = styled.div`
 
     right: 0;
     bottom: 0;
-    background-color: #ffffff;
+    background-color: var(--color-white);
     @media (max-width: 768px) {
       box-shadow: 0px -4px 8px 2px rgba(0, 0, 0, 0.04);
     }

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const CartContainer = styled.div`
   width: 100%;
   /* height: 0.433; */
-  background: #f9f9f9;
+  background: var(--color-light-gray-f9);
   flex-shrink: 0;
 
   input[type='checkbox'] {
@@ -64,7 +64,7 @@ export const Cart = styled.div`
 export const CartTitle = styled.div`
   width: 100%;
   max-width: 1070px;
-  color: #000;
+  color: var(--color-primary);
   font-size: 20px;
   font-style: normal;
   font-weight: 600;
@@ -82,7 +82,7 @@ export const Process = styled.div`
     font-weight: 400;
   }
   span:first-child {
-    color: #000;
+    color: var(--color-primary);
     font-size: 16px;
     font-weight: 600;
   }
@@ -91,8 +91,8 @@ export const LeftArea = styled.div`
   width: 720px;
   height: 100%;
   border-radius: 10px;
-  border: 1px solid #efefef;
-  background: #fff;
+  border: 1px solid var(--color-light-gray-ef);
+  background: var(--color-white);
   padding: 20px;
   @media screen and (max-width: 768px) {
     width: 100%; /* Make it full-width for smaller screens */
@@ -126,8 +126,8 @@ export const LeftArea = styled.div`
   .circle {
     width: 22px;
     height: 22px;
-    background-color: #fff;
-    border: 1px solid #ddd;
+    background-color: var(--color-white);
+    border: 1px solid var(--color-medium-gray-dd);
     border-radius: 11px;
     display: flex;
     align-items: center;
@@ -152,7 +152,7 @@ export const RightArea = styled.div`
   min-height: 25rem;
   padding: 20px;
   border-radius: 10px;
-  background: #fff;
+  background: var(--color-white);
   padding: 20px;
 
   @media screen and (max-width: 768px) {
@@ -214,8 +214,8 @@ export const PaymentButton = styled.button`
   text-align: center;
   flex-shrink: 0;
   border-radius: 28px;
-  background: #000;
-  color: #fff;
+  background: var(--color-primary);
+  color: var(--color-white);
 `;
 export const CartList = styled.ul`
   gap: 20px;
@@ -223,7 +223,7 @@ export const CartList = styled.ul`
     border-top: 1px solid #d9d9d9;
   }
   li {
-    border-top: 1px solid #e9e9e9;
+    border-top: 1px solid var(--color-light-gray-e9);
   }
 `;
 
@@ -236,7 +236,7 @@ export const Image = styled.img`
   height: 60px;
   object-fit: cover;
   border-radius: 5px;
-  border: 1px solid #efefef;
+  border: 1px solid var(--color-light-gray-ef);
   margin-left: 20px;
   margin-right: 20px;
   background:

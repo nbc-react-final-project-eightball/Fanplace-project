@@ -28,7 +28,7 @@ export const Welcome = styled.div`
   border-radius: 2.5rem;
   font-size: 0.87rem;
   color: #777;
-  background: #f9f9f9;
+  background: var(--color-light-gray-f9);
   z-index: 9;
   @media (max-width: 1024px) {
     display: none;
@@ -102,6 +102,6 @@ export const FooterInfo = styled.div`
 `;
 export const Copyright = styled.p`
   margin-top: 40px;
-  color: #bbb;
+  color: var(--color-medium-gray-bb);
 `;
 //FOOTER END

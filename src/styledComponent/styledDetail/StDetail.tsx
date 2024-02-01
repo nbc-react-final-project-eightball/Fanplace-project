@@ -72,7 +72,7 @@ export const DetailInfo = styled.div`
   display: flex;
   flex-direction: column;
   gap: 40px;
-  background: #f5f5f5;
+  background: var(--color-light-gray-f5);
   border-radius: 8px;
   margin: 40px 0 100px;
   padding: 24px;
@@ -98,7 +98,7 @@ export const ProductTitle = styled.h1`
 
   padding-top: 20px;
   font-size: 16px;
-  border-bottom: 1px solid #e9e9e9;
+  border-bottom: 1px solid var(--color-light-gray-e9);
   margin-bottom: 30px;
   button {
     padding: 12px 20px;
@@ -106,8 +106,8 @@ export const ProductTitle = styled.h1`
     color: #777;
   }
   button.active {
-    color: #000;
-    border-bottom: 2px solid #000;
+    color: var(--color-primary);
+    border-bottom: 2px solid var(--color-primary);
   }
 `;
 
@@ -142,10 +142,10 @@ export const ProductInfoSection1 = styled.section`
   width: 100%;
 `;
 export const ProductInfoSection1_1 = styled.section`
-  color: #aaa;
+  color: var(--color-medium-gray-aa);
   padding: 0 0 10px 0;
   font-size: 14px;
-  border-bottom: 1px solid #e9e9e9;
+  border-bottom: 1px solid var(--color-light-gray-e9);
 `;
 export const ProductInfoSection1_2 = styled.section`
   margin-top: 20px;
@@ -157,7 +157,7 @@ export const ProductInfoSection1_2 = styled.section`
   h4 {
     font-size: 14px;
     line-height: 1.5;
-    color: #aaa;
+    color: var(--color-medium-gray-aa);
     font-weight: normal;
   }
 `;
@@ -225,7 +225,7 @@ export const ProductInfoSection2_2 = styled.section`
   padding-bottom: 20px;
 `;
 export const ProductInfoSection2_2CartBox = styled.div`
-  background-color: #f7f7f7;
+  background-color: var(--color-light-gray-f7);
   padding: 20px;
   border-radius: 10px;
 `;
@@ -290,7 +290,7 @@ export const ProductInfoSection3Btn1 = styled.button`
   margin: 0 auto;
   font-size: 18px;
   font-weight: normal;
-  background-color: #000000;
+  background-color: var(--color-primary);
   transition: all 200ms;
   &:hover {
     background-color: #333;
@@ -308,12 +308,12 @@ export const ProductInfoSection3Btn2 = styled.button`
   height: 48px;
   border-radius: 30px;
   font-weight: normal;
-  color: #000;
-  border: 1px solid #aaa;
-  background-color: #ffffff;
+  color: var(--color-primary);
+  border: 1px solid var(--color-medium-gray-aa);
+  background-color: var(--color-white);
   transition: all 200ms;
   &:hover {
-    background: #eee;
+    background: var(--color-medium-gray-ee);
   }
   &:active {
     transform: scale(1.008);

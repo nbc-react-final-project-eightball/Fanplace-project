@@ -11,7 +11,7 @@ export const InfoBoxBackground = styled.div`
   width: 100%;
   height: 15rem;
   padding: 0 2.5rem 0 8.75rem;
-  background: #f9f9f9;
+  background: var(--color-light-gray-f9);
   @media (max-width: 1024px) {
     height: auto;
     padding: 2.5rem 2.5rem 2.5rem 8.75rem;
@@ -30,8 +30,8 @@ export const MyInfoBoxWrapper = styled.div`
     position: relative;
     width: 25%;
     height: 9.5rem;
-    background: #fff;
-    border: 1px solid #efefef;
+    background: var(--color-white);
+    border: 1px solid var(--color-light-gray-ef);
     border-radius: 0.5rem;
     padding: 2rem 1rem 2rem 2rem;
     box-sizing: border-box;
@@ -144,7 +144,7 @@ export const InfoText = styled.div`
   margin-bottom: 0.625rem;
   span {
     font-size: 0.75rem;
-    color: #aaa;
+    color: var(--color-medium-gray-aa);
     font-weight: 300;
   }
   @media (max-width: 480px) {
@@ -213,7 +213,7 @@ export const MenuBox = styled.ul`
     height: 3.5rem;
     margin-bottom: -1px;
     color: #555;
-    border: 1px solid #efefef;
+    border: 1px solid var(--color-light-gray-ef);
   }
 
   li a {

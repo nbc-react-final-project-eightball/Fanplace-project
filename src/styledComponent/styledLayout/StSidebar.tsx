@@ -42,7 +42,7 @@ export const SideBarContainer = styled.div<SideBarContainerProps>`
     margin: 0 auto;
     top: 0;
     right: ${(props) => (props.toggleSidebar ? '-100%' : '0')};
-    background-color: #ffffff;
+    background-color: var(--color-white);
     transition: all 500ms;
   }
 
@@ -55,7 +55,7 @@ export const SideBarContainer = styled.div<SideBarContainerProps>`
     height: 100%;
     width: 180px;
     margin: 0 auto;
-    background-color: #ffffff;
+    background-color: var(--color-white);
     transition:
       opacity 0.3s,
       visibility 0.3s;

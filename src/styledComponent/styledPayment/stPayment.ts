@@ -10,8 +10,8 @@ export const LeftArea = styled.div`
   width: 720px;
   height: 100%;
   border-radius: 10px;
-  border: 1px solid #efefef;
-  background: #fff;
+  border: 1px solid var(--color-light-gray-ef);
+  background: var(--color-white);
   padding: 20px;
 
   .artistName {
@@ -36,8 +36,8 @@ export const LeftArea = styled.div`
   .circle {
     width: 22px;
     height: 22px;
-    background-color: #fff;
-    border: 1px solid #ddd;
+    background-color: var(--color-white);
+    border: 1px solid var(--color-medium-gray-dd);
     border-radius: 11px;
     display: flex;
     align-items: center;
@@ -63,7 +63,7 @@ export const CartList = styled.ul`
     border-top: 1px solid #d9d9d9;
   }
   li {
-    border-top: 1px solid #e9e9e9;
+    border-top: 1px solid var(--color-light-gray-e9);
   }
 `;
 export const CartWrapper = styled.div`
@@ -84,7 +84,7 @@ export const Image = styled.img`
   height: 60px;
   object-fit: cover;
   border-radius: 5px;
-  border: 1px solid #efefef;
+  border: 1px solid var(--color-light-gray-ef);
   margin-left: 20px;
   margin-right: 20px;
   background:

@@ -164,7 +164,7 @@ box-sizing: border-box;
   /* Firefox */
   * {
   scrollbar-width: auto;
-  scrollbar-color: #c2c2c2 #ffffff;
+  scrollbar-color: #c2c2c2 var(--color-white);
 }
 
 /* Chrome, Edge, and Safari */
@@ -174,14 +174,14 @@ box-sizing: border-box;
 }
 
 *::-webkit-scrollbar-track {
-  background: #ffffff;
+  background: var(--color-white);
   margin: 10px;
 }
 
 *::-webkit-scrollbar-thumb {
   background-color: #c2c2c2;
   border-radius: 10px;
-  border: 3px solid #ffffff;
+  border: 3px solid var(--color-white);
 }
 `;
 export default GlobalStyle;

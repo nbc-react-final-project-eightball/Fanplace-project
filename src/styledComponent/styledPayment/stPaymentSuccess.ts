@@ -8,7 +8,7 @@ export const TitleWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   padding-bottom: 20px;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid var(--color-medium-gray-dd);
   h2 {
     font-size: 20px;
     font-style: normal;
@@ -72,8 +72,8 @@ export const ToOrderlistLink = styled(Link)`
   width: 240px;
   height: 48px;
   border-radius: 24px;
-  background: #000;
-  color: #fff;
+  background: var(--color-primary);
+  color: var(--color-white);
 `;
 export const ToHomeLink = styled(Link)`
   display: flex;
@@ -82,7 +82,7 @@ export const ToHomeLink = styled(Link)`
   width: 240px;
   height: 48px;
   border-radius: 24px;
-  border: 1px solid #000;
+  border: 1px solid var(--color-primary);
 
-  background: #fff;
+  background: var(--color-white);
 `;

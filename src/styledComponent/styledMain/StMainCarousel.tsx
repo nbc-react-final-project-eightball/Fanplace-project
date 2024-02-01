@@ -41,7 +41,7 @@ export const Img = styled.img`
   }
 `;
 export const Artist = styled.p`
-  color: #aaa;
+  color: var(--color-medium-gray-aa);
   font-size: 14px;
   line-height: 1.5; /* 171.429% */
   margin-bottom: 4px;
@@ -159,7 +159,7 @@ export const CarouselWrapper = styled.div`
 export const CarouselRange = styled.input`
   width: 100%;
   -webkit-appearance: none;
-  background: #eeeeee;
+  background: var(--color-medium-gray-ee);
   margin: 0 auto;
   &::-webkit-slider-runnable-track {
     width: 100%;
@@ -168,13 +168,13 @@ export const CarouselRange = styled.input`
   }
 
   &::-webkit-slider-thumb {
-    border: 1px solid #000000;
+    border: 1px solid var(--color-primary);
     width: 100px;
 
-    background: #000000;
+    background: var(--color-primary);
     cursor: pointer;
     box-shadow:
-      1px 1px 1px #000000,
+      1px 1px 1px var(--color-primary),
       0px 0px 1px #0d0d0d;
     transition:
       background 0.5s ease-in-out,
@@ -187,7 +187,7 @@ export const PrevButton = styled.button`
   width: 50px;
   height: 50px;
   box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.06);
-  background-color: #000;
+  background-color: var(--color-primary);
   border-radius: 50%;
   position: absolute;
   top: 300px;
@@ -233,7 +233,7 @@ export const NextButton = styled.button`
   width: 50px;
   height: 50px;
   box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.06);
-  background-color: #000;
+  background-color: var(--color-primary);
   border-radius: 50%;
   position: absolute;
   top: 300px;
@@ -319,7 +319,7 @@ export const AlbumDiv = styled.div`
   display: flex;
   justify-content: center;
   position: relative;
-  background: #000;
+  background: var(--color-primary);
   @media (max-width: 768px) {
     /* 768px 이하 화면 크기에 대한 스타일 */
     width: 768px;
@@ -441,7 +441,7 @@ export const AlbumPrevButton = styled.button`
   width: 50px;
   height: 50px;
 
-  background-color: #000;
+  background-color: var(--color-primary);
   border-radius: 50%;
   position: absolute;
   top: 50%;
@@ -463,7 +463,7 @@ export const AlbumNextButton = styled.button`
   width: 50px;
   height: 50px;
 
-  background-color: #000;
+  background-color: var(--color-primary);
   border-radius: 50%;
   position: absolute;
   top: 300px;
@@ -480,7 +480,7 @@ export const AlbumNextButton = styled.button`
   }
 `;
 export const AlbumDivTitle = styled.h2`
-  color: #fff;
+  color: var(--color-white);
 
   text-align: center;
   font-family: Pretendard;
@@ -492,7 +492,7 @@ export const AlbumDivTitle = styled.h2`
   text-align: center;
 `;
 export const AlbumDivTitleText = styled.p`
-  color: #aaa;
+  color: var(--color-medium-gray-aa);
 
   text-align: center;
 
@@ -502,3 +502,4 @@ export const AlbumDivTitleText = styled.p`
   line-height: 1.5; /* 150% */
   text-align: center;
 `;
+export {};

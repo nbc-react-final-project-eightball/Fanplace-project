@@ -33,8 +33,8 @@ export const StOptions = styled.ul`
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  background-color: #000;
-  color: #fff;
+  background-color: var(--color-primary);
+  color: var(--color-white);
   padding: 10px;
   border-radius: 8px;
   @media (max-width: 768px) {
