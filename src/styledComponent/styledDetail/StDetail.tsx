@@ -13,7 +13,6 @@ export const DtailContainer = styled.div`
   @media (max-width: 768px) {
     padding: 2.5rem;
   }
-
   @media (max-width: 480px) {
     padding: 1.5rem;
   }
