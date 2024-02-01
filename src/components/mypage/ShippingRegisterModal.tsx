@@ -119,7 +119,7 @@ const ShippingRegisterModal = () => {
               </g>
               <defs>
                 <clipPath id="clip0_41_1369">
-                  <rect width="20" height="20" fill="white" />
+                  <rect width="20" height="20" fill="var(--color-white)" />
                 </clipPath>
               </defs>
             </svg>

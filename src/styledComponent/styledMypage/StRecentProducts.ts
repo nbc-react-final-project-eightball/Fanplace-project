@@ -18,11 +18,11 @@ export const TitleWrapper = styled.div`
     font-size: 1.125rem;
   }
   div p {
-    color: #999;
+    color: var(--color-primary-medium-99);
     font-size: 0.875rem;
     word-break: keep-all;
   }
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid var(--color-medium-gray-dd);
   @media (max-width: 480px) {
     div {
       align-items: center;
@@ -118,7 +118,7 @@ export const ListInTextDiv = styled.div`
 `;
 
 export const Artist = styled.p`
-  color: #999;
+  color: var(--color-primary-medium-99);
   font-size: 14px;
   font-style: normal;
   font-weight: 500;
@@ -131,7 +131,7 @@ export const ProductTitle = styled.h1`
   -webkit-line-clamp: 2;
   text-overflow: ellipsis;
   height: 43px;
-  color: #333;
+  color: var(--color-primary-medium-33);
   font-size: 16px;
   font-style: normal;
   font-weight: 500;
@@ -139,7 +139,7 @@ export const ProductTitle = styled.h1`
   margin-bottom: 10px;
 `;
 export const ReleaseDate = styled.p`
-  color: #555;
+  color: var(--color-primary-medium-55);
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
@@ -147,7 +147,7 @@ export const ReleaseDate = styled.p`
   margin-bottom: 20px;
 `;
 export const Price = styled.p`
-  color: #333;
+  color: var(--color-primary-medium-33);
   font-size: 18px;
   font-style: normal;
   font-weight: 600;

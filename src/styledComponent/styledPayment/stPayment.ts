@@ -4,7 +4,7 @@ export const PaymentContainer = styled.div`
   width: 100%;
   /* height: 0.433; */
   padding-bottom: 300px;
-  background: #f9f9f9;
+  background: var(--color-light-gray-f9);
   flex-shrink: 0;
 `;
 
@@ -36,24 +36,23 @@ export const Wrapper = styled.div`
 `;
 
 export const PaymentSection = styled.div`
-    @media screen and (max-width: 768px) {
-    width:700px ;
+  @media screen and (max-width: 768px) {
+    width: 700px;
   }
   @media screen and (max-width: 480px) {
     width: 450px;
   }
-
-`
+`;
 
 export const Address = styled.div`
-    width: 22.5rem;
+  width: 22.5rem;
   height: 50%;
   min-height: 25rem;
   padding: 20px;
   border-radius: 10px;
-  background: #fff;
+  background: var(--color-white);
 
   @media screen and (max-width: 768px) {
     width: 100%;
   }
-`
+`;

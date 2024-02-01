@@ -4,7 +4,7 @@ export const CartContainer = styled.div`
   width: 100%;
   /* height: 0.433; */
   padding-bottom: 300px;
-  background: #f9f9f9;
+  background: var(--color-light-gray-f9);
   flex-shrink: 0;
 `;
 
@@ -38,7 +38,7 @@ export const Wrapper = styled.div`
 export const CartTitle = styled.div`
   width: 100%;
   max-width: 1070px;
-  color: #000;
+  color: var(--color-primary);
   font-size: 20px;
   font-style: normal;
   font-weight: 600;
@@ -51,12 +51,12 @@ export const Process = styled.div`
   display: flex;
   align-items: center;
   span {
-    color: #999;
+    color: var(--color-primary-medium-99);
     font-size: 16px;
     font-weight: 400;
   }
   span.action {
-    color: #000;
+    color: var(--color-primary);
     font-size: 16px;
     font-weight: 600;
   }
@@ -66,7 +66,7 @@ export const LeftContainer = styled.div`
   height: 100%;
   border-radius: 10px;
   border: 1px solid #efefef;
-  background: #fff;
+  background: var(--color-white);
   padding: 20px;
 
   input[type='checkbox'] {
@@ -87,7 +87,7 @@ export const LeftContainer = styled.div`
     width: 20px;
     height: 20px;
     border-radius: 2px;
-    border: 1px solid #d9d9d9;
+    border: 1px solid var(--color-light-gray-e9);
     position: relative;
   }
   @media screen and (max-width: 768px) {
@@ -130,7 +130,7 @@ export const LeftContainer = styled.div`
   .circle {
     width: 22px;
     height: 22px;
-    background-color: #fff;
+    background-color: var(--color-white);
     border: 1px solid #ddd;
     border-radius: 11px;
     display: flex;
@@ -139,7 +139,7 @@ export const LeftContainer = styled.div`
   }
   .title {
     width: 360px;
-    color: #333;
+    color: var(--color-primary-medium-33);
     font-size: 14px;
     font-style: normal;
     font-weight: 500;
@@ -157,7 +157,7 @@ export const RightContainer = styled.div`
   min-height: 25rem;
   padding: 20px;
   border-radius: 10px;
-  background: #fff;
+  background: var(--color-white);
 
   @media screen and (max-width: 768px) {
     width: 100%;
@@ -167,19 +167,19 @@ export const RightContainer = styled.div`
 export const PaymentInfo = styled.h2`
   font-size: 20px;
   padding-bottom: 16px;
-  border-bottom: 1px solid #d9d9d9;
+  border-bottom: 1px solid var(--color-light-gray-e9);
 `;
 
 export const Box = styled.div`
   display: flex;
   justify-content: space-between;
   h3 {
-    color: #999;
+    color: var(--color-primary-medium-99);
     font-weight: 500;
   }
   span {
     font-size: 16px;
-    color: #333;
+    color: var(--color-primary-medium-33);
     font-weight: 500;
   }
   h2 {
@@ -187,9 +187,9 @@ export const Box = styled.div`
     justify-content: space-between;
     width: 100%;
     font-size: 16px;
-    color: #333;
+    color: var(--color-primary-medium-33);
     font-weight: 600;
-    border-top: 1px solid #d9d9d9;
+    border-top: 1px solid var(--color-light-gray-e9);
     padding: 20px 0 30px;
   }
   h2 span {
@@ -209,13 +209,13 @@ export const PaymentButton = styled.button`
   text-align: center;
   flex-shrink: 0;
   border-radius: 28px;
-  background: #000;
-  color: #fff;
+  background: var(--color-primary);
+  color: var(--color-white);
 `;
 export const CartList = styled.ul`
   gap: 20px;
   li:first-child {
-    border-top: 1px solid #d9d9d9;
+    border-top: 1px solid var(--color-light-gray-e9);
   }
   li {
     border-top: 1px solid #e9e9e9;
@@ -247,7 +247,7 @@ export const TotalAmount = styled.div`
   width: 100%;
   padding: 20px;
   .div1 {
-    color: #999;
+    color: var(--color-primary-medium-99);
     font-family: Pretendard;
     font-size: 14px;
     font-style: normal;
@@ -255,7 +255,7 @@ export const TotalAmount = styled.div`
     line-height: normal;
   }
   .div2 {
-    color: #333;
+    color: var(--color-primary-medium-33);
     font-family: Pretendard;
     font-size: 16px;
     font-style: normal;

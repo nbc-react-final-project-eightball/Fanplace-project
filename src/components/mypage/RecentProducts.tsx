@@ -35,18 +35,21 @@ const RecentProducts = () => {
             <>
               <S.List key={index}>
                 <Link
-                  to={`/Detail/${list.productId}`}
+                  to={`/Detail/${list?.productId}`}
                   style={{ textDecoration: 'none', color: 'black' }}
                   onClick={() => {
                     dispatch(setSelectedProduct(list));
                   }}
                 >
-                  <S.Img src={list.img} alt={`Slide ${index}`} />
+                  <S.Img src={list?.img} alt={`Slide ${index}`} />
                   <S.ListInTextDiv>
-                    <S.Artist>{list.artist}</S.Artist>
-                    <S.ProductTitle> {list.title}</S.ProductTitle>
-                    <S.ReleaseDate>발매일</S.ReleaseDate>
-                    <S.Price>{list.price} 원</S.Price>
+                    <S.Artist>{list?.artist}</S.Artist>
+                    <S.ProductTitle> {list?.title}</S.ProductTitle>
+                    <S.ReleaseDate>
+                      발매일&nbsp;&nbsp;
+                      {list?.releaseDate || '2024-02-12'}
+                    </S.ReleaseDate>
+                    <S.Price>{list?.price} 원</S.Price>
                   </S.ListInTextDiv>
                 </Link>
               </S.List>
