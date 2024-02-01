@@ -54,7 +54,7 @@ const MainBttomSkeleton = () => {
             <S.BtnImg src="/img/R.svg" alt="" />
           </S.ButtonNext>
         </S.CarouselWrapper>
-        <S.CarouselRange type="range" min="1" max="100" value={0} />
+        <S.CarouselRange type="range" min="1" max="100" value={0} readOnly />
       </S.CarouselContainer>
     </S.Div>
   );
