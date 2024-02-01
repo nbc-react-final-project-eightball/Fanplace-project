@@ -18,7 +18,7 @@ export const TitleWrapper = styled.div`
 export const PaymentProcess = styled.div`
   display: flex;
   align-items: center;
-  color: #999;
+  color: var(--color-primary-medium-99);
   font-weight: 400;
   span:last-child {
     color: #777777;
@@ -52,7 +52,7 @@ export const OrderNumber = styled.p`
 
 export const GuideText = styled.p`
   font-size: 14px;
-  color: #999;
+  color: var(--color-primary-medium-99);
   line-height: 1.5;
   text-align: center;
   margin-bottom: 48px;

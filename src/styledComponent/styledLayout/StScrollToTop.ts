@@ -12,7 +12,7 @@ export const ScrollToTopButton = styled.button<{ isVisible: boolean }>`
   height: 50px;
   background: var(--color-primary);
   border-radius: 30px;
-  border: 1px solid #555;
+  border: 1px solid var(--color-primary-medium-55);
   transition: all 200ms;
   z-index: 99;
 `;

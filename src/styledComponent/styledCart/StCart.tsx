@@ -3,8 +3,71 @@ import styled from 'styled-components';
 export const CartContainer = styled.div`
   width: 100%;
   /* height: 0.433; */
-  background: var(--color-light-gray-f9);
+  padding-bottom: 300px;
+  background: #f9f9f9;
   flex-shrink: 0;
+`;
+
+export const Cart = styled.div`
+  height: 900px;
+  top: 112px;
+  padding: 0 2.5rem 0 8.75rem;
+  @media screen and (max-width: 768px) {
+    padding: 0 2.5rem 0 2.5rem;
+  }
+  @media screen and (max-width: 480px) {
+    padding: 0 2.5rem 0 1rem;
+  }
+  display: flex;
+  flex-direction: column;
+`;
+
+export const Wrapper = styled.div`
+  display: flex;
+  gap: 10px;
+  margin: 0 auto;
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+    align-items: center;
+  }
+  @media screen and (max-width: 480px) {
+    width: 450px;
+  }
+`;
+
+export const CartTitle = styled.div`
+  width: 100%;
+  max-width: 1070px;
+  color: #000;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  margin: 40px auto 20px;
+  display: flex;
+  justify-content: space-between;
+`;
+export const Process = styled.div`
+  display: flex;
+  align-items: center;
+  span {
+    color: var(--color-primary-medium-99);
+    font-size: 16px;
+    font-weight: 400;
+  }
+  span.action {
+    color: #000;
+    font-size: 16px;
+    font-weight: 600;
+  }
+`;
+export const LeftContainer = styled.div`
+  width: 720px;
+  height: 100%;
+  border-radius: 10px;
+  border: 1px solid #efefef;
+  background: #fff;
+  padding: 20px;
 
   input[type='checkbox'] {
     display: none;
@@ -34,69 +97,10 @@ export const CartContainer = styled.div`
     width: 480px;
   }
   padding-bottom: 100px;
-`;
 
-export const Cart = styled.div`
-  height: 900px;
-  top: 112px;
-  padding: 0 2.5rem 0 8.75rem;
   @media screen and (max-width: 768px) {
-    padding: 0 2.5rem 0 2.5rem;
-  }
-  @media screen and (max-width: 480px) {
-    padding: 0 2.5rem 0 1rem;
-  }
-  display: flex;
-  flex-direction: column;
-  .allArea {
-    display: flex;
-    gap: 10px;
-    margin: 0 auto;
-    @media screen and (max-width: 768px) {
-      flex-direction: column;
-      align-items: center;
-    }
-    @media screen and (max-width: 480px) {
-      width: 450px;
-    }
-  }
-`;
-export const CartTitle = styled.div`
-  width: 100%;
-  max-width: 1070px;
-  color: var(--color-primary);
-  font-size: 20px;
-  font-style: normal;
-  font-weight: 600;
-  line-height: normal;
-  margin: 40px auto 20px;
-  display: flex;
-  justify-content: space-between;
-`;
-export const Process = styled.div`
-  display: flex;
-  align-items: center;
-  span {
-    color: #999;
-    font-size: 16px;
-    font-weight: 400;
-  }
-  span:first-child {
-    color: var(--color-primary);
-    font-size: 16px;
-    font-weight: 600;
-  }
-`;
-export const LeftArea = styled.div`
-  width: 720px;
-  height: 100%;
-  border-radius: 10px;
-  border: 1px solid var(--color-light-gray-ef);
-  background: var(--color-white);
-  padding: 20px;
-  @media screen and (max-width: 768px) {
-    width: 100%; /* Make it full-width for smaller screens */
-    margin-bottom: 20px; /* Add some space between LeftArea and RightArea */
+    width: 100%;
+    margin-bottom: 20px;
   }
 
   .artistName {
@@ -126,8 +130,8 @@ export const LeftArea = styled.div`
   .circle {
     width: 22px;
     height: 22px;
-    background-color: var(--color-white);
-    border: 1px solid var(--color-medium-gray-dd);
+    background-color: #fff;
+    border: 1px solid #ddd;
     border-radius: 11px;
     display: flex;
     align-items: center;
@@ -135,7 +139,7 @@ export const LeftArea = styled.div`
   }
   .title {
     width: 360px;
-    color: #333;
+    color: var(--color-primary-medium-33);
     font-size: 14px;
     font-style: normal;
     font-weight: 500;
@@ -147,25 +151,16 @@ export const LeftArea = styled.div`
     justify-content: center;
   }
 `;
-export const RightArea = styled.div`
+export const RightContainer = styled.div`
   width: 22.5rem;
+  height: 50%;
   min-height: 25rem;
   padding: 20px;
   border-radius: 10px;
-  background: var(--color-white);
-  padding: 20px;
+  background: #fff;
 
   @media screen and (max-width: 768px) {
-    width: 100%; /* Make it full-width for smaller screens */
-  }
-
-  .paymentInfo {
-    color: #333;
-    font-size: 20px;
-    font-style: normal;
-    font-weight: 600;
-    line-height: normal;
-    margin-bottom: 20px;
+    width: 100%;
   }
 `;
 
@@ -179,12 +174,12 @@ export const Box = styled.div`
   display: flex;
   justify-content: space-between;
   h3 {
-    color: #999;
+    color: var(--color-primary-medium-99);
     font-weight: 500;
   }
   span {
     font-size: 16px;
-    color: #333;
+    color: var(--color-primary-medium-33);
     font-weight: 500;
   }
   h2 {
@@ -192,7 +187,7 @@ export const Box = styled.div`
     justify-content: space-between;
     width: 100%;
     font-size: 16px;
-    color: #333;
+    color: var(--color-primary-medium-33);
     font-weight: 600;
     border-top: 1px solid #d9d9d9;
     padding: 20px 0 30px;
@@ -214,8 +209,8 @@ export const PaymentButton = styled.button`
   text-align: center;
   flex-shrink: 0;
   border-radius: 28px;
-  background: var(--color-primary);
-  color: var(--color-white);
+  background: #000;
+  color: #fff;
 `;
 export const CartList = styled.ul`
   gap: 20px;
@@ -223,20 +218,20 @@ export const CartList = styled.ul`
     border-top: 1px solid #d9d9d9;
   }
   li {
-    border-top: 1px solid var(--color-light-gray-e9);
+    border-top: 1px solid #e9e9e9;
   }
 `;
 
 export const CartWrapper = styled.li`
   display: flex;
-  padding: 20px 0;
+  padding: 20px 0 20px 0;
 `;
 export const Image = styled.img`
   width: 60px;
   height: 60px;
   object-fit: cover;
   border-radius: 5px;
-  border: 1px solid var(--color-light-gray-ef);
+  border: 1px solid #efefef;
   margin-left: 20px;
   margin-right: 20px;
   background:
@@ -252,7 +247,7 @@ export const TotalAmount = styled.div`
   width: 100%;
   padding: 20px;
   .div1 {
-    color: #999;
+    color: var(--color-primary-medium-99);
     font-family: Pretendard;
     font-size: 14px;
     font-style: normal;
@@ -260,7 +255,7 @@ export const TotalAmount = styled.div`
     line-height: normal;
   }
   .div2 {
-    color: #333;
+    color: var(--color-primary-medium-33);
     font-family: Pretendard;
     font-size: 16px;
     font-style: normal;

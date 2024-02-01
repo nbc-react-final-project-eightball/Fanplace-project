@@ -22,7 +22,7 @@ export const PrepareWrapper = styled.div`
     }
   }
   p {
-    color: #999;
+    color: var(--color-primary-medium-99);
     line-height: 1.5;
   }
   @media (max-width: 768px) {
@@ -68,7 +68,7 @@ export const NotFoundWrapper = styled.div`
     }
   }
   p {
-    color: #999;
+    color: var(--color-primary-medium-99);
     text-align: center;
     line-height: 1.5;
   }

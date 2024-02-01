@@ -51,8 +51,6 @@ export const SideBarContainer = styled.div<SideBarContainerProps>`
     opacity: ${(props) => (props.toggleSidebar ? 0 : 1)};
     visibility: ${(props) => (props.toggleSidebar ? 'hidden' : 'visible')};
     padding-top: 80px;
-    width: 100%;
-    height: 100%;
     width: 180px;
     margin: 0 auto;
     background-color: var(--color-white);
@@ -74,14 +72,6 @@ export const ShowSidebarButton = styled.button`
     width: 100px;
     display: block;
     z-index: 31;
-  }
-  @media (max-width: 480px) {
-    /* 480px 이하 화면 크기에 대한 스타일 */
-    display: block;
-    display: block;
-    width: 100px;
-
-    display: block;
   }
 `;
 
@@ -120,7 +110,7 @@ export const SNavLink = styled(NavLink)<SNavLinkStyleProps>`
   text-decoration: none;
 
   &.active {
-    color: #8f86ff;
+    color: var(--color-accent);
   }
 `;
 //sidebar end

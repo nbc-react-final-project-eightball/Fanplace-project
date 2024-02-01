@@ -40,7 +40,7 @@ export const MyInfoBoxWrapper = styled.div`
     padding: 1.5rem;
   }
   & > a h3 {
-    color: #555;
+    color: var(--color-primary-medium-55);
     font-weight: 600;
     font-size: 1rem;
   }
@@ -49,16 +49,16 @@ export const MyInfoBoxWrapper = styled.div`
     align-items: center;
     gap: 0.125rem;
     margin: 1rem 0;
-    color: #8f86ff;
+    color: var(--color-accent);
     font-size: 1.5rem;
     font-weight: 600;
   }
   & > a h4 span {
-    color: #8f86ff;
+    color: var(--color-accent);
     font-size: 1.25rem;
   }
   & > a p {
-    color: #999;
+    color: var(--color-primary-medium-99);
     font-size: 0.875rem;
   }
   @media (max-width: 1024px) {
@@ -114,7 +114,7 @@ export const MyInfoBoxWrapper = styled.div`
 export const MyInfoBox = styled(Link)`
   span {
     font-size: 0.875rem;
-    color: #555;
+    color: var(--color-primary-medium-55);
   }
 `;
 
@@ -212,7 +212,7 @@ export const MenuBox = styled.ul`
     width: 100%;
     height: 3.5rem;
     margin-bottom: -1px;
-    color: #555;
+    color: var(--color-primary-medium-55);
     border: 1px solid var(--color-light-gray-ef);
   }
 
@@ -225,7 +225,7 @@ export const MenuBox = styled.ul`
     word-break: keep-all;
   }
   li a.active {
-    color: #8f86ff;
+    color: var(--color-accent);
     font-weight: 500;
   }
   @media (max-width: 1024px) {

@@ -102,7 +102,7 @@ export const GuideLetter = styled.p`
   font-size: 0.875rem;
   line-height: 1.5;
   background: var(--color-light-gray-f9);
-  color: #777;
+  color: var(--color-primary-medium-77);
   word-break: keep-all;
 `;
 

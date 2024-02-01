@@ -52,7 +52,7 @@ export const ModalBackground = styled.div`
     border-color: transparent;
   }
   .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input.Mui-disabled {
-    -webkit-text-fill-color: #777;
+    -webkit-text-fill-color: var(--color-primary-medium-77);
   }
   .css-i44wyl {
     box-sizing: border-box;

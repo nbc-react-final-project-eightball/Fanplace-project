@@ -79,13 +79,13 @@ export const DetailInfo = styled.div`
   line-height: 1.6;
   font-size: 14px;
   text-align: left;
-  color: #555;
+  color: var(--color-primary-medium-55);
 `;
 export const PWrapper = styled.div`
   p {
-    color: #999;
+    color: var(--color-primary-medium-99);
     b {
-      color: #555;
+      color: var(--color-primary-medium-55);
       font-weight: 500;
     }
   }
@@ -103,7 +103,7 @@ export const ProductTitle = styled.h1`
   button {
     padding: 12px 20px;
     cursor: pointer;
-    color: #777;
+    color: var(--color-primary-medium-77);
   }
   button.active {
     color: var(--color-primary);
@@ -165,7 +165,7 @@ export const ProductInfoSection1_3 = styled.section`
   margin-top: 40px;
 
   h3 {
-    color: #333;
+    color: var(--color-primary-medium-33);
     font-size: 20px;
     font-weight: 700;
   }
@@ -179,7 +179,7 @@ export const ProductInfoSection1_3 = styled.section`
       font-weight: 600;
     }
     h3 {
-      color: #333;
+      color: var(--color-primary-medium-33);
       font-size: 20px;
       font-weight: 700;
     }
@@ -200,7 +200,7 @@ export const ProductInfoSection2_1 = styled.section`
   padding-bottom: 40px;
   ul {
     font-size: 14px;
-    color: #777;
+    color: var(--color-primary-medium-77);
   }
   h1 {
     font-weight: normal;
@@ -293,7 +293,7 @@ export const ProductInfoSection3Btn1 = styled.button`
   background-color: var(--color-primary);
   transition: all 200ms;
   &:hover {
-    background-color: #333;
+    background-color: var(--color-primary-medium-33);
   }
   &:active {
     transform: scale(1.008);
@@ -326,7 +326,7 @@ export const ProductP = styled.p`
   text-align: right;
   align-items: baseline;
   span {
-    color: #999;
+    color: var(--color-primary-medium-99);
     font-size: 14px;
   }
 `;
@@ -342,8 +342,8 @@ export const ProductInfoSection3Btn3 = styled.button`
   height: 48px;
   border-radius: 30px;
   font-weight: normal;
-  color: #8f86ff;
-  border: 1px solid #8f86ff;
+  color: var(--color-accent);
+  border: 1px solid var(--color-accent);
 
   transition: all 200ms;
   &:hover {
@@ -351,5 +351,177 @@ export const ProductInfoSection3Btn3 = styled.button`
   }
   &:active {
     transform: scale(1.008);
+  }
+`;
+
+export const DetailReviewContainer = styled.div`
+  width: 100%;
+
+  height: 100%;
+`;
+export const DetailReviewInPut = styled.input`
+  width: 100%;
+  height: 100px;
+  border-radius: 30px;
+  border: 1px solid var(--color-primary-medium-99);
+  padding: 20px;
+  font-size: 16px;
+  font-weight: 800;
+  flex: 1;
+
+  &:focus {
+    outline: 1px solid var(--color-primary-medium-99);
+  }
+`;
+export const DetailReviewRatingInput = styled.input`
+  /* 라디오타입의 인풋박스 */
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 1px solid var(--color-primary-medium-99);
+  padding: 20px;
+  font-size: 16px;
+  font-weight: 800;
+
+  &:focus {
+    outline: 1px solid var(--color-primary-medium-99);
+  }
+`;
+export const DetailReviewRatingLabel = styled.label`
+  color: #ccc;
+  &:hover {
+    color: #fc0;
+  }
+`;
+
+export const DetailReviewBtn = styled.button`
+  width: 20%;
+  height: 100px;
+  border-radius: 30px;
+  font-weight: normal;
+  background-color: #000000;
+  transition: all 0.2s;
+  color: #ffffff;
+  &:hover {
+    color: #ffffff;
+    background-color: var(--color-primary-medium-33);
+  }
+`;
+export const DetailReviewRating = styled.div`
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const DetailReviewForm = styled.form`
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+
+  gap: 20px;
+`;
+export const DetailReviewFormSection1 = styled.div`
+  display: flex;
+  gap: 10px;
+  flex: 1;
+`;
+export const DetailReviewList = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+
+  width: 100%;
+  height: 100%;
+
+  border-radius: 30px;
+`;
+
+export const DetailReviewContent = styled.div`
+  display: flex;
+  gap: 20px;
+  width: 100%;
+`;
+export const DetailReviewContentSectionContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+`;
+export const DetailReviewContentSection1 = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+export const DetailReviewContentSection1_1 = styled.div`
+  display: flex;
+  flex-direction: row;
+
+  @media (max-width: 768px) {
+    align-items: start;
+  }
+`;
+export const DetailReviewContentSection1_2 = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+export const DetailReviewContentSection2 = styled.div`
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+`;
+export const DetailReviewImg = styled.img`
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+`;
+
+export const DetailReviewDeleteBtn = styled.button`
+  width: 50px;
+  height: 20px;
+  border-radius: 30px;
+  font-weight: normal;
+  background-color: #000000;
+  transition: all 0.2s;
+
+  color: #ffffff;
+  &:hover {
+    color: #000000;
+    background-color: #ffffff;
+  }
+  @media (max-width: 768px) {
+    width: 30px;
+  }
+  @media (max-width: 480px) {
+    width: 30px;
+  }
+`;
+export const DetailReviewerNameH1 = styled.h1`
+  width: 100%;
+  font-size: 16px;
+  font-weight: 800;
+  text-align: left;
+
+  @media (max-width: 768px) {
+    width: 150px;
+  }
+  @media (max-width: 480px) {
+    width: 60px;
+  }
+`;
+export const DetailReviewercreatedAtP = styled.p`
+  width: 100%;
+  font-size: 12px;
+  font-weight: 800;
+  text-align: left;
+
+  @media (max-width: 768px) {
+    width: 350px;
+  }
+  @media (max-width: 638px) {
+    width: 230px;
+  }
+  @media (max-width: 480px) {
+    width: 210px;
   }
 `;

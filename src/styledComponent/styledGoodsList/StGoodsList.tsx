@@ -59,7 +59,7 @@ export const ArtistFilter = styled.button<ArtistFilterProps>`
   height: 100%;
   font-size: 14px;
   border-radius: 8px;
-  color: #555;
+  color: var(--color-primary-medium-55);
   background: var(--color-white);
   box-sizing: border-box;
 `;
@@ -135,7 +135,7 @@ export const ArtistFilterReset = styled.button`
 `;
 export const Cate = styled.h2`
   font-size: 20px;
-  color: #333;
+  color: var(--color-primary-medium-33);
   span {
     font-weight: normal;
   }
@@ -300,14 +300,14 @@ export const ProductCardTitle = styled.h1`
 
 export const ProductReleaseDate = styled.div`
   margin-top: 10px;
-  color: #999;
+  color: var(--color-primary-medium-99);
   font-size: 14px;
   font-weight: 400;
 `;
 export const ProductCardPrice = styled.p`
   width: 100%;
   height: 100%;
-  color: #333;
+  color: var(--color-primary-medium-33);
   font-weight: 600;
   font-size: 18px;
   margin-bottom: 10px;
@@ -321,7 +321,7 @@ export const ProductCardPrice = styled.p`
       font-weight: 600;
     }
     h3 {
-      color: #333;
+      color: var(--color-primary-medium-33);
       font-size: 18px;
       font-weight: 600;
     }
@@ -344,7 +344,7 @@ export const GoodsListCardSection1 = styled.section`
 //상품안에서 타이틀이랑 인포 나눠줌
 export const GoodsListCardSection1_1 = styled.section`
   margin-bottom: 20px;
-  color: #333;
+  color: var(--color-primary-medium-33);
   font-size: 16px;
   font-style: normal;
   font-weight: 500;

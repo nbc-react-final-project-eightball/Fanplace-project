@@ -5,13 +5,6 @@ export const Div = styled.div`
   display: flex;
   justify-content: center;
   position: relative;
-  @media (max-width: 768px) {
-    /* 768px 이하 화면 크기에 대한 스타일 */
-  }
-
-  @media (max-width: 480px) {
-    /* 480px 이하 화면 크기에 대한 스타일 */
-  }
 `;
 
 export const CarouselContainer = styled.div`
@@ -34,13 +27,11 @@ export const Slide = styled.div`
 
   margin-top: 40px;
   @media (max-width: 768px) {
-    /* 768px 이하 화면 크기에 대한 스타일 */
     flex-grow: 1;
     width: 25%;
   }
 
   @media (max-width: 480px) {
-    /* 480px 이하 화면 크기에 대한 스타일 */
     flex-grow: 0;
     width: 25%;
   }
@@ -57,15 +48,12 @@ export const SlideContainer = styled.div`
   gap: 20px;
 
   @media (max-width: 768px) {
-    /* 768px 이하 화면 크기에 대한 스타일 */
     flex-grow: 0;
     width: 90%;
     gap: 20px;
   }
 
   @media (max-width: 480px) {
-    /* 480px 이하 화면 크기에 대한 스타일 */
-    flex-grow: 0;
     width: 70%;
     gap: 60px;
   }
@@ -76,7 +64,7 @@ export const CarouselWrapper1 = styled.div`
 `;
 
 export const Title = styled.h2`
-  color: #333;
+  color: var(--color-primary-medium-33);
   font-size: 32px;
   font-style: normal;
   font-weight: 700;
@@ -88,7 +76,7 @@ export const Title = styled.h2`
   width: 100px;
 `;
 export const TitleText = styled.p`
-  color: #555;
+  color: var(--color-primary-medium-55);
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
@@ -105,12 +93,10 @@ export const Img = styled.div`
   object-fit: cover;
   box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.06);
   @media (max-width: 768px) {
-    /* 768px 이하 화면 크기에 대한 스타일 */
     width: 168px;
     height: 168px;
   }
   @media (max-width: 480px) {
-    /* 768px 이하 화면 크기에 대한 스타일 */
     width: 120px;
     height: 120px;
   }
@@ -133,7 +119,7 @@ export const Artist = styled.p`
 `;
 
 export const ProductTitle = styled.h1`
-  color: #333;
+  color: var(--color-primary-medium-33);
   font-size: 16px;
   font-style: normal;
   font-weight: 500;
@@ -145,7 +131,7 @@ export const ProductTitle = styled.h1`
 `;
 
 export const ReleaseDate = styled.p`
-  color: #999;
+  color: var(--color-primary-medium-99);
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
@@ -157,7 +143,7 @@ export const ReleaseDate = styled.p`
 `;
 //가격
 export const Price = styled.p`
-  color: #333;
+  color: var(--color-primary-medium-33);
   font-size: 18px;
   font-style: normal;
   font-weight: 600;
@@ -175,7 +161,7 @@ export const Price = styled.p`
       font-weight: 600;
     }
     h3 {
-      color: #333;
+      color: var(--color-primary-medium-33);
       font-size: 18px;
       font-weight: 600;
     }

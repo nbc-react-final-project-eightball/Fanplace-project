@@ -1,15 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
 import * as S from '../../styledComponent/styledMain/StMainCarousel';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { config } from '@fortawesome/fontawesome-svg-core';
 import '@fortawesome/fontawesome-svg-core/styles.css';
-import {
-  faChevronCircleLeft,
-  faChevronCircleRight,
-} from '@fortawesome/free-solid-svg-icons';
+
 import { DocumentData } from 'firebase/firestore';
-import { SAMLAuthProvider } from 'firebase/auth';
-import { set } from 'react-hook-form';
+
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { setSelectedProduct } from '../../redux/modules/GoodsList/GoodsListSlice';
@@ -27,21 +22,12 @@ const MainBottomCarousel: React.FC<MainBottomCarouselProps> = ({
 }) => {
   const dispatch = useDispatch();
   const [currentSlide, setCurrentSlide] = useState(0); // 현재 슬라이드의 인덱스
-  const autoSlide = useRef<NodeJS.Timeout | null>(null);
-  const [timeId, setTimeId] = useState<NodeJS.Timeout | null>(null);
+
   const slides = caroueslList ? caroueslList?.slice(0, 10) : [];
 
   const SLIDE_NUM = slides.length;
   const beforeSlide1 = slides[SLIDE_NUM - 1];
-  const slides2 = [
-    'img/p6.jpg',
-    'img/P1.jpg',
-    'img/P2.jpg',
-    'img/P3.jpg',
-    'img/P4.jpg',
-    'img/P5.jpg',
-    'img/p6.jpg',
-  ];
+
   const afterSlide1 = slides[0];
   const afterSlide2 = slides[1];
   const afterSlide3 = slides[2];
@@ -54,47 +40,13 @@ const MainBottomCarousel: React.FC<MainBottomCarouselProps> = ({
     afterSlide3,
     afterSlide4,
   ];
-  // TODO: 상품 이미지를 서버에서 받아와서 뿌려주기
-
-  // 원래 배열의 첫 부분
 
   const slideRef = useRef<HTMLDivElement>(null);
 
-  // useEffect(() => {
-  //   if (autoSlide.current) {
-  //     clearTimeout(autoSlide.current);
-  //   }
-  //   autoSlide.current = setTimeout(() => {
-  //     if (currentSlide >= slides.length - 1) {
-  //       if (slideRef.current) {
-  //         slideRef.current.style.transition = 'none';
-  //         setCurrentSlide(0);
-  //         setTimeout(() => {
-  //           if (slideRef.current) {
-  //             slideRef.current.style.transition = 'all 500ms ease-in-out';
-  //           }
-  //         }, 100);
-  //       }
-  //     } else {
-  //       if (slideRef.current) {
-  //         slideRef.current.style.transition = 'all 500ms ease-in-out';
-  //       }
-  //       setCurrentSlide((prev) => prev + 1);
-  //     }
-  //   }, 3000);
-
-  //   return () => {
-  //     if (autoSlide.current) {
-  //       clearTimeout(autoSlide.current);
-  //     }
-  //   };
-  // }, [currentSlide, slides.length]);
   const resetIndex = () => {
     setCurrentSlide((prev) => prev + 1);
   };
-  useEffect(() => {
-    console.log('슬라이드 인덱스', currentSlide);
-  }, [currentSlide]);
+  useEffect(() => {}, [currentSlide]);
   const handleNext = () => {
     if (currentSlide >= slides.length - 1) {
       if (slideRef.current) {
@@ -151,13 +103,7 @@ const MainBottomCarousel: React.FC<MainBottomCarouselProps> = ({
     <S.Div>
       {' '}
       <S.PrevButton onClick={handlePrev}>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          // width="50"
-          // height="50"
-          viewBox="0 0 50 50"
-          fill="none"
-        >
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" fill="none">
           <path
             d="M25 0C38.8071 1.81058e-06 50 11.1929 50 25C50 38.8071 38.8071 50 25 50C11.1929 50 -1.81058e-06 38.8071 0 25C1.81058e-06 11.1929 11.1929 -1.81058e-06 25 0Z"
             fill="black"
@@ -209,11 +155,7 @@ const MainBottomCarousel: React.FC<MainBottomCarouselProps> = ({
                     dispatch(setSelectedProduct(list));
                   }}
                 >
-                  <S.Img
-                    // style={{ width: '100%' }}
-                    src={list?.img}
-                    alt={`Slide ${index}`}
-                  />
+                  <S.Img src={list?.img} alt={`Slide ${index}`} />
                   <S.SlideInTextDiv>
                     <S.Artist>{list?.artist}</S.Artist>
                     {/* <h1>{list.artist}</h1> */}

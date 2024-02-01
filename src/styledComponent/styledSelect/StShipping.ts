@@ -40,7 +40,7 @@ export const TableHead = styled.div`
   height: 3rem;
   border-top: 1px solid var(--color-primary);
   border-bottom: 1px solid var(--color-medium-gray-dd);
-  color: #555;
+  color: var(--color-primary-medium-55);
   ul {
     display: flex;
     width: 100%;
@@ -54,7 +54,7 @@ export const TableHead = styled.div`
     width: 100%;
     height: 100%;
     font-size: 0.875rem;
-    color: #777;
+    color: var(--color-primary-medium-77);
   }
   ul li:nth-child(1) {
     flex: 1;
@@ -81,7 +81,7 @@ export const TableBody = styled.div`
   justify-content: center;
   width: 100%;
   p {
-    color: #999;
+    color: var(--color-primary-medium-99);
   }
   @media (max-width: 640px) {
     flex-direction: column;
@@ -95,7 +95,7 @@ export const GuideLetter = styled.p`
   font-size: 0.875rem;
   line-height: 1.5;
   background: var(--color-light-gray-f9);
-  color: #777;
+  color: var(--color-primary-medium-77);
   word-break: keep-all;
 `;
 
@@ -136,7 +136,7 @@ export const AddressList = styled.div`
     display: flex;
     align-items: center;
     padding: 1.25rem 0;
-    color: #555;
+    color: var(--color-primary-medium-55);
     font-size: 0.9375rem;
     border-bottom: 1px solid var(--color-light-gray-ef);
     word-break: keep-all;
@@ -184,7 +184,7 @@ export const AddressList = styled.div`
     > div > *:nth-child(3) {
       flex: unset;
       width: calc(100% - 50px);
-      color: #555;
+      color: var(--color-primary-medium-55);
     }
     > div > *:nth-child(4) {
       flex: unset;
@@ -208,7 +208,7 @@ export const AddressList = styled.div`
       }
       h4 {
         display: flex;
-        color: #8f86ff;
+        color: var(--color-accent);
         margin-bottom: 20px;
       }
     }
@@ -242,7 +242,7 @@ export const Line = styled.div`
   display: none;
   width: 2px;
   height: 14px;
-  background: #777;
+  background: var(--color-primary-medium-77);
 
   @media (max-width: 640px) {
     display: block;

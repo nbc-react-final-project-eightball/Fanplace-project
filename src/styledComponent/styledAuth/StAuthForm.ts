@@ -52,7 +52,7 @@ export const AuthForm = styled.form`
     width: 100%;
   }
   .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input.Mui-disabled {
-    -webkit-text-fill-color: #777;
+    -webkit-text-fill-color: var(--color-primary-medium-77);
   }
 `;
 export const AuthFormTitle = styled.h2`
@@ -95,7 +95,7 @@ export const TextInputField = styled(TextField)`
     white-space: pre-wrap;
     resize: none;
     &:hover {
-      border-color: #999;
+      border-color: var(--color-primary-medium-99);
     }
     @media (max-width: 480px) {
       width: 100%;
@@ -127,7 +127,7 @@ export const TextInputField = styled(TextField)`
     font-family: 'pretendard', san-serif;
     padding: 12.5px 14px;
     border: none;
-    color: #777;
+    color: var(--color-primary-medium-77);
 
     @media (max-width: 480px) {
       font-size: 0.9375rem;
@@ -168,8 +168,8 @@ export const LoginButton = styled.button<LoginButtonProps>`
   }
   &.login {
     margin-top: 1rem;
-    border: 1px solid #8f86ff;
-    color: #8f86ff;
+    border: 1px solid var(--color-accent);
+    color: var(--color-accent);
     &:hover {
       background: #f2f1ff;
     }
@@ -231,7 +231,7 @@ export const GuideP = styled.p`
 
 export const GuideButton = styled.button`
   text-align: center;
-  color: #555;
+  color: var(--color-primary-medium-55);
   font-size: 15px;
   text-decoration: underline;
 `;

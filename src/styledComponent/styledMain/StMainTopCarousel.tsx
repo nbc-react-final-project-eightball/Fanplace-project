@@ -9,13 +9,8 @@ export const Div = styled.div`
   margin: 0 auto;
   border-radius: 32.5rem;
   @media (max-width: 768px) {
-    /* 768px 이하 화면 크기에 대한 스타일 */
     width: 21.5rem;
     height: 21.5rem;
-  }
-
-  @media (max-width: 480px) {
-    /* 480px 이하 화면 크기에 대한 스타일 */
   }
 `;
 
@@ -31,20 +26,16 @@ export const PrevButton = styled.button`
     width: 50px;
     height: 50px;
     @media (max-width: 768px) {
-      /* 768px 이하 화면 크기에 대한 스타일 */
       width: 45px;
       height: 45px;
     }
 
     @media (max-width: 480px) {
-      /* 480px 이하 화면 크기에 대한 스타일 */
       width: 35px;
       height: 35px;
     }
   }
   @media (max-width: 370px) {
-    /* 360px 이하 화면 크기에 대한 스타일 */
-
     left: -12px;
   }
 `;
@@ -60,19 +51,15 @@ export const NextButton = styled.button`
     width: 50px;
     height: 50px;
     @media (max-width: 768px) {
-      /* 768px 이하 화면 크기에 대한 스타일 */
       width: 45px;
       height: 45px;
     }
     @media (max-width: 480px) {
-      /* 480px 이하 화면 크기에 대한 스타일 */
       width: 35px;
       height: 35px;
     }
   }
   @media (max-width: 370px) {
-    /* 360px 이하 화면 크기에 대한 스타일 */
-
     right: -12px;
   }
 `;
@@ -106,6 +93,7 @@ export const MainTopCarouselItemText = styled.div``;
 export const CarouselRange = styled.input`
   width: 100%;
   -webkit-appearance: none;
+  appearance: none;
   background: var(--color-medium-gray-ee);
   margin: 0 auto;
   &::-webkit-slider-runnable-track {
@@ -127,5 +115,6 @@ export const CarouselRange = styled.input`
       border 0.5s ease-in-out,
       left 0.5s ease-in-out;
     -webkit-appearance: none;
+    appearance: none;
   }
 `;
