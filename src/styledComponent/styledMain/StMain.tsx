@@ -12,6 +12,7 @@ export const Div = styled.div`
     max-width: 768px;
     display: flex;
     flex-direction: column;
+    padding: 0px 1.5rem;
   }
 
   @media (max-width: 480px) {

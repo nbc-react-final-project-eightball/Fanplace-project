@@ -74,7 +74,8 @@ export const Slide = styled.div`
   justify-content: center;
   align-items: center;
   display: flex;
-
+  @media (max-width: 768px) {
+  }
   @media (max-width: 480px) {
     width: 23%;
   }
@@ -94,7 +95,7 @@ export const CarouselContainer = styled.div`
 
   @media (max-width: 480px) {
     flex-grow: 0;
-    width: 70%;
+    width: 100%;
   }
 `;
 export const CarouselWrapper = styled.div`
@@ -105,7 +106,7 @@ export const CarouselWrapper = styled.div`
   }
 
   @media (max-width: 480px) {
-    margin-left: -650px;
+    margin-left: -590px;
   }
 
   @media (max-width: 414px) {
@@ -251,6 +252,9 @@ export const SlideContainer = styled.div`
   margin-bottom: 40px;
   width: 100%;
   gap: 20px;
+  @media (max-width: 768px) {
+    gap: 90px;
+  }
   @media (max-width: 480px) {
     gap: 110px;
   }
@@ -272,11 +276,6 @@ export const AlbumDiv = styled.div`
   position: relative;
   background: #000;
   @media (max-width: 768px) {
-    width: 768px;
-  }
-
-  @media (max-width: 480px) {
-    width: 480px;
     width: 100%;
   }
 `;
@@ -299,16 +298,16 @@ export const AlbumWrapper = styled.div`
   }
 
   @media (max-width: 480px) {
-    margin-left: -80px;
+    margin-left: -100px;
   }
   @media (max-width: 386px) {
     margin-left: -130px;
   }
   @media (max-width: 414px) {
-    margin-left: -110px;
+    margin-left: -140px;
   }
   @media (max-width: 364px) {
-    margin-left: -140px;
+    margin-left: -160px;
   }
 `;
 

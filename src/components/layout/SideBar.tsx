@@ -48,6 +48,7 @@ const SideBar = () => {
           onClick={() => {
             toggleSidebar();
           }}
+          aria-label="사이드바토글"
         ></button>
       </S.SideBarOverlay>
       <S.SideBarContainer $toggleSidebar={isSidebarVisible}>

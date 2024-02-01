@@ -134,11 +134,11 @@ const MainBottomCarousel: React.FC<MainBottomCarouselProps> = ({
                 (window.innerWidth <= 364
                   ? 37
                   : window.innerWidth <= 414
-                    ? 35
+                    ? 34.2
                     : window.innerWidth <= 480
-                      ? 34
+                      ? 33.9
                       : window.innerWidth <= 768
-                        ? 27
+                        ? 36.5
                         : 16.5)
               }%)`,
               transition: 'all 500ms ease-in-out',

@@ -40,16 +40,16 @@ const GoodsList = () => {
   useEffect(() => {
     setFilter(null);
   }, [sideCategory]);
-  const saveProduct = async (productList: typeProduct[]) => {
-    try {
-      const addGoodsList = await collection(db, 'goodsList');
-      for (const product of productList) {
-        await addDoc(addGoodsList, product);
-      }
-    } catch (error) {
-      console.error('상품을 저장하는 데 실패했습니다:', error);
-    }
-  };
+  // const saveProduct = async (productList: typeProduct[]) => {
+  //   try {
+  //     const addGoodsList = await collection(db, 'goodsList');
+  //     for (const product of productList) {
+  //       await addDoc(addGoodsList, product);
+  //     }
+  //   } catch (error) {
+  //     console.error('상품을 저장하는 데 실패했습니다:', error);
+  //   }
+  // };
 
   const fetchGoods = async () => {
     try {
@@ -227,7 +227,7 @@ const GoodsList = () => {
       ProductName: 'FACE / 1집 솔로앨범',
       price: 22000,
       // 18,600 15%
-      tag: '/img/new.svg',
+      tag: 'NewArrival',
       isSoldOut: false,
       remainingQuantity: 100,
       contentImg1: '/img/ProductDetail/bts2_1.webp',
@@ -243,7 +243,7 @@ const GoodsList = () => {
       titleEn: 'NAYEON REUSABLE CUP - IM NAYEON',
       ProductName: '나연 리유저블 컵',
       price: 13000,
-      tag: '/img/new.svg',
+      tag: 'NewArrival',
       isSoldOut: false,
       remainingQuantity: 100,
       contentImg1: '/img/ProductDetail/twice1_1.webp',
@@ -835,7 +835,7 @@ const GoodsList = () => {
       titleEn: 'IZONE - OFFICIAL FANLIGHT',
       ProductName: '공식 응원봉',
       price: 35000,
-      tag: '/img/new.svg',
+      tag: 'NewArrival',
       isSoldOut: false,
       remainingQuantity: 100,
       contentImg1: '/img/ProductDetail/izone1_1.webp',
