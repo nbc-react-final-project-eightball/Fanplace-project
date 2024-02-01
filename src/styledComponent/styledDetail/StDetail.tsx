@@ -14,14 +14,9 @@ export const DtailContainer = styled.div`
     /* padding: 1rem 1rem;
     padding-left: 3rem; */
   }
-
-  @media (max-width: 480px) {
-  }
 `;
 
-export const ProductSection1 = styled.section`
-  /* padding: 20px; */
-`;
+export const ProductSection1 = styled.section``;
 
 export const ProductImg = styled.img`
   width: 100%;
@@ -48,9 +43,6 @@ export const ProductContainer = styled.div`
     width: 100%;
     max-width: 100%;
   }
-
-  @media (max-width: 480px) {
-  }
 `;
 
 export const ProductSection2 = styled.section`
@@ -62,9 +54,6 @@ export const ProductSection2 = styled.section`
     width: 100%;
     max-width: 100%;
     padding: 0px;
-  }
-
-  @media (max-width: 480px) {
   }
 `;
 
@@ -128,9 +117,6 @@ export const ProductInfoContainer = styled.div`
     position: static;
     width: 100%;
     max-width: 100%;
-  }
-
-  @media (max-width: 480px) {
   }
 `;
 
@@ -322,7 +308,7 @@ export const ProductInfoSection3Btn2 = styled.button`
     transform: scale(1.008);
   }
 `;
-export const ProductP = styled.p`
+export const ProductP = styled.div`
   display: flex;
   gap: 24px;
   justify-content: flex-end;
@@ -360,7 +346,6 @@ export const ProductInfoSection3Btn3 = styled.button`
 
 export const DetailReviewContainer = styled.div`
   width: 100%;
-
   height: 100%;
 `;
 export const DetailReviewInPut = styled.input`
@@ -435,10 +420,8 @@ export const DetailReviewList = styled.div`
   flex-direction: column;
   gap: 20px;
   padding: 20px;
-
   width: 100%;
   height: 100%;
-
   border-radius: 30px;
 `;
 

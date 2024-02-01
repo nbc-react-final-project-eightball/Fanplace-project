@@ -235,11 +235,17 @@ const ProductInfo: React.FC<ProductProps> = ({ product }) => {
                   alignItems: 'center',
                 }}
               >
-                <S.ProductInfoBtn onClick={quantityNinusHandler}>
+                <S.ProductInfoBtn
+                  onClick={quantityNinusHandler}
+                  aria-label="상품 빼기"
+                >
                   <FontAwesomeIcon icon={faMinus} />
                 </S.ProductInfoBtn>
                 <p>{quantity}</p>
-                <S.ProductInfoBtn onClick={quantityPlusHandler}>
+                <S.ProductInfoBtn
+                  onClick={quantityPlusHandler}
+                  aria-label="상품 더하기"
+                >
                   <FontAwesomeIcon icon={faPlus} />
                 </S.ProductInfoBtn>
               </div>
@@ -255,11 +261,17 @@ const ProductInfo: React.FC<ProductProps> = ({ product }) => {
         </S.ProductP>
       </S.ProductInfoSection2_3>
       <S.ProductInfoSection3>
-        <S.ProductInfoSection3Btn1 onClick={addCartHandler}>
+        <S.ProductInfoSection3Btn1
+          onClick={addCartHandler}
+          aria-label="상품구매"
+        >
           구매하기
         </S.ProductInfoSection3Btn1>
         <S.ProductInfoSection3_1>
-          <S.ProductInfoSection3Btn2 onClick={addCartHandler}>
+          <S.ProductInfoSection3Btn2
+            onClick={addCartHandler}
+            aria-label="장바구니담기"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="16"

@@ -123,7 +123,6 @@ const Product: React.FC<ProductProps> = ({ product }) => {
     }
     setNewReview('');
   };
-  console.log('reviews', reviews);
   const handleReviewDelete = async (reviewId: string) => {
     try {
       const productRef = doc(db, 'reviews', String(product?.productId));
@@ -226,8 +225,9 @@ const Product: React.FC<ProductProps> = ({ product }) => {
                     }}
                     maxLength={100}
                   />
-
-                  <S.DetailReviewBtn type="submit">저 장</S.DetailReviewBtn>
+                  <S.DetailReviewBtn type="submit" aria-label="리뷰 저장">
+                    저 장
+                  </S.DetailReviewBtn>
                 </S.DetailReviewFormSection1>
               </S.DetailReviewForm>
 
