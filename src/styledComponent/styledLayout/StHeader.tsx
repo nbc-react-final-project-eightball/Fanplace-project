@@ -29,6 +29,9 @@ export const Wrapper = styled.div`
   .logo {
     width: 200px;
   }
+  @media (max-width: 768px) {
+    padding: 0 2rem;
+  }
 `;
 
 export const Header = styled.div`
@@ -111,14 +114,21 @@ export const Exchange = styled.div`
 
 export const ProfileCard = styled.div`
   gap: 4px;
+  a {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+  }
   @media screen and (max-width: 768px) {
-    a {
-      height: 28px;
-    }
   }
 `;
 export const LogoutButton = styled.button`
   font-size: 0.875rem;
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
 `;
 
 export const MobileName = styled.p`

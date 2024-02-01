@@ -76,7 +76,7 @@ export const ShowSidebarButton = styled.button`
   }
   @media (max-width: 768px) {
     display: block;
-    right: -60px;
+    right: -44px;
     top: 20px;
     width: 100px;
     display: block;

@@ -34,14 +34,16 @@ const RecentProducts = () => {
           {recentProducts.map((list: any, index: number) => (
             <>
               <S.List key={index}>
-                <Link
+                <S.StyledLink
                   to={`/Detail/${list?.productId}`}
                   style={{ textDecoration: 'none', color: 'black' }}
                   onClick={() => {
                     dispatch(setSelectedProduct(list));
                   }}
                 >
-                  <S.Img src={list?.img} alt={`Slide ${index}`} />
+                  <S.imgWrapper>
+                    <S.Img src={list?.img} alt={`Slide ${index}`} />
+                  </S.imgWrapper>
                   <S.ListInTextDiv>
                     <S.Artist>{list?.artist}</S.Artist>
                     <S.ProductTitle> {list?.title}</S.ProductTitle>
@@ -51,7 +53,7 @@ const RecentProducts = () => {
                     </S.ReleaseDate>
                     <S.Price>{list?.price} 원</S.Price>
                   </S.ListInTextDiv>
-                </Link>
+                </S.StyledLink>
               </S.List>
             </>
           ))}

@@ -185,7 +185,7 @@ box-sizing: border-box;
   border-radius: 10px;
   border: 3px solid var(--color-white);
 }
-.MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline: {
+.MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline {
   border-color: var(--color-medium-gray-be);
 }
 `;
