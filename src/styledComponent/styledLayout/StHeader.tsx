@@ -11,7 +11,13 @@ export const HeaderContainer = styled.div`
   width: 100%;
   height: 80px;
   /* margin-top: 2.5rem; */
+  transition: all 200ms;
   box-shadow: var(--box-shadow);
+  @media (max-width: 768px) {
+    background: #fff;
+    box-shadow: 0px 4px 8px 2px rgba(0, 0, 0, 0.02);
+    border-bottom: 1px solid #eee;
+  }
 `;
 export const Wrapper = styled.div`
   display: flex;

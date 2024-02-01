@@ -103,6 +103,7 @@ const GoodsList = () => {
       isSoldOut: false,
       remainingQuantity: 100,
       contentImg1: '/img/ProductDetail/nct1_1.jpg',
+      releaseDate: '2023-02-22',
     },
     {
       productId: 2,
@@ -121,6 +122,7 @@ const GoodsList = () => {
       isSoldOut: false,
       remainingQuantity: 100,
       contentImg1: '/img/ProductDetail/nct2_1.jpg',
+      releaseDate: '2023-07-13',
     },
     {
       productId: 3,
@@ -136,6 +138,7 @@ const GoodsList = () => {
       isSoldOut: false,
       remainingQuantity: 100,
       contentImg1: '/img/ProductDetail/nct3_1.jpg',
+      releaseDate: '2023-12-18',
     },
     {
       productId: 4,
@@ -153,6 +156,7 @@ const GoodsList = () => {
       isSoldOut: false,
       remainingQuantity: 100,
       contentImg1: '/img/ProductDetail/itzy1_1.jpg',
+      releaseDate: '2024-01-16',
     },
     {
       productId: 5,
@@ -168,6 +172,7 @@ const GoodsList = () => {
       isSoldOut: false,
       remainingQuantity: 100,
       contentImg1: '/img/ProductDetail/aespa1_1.jpg',
+      releaseDate: '2023-12-27',
     },
     {
       productId: 6,
@@ -186,6 +191,7 @@ const GoodsList = () => {
       isSoldOut: false,
       remainingQuantity: 20,
       contentImg1: '/img/ProductDetail/aespa2_1.jpg',
+      releaseDate: '2024-01-04',
     },
     {
       productId: 7,
@@ -202,6 +208,7 @@ const GoodsList = () => {
       isSoldOut: false,
       remainingQuantity: 20,
       contentImg1: '/img/ProductDetail/kanna1_1.jpg',
+      releaseDate: '2023-11-18',
     },
     {
       productId: 8,
@@ -218,6 +225,7 @@ const GoodsList = () => {
       isSoldOut: false,
       remainingQuantity: 100,
       contentImg1: '/img/ProductDetail/bts1_1.jpg',
+      releaseDate: '2024-01-08',
     },
     {
       productId: 9,
@@ -236,6 +244,7 @@ const GoodsList = () => {
       isSoldOut: false,
       remainingQuantity: 100,
       contentImg1: '/img/ProductDetail/bts2_1.jpg',
+      releaseDate: '2024-01-18',
     },
     {
       productId: 10,
@@ -252,6 +261,7 @@ const GoodsList = () => {
       isSoldOut: false,
       remainingQuantity: 100,
       contentImg1: '/img/ProductDetail/twice1_1.jpg',
+      releaseDate: '2023-12-06',
     },
     {
       productId: 11,
@@ -268,6 +278,7 @@ const GoodsList = () => {
       isSoldOut: false,
       remainingQuantity: 100,
       contentImg1: '/img/ProductDetail/twice2_1.jpg',
+      releaseDate: '2024-01-11',
     },
     {
       productId: 12,
@@ -285,6 +296,7 @@ const GoodsList = () => {
       remainingQuantity: 100,
       contentImg1: '/img/ProductDetail/twice3_1.jpg',
       contentImg2: '/img/ProductDetail/twice3_2.jpg',
+      releaseDate: '2023-11-14',
     },
     {
       productId: 13,
@@ -301,6 +313,7 @@ const GoodsList = () => {
       remainingQuantity: 100,
       contentImg1: '/img/ProductDetail/twice4_1.jpg',
       contentImg2: '/img/ProductDetail/twice4_2.jpg',
+      releaseDate: '2023-12-04',
     },
     {
       productId: 14,
@@ -316,6 +329,7 @@ const GoodsList = () => {
       isSoldOut: false,
       remainingQuantity: 100,
       contentImg1: '/img/ProductDetail/twice5_1.jpg',
+      releaseDate: '2023-12-31',
     },
     {
       productId: 15,
@@ -331,6 +345,7 @@ const GoodsList = () => {
       isSoldOut: false,
       remainingQuantity: 100,
       contentImg1: '/img/ProductDetail/straykids1_1.jpg',
+      releaseDate: '2023-12-30',
     },
     {
       productId: 16,
@@ -346,6 +361,7 @@ const GoodsList = () => {
       isSoldOut: false,
       remainingQuantity: 100,
       contentImg1: '/img/ProductDetail/straykids2_1.jpg',
+      releaseDate: '2023-12-11',
     },
     {
       productId: 17,
@@ -361,6 +377,7 @@ const GoodsList = () => {
       isSoldOut: false,
       remainingQuantity: 100,
       contentImg1: '/img/ProductDetail/straykids3_1.jpg',
+      releaseDate: '2023-03-20',
     },
     {
       productId: 18,
@@ -373,10 +390,11 @@ const GoodsList = () => {
       titleEn: '[ME] JISOO BEANIE',
       ProductName: '지수 비니',
       price: 45000,
-      // tag: 'NewArrival',
+      tag: 'NewArrival',
       isSoldOut: false,
       remainingQuantity: 100,
       contentImg1: '/img/ProductDetail/blackpink1_1.jpg',
+      releaseDate: '2023-09-27',
     },
     {
       productId: 19,
@@ -389,10 +407,11 @@ const GoodsList = () => {
       titleEn: 'BLACKPINK - BORN PINK / The 2nd Album (KiT ALBUM)',
       ProductName: '블랙핑크 - BORN PINK / 2집 정규 앨범',
       price: 34900,
-      // tag: 'NewArrival',
+      tag: 'NewArrival',
       isSoldOut: false,
       remainingQuantity: 100,
       contentImg1: '/img/ProductDetail/blackpink2_1.jpg',
+      releaseDate: '2023-07-11',
     },
     {
       productId: 20,
@@ -408,6 +427,7 @@ const GoodsList = () => {
       isSoldOut: false,
       remainingQuantity: 100,
       contentImg1: '/img/ProductDetail/shinee2_1.jpg',
+      releaseDate: '2024-02-01',
     },
     {
       productId: 21,
@@ -424,6 +444,7 @@ const GoodsList = () => {
       isSoldOut: false,
       remainingQuantity: 100,
       contentImg1: '/img/ProductDetail/shinee2_1.jpg',
+      releaseDate: '2023-01-22',
     },
     {
       productId: 22,
@@ -436,10 +457,11 @@ const GoodsList = () => {
       titleEn: 'ARTIST BUCKET HAT',
       ProductName: '아티스트 버킷햇',
       price: 48000,
-      // tag: 'NewArrival',
+      tag: 'NewArrival',
       isSoldOut: false,
       remainingQuantity: 100,
-      contentImg1: '/img/ProductDetail/shinee_3.jpg',
+      contentImg1: '/img/ProductDetail/shinee_3_1.jpg',
+      releaseDate: '2022-04-11',
     },
     {
       productId: 23,
@@ -452,10 +474,11 @@ const GoodsList = () => {
       titleEn: '[TAEHYUN] Ring (Gold)',
       ProductName: '[태현] 반지 (골드)',
       price: 40000,
-      // tag: 'NewArrival',
+      tag: 'NewArrival',
       isSoldOut: false,
       remainingQuantity: 100,
       contentImg1: '/img/ProductDetail/txt1_1.jpg',
+      releaseDate: '2023-11-11',
     },
     {
       productId: 24,
@@ -469,10 +492,11 @@ const GoodsList = () => {
       titleEn: 'The Name Chapter: FREEFALL (GRAVITY Ver.) Set',
       ProductName: 'The Name Chapter: FREEFALL (GRAVITY Ver.) 세트',
       price: 63000,
-      // tag: 'NewArrival',
+      tag: 'NewArrival',
       isSoldOut: false,
       remainingQuantity: 100,
       contentImg1: '/img/ProductDetail/txt2_1.jpg',
+      releaseDate: '2023-09-11',
     },
     {
       productId: 25,
@@ -489,7 +513,7 @@ const GoodsList = () => {
       isSoldOut: false,
       remainingQuantity: 100,
       contentImg1: '/img/ProductDetail/shinee6_1.jpg',
-      releaseDate: '2022.04.11',
+      releaseDate: '2022-04-11',
     },
     {
       productId: 26,
@@ -502,10 +526,10 @@ const GoodsList = () => {
       titleEn: 'SHINee - 5th album [1 of 1] (cassette tape limited edition)',
       ProductName: '샤이니(SHINee) - 정규 5집 [1 of 1] (카세트테이프 한정반)',
       price: 37000,
-      tag: 'NewArrival',
       isSoldOut: false,
       remainingQuantity: 100,
       contentImg1: '/img/ProductDetail/shinee7_1.jpg',
+      releaseDate: '2016-10-05',
     },
     {
       productId: 27,
@@ -522,6 +546,7 @@ const GoodsList = () => {
       isSoldOut: false,
       remainingQuantity: 100,
       contentImg1: '/img/ProductDetail/riize1_1.jpg',
+      releaseDate: '2023-12-27',
     },
     {
       productId: 28,
@@ -535,10 +560,10 @@ const GoodsList = () => {
         '[RIIZE Get A Guitar] ACRYLIC KEY RING + PHOTO CARD SET [앤톤 ver.]',
       ProductName: '아크릴 키링 + PhotoCard 세트 [앤톤 ver.]',
       price: 12000,
-
       isSoldOut: false,
       remainingQuantity: 100,
       contentImg1: '/img/ProductDetail/riize2_1.jpg',
+      releaseDate: '2023-11-09',
     },
     {
       productId: 29,
@@ -554,6 +579,7 @@ const GoodsList = () => {
       isSoldOut: false,
       remainingQuantity: 100,
       contentImg1: '/img/ProductDetail/riize3_1.jpg',
+      releaseDate: '2023-11-09',
     },
     {
       productId: 30,
@@ -569,6 +595,7 @@ const GoodsList = () => {
       isSoldOut: false,
       remainingQuantity: 100,
       contentImg1: '/img/ProductDetail/lesserafim2_1.jpg',
+      releaseDate: '2024-01-09',
     },
     {
       productId: 31,
@@ -586,6 +613,7 @@ const GoodsList = () => {
       isSoldOut: false,
       remainingQuantity: 100,
       contentImg1: '/img/ProductDetail/redvelvet1_1.jpg',
+      releaseDate: '2024-01-20',
     },
     {
       productId: 32,
@@ -602,6 +630,7 @@ const GoodsList = () => {
       isSoldOut: false,
       remainingQuantity: 100,
       contentImg1: '/img/ProductDetail/lesserafim3_1.jpg',
+      releaseDate: '2024-01-22',
     },
     {
       productId: 33,
@@ -618,6 +647,7 @@ const GoodsList = () => {
       isSoldOut: false,
       remainingQuantity: 100,
       contentImg1: '/img/ProductDetail/lesserafim4_1.jpg',
+      releaseDate: '2023-12-22',
     },
     {
       productId: 34,
@@ -635,6 +665,7 @@ const GoodsList = () => {
       isSoldOut: false,
       remainingQuantity: 100,
       contentImg1: '/img/ProductDetail/newjeans1_1.jpg',
+      releaseDate: '2023-04-22',
     },
     {
       productId: 35,
@@ -652,6 +683,7 @@ const GoodsList = () => {
       remainingQuantity: 100,
       contentImg1: '/img/ProductDetail/newjeans2_1.jpg',
       contentImg2: '/img/ProductDetail/newjeans2_2.jpg',
+      releaseDate: '2023-06-24',
     },
     {
       productId: 36,
@@ -668,6 +700,7 @@ const GoodsList = () => {
       isSoldOut: false,
       remainingQuantity: 100,
       contentImg1: '/img/ProductDetail/straykids4_1.jpg',
+      releaseDate: '2023-09-24',
     },
     {
       productId: 37,
@@ -684,6 +717,7 @@ const GoodsList = () => {
       isSoldOut: false,
       remainingQuantity: 100,
       contentImg1: '/img/ProductDetail/lesserafim1_1.jpg',
+      releaseDate: '2023-12-09',
     },
     {
       productId: 38,
@@ -700,6 +734,7 @@ const GoodsList = () => {
       isSoldOut: false,
       remainingQuantity: 100,
       contentImg1: '/img/ProductDetail/seventeen1_1.jpg',
+      releaseDate: '2019-01-03',
     },
     {
       productId: 39,
@@ -715,6 +750,7 @@ const GoodsList = () => {
       isSoldOut: false,
       remainingQuantity: 100,
       contentImg1: '/img/ProductDetail/seventeen2_1.jpg',
+      releaseDate: '2023-01-20',
     },
     {
       productId: 40,
@@ -726,11 +762,11 @@ const GoodsList = () => {
       title: '더보이즈- 2024 시즌 그리팅 [THE BOYZ POTTERY]',
       titleEn: 'THE BOYZ - 2024 SEASON’S GREETINGS [THE BOYZ POTTERY]',
       ProductName: '더보이즈- 2024 시즌 그리팅 [THE BOYZ POTTERY]',
-      // tag: 'NewAlbum',
       price: 45000,
       isSoldOut: false,
       remainingQuantity: 100,
       contentImg1: '/img/ProductDetail/theboyz1_1.jpg',
+      releaseDate: '2024-01-28',
     },
     {
       productId: 41,
@@ -746,6 +782,7 @@ const GoodsList = () => {
       isSoldOut: false,
       remainingQuantity: 100,
       contentImg1: '/img/ProductDetail/seventeen3_1.jpg',
+      releaseDate: '2024-01-08',
     },
     {
       productId: 42,
@@ -764,6 +801,7 @@ const GoodsList = () => {
       isSoldOut: false,
       remainingQuantity: 100,
       contentImg1: '/img/ProductDetail/stayc1_1.jpg',
+      releaseDate: '2023-11-08',
     },
     {
       productId: 43,
@@ -779,6 +817,7 @@ const GoodsList = () => {
       isSoldOut: false,
       remainingQuantity: 100,
       contentImg1: '/img/ProductDetail/ive1_1.jpg',
+      releaseDate: '2023-10-17',
     },
     {
       productId: 44,
@@ -796,6 +835,7 @@ const GoodsList = () => {
       isSoldOut: false,
       remainingQuantity: 100,
       contentImg1: '/img/ProductDetail/monstax1_1.jpg',
+      releaseDate: '2023-08-27',
     },
     {
       productId: 45,
@@ -812,10 +852,10 @@ const GoodsList = () => {
         '(여자)아이들 - 스페셜 앨범 [HEAT] (DIGIPAK - Member Ver.) (5종 중 1종 랜덤)',
       tag: 'NewAlbum',
       price: 14000,
-
       isSoldOut: false,
       remainingQuantity: 100,
       contentImg1: '/img/ProductDetail/idle1_1.jpg',
+      releaseDate: '2023-10-27',
     },
     {
       productId: 46,
@@ -832,6 +872,7 @@ const GoodsList = () => {
       isSoldOut: false,
       remainingQuantity: 20,
       contentImg1: '/img/ProductDetail/kanna1_1.jpg',
+      releaseDate: '2023-09-06',
     },
     {
       productId: 47,
@@ -848,6 +889,7 @@ const GoodsList = () => {
       isSoldOut: false,
       remainingQuantity: 100,
       contentImg1: '/img/ProductDetail/izone1_1.jpg',
+      releaseDate: '2022-10-20',
     },
     {
       productId: 48,
@@ -863,6 +905,7 @@ const GoodsList = () => {
       isSoldOut: false,
       remainingQuantity: 100,
       contentImg1: '/img/ProductDetail/ive2_1.jpg',
+      releaseDate: '2023-11-20',
     },
     {
       productId: 49,
@@ -878,6 +921,7 @@ const GoodsList = () => {
       isSoldOut: false,
       remainingQuantity: 100,
       contentImg1: '/img/ProductDetail/lesserafim5_1.jpg',
+      releaseDate: '2024-01-20',
     },
     {
       productId: 50,
@@ -893,6 +937,7 @@ const GoodsList = () => {
       isSoldOut: false,
       remainingQuantity: 100,
       contentImg1: '/img/ProductDetail/redvelvet2_1.jpg',
+      releaseDate: '2023-12-20',
     },
   ];
 

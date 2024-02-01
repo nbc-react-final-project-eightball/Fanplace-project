@@ -243,7 +243,7 @@ export const ProductInfoSection2_2CartBoxSection2 = styled.section`
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-between;
+  justify-content: 22;
   h1 {
     font-size: 14px;
   }
@@ -265,7 +265,7 @@ export const ProductInfoBtn = styled.button`
 `;
 export const ProductInfoSection2_3 = styled.section`
   justify-content: right;
-  padding: 24px 0 40px;
+  padding: 0 0 40px;
 `;
 export const ProductInfoSection3 = styled.section`
   width: 100%;

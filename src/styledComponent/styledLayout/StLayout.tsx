@@ -30,6 +30,9 @@ export const Welcome = styled.div`
   color: #777;
   background: #f9f9f9;
   z-index: 9;
+  @media (max-width: 1024px) {
+    display: none;
+  }
 `;
 
 export const LayoutContainer = styled.div`

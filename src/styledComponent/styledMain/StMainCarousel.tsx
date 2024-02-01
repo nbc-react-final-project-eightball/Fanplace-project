@@ -139,12 +139,12 @@ export const CarouselWrapper = styled.div`
   margin-left: -560px;
   @media (max-width: 768px) {
     /* 768px 이하 화면 크기에 대한 스타일 */
-    margin-left: -250px;
+    /* margin-left: -250px; */
   }
 
   @media (max-width: 480px) {
     /* 480px 이하 화면 크기에 대한 스타일 */
-    margin-left: -650px;
+    /* margin-left: -650px; */
   }
 
   @media (max-width: 414px) {

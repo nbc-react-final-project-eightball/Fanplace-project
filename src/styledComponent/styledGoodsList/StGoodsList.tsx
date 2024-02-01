@@ -174,9 +174,8 @@ export const GoodsListSection2Wrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   width: 100%;
-  gap: 10px;
+  gap: 10px 20px;
   margin-bottom: 2.5rem;
-  justify-content: space-between;
   @media (max-width: 768px) {
   }
 
