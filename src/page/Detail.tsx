@@ -66,7 +66,9 @@ const Detail = () => {
       localStorage.setItem(`${userInfo?.uid}`, JSON.stringify(updatedItems));
     }
   }, [selectedProduct, userInfo]);
-
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <S.DtailContainer>
       {selectedProduct ? (
