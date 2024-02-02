@@ -87,3 +87,14 @@ export const TableBody = styled.div`
     color: var(--color-primary-medium-99);
   }
 `;
+
+export const LogoutButton = styled.button`
+  display: none;
+  font-size: 0.875rem;
+  border: 1px solid var(--color-primary-medium-99);
+  padding: 10px 20px;
+  border-radius: 8px;
+  @media screen and (max-width: 768px) {
+    display: block;
+  }
+`;

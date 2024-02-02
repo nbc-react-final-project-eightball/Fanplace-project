@@ -11,8 +11,10 @@ export const DtailContainer = styled.div`
   }
 
   @media (max-width: 768px) {
-    /* padding: 1rem 1rem;
-    padding-left: 3rem; */
+    padding: 2.5rem;
+  }
+  @media (max-width: 480px) {
+    padding: 1.5rem;
   }
 `;
 
@@ -42,6 +44,7 @@ export const ProductContainer = styled.div`
   @media (max-width: 768px) {
     width: 100%;
     max-width: 100%;
+    margin-right: 0;
   }
 `;
 
@@ -265,6 +268,10 @@ export const ProductInfoSection3 = styled.section`
 
   font-size: 16px;
   font-weight: 800;
+  @media (max-width: 768px) {
+    height: auto;
+    margin-bottom: 40px;
+  }
 `;
 export const ProductInfoSection3_1 = styled.section`
   display: flex;

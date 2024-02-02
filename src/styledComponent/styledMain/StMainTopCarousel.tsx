@@ -8,9 +8,23 @@ export const Div = styled.div`
   height: 32.5rem;
   margin: 0 auto;
   border-radius: 32.5rem;
+  margin-top: 120px;
   @media (max-width: 768px) {
+    margin-top: 40px;
+    width: 26.5rem;
+    height: 26.5rem;
+  }
+  @media (max-width: 640px) {
     width: 21.5rem;
     height: 21.5rem;
+  }
+  @media (max-width: 480px) {
+    width: 20rem;
+    height: 20rem;
+  }
+  @media (max-width: 360px) {
+    width: 16.25rem;
+    height: 16.25rem;
   }
 `;
 

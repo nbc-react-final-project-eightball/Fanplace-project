@@ -1,8 +1,10 @@
 import MyPageLayout from 'components/layout/MyPageLayout';
 import RecentProducts from 'components/mypage/RecentProducts';
+import { useLogout } from 'hooks/useLogout';
 import * as S from 'styledComponent/styledMypage/StMypage';
 
 const Mypage = () => {
+  const { logout } = useLogout();
   return (
     <MyPageLayout>
       <S.RightWrapper>
@@ -43,6 +45,7 @@ const Mypage = () => {
           </S.TableWrapper>
         </S.OrderList>
         <RecentProducts />
+        <S.LogoutButton onClick={logout}>로그아웃</S.LogoutButton>
       </S.RightWrapper>
     </MyPageLayout>
   );

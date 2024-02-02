@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const MypageWrapper = styled.div`
-  margin: 80px auto 0;
+  /* margin: 80px auto 0; */
 `;
 export const InfoBoxBackground = styled.div`
   display: flex;

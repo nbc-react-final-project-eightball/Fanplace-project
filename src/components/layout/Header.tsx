@@ -85,6 +85,8 @@ const Header = () => {
                   />
                 </svg>
                 {/* 로그인 */}
+
+                <S.MobileName>로그인</S.MobileName>
               </S.LoginButton>
             )}
             <Link to={'/cart'} aria-label="장바구니">
