@@ -12,7 +12,11 @@ const DarkMode = () => {
     (state: { darkModeSlice: darkModeState }) => state.darkModeSlice,
   );
   return (
-    <S.DarkeModeButton $darkMode={darkMode} onClick={toggleDarkMode}>
+    <S.DarkeModeButton
+      $darkMode={darkMode}
+      onClick={toggleDarkMode}
+      aria-label="다크모드"
+    >
       {darkMode ? (
         <svg
           xmlns="http://www.w3.org/2000/svg"

@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import '@fortawesome/fontawesome-svg-core/styles.css';
 import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { typeProduct } from 'Type/TypeInterface';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setProduct } from '../../redux/modules/Detail/DetailSlice';
 import { useNavigate } from 'react-router-dom';
 import { db } from '../../firebase/config';
@@ -17,12 +17,17 @@ import {
   updateDoc,
 } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
+import Swal from 'sweetalert2';
+import { RootState } from 'redux/configStore';
 
 interface ProductProps {
   product: typeProduct | null;
 }
 
 const ProductInfo: React.FC<ProductProps> = ({ product }) => {
+  const userInfo = useSelector(
+    (state: RootState) => state.signUpSlice.userInfo,
+  );
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [quantity, setQuantity] = useState(1);
@@ -133,10 +138,6 @@ const ProductInfo: React.FC<ProductProps> = ({ product }) => {
     } catch (error) {
       console.log('에러가 났습니다! ', error);
     }
-    alert('장바구니에 추가되었습니다!');
-    // 소이님이동할페이지 적어주세요 !!
-    navigate('/Cart');
-    //
   };
 
   //장바구니로 보낼때
@@ -262,14 +263,52 @@ const ProductInfo: React.FC<ProductProps> = ({ product }) => {
       </S.ProductInfoSection2_3>
       <S.ProductInfoSection3>
         <S.ProductInfoSection3Btn1
-          onClick={addCartHandler}
+          onClick={() => {
+            if (!userInfo?.uid) {
+              Swal.fire({
+                icon: 'warning',
+                title: '로그인이 필요한 서비스입니다.',
+                confirmButtonText: '확인',
+                confirmButtonColor: '#000',
+              }).then((result) => {
+                if (result.isConfirmed) {
+                  navigate('/login');
+                }
+              });
+              return;
+            }
+            addCartHandler();
+            navigate('/Cart');
+          }}
           aria-label="상품구매"
         >
           구매하기
         </S.ProductInfoSection3Btn1>
         <S.ProductInfoSection3_1>
           <S.ProductInfoSection3Btn2
-            onClick={addCartHandler}
+            onClick={() => {
+              if (!userInfo?.uid) {
+                Swal.fire({
+                  icon: 'warning',
+                  title: '로그인이 필요한 서비스입니다.',
+                  confirmButtonText: '확인',
+                  confirmButtonColor: '#000',
+                }).then((result) => {
+                  if (result.isConfirmed) {
+                    navigate('/login');
+                  }
+                });
+                return;
+              }
+              addCartHandler();
+              Swal.fire({
+                icon: 'success',
+                title: '장바구니에 담겼습니다.',
+                confirmButtonText: '확인',
+                confirmButtonColor: '#000',
+                text: `${product?.ProductName}`,
+              });
+            }}
             aria-label="장바구니담기"
           >
             <svg

@@ -39,6 +39,7 @@ const GoodsList = () => {
   console.log('사이드카테고리', sideCategory);
   useEffect(() => {
     setFilter(null);
+    setShowArtistFilter(false);
   }, [sideCategory]);
   useEffect(() => {
     window.scrollTo(0, 0);
