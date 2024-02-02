@@ -86,7 +86,7 @@ const Header = () => {
                 {/* 로그인 */}
               </S.LoginButton>
             )}
-            <Link to={'/cart'}>
+            <Link to={isLogged ? '/cart' : '/login'}>
               <svg
                 id="shopping"
                 xmlns="http://www.w3.org/2000/svg"
@@ -104,6 +104,7 @@ const Header = () => {
                 />
               </svg>
             </Link>
+
             <CustomSelect />
           </S.HeaderButton>
         </S.Header>

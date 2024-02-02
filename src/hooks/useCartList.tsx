@@ -12,20 +12,15 @@ const useCartList = () => {
 
   const fetch = async () => {
     //user정보가 없으면 리턴하기
-    //추후 로그인정보가 없으면 로그인시키기 추가예정
     if (!user) return;
     try {
       const docRef = doc(db, 'cartList', user);
       const docSnap = await getDoc(docRef);
       const docSnapData = docSnap.data();
-      console.log('docSnapData', docSnapData);
-      console.log('docSnap.id :', docSnap.id);
 
       if (docSnap.exists()) {
         if (docSnapData) {
           const cartDataArray = docSnapData.cartList;
-          console.log('cartDataArray:', cartDataArray);
-          // setCartList(cartDataArray as TypeCart[]);
           return cartDataArray as TypeCart[];
         }
       } else {
