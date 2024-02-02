@@ -8,9 +8,23 @@ export const Div = styled.div`
   height: 32.5rem;
   margin: 0 auto;
   border-radius: 32.5rem;
+  margin-top: 120px;
   @media (max-width: 768px) {
+    margin-top: 40px;
+    width: 26.5rem;
+    height: 26.5rem;
+  }
+  @media (max-width: 640px) {
     width: 21.5rem;
     height: 21.5rem;
+  }
+  @media (max-width: 480px) {
+    width: 20rem;
+    height: 20rem;
+  }
+  @media (max-width: 360px) {
+    width: 16.25rem;
+    height: 16.25rem;
   }
 `;
 
@@ -93,7 +107,8 @@ export const MainTopCarouselItemText = styled.div``;
 export const CarouselRange = styled.input`
   width: 100%;
   -webkit-appearance: none;
-  background: #b4b4b4;
+  appearance: none;
+  background: var(--color-medium-gray-ee);
   margin: 0 auto;
   &::-webkit-slider-runnable-track {
     width: 100%;
@@ -102,17 +117,18 @@ export const CarouselRange = styled.input`
   }
 
   &::-webkit-slider-thumb {
-    border: 4px solid #000000;
+    border: 4px solid var(--color-primary);
     width: 100px;
-    background: #000000;
+    background: var(--color-primary);
     cursor: pointer;
     box-shadow:
-      3px 3px 1px #000000,
+      3px 3px 1px var(--color-primary),
       0px 0px 1px #0d0d0d;
     transition:
       background 0.5s ease-in-out,
       border 0.5s ease-in-out,
       left 0.5s ease-in-out;
     -webkit-appearance: none;
+    appearance: none;
   }
 `;

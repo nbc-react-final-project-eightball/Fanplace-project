@@ -17,7 +17,7 @@ const Detail = () => {
   const selectedProduct = useSelector(
     (state: RootState) => state.goods.selectedProduct,
   );
-  console.log('user', userInfo?.uid);
+
   //새로고침할때마다 상품정보가 사라지는것을 방지하려고 세션스토리지에 저장합니다 !
   useEffect(() => {
     if (selectedProduct) {
@@ -66,7 +66,9 @@ const Detail = () => {
       localStorage.setItem(`${userInfo?.uid}`, JSON.stringify(updatedItems));
     }
   }, [selectedProduct, userInfo]);
-
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <S.DtailContainer>
       {selectedProduct ? (

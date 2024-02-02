@@ -7,9 +7,82 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: var(--color-white);
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+:root {
+  --color-primary: #000;
+  --color-primary-medium-33: #333;
+  --color-primary-medium-55: #555;
+  --color-primary-medium-58: #585858;
+  --color-primary-medium-77: #777;
+  --color-primary-medium-99: #999;
+  --color-accent: #8f86ff;
+
+  /*  */
+  --color-white: #ffffff;
+  --color-light-gray-f9: #f9f9f9;
+  --color-light-gray-f7: #f7f7f7;
+  --color-light-gray-f5: #f5f5f5;
+  --color-light-gray-f1: #f1f1f1;
+  --color-light-gray-ef: #efefef;
+  --color-light-gray-e9: #e9e9e9;
+
+  --color-medium-gray-ee: #eee;
+  --color-medium-gray-dd: #ddd;
+  --color-medium-gray-be: #bebebe;
+  --color-medium-gray-bb: #bbb;
+  --color-medium-gray-aa: #aaa;
+
+  /* 공백 */
+  --space-padding: 4px;
+  --space-margin: 4px;
+
+  /* 폰트사이즈 */
+  --font-xl: 40px;
+  --font-lg-32: 32px;
+  --font-lg-24: 32px;
+  --font-md-20: 20px;
+  --font-md-18: 18px;
+  --font-smd: 16px;
+  --font-sm: 14px;
+  --font-xs: 12px;
+}
+
+/* 다크모드 변수선언 */
+.dark-mode {
+  --color-primary: #fff;
+  --color-primary-medium-33: #dedede;
+  --color-primary-medium-55: #bebebe;
+  --color-primary-medium-58: #bbb;
+  --color-primary-medium-77: #aaa;
+  --color-primary-medium-99: #999;
+
+  --color-white: #000;
+
+  --color-light-gray-f9: #222;
+  --color-light-gray-f7: #222;
+  --color-light-gray-f5: #222;
+  --color-light-gray-f1: #333;
+  --color-light-gray-ef: #444;
+  --color-light-gray-e9: #555;
+
+  --color-medium-gray-ee: #666;
+  --color-medium-gray-dd: #777;
+  --color-medium-gray-be: #888;
+  --color-medium-gray-bb: #999;
+  --color-medium-gray-aa: #aaa;
+}
+
+html:not(.dark-mode) {
+}
+
+/* 공통 */
+html {
+  transition: background 0.2s;
 }

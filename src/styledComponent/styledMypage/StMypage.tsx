@@ -29,7 +29,7 @@ export const TitleWrapper = styled.div`
     font-size: 1.125rem;
   }
   div p {
-    color: #999;
+    color: var(--color-primary-medium-99);
     font-size: 0.875rem;
     word-break: keep-all;
   }
@@ -38,7 +38,7 @@ export const TitleWrapper = styled.div`
     top: -8px;
     right: unset;
   }
-  border-bottom: 1px solid #000;
+  border-bottom: 1px solid var(--color-primary);
   @media (max-width: 480px) {
     div {
       align-items: center;
@@ -53,8 +53,8 @@ export const TitleWrapper = styled.div`
 export const TableWrapper = styled.div``;
 export const TableHead = styled.div`
   height: 3rem;
-  border-bottom: 1px solid #ddd;
-  color: #555;
+  border-bottom: 1px solid var(--color-medium-gray-dd);
+  color: var(--color-primary-medium-55);
   ul {
     display: flex;
     width: 100%;
@@ -82,8 +82,19 @@ export const TableBody = styled.div`
   justify-content: center;
   padding: 4rem 0;
   margin-bottom: 100px;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid var(--color-medium-gray-ee);
   p {
-    color: #999;
+    color: var(--color-primary-medium-99);
+  }
+`;
+
+export const LogoutButton = styled.button`
+  display: none;
+  font-size: 0.875rem;
+  border: 1px solid var(--color-primary-medium-99);
+  padding: 10px 20px;
+  border-radius: 8px;
+  @media screen and (max-width: 768px) {
+    display: block;
   }
 `;

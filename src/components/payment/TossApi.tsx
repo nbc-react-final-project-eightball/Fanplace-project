@@ -81,12 +81,10 @@ const TossContainer = styled.div`
 `;
 
 const TossWrapper = styled.div`
-  background-color: black;
-  width: 720px;
+  background-color: var(--color-light-gray-f1);
+  width: 100%;
   @media screen and (max-width: 768px) {
-    width: 700px;
   }
   @media screen and (max-width: 480px) {
-    width: 450px;
   }
 `;

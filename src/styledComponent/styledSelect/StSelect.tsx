@@ -8,7 +8,22 @@ export const SelectHeader = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 0.5rem;
+  gap: 4px;
+  > div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 4px;
+  }
+  @media (max-width: 768px) {
+    flex-direction: column;
+    svg:nth-child(2) {
+      display: none;
+    }
+    > div {
+      height: 28px;
+    }
+  }
 `;
 
 export const StOptions = styled.ul`
@@ -18,8 +33,8 @@ export const StOptions = styled.ul`
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  background-color: #000;
-  color: #fff;
+  background-color: var(--color-white);
+  border: 1px solid var(--color-medium-gray-aa);
   padding: 10px;
   border-radius: 8px;
   @media (max-width: 768px) {
@@ -27,7 +42,7 @@ export const StOptions = styled.ul`
     top: unset;
     right: 50%;
     transform: translateX(50%);
-    bottom: 40px;
+    bottom: 56px;
   }
 `;
 
@@ -40,5 +55,13 @@ export const StOption = styled.li`
   }
   span {
     font-size: 0.875rem;
+  }
+`;
+
+export const MobileName = styled.p`
+  display: none;
+  @media screen and (max-width: 768px) {
+    display: block;
+    font-size: 14px;
   }
 `;

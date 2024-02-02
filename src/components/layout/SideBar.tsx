@@ -11,10 +11,11 @@ const SideBar = () => {
   const { sideCategory } = useParams<{ sideCategory: string }>();
   const [active, setActive] = useState<string>('');
   const [isSidebarVisible, setSidebarVisible] = useState<boolean>(true);
+  const dispatch = useDispatch();
   const toggleSidebar = () => {
     setSidebarVisible(!isSidebarVisible);
   };
-  const dispatch = useDispatch();
+
   const reSet = () => {
     setSidebarVisible(!isSidebarVisible);
     dispatch(setFilterR(null));
@@ -23,30 +24,39 @@ const SideBar = () => {
 
   return (
     <>
-      <S.ShowSidebarButton onClick={toggleSidebar}>
-        {/* <img src="/img/sidebar.svg" alt="menu" /> */}
-        <svg
-          width="32"
-          height="32"
-          viewBox="0 0 20 20"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            fill="#585858"
-            d="M16.4 9H3.6c-.552 0-.6.447-.6 1c0 .553.048 1 .6 1h12.8c.552 0 .6-.447.6-1c0-.553-.048-1-.6-1m0 4H3.6c-.552 0-.6.447-.6 1c0 .553.048 1 .6 1h12.8c.552 0 .6-.447.6-1c0-.553-.048-1-.6-1M3.6 7h12.8c.552 0 .6-.447.6-1c0-.553-.048-1-.6-1H3.6c-.552 0-.6.447-.6 1c0 .553.048 1 .6 1"
-          />
-        </svg>
+      <S.ShowSidebarButton
+        onClick={() => {
+          toggleSidebar();
+        }}
+      >
+        <div>
+          <svg
+            width="32"
+            height="32"
+            viewBox="0 0 20 20"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              fill="var(--color-primary-medium-58)"
+              d="M16.4 9H3.6c-.552 0-.6.447-.6 1c0 .553.048 1 .6 1h12.8c.552 0 .6-.447.6-1c0-.553-.048-1-.6-1m0 4H3.6c-.552 0-.6.447-.6 1c0 .553.048 1 .6 1h12.8c.552 0 .6-.447.6-1c0-.553-.048-1-.6-1M3.6 7h12.8c.552 0 .6-.447.6-1c0-.553-.048-1-.6-1H3.6c-.552 0-.6.447-.6 1c0 .553.048 1 .6 1"
+            />
+          </svg>
+        </div>
       </S.ShowSidebarButton>
-      <S.SideBarOverlay
-        toggleSidebar={isSidebarVisible}
-        onClick={toggleSidebar}
-      ></S.SideBarOverlay>
-      <S.SideBarContainer toggleSidebar={isSidebarVisible}>
+      <S.SideBarOverlay $toggleSidebar={isSidebarVisible}>
+        <button
+          onClick={() => {
+            toggleSidebar();
+          }}
+          aria-label="사이드바토글"
+        ></button>
+      </S.SideBarOverlay>
+      <S.SideBarContainer $toggleSidebar={isSidebarVisible}>
         <S.SideBarSectionTop>
           <S.SideBarBtn>
             <S.SNavLink
               to="/GoodsList/New"
-              activeStyle={active === sideCategory}
+              $activeStyle={active === sideCategory}
               onClick={reSet}
             >
               New

@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const MypageWrapper = styled.div`
-  margin: 80px auto 0;
+  /* margin: 80px auto 0; */
 `;
 export const InfoBoxBackground = styled.div`
   display: flex;
@@ -11,7 +11,7 @@ export const InfoBoxBackground = styled.div`
   width: 100%;
   height: 15rem;
   padding: 0 2.5rem 0 8.75rem;
-  background: #f9f9f9;
+  background: var(--color-light-gray-f9);
   @media (max-width: 1024px) {
     height: auto;
     padding: 2.5rem 2.5rem 2.5rem 8.75rem;
@@ -30,8 +30,8 @@ export const MyInfoBoxWrapper = styled.div`
     position: relative;
     width: 25%;
     height: 9.5rem;
-    background: #fff;
-    border: 1px solid #efefef;
+    background: var(--color-white);
+    border: 1px solid var(--color-light-gray-ef);
     border-radius: 0.5rem;
     padding: 2rem 1rem 2rem 2rem;
     box-sizing: border-box;
@@ -40,7 +40,7 @@ export const MyInfoBoxWrapper = styled.div`
     padding: 1.5rem;
   }
   & > a h3 {
-    color: #555;
+    color: var(--color-primary-medium-55);
     font-weight: 600;
     font-size: 1rem;
   }
@@ -49,16 +49,16 @@ export const MyInfoBoxWrapper = styled.div`
     align-items: center;
     gap: 0.125rem;
     margin: 1rem 0;
-    color: #8f86ff;
+    color: var(--color-accent);
     font-size: 1.5rem;
     font-weight: 600;
   }
   & > a h4 span {
-    color: #8f86ff;
+    color: var(--color-accent);
     font-size: 1.25rem;
   }
   & > a p {
-    color: #999;
+    color: var(--color-primary-medium-99);
     font-size: 0.875rem;
   }
   @media (max-width: 1024px) {
@@ -114,7 +114,7 @@ export const MyInfoBoxWrapper = styled.div`
 export const MyInfoBox = styled(Link)`
   span {
     font-size: 0.875rem;
-    color: #555;
+    color: var(--color-primary-medium-55);
   }
 `;
 
@@ -144,7 +144,7 @@ export const InfoText = styled.div`
   margin-bottom: 0.625rem;
   span {
     font-size: 0.75rem;
-    color: #aaa;
+    color: var(--color-medium-gray-aa);
     font-weight: 300;
   }
   @media (max-width: 480px) {
@@ -212,8 +212,8 @@ export const MenuBox = styled.ul`
     width: 100%;
     height: 3.5rem;
     margin-bottom: -1px;
-    color: #555;
-    border: 1px solid #efefef;
+    color: var(--color-primary-medium-55);
+    border: 1px solid var(--color-light-gray-ef);
   }
 
   li a {
@@ -225,7 +225,7 @@ export const MenuBox = styled.ul`
     word-break: keep-all;
   }
   li a.active {
-    color: #8f86ff;
+    color: var(--color-accent);
     font-weight: 500;
   }
   @media (max-width: 1024px) {

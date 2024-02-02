@@ -26,13 +26,16 @@ const ProductInfo: React.FC<ProductProps> = ({ product }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [quantity, setQuantity] = useState(1);
-  const [totalPrice, setTotalPrice] = useState(product?.price || 0);
+  const [totalPrice, setTotalPrice] = useState(
+    product?.salePrice || product?.price || 0,
+  );
   const auth = getAuth();
   const user = auth.currentUser;
+
   const quantityPlusHandler = () => {
     const newQuantity = quantity + 1;
     setQuantity(newQuantity);
-    setTotalPrice(newQuantity * (product?.price || 0));
+    setTotalPrice(newQuantity * (product?.salePrice || product?.price || 0));
   };
 
   //더하기
@@ -40,7 +43,7 @@ const ProductInfo: React.FC<ProductProps> = ({ product }) => {
     if (quantity > 1) {
       const newQuantity = quantity - 1;
       setQuantity(newQuantity);
-      setTotalPrice(newQuantity * (product?.price || 0));
+      setTotalPrice(newQuantity * (product?.salePrice || product?.price || 0));
     }
   };
   //빼기
@@ -143,17 +146,57 @@ const ProductInfo: React.FC<ProductProps> = ({ product }) => {
         <S.ProductInfoSection1_1> {product?.artist}</S.ProductInfoSection1_1>
         <S.ProductInfoSection1_2>
           {' '}
-          <h1 style={{ fontSize: '18px' }}>{product?.title}</h1>
+          <h1>{product?.title}</h1>
+          <h4>{product?.titleEn}</h4>
         </S.ProductInfoSection1_2>
         <S.ProductInfoSection1_3>
           {' '}
-          <h1 style={{ fontSize: '20px' }}> {product?.price}원 </h1>
+          {product?.salePrice ? (
+            <div>
+              <span>
+                {Math.floor(
+                  ((product?.price - product?.salePrice) / product?.price) *
+                    100,
+                )}
+                %
+              </span>
+              <h3>{product.salePrice.toLocaleString()}원</h3>
+              <p>{product.price.toLocaleString()}원</p>
+            </div>
+          ) : (
+            <h3>{product?.price.toLocaleString()}원</h3>
+          )}
         </S.ProductInfoSection1_3>
       </S.ProductInfoSection1>
       <S.ProductInfoSection2>
         <S.ProductInfoSection2_1>
+          <h1>배송 안내</h1>
+          <ul>
+            <li>
+              <span>배송비</span> <span>3,000원 / 주문 시 결제</span>
+            </li>
+            <li>
+              <span>&nbsp;</span>
+              <span>(50,000원 이상 주문 시 무료배송)</span>
+            </li>
+            {product?.Checklist1 && (
+              <>
+                <li>
+                  {' '}
+                  <span>상품 확인사항(1)</span> :
+                  <span>{product?.Checklist1}</span>{' '}
+                </li>
+                <li>
+                  <span>상품 확인사항(2) </span>:{' '}
+                  <span>{product?.Checklist2}</span>
+                </li>
+              </>
+            )}
+          </ul>
+        </S.ProductInfoSection2_1>
+        <S.ProductInfoSection2_1>
           {' '}
-          <h1 style={{ fontSize: '14px' }}>상품 정보</h1>
+          <h1>상품 정보</h1>
           <ul>
             <li>
               {' '}
@@ -161,8 +204,8 @@ const ProductInfo: React.FC<ProductProps> = ({ product }) => {
             </li>
             <li>
               {' '}
-              <span>발매일 </span>
-              <span>2023-05-16</span>{' '}
+              <span>발매일</span>
+              <span>{product?.releaseDate || '2024-02-12'}</span>{' '}
             </li>
             {product?.Checklist1 && (
               <>
@@ -192,15 +235,21 @@ const ProductInfo: React.FC<ProductProps> = ({ product }) => {
                   alignItems: 'center',
                 }}
               >
-                <S.ProductInfoBtn onClick={quantityNinusHandler}>
+                <S.ProductInfoBtn
+                  onClick={quantityNinusHandler}
+                  aria-label="상품 빼기"
+                >
                   <FontAwesomeIcon icon={faMinus} />
                 </S.ProductInfoBtn>
                 <p>{quantity}</p>
-                <S.ProductInfoBtn onClick={quantityPlusHandler}>
+                <S.ProductInfoBtn
+                  onClick={quantityPlusHandler}
+                  aria-label="상품 더하기"
+                >
                   <FontAwesomeIcon icon={faPlus} />
                 </S.ProductInfoBtn>
               </div>
-              <h1>{totalPrice}원</h1>
+              <h1>{totalPrice.toLocaleString()}원</h1>
             </S.ProductInfoSection2_2CartBoxSection2>
           </S.ProductInfoSection2_2CartBox>
         </S.ProductInfoSection2_2>
@@ -208,20 +257,63 @@ const ProductInfo: React.FC<ProductProps> = ({ product }) => {
       <S.ProductInfoSection2_3>
         <S.ProductP>
           <span>총 금액 </span>
-          <S.ProductH1> {totalPrice}원</S.ProductH1>
+          <S.ProductH1> {totalPrice.toLocaleString()}원</S.ProductH1>
         </S.ProductP>
       </S.ProductInfoSection2_3>
       <S.ProductInfoSection3>
-        <S.ProductInfoSection3Btn1 onClick={addCartHandler}>
+        <S.ProductInfoSection3Btn1
+          onClick={addCartHandler}
+          aria-label="상품구매"
+        >
           구매하기
         </S.ProductInfoSection3Btn1>
         <S.ProductInfoSection3_1>
-          <S.ProductInfoSection3Btn2 onClick={addCartHandler}>
+          <S.ProductInfoSection3Btn2
+            onClick={addCartHandler}
+            aria-label="장바구니담기"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              viewBox="0 0 16 16"
+              fill="none"
+            >
+              <g clipPath="url(#clip0_277_366)">
+                <path
+                  d="M5.14294 5.14296V3.42868C5.14294 2.67091 5.44396 1.94419 5.97978 1.40837C6.5156 0.872553 7.24232 0.571533 8.00008 0.571533C8.75784 0.571533 9.48457 0.872553 10.0204 1.40837C10.5562 1.94419 10.8572 2.67091 10.8572 3.42868V5.14296M14.7201 14.1601C14.7381 14.3204 14.7219 14.4828 14.6727 14.6364C14.6234 14.7901 14.5422 14.9315 14.4344 15.0515C14.3262 15.1714 14.1939 15.2669 14.0462 15.3319C13.8985 15.3969 13.7386 15.4299 13.5772 15.4287H2.42294C2.26154 15.4299 2.1017 15.3969 1.95397 15.3319C1.80623 15.2669 1.67393 15.1714 1.5658 15.0515C1.45795 14.9315 1.37673 14.7901 1.32748 14.6364C1.27824 14.4828 1.26208 14.3204 1.28008 14.1601L2.2858 5.14296H13.7144L14.7201 14.1601Z"
+                  stroke="#999"
+                  strokeWidth="1.7"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </g>
+              <defs>
+                <clipPath id="clip0_277_366">
+                  <rect width="16" height="16" fill="var(--color-white)" />
+                </clipPath>
+              </defs>
+            </svg>
             장바구니 담기
           </S.ProductInfoSection3Btn2>
           <S.ProductInfoSection3Btn3>
             {' '}
-            ♡ 위시리스트 담기
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              viewBox="0 0 16 16"
+              fill="none"
+            >
+              <path
+                d="M5.00016 2.66675C2.97516 2.66675 1.3335 4.30842 1.3335 6.33342C1.3335 10.0001 5.66683 13.3334 8.00016 14.1087C10.3335 13.3334 14.6668 10.0001 14.6668 6.33342C14.6668 4.30842 13.0252 2.66675 11.0002 2.66675C9.76016 2.66675 8.6635 3.28242 8.00016 4.22475C7.66206 3.74315 7.21288 3.35011 6.69067 3.07891C6.16846 2.80771 5.58859 2.66633 5.00016 2.66675Z"
+                stroke="#8f86ff"
+                strokeWidth="1.7"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>{' '}
+            위시리스트 담기
           </S.ProductInfoSection3Btn3>
         </S.ProductInfoSection3_1>
       </S.ProductInfoSection3>

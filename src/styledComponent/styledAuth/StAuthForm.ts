@@ -12,7 +12,7 @@ export const AuthFormBox = styled.div`
   width: 37.5rem;
   height: 100%;
   padding: 80px 0;
-  background: #fff;
+  background: var(--color-white);
   border-radius: 16px;
   box-shadow: 0px 0px 8px 4px rgba(0, 0, 0, 0.015);
   @media (max-width: 768px) {
@@ -52,7 +52,7 @@ export const AuthForm = styled.form`
     width: 100%;
   }
   .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input.Mui-disabled {
-    -webkit-text-fill-color: #777;
+    -webkit-text-fill-color: var(--color-primary-medium-77);
   }
 `;
 export const AuthFormTitle = styled.h2`
@@ -63,7 +63,7 @@ export const AuthFormTitle = styled.h2`
     font-size: 1rem;
     font-weight: normal;
     line-height: 1.5;
-    color: #aaa;
+    color: var(--color-medium-gray-aa);
   }
   @media (max-width: 480px) {
     p {
@@ -95,7 +95,7 @@ export const TextInputField = styled(TextField)`
     white-space: pre-wrap;
     resize: none;
     &:hover {
-      border-color: #999;
+      border-color: var(--color-primary-medium-99);
     }
     @media (max-width: 480px) {
       width: 100%;
@@ -127,7 +127,7 @@ export const TextInputField = styled(TextField)`
     font-family: 'pretendard', san-serif;
     padding: 12.5px 14px;
     border: none;
-    color: #777;
+    color: var(--color-primary-medium-77);
 
     @media (max-width: 480px) {
       font-size: 0.9375rem;
@@ -158,18 +158,18 @@ export const LoginButton = styled.button<LoginButtonProps>`
   border: 1px solid #dbdbde;
   border-radius: 5px;
   background: ${(props) => props.color || 'none'};
-  color: ${(props) => (props.color ? '#ffffff' : '')};
+  color: ${(props) => (props.color ? 'var(--color-white)' : '')};
   transition: all 200ms;
   &.googleLogin:hover {
-    background: #f9f9f9;
+    background: var(--color-light-gray-f9);
   }
   &.githubLogin:hover {
     background: #444;
   }
   &.login {
     margin-top: 1rem;
-    border: 1px solid #8f86ff;
-    color: #8f86ff;
+    border: 1px solid var(--color-accent);
+    color: var(--color-accent);
     &:hover {
       background: #f2f1ff;
     }
@@ -196,12 +196,17 @@ export const SignUpButton = styled.button<LoginButtonProps>`
   margin-top: -0.5rem;
   text-align: center;
   border-radius: 5px;
-  background-color: ${(props) => (props.disabled ? '#eee' : '#000')};
-  color: ${(props) => (props.disabled ? '#999' : '#fff')};
+  background-color: ${(props) =>
+    props.disabled ? 'var(--color-medium-gray-ee)' : 'var(--color-primary)'};
+  color: ${(props) =>
+    props.disabled ? 'var(--color-primary-medium-99)' : 'var(--color-white)'};
   cursor: ${(props) => (props.disabled ? 'default' : 'pointer')};
   transition: all 200ms;
   &:hover {
-    background-color: ${(props) => (props.disabled ? '#eee' : '#333')};
+    background-color: ${(props) =>
+      props.disabled
+        ? 'var(--color-medium-gray-ee)'
+        : 'var(--color-primary-medium-33)'};
   }
   &:active {
     transform: ${(props) => (props.disabled ? 'scale(1)' : 'scale(1.005)')};
@@ -223,13 +228,13 @@ export const GuideWrapper = styled.div`
   }
 `;
 export const GuideP = styled.p`
-  color: #aaa;
+  color: var(--color-medium-gray-aa);
   font-size: 15px;
 `;
 
 export const GuideButton = styled.button`
   text-align: center;
-  color: #555;
+  color: var(--color-primary-medium-55);
   font-size: 15px;
   text-decoration: underline;
 `;
@@ -239,7 +244,7 @@ export const SeparatorLine = styled.div`
   width: 100%;
   max-width: 22.5rem;
   margin-bottom: 0.625rem;
-  color: #bbb;
+  color: var(--color-medium-gray-bb);
   font-size: 14px;
   text-align: center;
   &::before {
@@ -251,7 +256,7 @@ export const SeparatorLine = styled.div`
     display: block;
     width: calc(50% - 20px);
     height: 1px;
-    background: #ddd;
+    background: var(--color-medium-gray-dd);
   }
   &::after {
     position: absolute;
@@ -262,7 +267,7 @@ export const SeparatorLine = styled.div`
     display: block;
     width: calc(50% - 20px);
     height: 1px;
-    background: #ddd;
+    background: var(--color-medium-gray-dd);
   }
 `;
 
@@ -276,8 +281,7 @@ export const DeliveryAddressButton = styled.button`
   padding: 0 20px;
   font-weight: 300;
   border-radius: 5px;
-  border: 1px solid #bebebe;
-  /* background-color: #f7f7f7; */
+  border: 1px solid var(--color-medium-gray-be);
   color: #c9c9c9;
   box-sizing: border-box;
   @media (max-width: 480px) {

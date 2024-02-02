@@ -10,8 +10,10 @@ export const Div = styled.div`
     width: 100%;
     height: auto;
     max-width: 768px;
+    padding: 0px 1.5rem;
     display: flex;
     flex-direction: column;
+    padding: 0px 1.5rem;
   }
 
   @media (max-width: 480px) {

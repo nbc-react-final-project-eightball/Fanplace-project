@@ -9,7 +9,9 @@ export interface typeProduct {
   img: string; //이미지
   artist: string; //아티스트
   title: string; //상품제목
+  titleEn: string; //상품영어제목
   price: number; //가격
+  salePrice: number; //세일가격
   ProductName: string; //상품이름
   tag?: string; // NewAlbum ,Top10, BestSeller
   isSoldOut?: boolean; //품절여부
@@ -17,6 +19,7 @@ export interface typeProduct {
   contentImg1?: string; //상품설명이미지
   contentImg2?: string;
   contentImg3?: string; //최대 이미지 3개까지 넣을수있게 해둿습니다
+  releaseDate: string; // 출시일
 }
 //굿즈리스트에서 상품 정보 보낼때 타입
 

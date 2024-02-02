@@ -4,6 +4,7 @@ import { productSlice } from './modules/Detail/DetailSlice';
 import { modalSlice } from './modules/modal/modalSlice';
 import { signUpSlice } from './modules/signup/signUpSlice';
 import { shippingSlice } from './modules/shipping/shippingSlice';
+import { darkModeSlice } from './modules/darkMode/DarkModeSlice';
 
 const store = configureStore({
   reducer: {
@@ -12,6 +13,7 @@ const store = configureStore({
     modalSlice: modalSlice.reducer,
     signUpSlice: signUpSlice.reducer,
     shippingSlice: shippingSlice.reducer,
+    darkModeSlice: darkModeSlice.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

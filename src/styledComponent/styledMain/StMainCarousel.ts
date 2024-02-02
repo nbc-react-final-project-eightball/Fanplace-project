@@ -1,4 +1,7 @@
 import styled from 'styled-components';
+
+export {};
+
 //하단 캐러셀 스타일 start
 export const Div = styled.div`
   margin-top: 100px;
@@ -42,7 +45,7 @@ export const ProductTitle = styled.h1`
   -webkit-line-clamp: 2;
   text-overflow: ellipsis;
   height: 43px;
-  color: #333;
+  color: var(--color-primary-medium-33);
   font-size: 16px;
   font-style: normal;
   font-weight: 500;
@@ -51,7 +54,7 @@ export const ProductTitle = styled.h1`
 `;
 
 export const ReleaseDate = styled.p`
-  color: #555;
+  color: var(--color-primary-medium-55);
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
@@ -59,12 +62,34 @@ export const ReleaseDate = styled.p`
   margin-bottom: 20px;
 `;
 //가격
-export const Price = styled.p`
-  color: #333;
+export const Price = styled.div`
+  color: var(--color-primary-medium-33);
   font-size: 18px;
   font-style: normal;
   font-weight: 600;
   line-height: 1.5; /* 133.333% */
+
+  > div {
+    display: flex;
+    gap: 10px;
+    align-items: baseline;
+    span {
+      color: #ff6565;
+      font-size: 18px;
+      font-weight: 600;
+    }
+    h3 {
+      color: var(--color-primary-medium-33);
+      font-size: 18px;
+      font-weight: 600;
+    }
+    p {
+      color: rgba(190, 190, 190, 0.93);
+      font-size: 14px;
+      font-weight: 400;
+      text-decoration: line-through;
+    }
+  }
 `;
 export const Slide = styled.div`
   /* flex: 0 0 auto; */
@@ -74,7 +99,8 @@ export const Slide = styled.div`
   justify-content: center;
   align-items: center;
   display: flex;
-
+  @media (max-width: 768px) {
+  }
   @media (max-width: 480px) {
     width: 23%;
   }
@@ -94,18 +120,18 @@ export const CarouselContainer = styled.div`
 
   @media (max-width: 480px) {
     flex-grow: 0;
-    width: 70%;
+    width: 100%;
   }
 `;
 export const CarouselWrapper = styled.div`
   position: relative;
   margin-left: -560px;
   @media (max-width: 768px) {
-    margin-left: -250px;
+    margin-left: -350px;
   }
 
   @media (max-width: 480px) {
-    margin-left: -650px;
+    margin-left: -590px;
   }
 
   @media (max-width: 414px) {
@@ -118,7 +144,8 @@ export const CarouselWrapper = styled.div`
 export const CarouselRange = styled.input`
   width: 100%;
   -webkit-appearance: none;
-  background: #b4b4b4;
+  appearance: none;
+  background: var(--color-medium-gray-ee);
   margin: 0 auto;
   &::-webkit-slider-runnable-track {
     width: 100%;
@@ -127,26 +154,27 @@ export const CarouselRange = styled.input`
   }
 
   &::-webkit-slider-thumb {
-    border: 1px solid #000000;
+    border: 1px solid var(--color-primary);
     width: 100px;
 
-    background: #000000;
+    background: var(--color-primary);
     cursor: pointer;
     box-shadow:
-      1px 1px 1px #000000,
+      1px 1px 1px var(--color-primary),
       0px 0px 1px #0d0d0d;
     transition:
       background 0.5s ease-in-out,
       border 0.5s ease-in-out,
       left 0.5s ease-in-out;
     -webkit-appearance: none;
+    appearance: none;
   }
 `;
 export const PrevButton = styled.button`
   width: 50px;
   height: 50px;
   box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.06);
-  background-color: #000;
+  background-color: var(--color-primary);
   border-radius: 50%;
   position: absolute;
   top: 300px;
@@ -192,7 +220,7 @@ export const NextButton = styled.button`
   width: 50px;
   height: 50px;
   box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.06);
-  background-color: #000;
+  background-color: var(--color-primary);
   border-radius: 50%;
   position: absolute;
   top: 300px;
@@ -225,7 +253,7 @@ export const NextButton = styled.button`
 `;
 
 export const Title = styled.h2`
-  color: #333;
+  color: var(--color-primary-medium-33);
   font-family: Pretendard;
   font-size: 32px;
   font-style: normal;
@@ -235,7 +263,7 @@ export const Title = styled.h2`
   text-align: left;
 `;
 export const TitleText = styled.p`
-  color: #555;
+  color: var(--color-primary-medium-55);
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
@@ -251,6 +279,9 @@ export const SlideContainer = styled.div`
   margin-bottom: 40px;
   width: 100%;
   gap: 20px;
+  @media (max-width: 768px) {
+    gap: 90px;
+  }
   @media (max-width: 480px) {
     gap: 110px;
   }
@@ -271,12 +302,8 @@ export const AlbumDiv = styled.div`
   justify-content: center;
   position: relative;
   background: #000;
+  border: 1px solid var(--color-primary);
   @media (max-width: 768px) {
-    width: 768px;
-  }
-
-  @media (max-width: 480px) {
-    width: 480px;
     width: 100%;
   }
 `;
@@ -295,20 +322,20 @@ export const AlbumWrapper = styled.div`
   display: flex;
   margin-left: -660px;
   @media (max-width: 768px) {
-    margin-left: -230px;
+    margin-left: -255px;
   }
 
   @media (max-width: 480px) {
-    margin-left: -80px;
+    margin-left: -100px;
   }
   @media (max-width: 386px) {
     margin-left: -130px;
   }
   @media (max-width: 414px) {
-    margin-left: -110px;
+    margin-left: -140px;
   }
   @media (max-width: 364px) {
-    margin-left: -140px;
+    margin-left: -160px;
   }
 `;
 
@@ -338,24 +365,37 @@ export const AlbumImg = styled.img`
     height: 180px;
   }
 `;
-export const AlbumTitle = styled.h2`
+export const AlbumTitle = styled.div`
   overflow: hidden;
   width: 100%;
-  white-space: nowrap;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
-  text-overflow: ellipsis;
-  height: 43px;
   position: absolute;
+  color: #fff;
   left: -0px;
   margin-top: 10px;
+  text-align: center;
+  p {
+    font-size: 14px;
+    font-weight: normal;
+    color: var(--color-primary-medium-99);
+    margin: 10px 0;
+  }
+  h4 {
+    font-size: 16px;
+    white-space: pre-wrap;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    text-overflow: ellipsis;
+    height: 46px;
+    line-height: 1.5;
+    color: #fff;
+  }
   @media (max-width: 768px) {
     left: -30px;
   }
 `;
 
 export const AlbumSlideTitle = styled.h2`
-  color: #333;
+  color: var(--color-primary-medium-33);
   font-size: 32px;
   font-style: normal;
   font-weight: 700;
@@ -364,17 +404,18 @@ export const AlbumSlideTitle = styled.h2`
   margin-bottom: 10px;
 `;
 export const AlbumSlideTitleText = styled.p`
-  color: #555;
+  color: var(--color-primary-medium-55);
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
   line-height: 1.5; /* 150% */
+  margin-bottom: 40px;
 `;
 export const AlbumPrevButton = styled.button`
   width: 50px;
   height: 50px;
 
-  background-color: #000;
+  background-color: var(--color-primary);
   border-radius: 50%;
   position: absolute;
   top: 300px;
@@ -393,7 +434,7 @@ export const AlbumNextButton = styled.button`
   width: 50px;
   height: 50px;
 
-  background-color: #000;
+  background-color: var(--color-primary);
   border-radius: 50%;
   position: absolute;
   top: 300px;
@@ -410,9 +451,7 @@ export const AlbumNextButton = styled.button`
 export const AlbumDivTitle = styled.h2`
   color: #fff;
   text-align: center;
-  font-family: Pretendard;
   font-size: 32px;
-  font-style: normal;
   font-weight: 700;
   line-height: 40px; /* 125% */
   letter-spacing: -0.96px;

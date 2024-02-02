@@ -24,6 +24,7 @@ const PaymentPage = () => {
   //주문금액이 5만원이하면 배송비 3000원붙음
   const shippingCost = totalPrice <= 50000 ? 3000 : 0;
   const totalPayment = totalPrice + shippingCost;
+
   //윗부분 수정예정
   return (
     <>
@@ -40,17 +41,26 @@ const PaymentPage = () => {
               hasCheckbox={false}
             />
             <S.PaymentSection>
-              <PaymentInfo
-                cartList={cartList}
-                totalPrice={totalPrice}
-                shippingCost={shippingCost}
-                totalPayment={totalPayment}
-              />
-              <S.Address>배송지</S.Address>
+              <S.Address>
+                <h3>배송지</h3>
+                <S.InfoWrapper>
+                  <h4>이름</h4>
+                  <span>전화번호</span>
+                  <p>주소</p>
+                </S.InfoWrapper>
+              </S.Address>
+              <S.ApiWrapper>
+                <TossApi />
+              </S.ApiWrapper>
             </S.PaymentSection>
+            <PaymentInfo
+              cartList={cartList}
+              totalPrice={totalPrice}
+              shippingCost={shippingCost}
+              totalPayment={totalPayment}
+            />
           </S.Wrapper>
         </S.Payment>
-        <TossApi />
       </S.PaymentContainer>
     </>
   );

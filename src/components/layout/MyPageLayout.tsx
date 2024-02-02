@@ -15,14 +15,14 @@ const MyPageLayout = ({ children }: { children: React.ReactNode }) => {
         <S.MyInfoBoxWrapper>
           <S.MyInfoBox to={'/profilesettings'}>
             <S.MyInfoImgBox>
-              <img src="img/MainTopCarouseImg/TopC1.jpg" alt="profile image" />
+              <img src="img/MainTopCarouseImg/TopC1.webp" alt="profile image" />
             </S.MyInfoImgBox>
-            <p>
+            <div>
               <S.InfoText>
                 <h3>{userInfo?.displayName} 님,</h3>
                 <span>{userInfo?.email}</span>
               </S.InfoText>
-            </p>
+            </div>
             {/* <span>팬시플레이스에 오신 걸 환영합니다</span> */}
             <S.MoreLink to={'/profilesettings'}>
               <svg

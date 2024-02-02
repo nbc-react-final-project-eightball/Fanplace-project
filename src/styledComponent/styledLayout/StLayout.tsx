@@ -22,9 +22,12 @@ export const Welcome = styled.div`
   padding: 0 2rem;
   border-radius: 2.5rem;
   font-size: 0.87rem;
-  color: #777;
-  background: #f9f9f9;
+  color: var(--color-primary-medium-77);
+  background: var(--color-light-gray-f9);
   z-index: 9;
+  @media (max-width: 1024px) {
+    display: none;
+  }
 `;
 
 export const LayoutContainer = styled.div`
@@ -48,18 +51,25 @@ export const LayoutSection2 = styled.div`
 //Footer start
 export const FooterContainer = styled.div`
   background: #202020;
-  padding: 40px 0;
-  color: white;
+  padding: 40px 2.5rem;
+  color: var(--color-white);
   width: 100%;
   height: auto;
+  @media (max-width: 768px) {
+    margin-bottom: 64px;
+  }
 `;
 export const FooterContent = styled.div`
   display: flex;
   flex-direction: column;
   max-width: 1200px;
+  width: 100%;
   margin: 0 auto;
   font-size: 14px;
-  color: #999;
+  p {
+    color: #999;
+    line-height: 1.5;
+  }
 `;
 export const ContactInfo = styled.div`
   line-height: 1.5em;
@@ -71,6 +81,9 @@ export const ContactTitle = styled.p`
 export const FooterInnerWrapper = styled.div`
   display: flex;
   gap: 54px;
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
 `;
 export const LegalInfo = styled.div`
   display: flex;
@@ -84,6 +97,6 @@ export const FooterInfo = styled.div`
 `;
 export const Copyright = styled.p`
   margin-top: 40px;
-  color: #bbb;
+  color: var(--color-medium-gray-bb);
 `;
 //FOOTER END

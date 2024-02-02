@@ -64,7 +64,7 @@ export const CarouselWrapper1 = styled.div`
 `;
 
 export const Title = styled.h2`
-  color: #333;
+  color: var(--color-primary-medium-33);
   font-size: 32px;
   font-style: normal;
   font-weight: 700;
@@ -72,24 +72,24 @@ export const Title = styled.h2`
   letter-spacing: -0.96px;
   margin-bottom: 10px;
   height: 40px;
-  background: lightgray 50% / cover no-repeat;
+  background: var(--color-medium-gray-ee);
   width: 100px;
 `;
 export const TitleText = styled.p`
-  color: #555;
+  color: var(--color-primary-medium-55);
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
   line-height: 1.5; /* 150% */
   height: 24px;
-  background: lightgray 50% / cover no-repeat;
+  background: var(--color-medium-gray-ee);
   width: 50px;
 `;
 export const Img = styled.div`
   width: 270px;
   height: 270px;
   border-radius: 8px;
-  background: lightgray 50%;
+  background: var(--color-medium-gray-ee);
   object-fit: cover;
   box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.06);
   @media (max-width: 768px) {
@@ -113,13 +113,13 @@ export const Artist = styled.p`
   font-style: normal;
   font-weight: 500;
   line-height: 1.5; /* 171.429% */
-  background: lightgray 50% / cover no-repeat;
+  background: var(--color-medium-gray-ee);
   height: 24px;
   margin-bottom: 10px;
 `;
 
 export const ProductTitle = styled.h1`
-  color: #333;
+  color: var(--color-primary-medium-33);
   font-size: 16px;
   font-style: normal;
   font-weight: 500;
@@ -127,11 +127,11 @@ export const ProductTitle = styled.h1`
   margin-bottom: 10px;
   width: 250px;
   height: 24px;
-  background: lightgray 50% / cover no-repeat;
+  background: var(--color-medium-gray-ee);
 `;
 
 export const ReleaseDate = styled.p`
-  color: #555;
+  color: var(--color-primary-medium-99);
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
@@ -139,24 +139,45 @@ export const ReleaseDate = styled.p`
   margin-bottom: 20px;
   width: 100px;
   height: 14px;
-  background: lightgray 50% / cover no-repeat;
+  background: var(--color-medium-gray-ee);
 `;
 //가격
 export const Price = styled.p`
-  color: #333;
+  color: var(--color-primary-medium-33);
   font-size: 18px;
   font-style: normal;
   font-weight: 600;
   line-height: 1.5; /* 133.333% */
   width: 100px;
   height: 24px;
-  background: lightgray 50% / cover no-repeat;
+  background: var(--color-medium-gray-ee);
+  > div {
+    display: flex;
+    gap: 10px;
+    align-items: baseline;
+    span {
+      color: #ff6565;
+      font-size: 18px;
+      font-weight: 600;
+    }
+    h3 {
+      color: var(--color-primary-medium-33);
+      font-size: 18px;
+      font-weight: 600;
+    }
+    p {
+      color: rgba(190, 190, 190, 0.93);
+      font-size: 14px;
+      font-weight: 400;
+      text-decoration: line-through;
+    }
+  }
 `;
 
 export const CarouselRange = styled.input`
   width: 100%;
   -webkit-appearance: none;
-  background: #b4b4b4;
+  background: var(--color-medium-gray-ee);
   margin: 0 auto;
   &::-webkit-slider-runnable-track {
     width: 100%;
@@ -165,14 +186,10 @@ export const CarouselRange = styled.input`
   }
 
   &::-webkit-slider-thumb {
-    border: 1px solid #000000;
     width: 100px;
-
-    background: #000000;
+    background: var(--color-primary);
     cursor: pointer;
-    box-shadow:
-      1px 1px 1px #000000,
-      0px 0px 1px #0d0d0d;
+    box-shadow: none;
     transition:
       background 0.5s ease-in-out,
       border 0.5s ease-in-out,
@@ -185,7 +202,7 @@ export const ButtonPrev = styled.button`
   width: 50px;
   height: 50px;
   box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.06);
-  background-color: #000;
+  background-color: var(--color-primary);
   border-radius: 50%;
   position: absolute;
   top: 150px;
@@ -196,16 +213,10 @@ export const ButtonNext = styled.button`
   width: 50px;
   height: 50px;
   box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.06);
-  background-color: #000;
+  background-color: var(--color-primary);
   border-radius: 50%;
   position: absolute;
   top: 150px;
   right: -10px;
   z-index: 1;
-`;
-export const BtnImg = styled.img`
-  display: block;
-  margin: auto;
-  width: 32px;
-  height: 32px;
 `;
