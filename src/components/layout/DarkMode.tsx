@@ -12,7 +12,7 @@ const DarkMode = () => {
     (state: { darkModeSlice: darkModeState }) => state.darkModeSlice,
   );
   return (
-    <S.DarkeModeButton darkMode={darkMode} onClick={toggleDarkMode}>
+    <S.DarkeModeButton $darkMode={darkMode} onClick={toggleDarkMode}>
       {darkMode ? (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -24,9 +24,9 @@ const DarkMode = () => {
           <path
             d="M16 5.33341V2.66675M16 29.3334V26.6667M26.6667 16.0001H29.3334M2.66669 16.0001H5.33335M23.5427 8.45741L25.4267 6.57341M6.57335 25.4267L8.45869 23.5414M8.45869 8.45608L6.57335 6.57341M25.4267 25.4267L23.5414 23.5414M16 22.6667C17.7681 22.6667 19.4638 21.9644 20.7141 20.7141C21.9643 19.4639 22.6667 17.7682 22.6667 16.0001C22.6667 14.232 21.9643 12.5363 20.7141 11.286C19.4638 10.0358 17.7681 9.33341 16 9.33341C14.2319 9.33341 12.5362 10.0358 11.286 11.286C10.0357 12.5363 9.33335 14.232 9.33335 16.0001C9.33335 17.7682 10.0357 19.4639 11.286 20.7141C12.5362 21.9644 14.2319 22.6667 16 22.6667Z"
             stroke="#5B5B5B"
-            stroke-width="2.5"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeWidth="2.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           />
         </svg>
       ) : (

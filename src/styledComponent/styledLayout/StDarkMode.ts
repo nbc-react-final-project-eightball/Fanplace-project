@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 interface DarkModeButtonProps {
-  darkMode: boolean;
+  $darkMode: boolean;
 }
 
 export const DarkeModeButton = styled.button<DarkModeButtonProps>`

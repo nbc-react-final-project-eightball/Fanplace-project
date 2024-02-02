@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 
-export const ScrollToTopButton = styled.button<{ isVisible: boolean }>`
+export const ScrollToTopButton = styled.button<{ $isVisible: boolean }>`
   position: fixed;
   right: 16px;
   bottom: 106px;
   display: flex;
-  opacity: ${(props) => (props.isVisible ? '1' : '0')};
+  opacity: ${(props) => (props.$isVisible ? '1' : '0')};
   align-items: center;
   justify-content: center;
   width: 50px;
