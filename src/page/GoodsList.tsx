@@ -40,6 +40,9 @@ const GoodsList = () => {
   useEffect(() => {
     setFilter(null);
   }, [sideCategory]);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   // const saveProduct = async (productList: typeProduct[]) => {
   //   try {
   //     const addGoodsList = await collection(db, 'goodsList');
