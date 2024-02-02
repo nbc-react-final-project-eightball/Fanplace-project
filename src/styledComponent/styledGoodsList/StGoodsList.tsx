@@ -287,7 +287,7 @@ export const ProductReleaseDate = styled.div`
   font-size: 14px;
   font-weight: 400;
 `;
-export const ProductCardPrice = styled.p`
+export const ProductCardPrice = styled.div`
   width: 100%;
   height: 100%;
   color: var(--color-primary-medium-33);

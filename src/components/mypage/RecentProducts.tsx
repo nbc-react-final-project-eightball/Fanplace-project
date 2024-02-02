@@ -2,8 +2,6 @@ import React, { useEffect, useState } from 'react';
 import * as S from '../../styledComponent/styledMypage/StRecentProducts';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from 'redux/configStore';
-import * as St from '../../styledComponent/styledMain/StMainCarousel';
-import { Link } from 'react-router-dom';
 import { setSelectedProduct } from '../../redux/modules/GoodsList/GoodsListSlice';
 const RecentProducts = () => {
   const [recentProducts, setRecentProducts] = useState([]);

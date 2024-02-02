@@ -1149,7 +1149,7 @@ const GoodsList = () => {
                         <S.GoodsListCardSection1>
                           <S.GoodsListCardSection1_1>
                             <S.ProductCardInfoArtist>
-                              {product.artist}
+                              <h1>{product.artist}</h1>
                             </S.ProductCardInfoArtist>
                             <S.ProductCardTitle>
                               {product.title}

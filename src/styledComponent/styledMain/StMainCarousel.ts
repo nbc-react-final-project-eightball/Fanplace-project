@@ -62,7 +62,7 @@ export const ReleaseDate = styled.p`
   margin-bottom: 20px;
 `;
 //가격
-export const Price = styled.p`
+export const Price = styled.div`
   color: var(--color-primary-medium-33);
   font-size: 18px;
   font-style: normal;
@@ -365,7 +365,7 @@ export const AlbumImg = styled.img`
     height: 180px;
   }
 `;
-export const AlbumTitle = styled.h2`
+export const AlbumTitle = styled.div`
   overflow: hidden;
   width: 100%;
   position: absolute;
