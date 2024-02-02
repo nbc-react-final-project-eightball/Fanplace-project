@@ -89,7 +89,7 @@ const Header = () => {
                 <S.MobileName>로그인</S.MobileName>
               </S.LoginButton>
             )}
-            <Link to={'/cart'} aria-label="장바구니">
+            <Link to={isLogged ? '/cart' : '/login'}>
               <svg
                 id="shopping"
                 xmlns="http://www.w3.org/2000/svg"
@@ -108,6 +108,7 @@ const Header = () => {
               </svg>
               <S.MobileName>장바구니</S.MobileName>
             </Link>
+
             <CustomSelect />
           </S.HeaderButton>
         </S.Header>
