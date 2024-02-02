@@ -16,7 +16,7 @@ import { RootState } from 'redux/configStore';
 import { nanoid } from '@reduxjs/toolkit';
 import StarRate from './StarRate';
 import Swal from 'sweetalert2';
-import { Link, Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 interface ProductProps {
   product: typeProduct | null;
@@ -78,7 +78,6 @@ const Product: React.FC<ProductProps> = ({ product }) => {
   useEffect(() => {
     getReviews();
   }, [newReview === '']);
-  useEffect(() => {}, []);
   const handleReviewSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!userInfo?.uid) {

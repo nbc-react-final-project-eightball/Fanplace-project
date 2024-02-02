@@ -68,7 +68,6 @@ const ProductInfo: React.FC<ProductProps> = ({ product }) => {
         }),
       );
     }
-    console.log('유저아이디', user?.uid);
     user ? addToCart() : alert('로그인정보가 유효하지 않습니다!');
   };
   const addToCart = async () => {
@@ -105,10 +104,7 @@ const ProductInfo: React.FC<ProductProps> = ({ product }) => {
             cartProducts[existingProductIndex].quantity += quantity;
             cartProducts[existingProductIndex].totalPrice +=
               cartProduct.price * quantity;
-            console.log(
-              '이미있는상품입니다',
-              cartProducts[existingProductIndex],
-            );
+
             //장바구니 상태 최신화
             await setDoc(
               userCartRef,
