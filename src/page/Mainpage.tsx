@@ -15,11 +15,8 @@ import {
 import { db } from '../firebase/config';
 import MainBttomSkeleton from 'components/Main/MainBttomSkeleton';
 import MainBttomAlbumSkeleton from 'components/Main/MainBttomAlbumSkeleton';
-import { set } from 'react-hook-form';
-import ScrollToTop from 'components/layout/ScrollToTop';
 
 const Mainpage = () => {
-  const [goodsList, setGoodsList] = useState<DocumentData>([]);
   const [newAlbum, setNewAlbum] = useState<DocumentData>([]);
   const [top10, setTop10] = useState<DocumentData>([]);
   const [NewArrival, setNewArrival] = useState<DocumentData>([]);
@@ -86,14 +83,11 @@ const Mainpage = () => {
       console.log('상품 가져오기 실패!', error);
     }
   };
-  // fetchGoods();
+
   useEffect(() => {
     fetchGoods();
   }, []);
 
-  useEffect(() => {
-    console.log('캐러', goodsList);
-  }, [goodsList]);
   return (
     <>
       <S.Div>

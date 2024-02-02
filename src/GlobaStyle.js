@@ -4,7 +4,6 @@ const { createGlobalStyle } = require('styled-components');
 const GlobalStyle = createGlobalStyle`
 html,
 body,
-div,
 span,
 applet,
 object,

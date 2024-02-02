@@ -43,7 +43,12 @@ const SideBar = () => {
           </svg>
         </div>
       </S.ShowSidebarButton>
-      <S.SideBarOverlay $toggleSidebar={isSidebarVisible}>
+      <S.SideBarOverlay
+        onClick={() => {
+          toggleSidebar();
+        }}
+        $toggleSidebar={isSidebarVisible}
+      >
         <button
           onClick={() => {
             toggleSidebar();

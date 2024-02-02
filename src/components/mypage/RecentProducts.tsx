@@ -17,7 +17,6 @@ const RecentProducts = () => {
       }
     }
   }, [userInfo]);
-  console.log('recentProducts', recentProducts);
   return (
     <S.RecentProductsWrapper>
       <S.TitleWrapper>
@@ -49,7 +48,7 @@ const RecentProducts = () => {
                       발매일&nbsp;&nbsp;
                       {list?.releaseDate || '2024-02-12'}
                     </S.ReleaseDate>
-                    <S.Price>{list?.price} 원</S.Price>
+                    <S.Price>{list?.price.toLocaleString()} 원</S.Price>
                   </S.ListInTextDiv>
                 </S.StyledLink>
               </S.List>

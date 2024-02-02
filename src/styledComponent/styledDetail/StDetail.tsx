@@ -23,6 +23,8 @@ export const ProductSection1 = styled.section``;
 export const ProductImg = styled.img`
   width: 100%;
   height: 100%;
+  max-width: 500px;
+  max-height: 500px;
   border-radius: 8px;
 `;
 export const ProductSideImg = styled.img`

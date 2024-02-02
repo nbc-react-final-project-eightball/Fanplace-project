@@ -27,7 +27,6 @@ export const goodsSlice = createSlice({
     },
     setSelectedProduct: (state, action: PayloadAction<typeProduct>) => {
       state.selectedProduct = action.payload;
-      console.log('보낸거', action.payload);
     },
     setCurrentPage: (state, action: PayloadAction<number>) => {
       state.currentPage = action.payload;
@@ -37,11 +36,9 @@ export const goodsSlice = createSlice({
     },
     setFilterR: (state, action: PayloadAction<string | null>) => {
       state.filter = action.payload;
-      console.log('사이드바필터 초기화', action.payload);
     },
     setPage: (state, action: PayloadAction<number>) => {
       state.currentPage = action.payload;
-      console.log('페이지 초기화', action.payload);
     },
   },
 });

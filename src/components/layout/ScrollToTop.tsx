@@ -27,7 +27,11 @@ const ScrollToTop = () => {
   }, []);
 
   return (
-    <S.ScrollToTopButton onClick={scrollToTop} $isVisible={isVisible}>
+    <S.ScrollToTopButton
+      onClick={scrollToTop}
+      $isVisible={isVisible}
+      aria-label="탑버튼"
+    >
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="32"
