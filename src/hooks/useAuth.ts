@@ -39,6 +39,7 @@ const useAuth = () => {
                 detailAddress: userData.detailAddress,
               }),
             );
+            // user 정보를 redux 에 넣고 있음
             dispatch(setUserInfo({ userInfo: authUser }));
           } else {
             console.log(
