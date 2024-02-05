@@ -76,7 +76,7 @@ export const HeaderButton = styled.div`
     }
     gap: 0;
     & > * {
-      width: 25%;
+      width: 50%;
       padding: 0;
     }
 
