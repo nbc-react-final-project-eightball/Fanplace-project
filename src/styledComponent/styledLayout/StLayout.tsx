@@ -35,7 +35,7 @@ export const LayoutContainer = styled.div`
 `;
 export const LayoutSection1 = styled.div`
   width: 100px;
-  margin-top: 80px;
+  margin-top: 60px;
   @media (max-width: 768px) {
     max-width: 100%;
   }

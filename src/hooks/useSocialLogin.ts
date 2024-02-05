@@ -4,11 +4,12 @@ import {
   GoogleAuthProvider,
   signInWithPopup,
 } from 'firebase/auth';
-import { auth } from '../firebase/config';
+import { auth, db } from '../firebase/config';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { logIn } from '../redux/modules/signup/signUpSlice';
+import { doc, setDoc } from '@firebase/firestore';
 
 interface SocialLoginResult {
   socialLogin: () => Promise<void>;
@@ -52,8 +53,8 @@ export const useSocialLogin = (
       if (!res) {
         throw new Error('알 수 없는 오류가 발생했습니다.');
       }
-
       const user = res.user;
+      const userDocRef = doc(db, 'user', res.user.uid);
 
       let displayName;
       if (providerType === 'github') {
@@ -66,6 +67,18 @@ export const useSocialLogin = (
         const githubUserData = await getGitHubUserData(githubProviderData?.uid);
         console.log('githubUserData', githubUserData);
         displayName = githubUserData.login;
+
+        console.log('소셜로그인 res', res);
+        console.log('소셜로그인 userDocRef', userDocRef);
+        console.log('소셜로그인 displayName', displayName);
+        console.log('소셜로그인 user.email', user.email);
+        await setDoc(userDocRef, {
+          displayName,
+          phoneNumber: '',
+          email: user.email,
+          address: '',
+          detailAddress: '',
+        });
         dispatch(
           logIn({
             userInfo: { ...user.providerData[0], displayName },
@@ -73,6 +86,13 @@ export const useSocialLogin = (
           }),
         );
       } else {
+        await setDoc(userDocRef, {
+          displayName: user.displayName,
+          phoneNumber: '',
+          email: user.email,
+          address: '',
+          detailAddress: '',
+        });
         dispatch(
           logIn({
             userInfo: user.providerData[0],
@@ -81,7 +101,7 @@ export const useSocialLogin = (
         );
       }
 
-      alert('로그인 되었습니다.');
+      alert('소셜 로그인 되었습니다.');
       navigate('/');
       setIsPending(false);
     } catch (error: any) {

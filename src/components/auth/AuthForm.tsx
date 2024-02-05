@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import * as S from '../../styledComponent/styledAuth/StAuthForm';
 import { useSocialLogin } from '../../hooks/useSocialLogin';
 import { useLogin } from 'hooks/useLogin';
@@ -24,6 +24,10 @@ const AuthForm = () => {
     // 실시간 유효성 검사
     mode: 'onChange',
   });
+
+  useEffect(() => {
+    setIsLoginForm(true);
+  }, [setIsLoginForm]);
 
   // 로그인 훅
   // 깃허브로 로그인
@@ -98,7 +102,6 @@ const AuthForm = () => {
         );
 
         reset();
-        setIsLoginForm(true);
       }
     } catch (error) {
       console.log('알 수 없는 오류가 발생하였습니다.', error);
