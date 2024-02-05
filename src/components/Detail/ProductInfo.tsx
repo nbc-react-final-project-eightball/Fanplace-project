@@ -52,6 +52,7 @@ const ProductInfo: React.FC<ProductProps> = ({ product }) => {
     }
   };
   //빼기
+
   const addCartHandler = () => {
     if (product) {
       dispatch(
