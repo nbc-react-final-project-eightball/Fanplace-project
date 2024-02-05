@@ -5,6 +5,7 @@ import useCartList from 'hooks/useCartList';
 import ProgressIndicator from 'components/Cart/ProgressIndicator';
 import CartListInfo from 'components/Cart/CartListInfo';
 import { TypeCart } from 'Type/TypeInterface';
+import Address from 'components/payment/Address';
 
 const getTotalPrice = (cartList: TypeCart[]) => {
   let totalPrice = 0;
@@ -38,19 +39,13 @@ const PaymentPage = () => {
               totalPrice={totalPrice}
               shippingCost={shippingCost}
               totalPayment={totalPayment}
-              hasCheckbox={false}
+              cartAndPayment={false}
             />
             <S.PaymentSection>
-              <S.Address>
-                <h3>배송지</h3>
-                <S.InfoWrapper>
-                  <h4>이름</h4>
-                  <span>전화번호</span>
-                  <p>주소</p>
-                </S.InfoWrapper>
-              </S.Address>
+              <Address />
               <S.ApiWrapper>
                 <TossApi />
+                <div id="payment-widget" />
               </S.ApiWrapper>
             </S.PaymentSection>
             <PaymentInfo
@@ -58,6 +53,7 @@ const PaymentPage = () => {
               totalPrice={totalPrice}
               shippingCost={shippingCost}
               totalPayment={totalPayment}
+              cartAndPayment={true}
             />
           </S.Wrapper>
         </S.Payment>

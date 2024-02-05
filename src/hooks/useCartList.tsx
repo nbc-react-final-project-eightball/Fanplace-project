@@ -24,7 +24,7 @@ const useCartList = () => {
           return cartDataArray as TypeCart[];
         }
       } else {
-        console.log('Document does not exist!');
+        console.log('문서가 존재하지 않음');
       }
     } catch (error) {
       console.error('Error fetching cart data:', error);

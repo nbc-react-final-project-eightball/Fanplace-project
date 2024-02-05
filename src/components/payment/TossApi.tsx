@@ -45,7 +45,7 @@ const TossApi = () => {
     );
   }, [totalPrice]);
 
-  const adad = async () => {
+  const requestTossPayment = async () => {
     const paymentWidget = paymentWidgetRef.current;
 
     try {
@@ -66,6 +66,7 @@ const TossApi = () => {
     <TossContainer>
       <TossWrapper>
         <div id="payment-widget" />
+        <button onClick={requestTossPayment}></button>
       </TossWrapper>
     </TossContainer>
   );
@@ -81,10 +82,12 @@ const TossContainer = styled.div`
 `;
 
 const TossWrapper = styled.div`
-  background-color: var(--color-light-gray-f1);
-  width: 100%;
+  background-color: black;
+  width: 720px;
   @media screen and (max-width: 768px) {
+    width: 700px;
   }
   @media screen and (max-width: 480px) {
+    width: 450px;
   }
 `;
