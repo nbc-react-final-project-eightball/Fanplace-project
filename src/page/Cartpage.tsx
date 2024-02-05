@@ -5,6 +5,13 @@ import ProgressIndicator from 'components/Cart/ProgressIndicator';
 import useCartList from 'hooks/useCartList';
 import { TypeCart } from 'Type/TypeInterface';
 import CartEmpty from 'components/Cart/CartEmpty';
+import { useEffect, useRef } from 'react';
+import { useLocation } from 'react-router-dom';
+import { nanoid } from '@reduxjs/toolkit';
+import {
+  loadPaymentWidget,
+  PaymentWidgetInstance,
+} from '@tosspayments/payment-widget-sdk';
 
 //총금액을 계산하는 로직
 const getTotalPrice = (cartList: TypeCart[]) => {
@@ -19,16 +26,11 @@ const Cartpage = () => {
   const { cartList, setCartList } = useCartList();
   const totalPrice = getTotalPrice(cartList);
 
-  //cartList에 담긴게 없으면 0
-  // if (cartList.length === 0) return null;
-
   //주문금액이 5만원이하면 배송비 3000원붙음
   const shippingCost = totalPrice <= 50000 ? 3000 : 0;
   const totalPayment = totalPrice + shippingCost;
-
   const title = '장바구니';
 
-  console.log('cartList.length', cartList.length);
   return (
     <S.CartContainer>
       {cartList.length == 0 ? (
@@ -43,13 +45,14 @@ const Cartpage = () => {
               totalPrice={totalPrice}
               shippingCost={shippingCost}
               totalPayment={totalPayment}
-              hasCheckbox={true}
+              cartAndPayment={true}
             />
             <PaymentInfo
               cartList={cartList}
               totalPrice={totalPrice}
               shippingCost={shippingCost}
               totalPayment={totalPayment}
+              cartAndPayment={false}
             />
           </S.Wrapper>
         </S.Cart>

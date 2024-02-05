@@ -8,7 +8,7 @@ interface Props {
   totalPrice: number;
   shippingCost: number;
   totalPayment: number;
-  hasCheckbox: boolean;
+  cartAndPayment: boolean;
 }
 
 const CartListInfo = ({
@@ -17,7 +17,7 @@ const CartListInfo = ({
   totalPrice,
   shippingCost,
   totalPayment,
-  hasCheckbox,
+  cartAndPayment,
 }: Props) => {
   const [selectAll, setSelectAll] = useState<boolean>(false);
 
@@ -59,7 +59,7 @@ const CartListInfo = ({
 
   return (
     <S.LeftContainer>
-      {hasCheckbox && (
+      {cartAndPayment && (
         <div className="artistName">
           <input
             type="checkbox"
@@ -75,7 +75,7 @@ const CartListInfo = ({
       <S.CartList>
         {cartList.map((cartItem) => (
           <S.CartWrapper key={cartItem.id}>
-            {hasCheckbox && (
+            {cartAndPayment && (
               <>
                 <input
                   type="checkbox"
@@ -88,51 +88,57 @@ const CartListInfo = ({
             )}
 
             <S.Image src={`${cartItem.img}`}></S.Image>
+
             <div className="titleWrapper">
               <div className="title">{cartItem.title}</div>
-              {/* <div>옵션</div> */}
             </div>
-            <div className="circleArea">
-              <div
-                className="circle"
-                onClick={() => decreaseQuantityHandler(cartItem.productId)}
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="12"
-                  height="12"
-                  viewBox="0 0 12 12"
-                  fill="none"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    clipRule="evenodd"
-                    d="M1.7998 6.0001C1.7998 5.89401 1.84195 5.79227 1.91696 5.71726C1.99198 5.64224 2.09372 5.6001 2.1998 5.6001H9.79981C9.90589 5.6001 10.0076 5.64224 10.0826 5.71726C10.1577 5.79227 10.1998 5.89401 10.1998 6.0001C10.1998 6.10618 10.1577 6.20793 10.0826 6.28294C10.0076 6.35795 9.90589 6.4001 9.79981 6.4001H2.1998C2.09372 6.4001 1.99198 6.35795 1.91696 6.28294C1.84195 6.20793 1.7998 6.10618 1.7998 6.0001Z"
-                    fill="#999999"
-                  />
-                </svg>
-              </div>
-              <div>{cartItem.quantity}</div>
-              <div
-                className="circle"
-                onClick={() => increaseQuantityHandler(cartItem.productId)}
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="12"
-                  height="12"
-                  viewBox="0 0 12 12"
-                  fill="none"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    clipRule="evenodd"
-                    d="M6.39981 2.20005C6.39981 2.09396 6.35766 1.99222 6.28265 1.91721C6.20763 1.84219 6.10589 1.80005 5.9998 1.80005C5.89372 1.80005 5.79198 1.84219 5.71696 1.91721C5.64195 1.99222 5.59981 2.09396 5.59981 2.20005V5.60005H2.1998C2.09372 5.60005 1.99198 5.64219 1.91696 5.71721C1.84195 5.79222 1.7998 5.89396 1.7998 6.00005C1.7998 6.10614 1.84195 6.20788 1.91696 6.28289C1.99198 6.35791 2.09372 6.40005 2.1998 6.40005H5.59981V9.80005C5.59981 9.90614 5.64195 10.0079 5.71696 10.0829C5.79198 10.1579 5.89372 10.2 5.9998 10.2C6.10589 10.2 6.20763 10.1579 6.28265 10.0829C6.35766 10.0079 6.39981 9.90614 6.39981 9.80005V6.40005H9.79981C9.90589 6.40005 10.0076 6.35791 10.0826 6.28289C10.1577 6.20788 10.1998 6.10614 10.1998 6.00005C10.1998 5.89396 10.1577 5.79222 10.0826 5.71721C10.0076 5.64219 9.90589 5.60005 9.79981 5.60005H6.39981V2.20005Z"
-                    fill="#999999"
-                  />
-                </svg>
-              </div>
-            </div>
+            <>
+              {cartAndPayment ? (
+                <div className="circleArea">
+                  <div
+                    className="circle"
+                    onClick={() => decreaseQuantityHandler(cartItem.productId)}
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="12"
+                      height="12"
+                      viewBox="0 0 12 12"
+                      fill="none"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        clipRule="evenodd"
+                        d="M1.7998 6.0001C1.7998 5.89401 1.84195 5.79227 1.91696 5.71726C1.99198 5.64224 2.09372 5.6001 2.1998 5.6001H9.79981C9.90589 5.6001 10.0076 5.64224 10.0826 5.71726C10.1577 5.79227 10.1998 5.89401 10.1998 6.0001C10.1998 6.10618 10.1577 6.20793 10.0826 6.28294C10.0076 6.35795 9.90589 6.4001 9.79981 6.4001H2.1998C2.09372 6.4001 1.99198 6.35795 1.91696 6.28294C1.84195 6.20793 1.7998 6.10618 1.7998 6.0001Z"
+                        fill="#999999"
+                      />
+                    </svg>
+                  </div>
+                  <div>{cartItem.quantity}</div>
+                  <div
+                    className="circle"
+                    onClick={() => increaseQuantityHandler(cartItem.productId)}
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="12"
+                      height="12"
+                      viewBox="0 0 12 12"
+                      fill="none"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        clipRule="evenodd"
+                        d="M6.39981 2.20005C6.39981 2.09396 6.35766 1.99222 6.28265 1.91721C6.20763 1.84219 6.10589 1.80005 5.9998 1.80005C5.89372 1.80005 5.79198 1.84219 5.71696 1.91721C5.64195 1.99222 5.59981 2.09396 5.59981 2.20005V5.60005H2.1998C2.09372 5.60005 1.99198 5.64219 1.91696 5.71721C1.84195 5.79222 1.7998 5.89396 1.7998 6.00005C1.7998 6.10614 1.84195 6.20788 1.91696 6.28289C1.99198 6.35791 2.09372 6.40005 2.1998 6.40005H5.59981V9.80005C5.59981 9.90614 5.64195 10.0079 5.71696 10.0829C5.79198 10.1579 5.89372 10.2 5.9998 10.2C6.10589 10.2 6.20763 10.1579 6.28265 10.0829C6.35766 10.0079 6.39981 9.90614 6.39981 9.80005V6.40005H9.79981C9.90589 6.40005 10.0076 6.35791 10.0826 6.28289C10.1577 6.20788 10.1998 6.10614 10.1998 6.00005C10.1998 5.89396 10.1577 5.79222 10.0826 5.71721C10.0076 5.64219 9.90589 5.60005 9.79981 5.60005H6.39981V2.20005Z"
+                        fill="#999999"
+                      />
+                    </svg>
+                  </div>
+                </div>
+              ) : (
+                <div>{cartItem.quantity}</div>
+              )}
+            </>
             <div className="productprice">
               {cartItem.price.toLocaleString()}원
             </div>
