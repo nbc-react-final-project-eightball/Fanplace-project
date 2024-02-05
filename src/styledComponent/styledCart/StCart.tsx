@@ -11,7 +11,6 @@ export const CartContainer = styled.div`
 export const Cart = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   height: 900px;
   top: 112px;
@@ -93,6 +92,7 @@ export const LeftContainer = styled.div`
     border-radius: 2px;
     border: 1px solid var(--color-light-gray-e9);
     position: relative;
+    cursor: pointer;
   }
   @media screen and (max-width: 1024px) {
     max-width: unset;

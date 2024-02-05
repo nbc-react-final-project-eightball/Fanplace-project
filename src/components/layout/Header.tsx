@@ -24,7 +24,7 @@ const Header = () => {
         </S.Header>
         <S.Header>
           <S.HeaderButton>
-            <button aria-label="검색">
+            {/* <button aria-label="검색">
               <svg
                 id="search"
                 xmlns="http://www.w3.org/2000/svg"
@@ -49,7 +49,7 @@ const Header = () => {
                 />
               </svg>
               <S.MobileName>검색</S.MobileName>
-            </button>
+            </button> */}
             {isLogged ? (
               <ProfileCard />
             ) : (
@@ -109,7 +109,7 @@ const Header = () => {
               <S.MobileName>장바구니</S.MobileName>
             </Link>
 
-            <CustomSelect />
+            {/* <CustomSelect /> */}
           </S.HeaderButton>
         </S.Header>
       </S.Wrapper>
