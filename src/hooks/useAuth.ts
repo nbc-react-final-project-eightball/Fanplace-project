@@ -30,7 +30,7 @@ const useAuth = () => {
           const userData = userDocSnap.data();
           console.log('Firestore에서 가져온 유저 데이터:', userData);
 
-          if (userData.displayName === authUser.displayName) {
+          if (userData.email === authUser.email) {
             dispatch(setPhoneNumber({ phoneNumber: userData.phoneNumber }));
 
             dispatch(
@@ -39,7 +39,11 @@ const useAuth = () => {
                 detailAddress: userData.detailAddress,
               }),
             );
-            dispatch(setUserInfo({ userInfo: authUser }));
+            dispatch(
+              setUserInfo({
+                userInfo: { ...authUser, displayName: userData.displayName },
+              }),
+            );
           } else {
             console.log(
               'Firestore 데이터와 인증된 유저의 정보가 일치하지 않습니다.',
