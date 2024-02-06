@@ -36,7 +36,7 @@ const GoodsList = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { sideCategory } = useParams<{ sideCategory: string }>();
-  console.log('사이드카테고리', sideCategory);
+
   useEffect(() => {
     setFilter(null);
     setShowArtistFilter(false);
@@ -73,7 +73,7 @@ const GoodsList = () => {
   useEffect(() => {
     fetchGoods();
   }, [sideCategory]);
-  console.log('상품 가져오기', goodsList);
+
   let pageNumber = useSelector((state: RootState) => state.goods.currentPage);
   const filteredProduct = goodsList.filter(
     (product: typeProduct) =>
