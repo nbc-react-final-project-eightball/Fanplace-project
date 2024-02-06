@@ -138,3 +138,34 @@ export const MobileName = styled.p`
     font-size: 14px;
   }
 `;
+
+export const SearchDiv = styled.div`
+  position: relative;
+`;
+interface SearchProps {
+  $setchClick: boolean;
+}
+export const Searchinput = styled.input<SearchProps>`
+  display: flex;
+  justify-content: center;
+  padding: 0.375rem;
+  background: var(--color-white);
+  border-radius: 4rem;
+  position: absolute;
+  left: -150px;
+  visibility: ${(props) => (props.$setchClick ? 'visible' : 'hidden')};
+  opacity: ${(props) => (props.$setchClick ? 1 : 0)};
+  transition: all 1s ease-in-out;
+`;
+
+export const SearchinputButton1 = styled.button<SearchProps>`
+  visibility: ${(props) => (props.$setchClick ? 'visible' : 'hidden')};
+  left: 0px;
+  z-index: ${(props) => (props.$setchClick ? 1 : 0)};
+`;
+
+export const SearchinputButton2 = styled.button<SearchProps>`
+  visibility: ${(props) => (props.$setchClick ? 'hidden' : 'visible')};
+  z-index: 2;
+  position: absolute;
+`;

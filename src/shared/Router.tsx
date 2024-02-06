@@ -18,6 +18,7 @@ import PaymentSuccess from 'page/PaymentSuccess';
 import ChatListPage from 'page/ChatListPage';
 import Artists from 'page/Artists';
 import Announcements from 'page/Announcements';
+import SearchList from 'page/SearchList';
 
 const Router = () => {
   return (
@@ -42,6 +43,7 @@ const Router = () => {
           <Route path="/chatlist" element={<ChatListPage />} />
           <Route path="/artists" element={<Artists />} />
           <Route path="/announcements" element={<Announcements />} />
+          <Route path="/SearchList" element={<SearchList />} />
         </Route>
       </Routes>
     </BrowserRouter>
