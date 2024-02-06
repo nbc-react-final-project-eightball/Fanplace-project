@@ -39,6 +39,22 @@ const Mypage = () => {
                 <li>결제금액</li>
               </ul>
             </S.TableHead>
+            {/* <S.TableBody2> */}
+            {/* <ul>
+                <li>2024.02.05/7</li>
+                <li>아이리 칸나 - ADDICT!ON</li>
+                <li>1</li>
+                <li>배송 준비 중</li>
+                <li>44000 원</li>
+              </ul> */}
+            {/* <ul>
+                <li>2024.02.05/12</li>
+                <li>트와이스 휴대폰 키링 세트 - ONCE AGAIN</li>
+                <li>1</li>
+                <li>배송 준비 중</li>
+                <li>19000 원</li>
+              </ul> */}
+            {/* </S.TableBody2> */}
             <S.TableBody>
               <p>주문내역이 없습니다.</p>
             </S.TableBody>

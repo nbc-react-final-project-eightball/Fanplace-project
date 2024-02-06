@@ -76,6 +76,32 @@ export const TableHead = styled.div`
     display: none;
   }
 `;
+export const TableBody2 = styled.div`
+  height: 3rem;
+  border-bottom: 1px solid var(--color-medium-gray-dd);
+  color: var(--color-primary-medium-55);
+  margin-bottom: 100px;
+  ul {
+    display: flex;
+    width: 100%;
+    height: 100%;
+  }
+  ul li {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    font-size: 0.875rem;
+  }
+  ul li:nth-child(2) {
+    flex: 2;
+  }
+  @media (max-width: 640px) {
+    display: none;
+  }
+`;
 export const TableBody = styled.div`
   display: flex;
   align-items: center;

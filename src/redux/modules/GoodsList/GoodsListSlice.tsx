@@ -1,6 +1,7 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { typeProduct } from '../../../Type/TypeInterface';
 import { set } from 'react-hook-form';
+import { DocumentData } from 'firebase/firestore';
 
 interface GoodsState {
   goodsList: typeProduct[];
@@ -8,6 +9,8 @@ interface GoodsState {
   currentPage: number;
   lastDoc: string | null;
   filter: string | null;
+  searchList: DocumentData[];
+  searchName: string;
 }
 
 const initialState: GoodsState = {
@@ -16,6 +19,8 @@ const initialState: GoodsState = {
   currentPage: 1,
   lastDoc: null,
   filter: null,
+  searchList: [],
+  searchName: '',
 };
 
 export const goodsSlice = createSlice({
@@ -40,6 +45,12 @@ export const goodsSlice = createSlice({
     setPage: (state, action: PayloadAction<number>) => {
       state.currentPage = action.payload;
     },
+    setProductSearch: (state, action: PayloadAction<DocumentData[]>) => {
+      state.searchList = action.payload;
+    },
+    setSearchName: (state, action: PayloadAction<string>) => {
+      state.searchName = action.payload;
+    },
   },
 });
 
@@ -50,6 +61,8 @@ export const {
   setLastDoc,
   setFilterR,
   setPage,
+  setProductSearch,
+  setSearchName,
 } = goodsSlice.actions;
 
 export default goodsSlice.reducer;

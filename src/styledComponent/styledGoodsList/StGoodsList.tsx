@@ -131,7 +131,9 @@ export const Cate = styled.h2`
   font-size: 20px;
   color: var(--color-primary-medium-33);
   span {
+    margin-left: 10px;
     font-weight: normal;
+    color: #777777;
   }
 `;
 
@@ -343,7 +345,7 @@ export const GoodsListCardSection1_2 = styled.section`
 //상품리스트 1,2,3,4,5 버튼
 export const GoodsListSection4 = styled.section`
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   width: 100%;
   gap: 24px;
   margin: 80px auto 100px;
@@ -353,7 +355,6 @@ export const GoodsListSection4 = styled.section`
 `;
 
 export const GoodsListSection4Btn = styled.button`
-  margin-right: 10px;
   cursor: pointer;
 `;
 
@@ -364,4 +365,25 @@ export const NotProduct = styled.div`
   justify-content: center;
   padding: 40px 0;
   font-size: 18px;
+`;
+
+export const GoodsListPageNumber = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--color-primary-medium-33);
+`;
+
+export const GoodsListPageNumberButton = styled.button`
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  background-color: #f7f7f7;
+  color: #999999;
+  border: 1px solid #f7f7f7;
+  border-radius: 50%;
 `;
