@@ -73,7 +73,6 @@ const GoodsList = () => {
   }, [sideCategory]);
 
   let pageNumber = useSelector((state: RootState) => state.goods.currentPage);
-  console.log('pageNumber', pageNumber);
   const filteredProduct = goodsList.filter(
     (product: typeProduct) =>
       (selectedArtists.length === 0 ||
@@ -82,7 +81,6 @@ const GoodsList = () => {
       (!sideCategory || product.sideCategory === sideCategory),
   );
   const totalPage = Math.ceil(filteredProduct.length / pageSize);
-  console.log('totalPage', totalPage);
   const currentPageGoodsList = filteredProduct.slice(
     (pageNumber - 1) * pageSize,
     pageNumber * pageSize,
