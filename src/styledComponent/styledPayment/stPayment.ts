@@ -112,3 +112,22 @@ export const ApiWrapper = styled.div`
     width: 100%;
   }
 `;
+
+
+export const TossContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+`
+
+export const TossWrapper = styled.div`
+background-color: black;
+width: 720px;
+@media screen and (max-width: 768px) {
+  width: 700px;
+}
+@media screen and (max-width: 480px) {
+  width: 450px;
+}
+`;

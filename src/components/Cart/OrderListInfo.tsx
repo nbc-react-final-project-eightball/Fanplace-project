@@ -1,65 +1,79 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import * as S from '../../styledComponent/styledCart/StCart';
 import { TypeCart } from 'Type/TypeInterface';
 
 interface Props {
-  cartList: TypeCart[];
+  productList: TypeCart[];
   setCartList: React.Dispatch<React.SetStateAction<TypeCart[]>>;
   totalPrice: number;
   shippingCost: number;
   totalPayment: number;
-  cartAndPayment: boolean;
+  isCartPage?: boolean;
+  onChangeQuantity?: (itemId: number, isPlusButton: boolean) => void;
 }
 
-const CartListInfo = ({
-  cartList,
+const OrderListInfo = ({
+  productList,
   setCartList,
+
   totalPrice,
   shippingCost,
   totalPayment,
-  cartAndPayment,
+  isCartPage = false,
+  onChangeQuantity,
 }: Props) => {
   const [selectAll, setSelectAll] = useState<boolean>(false);
+  const [selectedItems, setSelectedItems] = useState<number[]>([]);
 
   //체크박스 변하는 핸들러
   const checkboxChangeHanlder = (itemId: number) => {
-    const updatedCartList = cartList.map((item) =>
+    const updatedCartList = productList.map((item) =>
       item.productId == itemId ? { ...item, selected: !item.selected } : item,
     );
     console.log('itemId :', itemId);
     setCartList(updatedCartList);
+    // 선택된 아이템 추적
+    if (selectedItems.includes(itemId)) {
+      setSelectedItems(selectedItems.filter((id) => id !== itemId));
+    } else {
+      setSelectedItems([...selectedItems, itemId]);
+    }
   };
   //체크박스 전체선택
   const selectAllChangeHandler = () => {
-    const updatedCartList = cartList.map((item) => ({
+    const updatedCartList = productList.map((item) => ({
       ...item,
       selected: !selectAll,
     }));
+
     setCartList(updatedCartList);
     setSelectAll(!selectAll);
+    // 선택된 아이템 추적
+    if (!selectAll) {
+      setSelectedItems(productList.map((item) => item.productId));
+    } else {
+      setSelectedItems([]);
+    }
   };
-  //장바구니 수량 추가
+
+  // 선택된 아이템에 대한 합계 가격 계산
+  const selectedItemsTotalPrice = productList
+    .filter((item) => selectedItems.includes(item.productId))
+    .reduce((total, item) => total + item.price * item.quantity, 0);
+
+  // 장바구니 수량 추가
   const increaseQuantityHandler = (itemId: number) => {
-    const updatedCartList = cartList.map((item) =>
-      item.productId === itemId
-        ? { ...item, quantity: item.quantity + 1 }
-        : item,
-    );
-    setCartList(updatedCartList);
+    onChangeQuantity?.(itemId, true);
   };
-  //장바구니 수량 감소
+
+  // 장바구니 수량 감소
   const decreaseQuantityHandler = (itemId: number) => {
-    const updatedCartList = cartList.map((item) =>
-      item.productId === itemId && item.quantity > 1
-        ? { ...item, quantity: item.quantity - 1 }
-        : item,
-    );
-    setCartList(updatedCartList);
+    onChangeQuantity?.(itemId, false);
   };
 
   return (
     <S.LeftContainer>
-      {cartAndPayment && (
+      {isCartPage && (
         <div className="artistName">
           <input
             type="checkbox"
@@ -73,9 +87,9 @@ const CartListInfo = ({
       )}
 
       <S.CartList>
-        {cartList.map((cartItem) => (
+        {productList.map((cartItem) => (
           <S.CartWrapper key={cartItem.id}>
-            {cartAndPayment && (
+            {isCartPage && (
               <>
                 <input
                   type="checkbox"
@@ -93,7 +107,7 @@ const CartListInfo = ({
               <div className="title">{cartItem.title}</div>
             </div>
             <>
-              {cartAndPayment ? (
+              {isCartPage ? (
                 <div className="circleArea">
                   <div
                     className="circle"
@@ -148,7 +162,9 @@ const CartListInfo = ({
       <S.TotalAmount>
         <div>
           <div className="div1">상품금액</div>
-          <div className="div2">{totalPrice.toLocaleString()}원</div>
+          <div className="div2">
+            {selectedItemsTotalPrice.toLocaleString()}원
+          </div>
         </div>
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -207,4 +223,4 @@ const CartListInfo = ({
   );
 };
 
-export default CartListInfo;
+export default OrderListInfo;

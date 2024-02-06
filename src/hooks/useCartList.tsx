@@ -1,9 +1,13 @@
 import { db } from '../firebase/config';
 import { useEffect, useState } from 'react';
-import { doc, getDoc } from 'firebase/firestore';
+import { doc, getDoc, updateDoc } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
 import { TypeCart } from 'Type/TypeInterface';
 import { useQuery } from 'react-query';
+
+interface UpdateCartListState {
+  (updatedCartList: TypeCart[]): void;
+}
 
 const useCartList = () => {
   const [cartList, setCartList] = useState<TypeCart[]>([]);
@@ -30,6 +34,15 @@ const useCartList = () => {
       console.error('Error fetching cart data:', error);
     }
   };
+  const updateCartList = async (updatedCartList: TypeCart[]) => {
+    if (!user) return;
+    try {
+      const docRef = doc(db, 'cartList', user);
+      await updateDoc(docRef, { cartList: updatedCartList });
+    } catch (error) {
+      console.error('Error updating cart data:', error);
+    }
+  };
 
   const query = useQuery({
     queryKey: 'cartList',
@@ -43,9 +56,15 @@ const useCartList = () => {
     }
   }, [query.data]);
 
+  const changeCartListHandler: UpdateCartListState = (updatedCartList) => {
+    setCartList(updatedCartList);
+    updateCartList(updatedCartList);
+  };
+
   return {
     cartList,
     setCartList,
+    changeCartListHandler,
   };
 };
 
