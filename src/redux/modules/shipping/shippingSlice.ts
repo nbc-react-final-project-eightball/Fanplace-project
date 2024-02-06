@@ -7,6 +7,7 @@ interface ShippingState {
   detailAddress: string | null;
   phoneNumber: string | null;
   // instructions: string | null;
+  addresses: string[] | null;
 }
 
 const initialState: ShippingState = {
@@ -15,6 +16,7 @@ const initialState: ShippingState = {
   address: '',
   detailAddress: '',
   phoneNumber: null,
+  addresses: [],
   // instructions: null,
 };
 
@@ -26,8 +28,8 @@ interface setAddressInfo {
   phoneNumber: string;
   // instructions: string | null;
 }
-interface setData {
-  data: any;
+interface setAddresses {
+  addresses: any;
 }
 export const shippingSlice = createSlice({
   name: 'shipping',
@@ -41,12 +43,12 @@ export const shippingSlice = createSlice({
       state.phoneNumber = action.payload.phoneNumber;
       // // state.instructions = action.payload.instructions;
     },
-    setData: (state, action: PayloadAction<setData>) => {
+    setAddresses: (state, action: PayloadAction<setAddresses>) => {
       return { ...state, ...action.payload };
     },
   },
 });
 
-export const { setAddressInfo, setData } = shippingSlice.actions;
+export const { setAddressInfo, setAddresses } = shippingSlice.actions;
 
 export default shippingSlice.reducer;

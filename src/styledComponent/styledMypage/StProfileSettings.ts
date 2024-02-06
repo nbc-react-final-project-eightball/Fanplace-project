@@ -4,7 +4,8 @@ import styled from 'styled-components';
 export const ProfileSettingsWrapper = styled.div`
   width: 100%;
   .css-9npbnl-MuiFormLabel-root-MuiInputLabel-root {
-    font-family: inherit;
+    font-family: 'Pretendard', sans-serif;
+    color: var(--color-primary);
   }
   .css-1u3bzj6-MuiFormControl-root-MuiTextField-root {
     width: 22.5rem;
@@ -24,9 +25,14 @@ export const ProfileSettingsWrapper = styled.div`
   .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input {
     font: unset;
     font-family: 'pretendard', san-serif;
+    color: var(--color-primary);
     @media (max-width: 480px) {
       font-size: 0.9375rem;
     }
+  }
+
+  .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input.Mui-disabled {
+    -webkit-text-fill-color: var(--color-primary-medium-99);
   }
   .css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root.Mui-disabled
     .MuiOutlinedInput-notchedOutline {
@@ -144,7 +150,8 @@ export const EditButton = styled.button`
 
   background-color: ${(props) =>
     props.disabled ? 'var(--color-medium-gray-ee)' : 'var(--color-primary)'};
-  color: ${(props) => (props.disabled ? '#999' : '#fff')};
+  color: ${(props) =>
+    props.disabled ? 'var(--color-primary-medium-99)' : 'var(--color-white)'};
   transition: all 200ms;
   &:hover {
     background-color: ${(props) =>

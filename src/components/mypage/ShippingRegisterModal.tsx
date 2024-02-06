@@ -76,11 +76,11 @@ const ShippingRegisterModal = () => {
 
     const dispatch = useDispatch();
 
-    useEffect(() => {
-      if (userData.isAddressSuccess === false) {
-        console.log('userData.isAddressSuccess === false');
-      }
-    }, [userData.isAddressSuccess, closeModalHandler]);
+    // useEffect(() => {
+    //   if (userData.isAddressSuccess === false) {
+    //     console.log('userData.isAddressSuccess === false');
+    //   }
+    // }, [userData.isAddressSuccess, closeModalHandler]);
 
     const closeModal = () => {
       closeModalHandler(true);
@@ -126,34 +126,6 @@ const ShippingRegisterModal = () => {
           </S.CloseButton>
           <S.ModalTitle>배송지 추가하기</S.ModalTitle>
           {/* Controller 및 입력 필드 코드들 */}
-          <Controller
-            name="addressName"
-            control={control}
-            defaultValue={'배송지'}
-            rules={{
-              required: '배송지명을 입력해주세요',
-              pattern: {
-                value: /^[가-힣]+$/u,
-                message: '올바른 배송지명을 입력해주세요',
-              },
-            }}
-            render={({ field, fieldState }) => (
-              <div>
-                <InputLabel>배송지명</InputLabel>
-                <S.TextInputField
-                  value={field.value}
-                  onChange={field.onChange}
-                  error={fieldState.error !== undefined}
-                  helperText={fieldState.error && fieldState.error.message}
-                  InputLabelProps={{ shrink: false }}
-                  InputProps={{
-                    // maxLength: 8,
-                    placeholder: '배송지명을 입력해주세요',
-                  }}
-                />
-              </div>
-            )}
-          />
           {userData.isAddressSuccess === true ? (
             <S.AddressInputWrapper>
               <InputLabel>주소</InputLabel>
@@ -176,7 +148,7 @@ const ShippingRegisterModal = () => {
               <Controller
                 name="address"
                 control={control}
-                defaultValue={userData.address || ''}
+                defaultValue={'' || userData.address}
                 rules={{
                   required: '주소를 입력해주세요',
                 }}
@@ -260,6 +232,34 @@ const ShippingRegisterModal = () => {
               />
             </S.AddressInputWrapper>
           )}
+          <Controller
+            name="addressName"
+            control={control}
+            defaultValue={'배송지'}
+            rules={{
+              required: '배송지명을 입력해주세요',
+              pattern: {
+                value: /^[가-힣0-9]*[^\s]+[가-힣\s0-9]*$/,
+                message: '올바른 배송지명을 입력해주세요',
+              },
+            }}
+            render={({ field, fieldState }) => (
+              <div>
+                <InputLabel>배송지명</InputLabel>
+                <S.TextInputField
+                  value={field.value}
+                  onChange={field.onChange}
+                  error={fieldState.error !== undefined}
+                  helperText={fieldState.error && fieldState.error.message}
+                  InputLabelProps={{ shrink: false }}
+                  InputProps={{
+                    // maxLength: 8,
+                    placeholder: '배송지명을 입력해주세요',
+                  }}
+                />
+              </div>
+            )}
+          />
           <Controller
             name="recipient"
             control={control}

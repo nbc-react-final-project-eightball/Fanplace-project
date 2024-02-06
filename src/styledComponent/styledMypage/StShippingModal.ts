@@ -19,13 +19,14 @@ export const ModalBackground = styled.div`
   }
   .css-9npbnl-MuiFormLabel-root-MuiInputLabel-root {
     font-family: 'pretendard', san-serif;
+    color: var(--color-primary);
   }
   .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input {
     font: unset;
     font-family: 'pretendard', san-serif;
     padding: 12.5px 14px;
     border: none;
-
+    color: var(--color-primary);
     @media (max-width: 480px) {
       font-size: 0.9375rem;
     }
@@ -46,6 +47,8 @@ export const ModalBackground = styled.div`
   }
   .MuiOutlinedInput-notchedOutline {
     border-color: transparent;
+  }
+  .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline {
   }
   .css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root.Mui-disabled
     .MuiOutlinedInput-notchedOutline {
@@ -75,6 +78,7 @@ export const ModalContainer = styled.div`
   padding: 40px;
   transform: translate(-50%, -50%);
   background-color: var(--color-white);
+  border: 1px solid var(--color-light-gray-ef);
   border-radius: 8px;
   z-index: 12;
   overflow-y: auto;
@@ -185,7 +189,8 @@ export const EditButton = styled.button`
 
   background-color: ${(props) =>
     props.disabled ? 'var(--color-medium-gray-ee)' : 'var(--color-primary)'};
-  color: ${(props) => (props.disabled ? '#999' : '#fff')};
+  color: ${(props) =>
+    props.disabled ? 'var(--color-primary-medium-99)' : 'var(--color-white)'};
   transition: all 200ms;
   &:hover {
     background-color: ${(props) =>

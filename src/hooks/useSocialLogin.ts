@@ -68,10 +68,6 @@ export const useSocialLogin = (
         console.log('githubUserData', githubUserData);
         displayName = githubUserData.login;
 
-        console.log('소셜로그인 res', res);
-        console.log('소셜로그인 userDocRef', userDocRef);
-        console.log('소셜로그인 displayName', displayName);
-        console.log('소셜로그인 user.email', user.email);
         await setDoc(userDocRef, {
           displayName,
           phoneNumber: '',
