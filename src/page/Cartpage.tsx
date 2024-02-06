@@ -57,7 +57,7 @@ const Cartpage = () => {
   };
   const paymentHandeler = () => {
     navigate('/payment', {
-      state: { cartList, totalPrice, shippingCost, totalPayment },
+      state: { productList: cartList, totalPrice, shippingCost, totalPayment },
     });
   };
 

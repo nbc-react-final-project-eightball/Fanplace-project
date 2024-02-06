@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import * as S from '../../styledComponent/styledCart/StCart';
 import { TypeCart } from 'Type/TypeInterface';
+import { useDispatch } from 'react-redux';
 
 interface Props {
   productList: TypeCart[];
@@ -23,7 +24,9 @@ const OrderListInfo = ({
   onChangeQuantity,
 }: Props) => {
   const [selectAll, setSelectAll] = useState<boolean>(false);
+
   const [selectedItems, setSelectedItems] = useState<number[]>([]);
+  const dispatch = useDispatch();
 
   //체크박스 변하는 핸들러
   const checkboxChangeHanlder = (itemId: number) => {
@@ -32,6 +35,7 @@ const OrderListInfo = ({
     );
     console.log('itemId :', itemId);
     setCartList(updatedCartList);
+
     // 선택된 아이템 추적
     if (selectedItems.includes(itemId)) {
       setSelectedItems(selectedItems.filter((id) => id !== itemId));
@@ -55,7 +59,7 @@ const OrderListInfo = ({
       setSelectedItems([]);
     }
   };
-
+  console.log('selectedItems', selectedItems);
   // 선택된 아이템에 대한 합계 가격 계산
   const selectedItemsTotalPrice = productList
     .filter((item) => selectedItems.includes(item.productId))

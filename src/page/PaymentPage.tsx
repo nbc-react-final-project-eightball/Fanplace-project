@@ -7,6 +7,8 @@ import OrderListInfo from 'components/Cart/OrderListInfo';
 import { TypeCart } from 'Type/TypeInterface';
 import Address from 'components/payment/Address';
 import useTossPayment from 'hooks/useTossApi';
+import { useLocation } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 const getTotalPrice = (cartList: TypeCart[]) => {
   let totalPrice = 0;
@@ -16,12 +18,24 @@ const getTotalPrice = (cartList: TypeCart[]) => {
   return totalPrice;
 };
 
+// 3. useSelector 로 받아와서 OrderListInfo
 const PaymentPage = () => {
   const title = '주문결제';
+
   //아래부분 수정예정
+  //리덕스에서 불러온 새로운 리스트를 불러와야한다
   const { cartList, setCartList } = useCartList();
+  // const orderList = useSelector((state) => state.orderListSlice);
+
+  // const {
+  //   state: {
+  //     product: { productList: totalPayments },
+  //   },
+  // } = useLocation();
+
   const totalPrice = getTotalPrice(cartList);
 
+  //TossApi를 호출
   const { requestTossPayment } = useTossPayment({
     clientKey: 'test_gck_docs_Ovk5rk1EwkEbP0W43n07xlzm',
     customerKey: 'HyZccn4pYtFcWyfFC1q1-',
@@ -45,7 +59,6 @@ const PaymentPage = () => {
   const shippingCost = totalPrice <= 50000 ? 3000 : 0;
   const totalPayment = totalPrice + shippingCost;
 
-  //윗부분 수정예정
   return (
     <>
       <S.PaymentContainer>
@@ -53,6 +66,7 @@ const PaymentPage = () => {
           <ProgressIndicator title={title} />
           <S.Wrapper>
             <OrderListInfo
+              //productList={orderList}
               productList={cartList}
               setCartList={setCartList}
               totalPrice={totalPrice}
