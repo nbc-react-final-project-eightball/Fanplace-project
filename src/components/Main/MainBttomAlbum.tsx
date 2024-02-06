@@ -1,12 +1,15 @@
 import React, { useEffect, useRef, useState } from 'react';
 import * as S from '../../styledComponent/styledMain/StMainCarousel';
 import { DocumentData } from 'firebase/firestore';
+import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { setSelectedProduct } from '../../redux/modules/GoodsList/GoodsListSlice';
 interface MainBttomAlbumProps {
   newAlbum?: DocumentData;
 }
 const MainBttomAlbum: React.FC<MainBttomAlbumProps> = ({ newAlbum }) => {
   const [currentSlide, setCurrentSlide] = useState(1); // 현재 슬라이드의 인덱스
-
+  const dispatch = useDispatch();
   const slides1 = [
     'img/Album8.jpg',
     'img/Album1.jpg',
@@ -173,11 +176,19 @@ const MainBttomAlbum: React.FC<MainBttomAlbumProps> = ({ newAlbum }) => {
               {newAlbum &&
                 newCopiedSlides.map((Album, index) => (
                   <S.AlbumSlide key={index}>
-                    <S.AlbumImg src={Album.img} alt="img" />
-                    <S.AlbumTitle>
-                      {' '}
-                      <p>{Album.artist} </p> <h4>{Album.title}</h4>
-                    </S.AlbumTitle>
+                    <Link
+                      to={`/Detail/${Album?.productId}`}
+                      style={{ textDecoration: 'none', color: 'black' }}
+                      onClick={() => {
+                        dispatch(setSelectedProduct(Album));
+                      }}
+                    >
+                      <S.AlbumImg src={Album.img} alt="img" />
+                      <S.AlbumTitle>
+                        {' '}
+                        <p>{Album.artist} </p> <h4>{Album.title}</h4>
+                      </S.AlbumTitle>
+                    </Link>
                   </S.AlbumSlide>
                 ))}
             </S.AlbumCarousel>

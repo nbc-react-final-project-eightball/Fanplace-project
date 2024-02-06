@@ -275,7 +275,7 @@ const ProductInfo: React.FC<ProductProps> = ({ product }) => {
               return;
             }
             addCartHandler();
-            navigate('/Cart');
+            navigate('/payment');
           }}
           aria-label="상품구매"
         >
@@ -332,7 +332,7 @@ const ProductInfo: React.FC<ProductProps> = ({ product }) => {
             </svg>
             장바구니 담기
           </S.ProductInfoSection3Btn2>
-          <S.ProductInfoSection3Btn3>
+          {/* <S.ProductInfoSection3Btn3>
             {' '}
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -350,7 +350,7 @@ const ProductInfo: React.FC<ProductProps> = ({ product }) => {
               />
             </svg>{' '}
             위시리스트 담기
-          </S.ProductInfoSection3Btn3>
+          </S.ProductInfoSection3Btn3> */}
         </S.ProductInfoSection3_1>
       </S.ProductInfoSection3>
     </S.ProductInfoContainer>
