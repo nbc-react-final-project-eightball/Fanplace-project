@@ -138,3 +138,90 @@ export const MobileName = styled.p`
     font-size: 14px;
   }
 `;
+
+export const SearchDiv = styled.div`
+  position: relative;
+`;
+interface SearchProps {
+  $setchClick: boolean;
+}
+export const Searchinput = styled.input<SearchProps>`
+  display: flex;
+  justify-content: center;
+  padding: 0.375rem;
+  background: var(--color-white);
+  border-radius: 4rem;
+  position: absolute;
+  left: -150px;
+  visibility: ${(props) => (props.$setchClick ? 'visible' : 'hidden')};
+  opacity: ${(props) => (props.$setchClick ? 1 : 0)};
+  transition: all 1s ease-in-out;
+  @media screen and (max-width: 768px) {
+    z-index: 25;
+    width: 500px;
+    left: 100px;
+    top: -500px;
+  }
+  @media screen and (max-width: 480px) {
+    width: 300px;
+    left: 100px;
+    top: -500px;
+  }
+  @media screen and (max-width: 411px) {
+    width: 300px;
+    left: 50px;
+    top: -500px;
+  }
+`;
+
+export const SearchinputButton1 = styled.button<SearchProps>`
+  visibility: ${(props) => (props.$setchClick ? 'visible' : 'hidden')};
+  opacity: ${(props) => (props.$setchClick ? 1 : 0)};
+  transition: all 1s ease-in-out;
+  left: 0px;
+  z-index: ${(props) => (props.$setchClick ? 1 : 0)};
+  @media screen and (max-width: 768px) {
+    position: absolute;
+    z-index: 25;
+    left: 560px;
+    top: -500px;
+  }
+  @media screen and (max-width: 480px) {
+    left: 360px;
+    top: -500px;
+  }
+  @media screen and (max-width: 411px) {
+    left: 310px;
+    top: -500px;
+  }
+`;
+
+export const SearchinputButton2 = styled.button<SearchProps>`
+  visibility: ${(props) => (props.$setchClick ? 'hidden' : 'visible')};
+  z-index: 2;
+  position: absolute;
+  @media screen and (max-width: 768px) {
+    visibility: visible;
+  }
+`;
+export const Div = styled.div``;
+
+export const SearchOverlay = styled(Div)<SearchProps>`
+  @media (max-width: 768px) {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    transition: 0.5s;
+    z-index: 24;
+    cursor: pointer;
+    opacity: ${(props) => (props?.$setchClick === false ? '0' : '1')};
+    visibility: ${(props) =>
+      props?.$setchClick === false ? 'hidden' : 'visible'};
+  }
+  border-radius: 0px;
+`;
