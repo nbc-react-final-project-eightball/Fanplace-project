@@ -72,6 +72,10 @@ const Header = () => {
         </S.Header>
         <S.Header>
           <S.HeaderButton>
+            <S.SearchOverlay
+              $setchClick={searcClick}
+              onClick={() => setSearchClick(!searcClick)}
+            />
             <S.SearchDiv>
               <S.Searchinput
                 type="text"
@@ -144,7 +148,7 @@ const Header = () => {
                     strokeLinejoin="round"
                   />
                 </svg>
-                <S.MobileName>검색</S.MobileName>
+                {/* <S.MobileName>검색</S.MobileName> */}
               </S.SearchinputButton1>
               <S.SearchinputButton2
                 aria-label="검색 활성화"

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import * as S from '../styledComponent/styledGoodsList/StGoodsList';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -8,10 +8,13 @@ const SearchList = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const SearchProduct = useSelector((state: { goods: any }) => state.goods);
-  console.log('SearchProduct', SearchProduct.searchList);
+
   const SearchName = useSelector(
     (state: { goods: any }) => state.goods.searchName,
   );
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [SearchProduct]);
   return (
     <>
       <S.GoodsListContainer>
