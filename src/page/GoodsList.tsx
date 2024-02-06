@@ -4,11 +4,9 @@ import { db } from '../firebase/config';
 import {
   collection,
   query,
-  orderBy,
   getDocs,
   DocumentData,
   where,
-  addDoc,
 } from 'firebase/firestore';
 
 import { typeProduct } from '../Type/TypeInterface';
@@ -75,6 +73,7 @@ const GoodsList = () => {
   }, [sideCategory]);
 
   let pageNumber = useSelector((state: RootState) => state.goods.currentPage);
+  console.log('pageNumber', pageNumber);
   const filteredProduct = goodsList.filter(
     (product: typeProduct) =>
       (selectedArtists.length === 0 ||
@@ -82,11 +81,16 @@ const GoodsList = () => {
       (!filter || product.category === filter) &&
       (!sideCategory || product.sideCategory === sideCategory),
   );
+  const totalPage = Math.ceil(filteredProduct.length / pageSize);
+  console.log('totalPage', totalPage);
   const currentPageGoodsList = filteredProduct.slice(
     (pageNumber - 1) * pageSize,
     pageNumber * pageSize,
   );
-
+  const handlePageChange = (pageNumber: number) => {
+    dispatch(setCurrentPage(pageNumber));
+    window.scrollTo(0, 0);
+  };
   // sideCategory = 왼쪽 사이드바 카테고리
   // category = 사이트바 카테고리 필터후 나오는 카테고리
 
@@ -1060,7 +1064,10 @@ const GoodsList = () => {
   return (
     <S.GoodsListContainer>
       <S.GoodsCategory>
-        <S.Cate>{sideCategory}</S.Cate>
+        <S.Cate>
+          {sideCategory}
+          <span>({lastFilteredProduct.length})</span>
+        </S.Cate>
       </S.GoodsCategory>
       <S.GoodsListContainerSection>
         <S.GoodsListSection1>
@@ -1196,50 +1203,76 @@ const GoodsList = () => {
             </S.GoodsListSection3Wrapper>
           </S.GoodsListSection3>
           <S.GoodsListSection4>
-            <S.GoodsListSection4Btn
-              onClick={() => {
-                handlePrevPage(pageNumber);
-              }}
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="40"
-                height="40"
-                viewBox="0 0 40 40"
-                fill="none"
-              >
-                <path
-                  d="M20 0C31.0457 1.44847e-06 40 8.95431 40 20C40 31.0457 31.0457 40 20 40C8.9543 40 -1.44847e-06 31.0457 0 20C1.44847e-06 8.9543 8.95431 -1.44847e-06 20 0Z"
-                  fill="var(--color-primary)"
-                />
-                <path
-                  d="M23.2 13.6C23.2005 13.8492 23.1137 14.0908 22.9547 14.2827L18.176 20L22.784 25.728C22.8726 25.8371 22.9388 25.9627 22.9787 26.0974C23.0186 26.2322 23.0315 26.3735 23.0167 26.5133C23.0018 26.653 22.9594 26.7885 22.8921 26.9118C22.8247 27.0352 22.7336 27.144 22.624 27.232C22.5149 27.3206 22.3894 27.3868 22.2546 27.4267C22.1198 27.4666 21.9785 27.4795 21.8387 27.4647C21.699 27.4498 21.5635 27.4074 21.4402 27.3401C21.3168 27.2727 21.208 27.1816 21.12 27.072L15.968 20.672C15.8111 20.4811 15.7253 20.2417 15.7253 19.9947C15.7253 19.7476 15.8111 19.5082 15.968 19.3173L21.3013 12.9173C21.3909 12.8093 21.5009 12.72 21.625 12.6546C21.7491 12.5892 21.8849 12.5488 22.0246 12.536C22.1643 12.5231 22.3052 12.5379 22.4391 12.5795C22.5731 12.6212 22.6975 12.6889 22.8053 12.7787C22.9277 12.8779 23.0265 13.0031 23.0948 13.1451C23.163 13.2871 23.199 13.4424 23.2 13.6Z"
-                  fill="var(--color-white)"
-                />
-              </svg>
-            </S.GoodsListSection4Btn>
-            <S.GoodsListSection4Btn
-              onClick={() => {
-                handleNextPage(pageNumber);
-              }}
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="40"
-                height="40"
-                viewBox="0 0 40 40"
-                fill="none"
-              >
-                <path
-                  d="M20 40C8.9543 40 -3.03189e-06 31.0457 1.74846e-06 20C2.7141e-06 8.9543 8.95431 -6.5288e-06 20 -1.74846e-06C31.0457 -7.8281e-07 40 8.95431 40 20C40 31.0457 31.0457 40 20 40Z"
-                  fill="var(--color-primary)"
-                />
-                <path
-                  d="M16.8 26.4C16.7995 26.1508 16.8863 25.9092 17.0453 25.7173L21.824 20L17.216 14.272C17.1274 14.1629 17.0612 14.0373 17.0213 13.9026C16.9814 13.7678 16.9685 13.6265 16.9833 13.4867C16.9982 13.347 17.0406 13.2115 17.1079 13.0882C17.1753 12.9648 17.2664 12.856 17.376 12.768C17.4851 12.6794 17.6107 12.6132 17.7454 12.5733C17.8802 12.5334 18.0215 12.5205 18.1613 12.5353C18.301 12.5502 18.4365 12.5926 18.5598 12.6599C18.6832 12.7273 18.792 12.8184 18.88 12.928L24.032 19.328C24.1889 19.5189 24.2747 19.7583 24.2747 20.0053C24.2747 20.2524 24.1889 20.4918 24.032 20.6827L18.6987 27.0827C18.6091 27.1907 18.4991 27.28 18.375 27.3454C18.2509 27.4108 18.1151 27.4512 17.9754 27.464C17.8357 27.4769 17.6949 27.4621 17.5609 27.4205C17.4269 27.3788 17.3025 27.3111 17.1947 27.2213C17.0723 27.1221 16.9735 26.9969 16.9052 26.8549C16.837 26.7129 16.801 26.5576 16.8 26.4Z"
-                  fill="var(--color-white)"
-                />
-              </svg>
-            </S.GoodsListSection4Btn>
+            {totalPage
+              ? totalPage > 1 && (
+                  <>
+                    <S.GoodsListSection4Btn
+                      onClick={() => {
+                        handlePrevPage(pageNumber);
+                      }}
+                      aria-label="이전페이지"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="40"
+                        height="40"
+                        viewBox="0 0 40 40"
+                        fill="none"
+                      >
+                        <path
+                          d="M20 0C31.0457 1.44847e-06 40 8.95431 40 20C40 31.0457 31.0457 40 20 40C8.9543 40 -1.44847e-06 31.0457 0 20C1.44847e-06 8.9543 8.95431 -1.44847e-06 20 0Z"
+                          fill="var(--color-primary)"
+                        />
+                        <path
+                          d="M23.2 13.6C23.2005 13.8492 23.1137 14.0908 22.9547 14.2827L18.176 20L22.784 25.728C22.8726 25.8371 22.9388 25.9627 22.9787 26.0974C23.0186 26.2322 23.0315 26.3735 23.0167 26.5133C23.0018 26.653 22.9594 26.7885 22.8921 26.9118C22.8247 27.0352 22.7336 27.144 22.624 27.232C22.5149 27.3206 22.3894 27.3868 22.2546 27.4267C22.1198 27.4666 21.9785 27.4795 21.8387 27.4647C21.699 27.4498 21.5635 27.4074 21.4402 27.3401C21.3168 27.2727 21.208 27.1816 21.12 27.072L15.968 20.672C15.8111 20.4811 15.7253 20.2417 15.7253 19.9947C15.7253 19.7476 15.8111 19.5082 15.968 19.3173L21.3013 12.9173C21.3909 12.8093 21.5009 12.72 21.625 12.6546C21.7491 12.5892 21.8849 12.5488 22.0246 12.536C22.1643 12.5231 22.3052 12.5379 22.4391 12.5795C22.5731 12.6212 22.6975 12.6889 22.8053 12.7787C22.9277 12.8779 23.0265 13.0031 23.0948 13.1451C23.163 13.2871 23.199 13.4424 23.2 13.6Z"
+                          fill="var(--color-white)"
+                        />
+                      </svg>
+                    </S.GoodsListSection4Btn>
+                    <S.GoodsListPageNumber>
+                      {[...Array(totalPage).keys()].map((_, index) => (
+                        <S.GoodsListPageNumberButton
+                          key={index}
+                          style={{
+                            fontWeight:
+                              index + 1 === pageNumber ? 'bold' : 'normal',
+                            backgroundColor:
+                              index + 1 === pageNumber ? '#f7f7f7' : '#FFFFFF',
+                            color:
+                              index + 1 === pageNumber ? '#333333' : '#999999',
+                          }}
+                          onClick={() => handlePageChange(index + 1)}
+                        >
+                          {index + 1}
+                        </S.GoodsListPageNumberButton>
+                      ))}
+                    </S.GoodsListPageNumber>
+                    <S.GoodsListSection4Btn
+                      onClick={() => {
+                        handleNextPage(pageNumber);
+                      }}
+                      aria-label="다음페이지"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="40"
+                        height="40"
+                        viewBox="0 0 40 40"
+                        fill="none"
+                      >
+                        <path
+                          d="M20 40C8.9543 40 -3.03189e-06 31.0457 1.74846e-06 20C2.7141e-06 8.9543 8.95431 -6.5288e-06 20 -1.74846e-06C31.0457 -7.8281e-07 40 8.95431 40 20C40 31.0457 31.0457 40 20 40Z"
+                          fill="var(--color-primary)"
+                        />
+                        <path
+                          d="M16.8 26.4C16.7995 26.1508 16.8863 25.9092 17.0453 25.7173L21.824 20L17.216 14.272C17.1274 14.1629 17.0612 14.0373 17.0213 13.9026C16.9814 13.7678 16.9685 13.6265 16.9833 13.4867C16.9982 13.347 17.0406 13.2115 17.1079 13.0882C17.1753 12.9648 17.2664 12.856 17.376 12.768C17.4851 12.6794 17.6107 12.6132 17.7454 12.5733C17.8802 12.5334 18.0215 12.5205 18.1613 12.5353C18.301 12.5502 18.4365 12.5926 18.5598 12.6599C18.6832 12.7273 18.792 12.8184 18.88 12.928L24.032 19.328C24.1889 19.5189 24.2747 19.7583 24.2747 20.0053C24.2747 20.2524 24.1889 20.4918 24.032 20.6827L18.6987 27.0827C18.6091 27.1907 18.4991 27.28 18.375 27.3454C18.2509 27.4108 18.1151 27.4512 17.9754 27.464C17.8357 27.4769 17.6949 27.4621 17.5609 27.4205C17.4269 27.3788 17.3025 27.3111 17.1947 27.2213C17.0723 27.1221 16.9735 26.9969 16.9052 26.8549C16.837 26.7129 16.801 26.5576 16.8 26.4Z"
+                          fill="var(--color-white)"
+                        />
+                      </svg>
+                    </S.GoodsListSection4Btn>
+                  </>
+                )
+              : null}
           </S.GoodsListSection4>
         </div>
       </S.GoodsListContainerSection>
