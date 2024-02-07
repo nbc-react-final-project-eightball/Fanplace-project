@@ -137,6 +137,48 @@ const ProductInfo: React.FC<ProductProps> = ({ product }) => {
     }
   };
 
+  const addToWishlistHandler = () => {
+    if (user && product) {
+      const cartProduct = {
+        category: product?.category,
+        img: product?.img,
+        artist: product?.artist,
+        title: product?.title,
+        quantity: quantity,
+        price: product?.price,
+        totalPrice: totalPrice,
+        remainingQuantity: product?.remainingQuantity,
+        productId: product?.productId,
+      };
+      let userWishlist = JSON.parse(
+        localStorage.getItem(`wishlist_${user.uid}`) || '[]',
+      );
+      userWishlist.push(cartProduct);
+      localStorage.setItem(
+        `wishlist_${user.uid}`,
+        JSON.stringify(userWishlist),
+      );
+      Swal.fire({
+        icon: 'success',
+        title: '위시리스트에 담겼습니다.',
+        confirmButtonText: '확인',
+        confirmButtonColor: '#000',
+        text: `${product?.ProductName}`,
+      });
+    } else {
+      Swal.fire({
+        icon: 'warning',
+        title: '로그인이 필요한 서비스입니다.',
+        confirmButtonText: '확인',
+        confirmButtonColor: '#000',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          navigate('/login');
+        }
+      });
+    }
+  };
+
   //장바구니로 보낼때
   return (
     <S.ProductInfoContainer>
@@ -332,7 +374,10 @@ const ProductInfo: React.FC<ProductProps> = ({ product }) => {
             </svg>
             장바구니 담기
           </S.ProductInfoSection3Btn2>
-          {/* <S.ProductInfoSection3Btn3>
+          <S.ProductInfoSection3Btn3
+            onClick={addToWishlistHandler}
+            aria-label="위시리스트담기"
+          >
             {' '}
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -350,7 +395,7 @@ const ProductInfo: React.FC<ProductProps> = ({ product }) => {
               />
             </svg>{' '}
             위시리스트 담기
-          </S.ProductInfoSection3Btn3> */}
+          </S.ProductInfoSection3Btn3>
         </S.ProductInfoSection3_1>
       </S.ProductInfoSection3>
     </S.ProductInfoContainer>
