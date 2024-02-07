@@ -19,6 +19,7 @@ const SearchList = () => {
     <>
       <S.GoodsListContainer>
         <S.GoodsCategory>
+          <div style={{ marginTop: '20px' }}></div>
           <S.Cate>
             <p style={{ display: 'inline-block' }}>
               {' '}

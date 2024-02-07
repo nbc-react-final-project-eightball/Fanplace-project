@@ -158,17 +158,30 @@ export const Searchinput = styled.input<SearchProps>`
   transition: all 1s ease-in-out;
   @media screen and (max-width: 768px) {
     z-index: 25;
-    width: 500px;
+    width: 600px;
+    height: 70px;
     left: 100px;
     top: -500px;
+    font-size: 1.5rem;
+    padding-left: 1rem;
   }
   @media screen and (max-width: 480px) {
     width: 300px;
     left: 100px;
     top: -500px;
   }
+  @media screen and (max-width: 414px) {
+    width: 330px;
+    left: 40px;
+    top: -500px;
+  }
   @media screen and (max-width: 411px) {
     width: 300px;
+    left: 50px;
+    top: -500px;
+  }
+  @media screen and (max-width: 375px) {
+    width: 280px;
     left: 50px;
     top: -500px;
   }
@@ -183,16 +196,24 @@ export const SearchinputButton1 = styled.button<SearchProps>`
   @media screen and (max-width: 768px) {
     position: absolute;
     z-index: 25;
-    left: 560px;
-    top: -500px;
+    left: 640px;
+    top: -480px;
   }
   @media screen and (max-width: 480px) {
     left: 360px;
-    top: -500px;
+    top: -480px;
+  }
+  @media screen and (max-width: 414px) {
+    left: 320px;
+    top: -480px;
   }
   @media screen and (max-width: 411px) {
-    left: 310px;
-    top: -500px;
+    left: 300px;
+    top: -480px;
+  }
+  @media screen and (max-width: 375px) {
+    left: 290px;
+    top: -480px;
   }
 `;
 
