@@ -36,6 +36,7 @@ export const shippingSlice = createSlice({
   initialState,
   reducers: {
     setAddressInfo: (state, action: PayloadAction<setAddressInfo>) => {
+      console.log('setAddressInfo state   - action.payload', action.payload);
       state.addressName = action.payload.addressName;
       state.recipient = action.payload.recipient;
       state.address = action.payload.address;
@@ -44,7 +45,11 @@ export const shippingSlice = createSlice({
       // // state.instructions = action.payload.instructions;
     },
     setAddresses: (state, action: PayloadAction<setAddresses>) => {
-      return { ...state, ...action.payload };
+      console.log('원래 state', state);
+      console.log(' action.payload', action.payload);
+      if (Array.isArray(action.payload.addresses)) {
+        state.addresses = action.payload.addresses;
+      }
     },
   },
 });

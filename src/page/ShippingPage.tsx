@@ -1,6 +1,6 @@
 import MyPageLayout from 'components/layout/MyPageLayout';
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import * as S from 'styledComponent/styledMypage/StShipping';
 import { User } from '@firebase/auth';
 import { useModal } from 'hooks/useModal';
@@ -9,6 +9,8 @@ import { RootState } from 'redux/configStore';
 import { deleteDoc, doc, getDoc } from 'firebase/firestore';
 import { db } from '../firebase/config';
 import Swal from 'sweetalert2';
+import { useGetAddresses } from 'hooks/useGetAddresses';
+import { setAddresses } from '../redux/modules/shipping/shippingSlice';
 
 interface ModalState {
   visible: boolean;
@@ -23,7 +25,19 @@ interface Address {
 }
 const ShippingPage = () => {
   const { openModalHandler } = useModal();
+  const { getAddresses } = useGetAddresses();
+  const dispatch = useDispatch(); // useDispatch 추가
   const userData = useSelector((state: RootState) => state.signUpSlice);
+
+  // const [addressesData, setAddressesData] = useState<string[]>([]);
+  const { addresses } = useSelector(
+    (state: RootState) => state.shippingSlice,
+    shallowEqual,
+  );
+  // console.log('addresses 값은?', addresses);
+  useEffect(() => {
+    getAddresses();
+  }, [addresses]);
 
   const addHyphenHannddler = (phoneNumber: string | null) => {
     if (phoneNumber) {
@@ -37,20 +51,12 @@ const ShippingPage = () => {
   const modal = useSelector(
     (state: { modalSlice: ModalState }) => state.modalSlice,
   );
-  const [addressesData, setAddressesData] = useState<string[]>([]);
-  const { addresses } = useSelector((state: RootState) => state.shippingSlice);
-  useEffect(() => {
-    console.log('setAddressesData 추가 실행!');
-    setAddressesData(addresses || []);
-  }, [addresses]);
-  console.log('addresses??', addresses);
-  console.log('modal.shippingModalVisible ? ', modal.shippingModalVisible);
 
   const deleteAddressHandler = async (docId: string) => {
     console.log('docId', docId);
     if (docId) {
       const confirmDelete = await Swal.fire({
-        title: '정말로 리뷰를 삭제하시겠습니까?',
+        title: '배송지를 삭제하시겠습니까?',
         icon: 'warning',
         showCancelButton: true,
         cancelButtonText: '취소하기',
@@ -60,6 +66,10 @@ const ShippingPage = () => {
       if (confirmDelete.isConfirmed) {
         const addressRef = doc(db, 'addresses', docId);
         await deleteDoc(addressRef);
+        // 주소 삭제 후 addresses를 다시 가져옴
+        getAddresses().then((data) => {
+          dispatch(setAddresses(data));
+        });
         Swal.fire({
           icon: 'success',
           title: '배송지가 삭제 되었습니다!',
@@ -135,7 +145,7 @@ const ShippingPage = () => {
                 배송지 추가하기
               </S.MobileAddButton>
 
-              {userData.address || addressesData ? (
+              {userData.address || addresses ? (
                 <S.AddressList>
                   <S.DefaultAddressBox>
                     <h4>
@@ -169,47 +179,45 @@ const ShippingPage = () => {
                       <p>정보수정에서 수정 가능합니다</p>
                     </S.buttonWrapper>
                   </S.DefaultAddressBox>
-                  {addressesData?.map(
-                    (address: Address | any, index: number) => (
-                      <S.AddressBox key={index}>
-                        <h4>
-                          <S.MobileSvg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="16"
-                            height="16"
-                            viewBox="0 0 16 16"
-                            fill="none"
-                          >
-                            <path
-                              d="M8.00001 1C6.54184 1.00172 5.1439 1.58174 4.11282 2.61281C3.08174 3.64389 2.50173 5.04184 2.50001 6.5C2.49826 7.69161 2.8875 8.85089 3.60801 9.8C3.60801 9.8 3.75801 9.9975 3.78251 10.026L8.00001 15L12.2195 10.0235C12.2415 9.997 12.392 9.8 12.392 9.8L12.3925 9.7985C13.1127 8.84981 13.5017 7.69107 13.5 6.5C13.4983 5.04184 12.9183 3.64389 11.8872 2.61281C10.8561 1.58174 9.45817 1.00172 8.00001 1ZM9.80001 9L8.00001 7.8545L6.20001 9L6.50001 6.963L5.00001 5.5865L7.10001 5.333L8.00001 3.5L8.95601 5.3335L11 5.5865L9.50001 6.963L9.80001 9Z"
-                              fill="#8F86FF"
-                            />
-                          </S.MobileSvg>
-                          {address?.addressName}
-                        </h4>
-                        <S.Recipient>
-                          {address?.recipient ? address?.recipient : ''}
-                          <S.MobilePhoneNumber>
-                            | {addHyphenHannddler(address?.phoneNumber)}
-                          </S.MobilePhoneNumber>
-                        </S.Recipient>
-                        <S.Address>
-                          {address?.address}&nbsp;&nbsp;
-                          {address?.detailAddress}
-                        </S.Address>
-                        <S.PhoneNumber>
-                          {addHyphenHannddler(address?.phoneNumber)}
-                        </S.PhoneNumber>
-                        <S.buttonWrapper>
-                          <S.DeleteButton
-                            onClick={() => deleteAddressHandler(address.docId)}
-                          >
-                            삭제
-                          </S.DeleteButton>
-                        </S.buttonWrapper>
-                      </S.AddressBox>
-                    ),
-                  )}
+                  {addresses?.map((address: Address | any, index: number) => (
+                    <S.AddressBox key={index}>
+                      <h4>
+                        <S.MobileSvg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="16"
+                          height="16"
+                          viewBox="0 0 16 16"
+                          fill="none"
+                        >
+                          <path
+                            d="M8.00001 1C6.54184 1.00172 5.1439 1.58174 4.11282 2.61281C3.08174 3.64389 2.50173 5.04184 2.50001 6.5C2.49826 7.69161 2.8875 8.85089 3.60801 9.8C3.60801 9.8 3.75801 9.9975 3.78251 10.026L8.00001 15L12.2195 10.0235C12.2415 9.997 12.392 9.8 12.392 9.8L12.3925 9.7985C13.1127 8.84981 13.5017 7.69107 13.5 6.5C13.4983 5.04184 12.9183 3.64389 11.8872 2.61281C10.8561 1.58174 9.45817 1.00172 8.00001 1ZM9.80001 9L8.00001 7.8545L6.20001 9L6.50001 6.963L5.00001 5.5865L7.10001 5.333L8.00001 3.5L8.95601 5.3335L11 5.5865L9.50001 6.963L9.80001 9Z"
+                            fill="#8F86FF"
+                          />
+                        </S.MobileSvg>
+                        {address?.addressName}
+                      </h4>
+                      <S.Recipient>
+                        {address?.recipient ? address?.recipient : ''}
+                        <S.MobilePhoneNumber>
+                          | {addHyphenHannddler(address?.phoneNumber)}
+                        </S.MobilePhoneNumber>
+                      </S.Recipient>
+                      <S.Address>
+                        {address?.address}&nbsp;&nbsp;
+                        {address?.detailAddress}
+                      </S.Address>
+                      <S.PhoneNumber>
+                        {addHyphenHannddler(address?.phoneNumber)}
+                      </S.PhoneNumber>
+                      <S.buttonWrapper>
+                        <S.DeleteButton
+                          onClick={() => deleteAddressHandler(address.docId)}
+                        >
+                          삭제
+                        </S.DeleteButton>
+                      </S.buttonWrapper>
+                    </S.AddressBox>
+                  ))}
                 </S.AddressList>
               ) : (
                 <S.GuideEmpty>등록된 배송지가 없습니다.</S.GuideEmpty>

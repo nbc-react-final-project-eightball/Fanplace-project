@@ -20,7 +20,7 @@ interface DeliveryAddressProps {
   onAddressChange: (address: string) => void;
 }
 
-const DeliveryAddress: React.FC<DeliveryAddressProps> = ({
+const DeliveryAddresses: React.FC<DeliveryAddressProps> = ({
   onAddressChange,
 }) => {
   // react-hook-form
@@ -126,10 +126,10 @@ const DeliveryAddress: React.FC<DeliveryAddressProps> = ({
             )}
           />
         </S.FlexBox>
-        {modal.visible && <AddressModal isDefaultAddress={true} />}
+        {modal.visible && <AddressModal isDefaultAddress={false} />}
       </div>
     </>
   );
 };
 
-export default DeliveryAddress;
+export default DeliveryAddresses;

@@ -356,7 +356,7 @@ const ProfileSettingsForm = () => {
           취소
         </S.CancelButton>
       )}
-      {modal.visible && <AddressModal />}
+      {modal.visible && <AddressModal  isDefaultAddress={true}/>}
     </S.ProfileSettingsForm>
   );
 };

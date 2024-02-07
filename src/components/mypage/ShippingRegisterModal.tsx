@@ -1,7 +1,7 @@
 import { useAddressModal } from 'hooks/useAddressModal';
 import { useModal } from 'hooks/useModal';
 import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import * as S from 'styledComponent/styledMypage/StShippingModal';
 import { Controller, useForm } from 'react-hook-form';
 import { InputLabel } from '@mui/material';
@@ -10,7 +10,8 @@ import { useSetAddresses } from 'hooks/useSetAddresses';
 import { UserInfo } from '@firebase/auth';
 import { setIsAddressSuccess } from '../../redux/modules/signup/signUpSlice';
 import { shippingSlice } from './../../redux/modules/shipping/shippingSlice';
-import { useGetAddresses } from 'hooks/useGetAddresses';
+import { RootState } from 'redux/configStore';
+import DeliveryAddresses from 'components/auth/DeliveryAddresses';
 
 interface SignUpState {
   userInfo: UserInfo;
@@ -25,9 +26,16 @@ const ShippingRegisterModal = () => {
   const { openAddressModalHandler } = useAddressModal();
   const { closeModalHandler } = useModal();
 
-  let userData = useSelector(
+  const userData = useSelector(
     (state: { signUpSlice: SignUpState }) => state.signUpSlice,
   );
+
+  const userAddresses = useSelector(
+    (state: RootState) => state.shippingSlice,
+    shallowEqual,
+  );
+
+  console.log('userAddresses 불러오는 중', userAddresses);
 
   interface DeliveryAddressProps {
     onAddressChange: (address: string) => void;
@@ -64,6 +72,7 @@ const ShippingRegisterModal = () => {
         detailAddress,
         phoneNumber,
       );
+      reset();
     };
 
     const blurHandler = () => {
@@ -76,12 +85,6 @@ const ShippingRegisterModal = () => {
 
     const dispatch = useDispatch();
 
-    // useEffect(() => {
-    //   if (userData.isAddressSuccess === false) {
-    //     console.log('userData.isAddressSuccess === false');
-    //   }
-    // }, [userData.isAddressSuccess, closeModalHandler]);
-
     const closeModal = () => {
       closeModalHandler(true);
       dispatch(setIsAddressSuccess(false));
@@ -91,12 +94,6 @@ const ShippingRegisterModal = () => {
       (state: { modalSlice: ModalState }) => state.modalSlice,
     );
 
-    useGetAddresses();
-
-    const addresses = useSelector(
-      (state: { shippingSlice: shippingState }) => state.shippingSlice,
-    );
-    console.log('addresses 불러오는 중', addresses);
     return (
       <S.ModalBackground>
         <S.ModalContainer onClick={modalClickHandler}>
@@ -148,7 +145,7 @@ const ShippingRegisterModal = () => {
               <Controller
                 name="address"
                 control={control}
-                defaultValue={'' || userData.address}
+                defaultValue={''}
                 rules={{
                   required: '주소를 입력해주세요',
                 }}
@@ -156,7 +153,9 @@ const ShippingRegisterModal = () => {
                   <div>
                     <S.TextInputField
                       className="address"
-                      {...field} // field 객체의 내용을 spread하여 입력 필드와 연결
+                      value={userAddresses.address}
+                      // Redux 스토어에서 가져온 주소 값
+                      // onChange={field.onChange}
                       disabled={true}
                     />
                   </div>
@@ -349,7 +348,7 @@ const ShippingRegisterModal = () => {
             <S.EditButton onClick={setAddressesHandler}>저장하기</S.EditButton>
           </S.buttonWrapper>
         </S.ModalContainer>
-        {modal.visible && <AddressModal />}
+        {modal.visible && <AddressModal isDefaultAddress={false} />}
       </S.ModalBackground>
     );
   };

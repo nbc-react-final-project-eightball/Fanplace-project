@@ -11,7 +11,7 @@ export const useGetAddresses = () => {
 
   const getAddresses = async () => {
     try {
-      console.log(' getAddresses user 는', user?.uid);
+      // console.log('getAddresses user 는', user?.uid);
       const q = query(
         collection(db, 'addresses'),
         where('userId', '==', user?.uid),
@@ -22,11 +22,20 @@ export const useGetAddresses = () => {
         id: doc.id,
         ...doc.data(),
       }));
-      const formattedAddressses = { addresses: addresses };
-      dispatch(setAddresses(formattedAddressses));
+      return { addresses: addresses }; // 주소 데이터 반환
     } catch (error) {
       console.error('Error fetching data:', error);
+      return { addresses: [] }; // 에러 발생 시 빈 배열 반환
     }
   };
+
+  useEffect(() => {
+    if (user) {
+      getAddresses().then((data) => {
+        dispatch(setAddresses(data)); // 주소 데이터를 dispatch
+      });
+    }
+  }, [dispatch, user]);
+
   return { getAddresses };
 };
