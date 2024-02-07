@@ -1,14 +1,62 @@
 import * as S from 'styledComponent/styledLayout/StHeader';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import ProfileCard from 'components/ProfileCard';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import CustomSelect from 'components/Select/CustomSelect';
+import { db } from '../../firebase/config';
+import {
+  DocumentData,
+  collection,
+  getDocs,
+  query,
+  where,
+} from 'firebase/firestore';
+import { useEffect, useState } from 'react';
+import Swal from 'sweetalert2';
+
+import {
+  setProductSearch,
+  setSearchName,
+} from '../../redux/modules/GoodsList/GoodsListSlice';
 //헤더수정
 const Header = () => {
   const userData = useSelector(
     (state: { signUpSlice: any }) => state.signUpSlice,
   );
   const isLogged = userData?.userInfo;
+  const [searchList, setSearchList] = useState<DocumentData[]>([]);
+  const [searchInput, setSearchInput] = useState('');
+  const [searcClick, setSearchClick] = useState(false);
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const fetchGoods = async () => {
+    try {
+      const goodsCollection = collection(db, 'goodsList');
+      let goodsQuery = query(goodsCollection);
+      if (!searchInput) {
+        return;
+      }
+      const goodsSnapshot = await getDocs(goodsQuery);
+      const getGoodsList = goodsSnapshot.docs.map((doc) => doc.data());
+      const filteredGoodsList = getGoodsList.filter(
+        (list) => list.title && list.title.includes(searchInput),
+      );
+
+      setSearchList(filteredGoodsList);
+      dispatch(setProductSearch(filteredGoodsList));
+      dispatch(setSearchName(searchInput));
+      navigate('/searchList');
+      setSearchInput('');
+      setSearchClick(false);
+    } catch (error) {
+      console.log('상품 가져오기 실패!', error);
+    }
+  };
+
+  const handleSearchChange = (event: any) => {
+    setSearchInput(event.target.value);
+  };
 
   return (
     <S.HeaderContainer>
@@ -24,32 +72,118 @@ const Header = () => {
         </S.Header>
         <S.Header>
           <S.HeaderButton>
-            {/* <button aria-label="검색">
-              <svg
-                id="search"
-                xmlns="http://www.w3.org/2000/svg"
-                width="32"
-                height="32"
-                viewBox="0 0 32 32"
-                fill="none"
+            <S.SearchOverlay
+              $setchClick={searcClick}
+              onClick={() => setSearchClick(!searcClick)}
+            />
+            <S.SearchDiv>
+              <S.Searchinput
+                type="text"
+                value={searchInput}
+                onChange={handleSearchChange}
+                maxLength={11}
+                onKeyPress={(event) => {
+                  if (event.key === 'Enter') {
+                    fetchGoods();
+                  }
+                }}
+                placeholder="검색어를 입력해주세요"
+                $setchClick={searcClick}
+              />
+              <S.SearchinputButton1
+                aria-label="검색"
+                onClick={() => {
+                  if (!searchInput) {
+                    Swal.fire({
+                      icon: 'error',
+                      title: '검색어를 입력해주세요',
+                      showConfirmButton: false,
+                      timer: 1500,
+                    });
+                    return;
+                  }
+                  if (searchInput.length < 2) {
+                    Swal.fire({
+                      icon: 'warning',
+                      title: '두 글자 이상 입력해주세요',
+                      showConfirmButton: false,
+                      timer: 1500,
+                    });
+                    return;
+                  }
+                  if (searchInput.length >= 11) {
+                    Swal.fire({
+                      icon: 'warning',
+                      title: '11자 이하로 입력해주세요',
+                      showConfirmButton: false,
+                      timer: 1500,
+                    });
+                    return;
+                  } else {
+                    fetchGoods();
+                  }
+                }}
+                $setchClick={searcClick}
               >
-                <path
-                  d="M22.5 22.5L28.5 28.5"
-                  stroke="var(--color-primary-medium-58)"
-                  strokeWidth="2.25"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-                <path
-                  d="M15 24.5C20.2467 24.5 24.5 20.2467 24.5 15C24.5 9.75329 20.2467 5.5 15 5.5C9.75329 5.5 5.5 9.75329 5.5 15C5.5 20.2467 9.75329 24.5 15 24.5Z"
-                  stroke="var(--color-primary-medium-58)"
-                  strokeWidth="2.25"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-              <S.MobileName>검색</S.MobileName>
-            </button> */}
+                <svg
+                  id="search"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="32"
+                  height="32"
+                  viewBox="0 0 32 32"
+                  fill="none"
+                >
+                  <path
+                    d="M22.5 22.5L28.5 28.5"
+                    stroke="var(--color-primary-medium-58)"
+                    strokeWidth="2.25"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                  <path
+                    d="M15 24.5C20.2467 24.5 24.5 20.2467 24.5 15C24.5 9.75329 20.2467 5.5 15 5.5C9.75329 5.5 5.5 9.75329 5.5 15C5.5 20.2467 9.75329 24.5 15 24.5Z"
+                    stroke="var(--color-primary-medium-58)"
+                    strokeWidth="2.25"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+                {/* <S.MobileName>검색</S.MobileName> */}
+              </S.SearchinputButton1>
+              <S.SearchinputButton2
+                aria-label="검색 활성화"
+                onClick={() => {
+                  setSearchClick(!searcClick);
+                }}
+                $setchClick={searcClick}
+              >
+                <svg
+                  id="search"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="32"
+                  height="32"
+                  viewBox="0 0 32 32"
+                  fill="none"
+                >
+                  <path
+                    d="M22.5 22.5L28.5 28.5"
+                    stroke="var(--color-primary-medium-58)"
+                    strokeWidth="2.25"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                  <path
+                    d="M15 24.5C20.2467 24.5 24.5 20.2467 24.5 15C24.5 9.75329 20.2467 5.5 15 5.5C9.75329 5.5 5.5 9.75329 5.5 15C5.5 20.2467 9.75329 24.5 15 24.5Z"
+                    stroke="var(--color-primary-medium-58)"
+                    strokeWidth="2.25"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+                <S.MobileName>검색</S.MobileName>
+              </S.SearchinputButton2>
+            </S.SearchDiv>
+
             {isLogged ? (
               <ProfileCard />
             ) : (
@@ -89,7 +223,7 @@ const Header = () => {
                 <S.MobileName>로그인</S.MobileName>
               </S.LoginButton>
             )}
-            <Link to={isLogged ? '/cart' : '/login'}>
+            <Link to={isLogged ? '/cart' : '/login'} aria-label="장바구니">
               <svg
                 id="shopping"
                 xmlns="http://www.w3.org/2000/svg"
@@ -108,7 +242,6 @@ const Header = () => {
               </svg>
               <S.MobileName>장바구니</S.MobileName>
             </Link>
-
             {/* <CustomSelect /> */}
           </S.HeaderButton>
         </S.Header>

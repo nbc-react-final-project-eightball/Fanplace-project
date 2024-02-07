@@ -131,7 +131,9 @@ export const Cate = styled.h2`
   font-size: 20px;
   color: var(--color-primary-medium-33);
   span {
+    margin-left: 10px;
     font-weight: normal;
+    color: #777777;
   }
 `;
 
@@ -245,6 +247,18 @@ export const ProductCardImg = styled.img`
   object-fit: cover;
   border-radius: 8px;
 `;
+export const Simg = styled.div`
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+`;
+export const SBar = styled.div`
+  background-color: aliceblue;
+  width: 100%;
+  height: 20px;
+`;
 export const ProductCardImgBox = styled.div`
   position: relative;
   width: 100%;
@@ -258,8 +272,11 @@ export const ProductCardInfoArtist = styled.div`
   margin-bottom: 4px;
   color: var(--color-medium-gray-aa);
   font-size: 14px;
-  font-style: normal;
   line-height: 1.5; /* 171.429% */
+  h1 {
+    font-weight: normal;
+    color: var(--color-medium-gray-99);
+  }
 `;
 export const ProductCardInfo = styled.span`
   flex: 2;
@@ -279,11 +296,12 @@ export const ProductCardTitle = styled.h1`
   height: 43px;
   width: 100%;
   font-weight: 500;
+  color: var(--color-medium-gray-33);
 `;
 
 export const ProductReleaseDate = styled.div`
   margin-top: 10px;
-  color: var(--color-primary-medium-99);
+  color: var(--color-primary-medium-55);
   font-size: 14px;
   font-weight: 400;
 `;
@@ -339,7 +357,7 @@ export const GoodsListCardSection1_2 = styled.section`
 //상품리스트 1,2,3,4,5 버튼
 export const GoodsListSection4 = styled.section`
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   width: 100%;
   gap: 24px;
   margin: 80px auto 100px;
@@ -349,15 +367,37 @@ export const GoodsListSection4 = styled.section`
 `;
 
 export const GoodsListSection4Btn = styled.button`
-  margin-right: 10px;
   cursor: pointer;
 `;
 
 export const NotProduct = styled.div`
+  position: relative;
   width: 100%;
-  height: 100%;
+  > div {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    width: 100%;
+  }
+`;
+
+export const GoodsListPageNumber = styled.div`
   display: flex;
   justify-content: center;
-  padding: 40px 0;
-  font-size: 18px;
+  align-items: center;
+  gap: 10px;
+
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--color-primary-medium-33);
+`;
+
+export const GoodsListPageNumberButton = styled.button`
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  background-color: #f7f7f7;
+  color: #999999;
+  border: 1px solid #f7f7f7;
+  border-radius: 50%;
 `;

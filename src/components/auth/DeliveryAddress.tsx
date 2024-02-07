@@ -1,3 +1,4 @@
+import React, { useEffect, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { InputLabel } from '@mui/material';
 import * as S from '../../styledComponent/styledAuth/StAuthForm';
@@ -14,6 +15,7 @@ interface ModalState<T> {
   visible: boolean;
   props?: T;
 }
+
 interface DeliveryAddressProps {
   onAddressChange: (address: string) => void;
 }
@@ -29,9 +31,11 @@ const DeliveryAddress: React.FC<DeliveryAddressProps> = ({
     formState: { errors },
   } = useForm({ mode: 'onChange' });
 
+  const [address, setAddress] = useState<string>('');
+
   const [detailAddress] = getValues(['detailAddress']);
 
-  const { address, isAddressSuccess } = useSelector(
+  const { isAddressSuccess } = useSelector(
     (state: { signUpSlice: SignUpState }) => state.signUpSlice,
   );
   const modal = useSelector(
@@ -42,9 +46,16 @@ const DeliveryAddress: React.FC<DeliveryAddressProps> = ({
 
   const blurHandler = () => {
     console.log('블러 실행!');
-    // 입력이 끝났을 때 콜백 함수 호출하여 상태 전달
     onAddressChange(detailAddress);
   };
+
+  // 우편 번호를 찾았을 때 주소 값을 설정합니다.
+  useEffect(() => {
+    if (isAddressSuccess) {
+      setAddress(address);
+    }
+  }, [isAddressSuccess, address]);
+
   return (
     <>
       <div>
@@ -115,7 +126,7 @@ const DeliveryAddress: React.FC<DeliveryAddressProps> = ({
             )}
           />
         </S.FlexBox>
-        {modal.visible && <AddressModal />}
+        {modal.visible && <AddressModal isDefaultAddress={true} />}
       </div>
     </>
   );

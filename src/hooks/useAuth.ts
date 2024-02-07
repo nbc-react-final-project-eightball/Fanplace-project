@@ -1,5 +1,4 @@
 import { auth, db } from '../firebase/config';
-import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   setAddress,
@@ -7,18 +6,10 @@ import {
   setUserInfo,
 } from '../redux/modules/signup/signUpSlice';
 import { getDoc, doc } from '@firebase/firestore';
-
-interface SignUpState {
-  userInfo: any | null;
-}
-
-const useAuth = () => {
+export const useAuth = () => {
   const dispatch = useDispatch();
-  const user = useSelector(
-    (state: { signUpSlice: SignUpState }) => state.signUpSlice.userInfo,
-  );
 
-  useEffect(() => {
+  const userAuth = () => {
     const unsubscribe = auth.onAuthStateChanged(async (authUser) => {
       if (authUser) {
         console.log('로그인한 유저는?', authUser);
@@ -54,11 +45,8 @@ const useAuth = () => {
         }
       }
     });
+    return unsubscribe;
+  };
 
-    return () => unsubscribe();
-  }, [dispatch]);
-
-  return user;
+  return { userAuth };
 };
-
-export default useAuth;

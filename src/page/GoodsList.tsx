@@ -4,7 +4,6 @@ import { db } from '../firebase/config';
 import {
   collection,
   query,
-  orderBy,
   getDocs,
   DocumentData,
   where,
@@ -36,7 +35,7 @@ const GoodsList = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { sideCategory } = useParams<{ sideCategory: string }>();
-  console.log('사이드카테고리', sideCategory);
+
   useEffect(() => {
     setFilter(null);
     setShowArtistFilter(false);
@@ -73,7 +72,7 @@ const GoodsList = () => {
   useEffect(() => {
     fetchGoods();
   }, [sideCategory]);
-  console.log('상품 가져오기', goodsList);
+
   let pageNumber = useSelector((state: RootState) => state.goods.currentPage);
   const filteredProduct = goodsList.filter(
     (product: typeProduct) =>
@@ -82,11 +81,15 @@ const GoodsList = () => {
       (!filter || product.category === filter) &&
       (!sideCategory || product.sideCategory === sideCategory),
   );
+  const totalPage = Math.ceil(filteredProduct.length / pageSize);
   const currentPageGoodsList = filteredProduct.slice(
     (pageNumber - 1) * pageSize,
     pageNumber * pageSize,
   );
-
+  const handlePageChange = (pageNumber: number) => {
+    dispatch(setCurrentPage(pageNumber));
+    window.scrollTo(0, 0);
+  };
   // sideCategory = 왼쪽 사이드바 카테고리
   // category = 사이트바 카테고리 필터후 나오는 카테고리
 
@@ -179,8 +182,8 @@ const GoodsList = () => {
   //   },
   //   {
   //     productId: 6,
-  //     sideCategory: 'CD&DVD',
-  //     category: 'NEW',
+  //     sideCategory: 'New',
+  //     category: 'CD',
   //     info: '[2/13출시]',
   //     artist: '에스파',
   //     img: '/img/ProductCardImg/aespa2.webp',
@@ -602,8 +605,8 @@ const GoodsList = () => {
   //   },
   //   {
   //     productId: 31,
-  //     sideCategory: 'CD',
-  //     category: 'New',
+  //     sideCategory: 'New',
+  //     category: 'CD',
   //     info: '',
   //     artist: '레드벨벳',
   //     img: '/img/ProductCardImg/redvelvet1.webp',
@@ -766,6 +769,7 @@ const GoodsList = () => {
   //     titleEn: 'THE BOYZ - 2024 SEASON’S GREETINGS [THE BOYZ POTTERY]',
   //     ProductName: '더보이즈- 2024 시즌 그리팅 [THE BOYZ POTTERY]',
   //     price: 45000,
+  //     salePrice: 41000,
   //     isSoldOut: false,
   //     remainingQuantity: 100,
   //     contentImg1: '/img/ProductDetail/theboyz1_1.webp',
@@ -789,8 +793,8 @@ const GoodsList = () => {
   //   },
   //   {
   //     productId: 42,
-  //     sideCategory: 'CD',
-  //     category: 'New',
+  //     sideCategory: 'New',
+  //     category: 'CD',
   //     info: '',
   //     artist: '스테이씨',
   //     img: '/img/ProductCardImg/stayc1.webp',
@@ -817,6 +821,7 @@ const GoodsList = () => {
   //     titleEn: "IVE- THE 1st EP [I'VE MINE]",
   //     ProductName: "아이브 - THE 1st EP [I'VE MINE]",
   //     price: 88000,
+  //     salePrice: 71200,
   //     isSoldOut: false,
   //     remainingQuantity: 100,
   //     contentImg1: '/img/ProductDetail/ive1_1.webp',
@@ -862,8 +867,8 @@ const GoodsList = () => {
   //   },
   //   {
   //     productId: 46,
-  //     sideCategory: 'CD',
-  //     category: 'New',
+  //     sideCategory: 'New',
+  //     category: 'CD',
   //     info: '[2/13출시]',
   //     artist: '칸나',
   //     img: '/img/ProductCardImg/kanna1.webp',
@@ -941,6 +946,679 @@ const GoodsList = () => {
   //     remainingQuantity: 100,
   //     contentImg1: '/img/ProductDetail/redvelvet2_1.webp',
   //     releaseDate: '2023-12-20',
+  //   },
+  //   {
+  //     productId: 51,
+  //     sideCategory: 'PhotoCard',
+  //     category: '포토북',
+  //     info: '',
+  //     artist: '세븐틴',
+  //     img: '/img/ProductCardImg/seventeen4.webp',
+  //     title:
+  //       '세븐틴 (SEVENTEEN) - 2023 SVT 7TH FAN MEETING [SEVENTEEN in CARAT LAND] MEMORY BOOK+ DIGITAL CODE​',
+  //     titleEn: 'MEMORY BOOK+ DIGITAL CODE',
+  //     ProductName: '세븐틴 (SEVENTEEN) - 2023 SVT 7TH FAN MEETING',
+  //     price: 45500,
+  //     isSoldOut: false,
+  //     remainingQuantity: 100,
+  //     contentImg1: '/img/ProductDetail/seventeen4_1.webp',
+  //     releaseDate: '2023-12-20',
+  //   },
+  //   {
+  //     productId: 52,
+  //     sideCategory: 'New',
+  //     category: 'CD',
+  //     info: '',
+  //     artist: '스트레이키즈',
+  //     img: '/img/ProductCardImg/straykids5.webp',
+  //     title:
+  //       'Stray Kids(스트레이 키즈) - 정규 1집 리패키지 IN生 (IN LIFE) 랜덤',
+  //     titleEn:
+  //       'Stray Kids(스트레이 키즈) - 정규 1집 리패키지 IN生 (IN LIFE) 랜덤',
+  //     ProductName:
+  //       'Stray Kids(스트레이 키즈) - 정규 1집 리패키지 IN生 (IN LIFE) 랜덤',
+  //     price: 17900,
+  //     isSoldOut: false,
+  //     remainingQuantity: 100,
+  //     contentImg1: '/img/ProductDetail/straykids15_1.webp',
+  //     releaseDate: '2023-12-20',
+  //   },
+  //   {
+  //     productId: 53,
+  //     sideCategory: 'New',
+  //     category: 'CD',
+  //     info: '',
+  //     artist: '스트레이키즈',
+  //     img: '/img/ProductCardImg/straykids6.webp',
+  //     title:
+  //       '스트레이 키즈(Stray Kids) - 정규 3집 [★★★★★ (5-STAR)] (LIMITED VER.)',
+  //     titleEn:
+  //       '스트레이 키즈(Stray Kids) - 정규 3집 [★★★★★ (5-STAR)] (LIMITED VER.)',
+  //     ProductName:
+  //       '스트레이 키즈(Stray Kids) - 정규 3집 [★★★★★ (5-STAR)] (LIMITED VER.)',
+  //     price: 17900,
+  //     isSoldOut: false,
+  //     remainingQuantity: 100,
+  //     contentImg1: '/img/ProductDetail/straykids16_1.webp',
+  //     releaseDate: '2024-02-07',
+  //   },
+  //   {
+  //     productId: 54,
+  //     sideCategory: 'CD&DVD',
+  //     category: 'CD',
+  //     artist: '있지',
+  //     img: '/img/ProductCardImg/itzy2.webp',
+  //     title: '있지(ITZY) - [BORN TO BE] (LIMITED VER.)',
+  //     titleEn: '있지(ITZY) - [BORN TO BE] (LIMITED VER.)',
+  //     ProductName: '있지(ITZY) - [BORN TO BE] (LIMITED VER.)',
+  //     price: 15500,
+  //     salePrice: 13400,
+  //     isSoldOut: false,
+  //     remainingQuantity: 100,
+  //     contentImg1: '/img/ProductDetail/itzy2_1.webp',
+  //     releaseDate: '2024-01-16',
+  //   },
+  //   {
+  //     productId: 55,
+  //     sideCategory: 'CD&DVD',
+  //     category: 'CD',
+  //     artist: '있지',
+  //     img: '/img/ProductCardImg/itzy3.webp',
+  //     title: 'ITZY(있지) - [IT Z ME] (버전 3종 중 랜덤)',
+  //     titleEn: 'ITZY(있지) - [IT Z ME] (버전 3종 중 랜덤)',
+  //     ProductName: 'ITZY(있지) - [IT Z ME] (버전 3종 중 랜덤)',
+  //     price: 15500,
+  //     salePrice: 13300,
+  //     isSoldOut: false,
+  //     remainingQuantity: 100,
+  //     contentImg1: '/img/ProductDetail/itzy3_1.webp',
+  //     releaseDate: '2024-01-16',
+  //   },
+  //   {
+  //     productId: 56,
+  //     sideCategory: 'CD&DVD',
+  //     category: 'CD',
+  //     artist: '있지',
+  //     img: '/img/ProductCardImg/itzy4.webp',
+  //     title: '있지(ITZY) - [IT’z ICY] (IT’Z ver / ICY ver. 2종 중 랜덤발송)',
+  //     titleEn: '있지(ITZY) - [IT’z ICY] (IT’Z ver / ICY ver. 2종 중 랜덤발송)',
+  //     ProductName:
+  //       '있지(ITZY) - [IT’z ICY] (IT’Z ver / ICY ver. 2종 중 랜덤발송)',
+  //     price: 15500,
+  //     salePrice: 13300,
+  //     isSoldOut: false,
+  //     remainingQuantity: 100,
+  //     contentImg1: '/img/ProductDetail/itzy4_1.webp',
+  //     releaseDate: '2024-01-16',
+  //   },
+  //   {
+  //     productId: 57,
+  //     sideCategory: 'CD&DVD',
+  //     category: 'CD',
+  //     info: '',
+  //     artist: '스테이씨',
+  //     img: '/img/ProductCardImg/stayc2.webp',
+  //     title:
+  //       '스테이씨 - 3집 미니 앨범 [TEENFRESH] (6종 중 랜덤 1종) (Digipak Ver.)',
+  //     titleEn:
+  //       '스테이씨(STAYC) - The 3rd Mini Album [TEENFRESH] (6종 중 랜덤 1종) (Digipak Ver.)',
+  //     ProductName: '스테이씨 - 3집 미니 앨범 [TEENFRESH] (6종 중 랜덤 1종)',
+  //     price: 47500,
+  //     isSoldOut: false,
+  //     remainingQuantity: 100,
+  //     contentImg1: '/img/ProductDetail/stayc2_1.webp',
+  //     releaseDate: '2023-11-08',
+  //   },
+  //   {
+  //     productId: 58,
+  //     sideCategory: 'Pompoms',
+  //     category: '응원봉',
+  //     info: '',
+  //     artist: '스테이씨',
+  //     img: '/img/ProductCardImg/stayc3.webp',
+  //     title:
+  //       '스테이씨 (STAYC) 2ND FANMEETING [SWITH GELATO FACTORY] OFFICIAL MD - 공식 응원봉 OFFICIAL LIGHT STICK',
+  //     titleEn: '',
+  //     ProductName: '스테이씨 공식 응원봉 OFFICIAL LIGHT STICK',
+  //     price: 43000,
+  //     isSoldOut: false,
+  //     remainingQuantity: 100,
+  //     contentImg1: '/img/ProductDetail/stayc3_1.webp',
+  //     releaseDate: '2023-06-20',
+  //   },
+  //   {
+  //     productId: 59,
+  //     sideCategory: 'CD&DVD',
+  //     category: 'CD',
+  //     info: '',
+  //     artist: '르세라핌',
+  //     img: '/img/ProductCardImg/lesserafim6.webp',
+  //     title:
+  //       '르세라핌 (LE SSERAFIM) - 미니 3집 [EASY] (Weverse Albums ver.) (2종 세트)​',
+  //     titleEn:
+  //       '르세라핌 (LE SSERAFIM) - 미니 3집 [EASY] (Weverse Albums ver.) (2종 세트)',
+  //     ProductName:
+  //       '르세라핌 (LE SSERAFIM) - 미니 3집 [EASY] (Weverse Albums ver.) (2종 세트)',
+  //     price: 49000,
+  //     isSoldOut: false,
+  //     remainingQuantity: 100,
+  //     contentImg1: '/img/ProductDetail/lesserafim6_1.webp',
+  //     releaseDate: '2024-01-20',
+  //   },
+  //   {
+  //     productId: 60,
+  //     sideCategory: 'CD&DVD',
+  //     category: 'CD',
+  //     info: '',
+  //     artist: '르세라핌',
+  //     img: '/img/ProductCardImg/lesserafim7.webp',
+  //     title:
+  //       '르세라핌(LE SSERAFIM) - 2nd 미니앨범 [ANTIFRAGILE] (Weverse Albums Ver.)​',
+  //     titleEn:
+  //       '르세라핌(LE SSERAFIM) - 2nd 미니앨범 [ANTIFRAGILE] (Weverse Albums Ver.)',
+  //     ProductName:
+  //       '르세라핌(LE SSERAFIM) - 2nd 미니앨범 [ANTIFRAGILE] (Weverse Albums Ver.)',
+  //     price: 49000,
+  //     isSoldOut: false,
+  //     remainingQuantity: 100,
+  //     contentImg1: '/img/ProductDetail/lesserafim7_1.webp',
+  //     releaseDate: '2022-10-17',
+  //   },
+  //   {
+  //     productId: 61,
+  //     sideCategory: 'CD&DVD',
+  //     category: 'CD',
+  //     info: '',
+  //     artist: '르세라핌',
+  //     img: '/img/ProductCardImg/lesserafim8.webp',
+  //     title: '르세라핌 (LE SSERAFIM) - [FEARLESS] (1ST 미니앨범) (세트)​',
+  //     titleEn: '르세라핌 (LE SSERAFIM) - [FEARLESS] (1ST 미니앨범) (세트)',
+  //     ProductName: '르세라핌 (LE SSERAFIM) - [FEARLESS] (1ST 미니앨범) (세트)',
+  //     price: 35400,
+  //     isSoldOut: false,
+  //     remainingQuantity: 100,
+  //     contentImg1: '/img/ProductDetail/lesserafim8_1.webp',
+  //     releaseDate: '2022-10-17',
+  //   },
+  //   {
+  //     productId: 62,
+  //     sideCategory: 'Sundries',
+  //     category: '폰케이스',
+  //     info: '',
+  //     artist: '(여자)아이들',
+  //     img: '/img/ProductCardImg/idle2.webp',
+  //     title: '[(G)I-DLE] I-LAND:WHO AM I 폰스트랩',
+  //     titleEn: '',
+  //     ProductName: '[(G)I-DLE] I-LAND:WHO AM I 폰스트랩',
+
+  //     price: 10000,
+  //     isSoldOut: false,
+  //     remainingQuantity: 100,
+  //     contentImg1: '/img/ProductDetail/idle2_1.webp',
+  //     releaseDate: '2023-10-27',
+  //   },
+  //   {
+  //     productId: 63,
+  //     sideCategory: 'PhotoCard',
+  //     category: '포토카드',
+  //     info: '',
+  //     artist: '(여자)아이들',
+  //     img: '/img/ProductCardImg/idle3.webp',
+  //     title: '[(G)I-DLE] I-LAND:WHO AM I 스페셜 포토 티켓 세트',
+  //     titleEn: '',
+  //     ProductName: '[(G)I-DLE] I-LAND:WHO AM I 스페셜 포토 티켓 세트',
+  //     price: 10000,
+  //     isSoldOut: false,
+  //     remainingQuantity: 100,
+  //     contentImg1: '/img/ProductDetail/idle3_1.webp',
+  //     releaseDate: '2023-10-27',
+  //   },
+  //   {
+  //     productId: 64,
+  //     sideCategory: 'Apparel',
+  //     category: '티셔츠',
+  //     info: '',
+  //     artist: '(여자)아이들',
+  //     img: '/img/ProductCardImg/idle4.webp',
+  //     title: '[(G)I-DLE] I-LAND:WHO AM I 티셔츠',
+  //     titleEn: '',
+  //     ProductName: '[(G)I-DLE] I-LAND:WHO AM I 티셔츠',
+  //     price: 32000,
+  //     isSoldOut: false,
+  //     remainingQuantity: 100,
+  //     contentImg1: '/img/ProductDetail/idle4_1.webp',
+  //     releaseDate: '2023-10-27',
+  //   },
+  //   {
+  //     productId: 65,
+  //     sideCategory: 'Apparel',
+  //     category: '후드티',
+  //     info: '',
+  //     artist: '(여자)아이들',
+  //     img: '/img/ProductCardImg/idle5.webp',
+  //     title:
+  //       '(G)I-DLE (여자)아이들 [GBC in the NEVERLAND] OFFICIAL MD 후드 티셔츠',
+  //     titleEn: '',
+  //     ProductName:
+  //       '(G)I-DLE (여자)아이들 [GBC in the NEVERLAND] OFFICIAL MD 후드 티셔츠',
+  //     price: 52000,
+  //     isSoldOut: false,
+  //     remainingQuantity: 100,
+  //     contentImg1: '/img/ProductDetail/idle4_1.webp',
+  //     releaseDate: '2023-10-27',
+  //   },
+  //   {
+  //     productId: 66,
+  //     sideCategory: 'CD&DVD',
+  //     category: 'CD',
+  //     artist: '블랙핑크',
+  //     img: '/img/ProductCardImg/blackpink3.webp',
+  //     title:
+  //       '블랙핑크(BLACKPINK) - 2nd ALBUM [BORN PINK] (DIGIPACK ver.) (ROSE ver.)',
+  //     titleEn: '',
+  //     ProductName:
+  //       '블랙핑크(BLACKPINK) - 2nd ALBUM [BORN PINK] (DIGIPACK ver.) (ROSE ver.)',
+  //     price: 15900,
+
+  //     isSoldOut: false,
+  //     remainingQuantity: 100,
+  //     contentImg1: '/img/ProductDetail/blackpink3_1.webp',
+  //     releaseDate: '2023-07-11',
+  //   },
+  //   {
+  //     productId: 67,
+  //     sideCategory: 'CD&DVD',
+  //     category: 'CD',
+  //     artist: '블랙핑크',
+  //     img: '/img/ProductCardImg/blackpink4.webp',
+  //     title:
+  //       '블랙핑크(BLACKPINK) - 2nd ALBUM [BORN PINK] (DIGIPACK ver.) (JISOO ver.)',
+  //     titleEn: '',
+  //     ProductName:
+  //       '블랙핑크(BLACKPINK) - 2nd ALBUM [BORN PINK] (DIGIPACK ver.) (JISOO ver.)',
+  //     price: 15900,
+
+  //     isSoldOut: false,
+  //     remainingQuantity: 100,
+  //     contentImg1: '/img/ProductDetail/blackpink3_1.webp',
+  //     releaseDate: '2023-07-11',
+  //   },
+  //   {
+  //     productId: 67,
+  //     sideCategory: 'CD&DVD',
+  //     category: 'CD',
+  //     artist: '블랙핑크',
+  //     img: '/img/ProductCardImg/blackpink5.webp',
+  //     title:
+  //       '블랙핑크(BLACKPINK) - 2nd ALBUM [BORN PINK] (DIGIPACK ver.) (LISA ver.)',
+  //     titleEn: '',
+  //     ProductName:
+  //       '블랙핑크(BLACKPINK) - 2nd ALBUM [BORN PINK] (DIGIPACK ver.) (LISA ver.)',
+  //     price: 15900,
+
+  //     isSoldOut: false,
+  //     remainingQuantity: 100,
+  //     contentImg1: '/img/ProductDetail/blackpink3_1.webp',
+  //     releaseDate: '2023-07-11',
+  //   },
+  //   {
+  //     productId: 68,
+  //     sideCategory: 'CD&DVD',
+  //     category: 'CD',
+  //     artist: '블랙핑크',
+  //     img: '/img/ProductCardImg/blackpink6.webp',
+  //     title:
+  //       '블랙핑크(BLACKPINK) - 2nd ALBUM [BORN PINK] (DIGIPACK ver.) (JENNIE ver.)',
+  //     titleEn: '',
+  //     ProductName:
+  //       '블랙핑크(BLACKPINK) - 2nd ALBUM [BORN PINK] (DIGIPACK ver.) (JENNIE ver.)',
+  //     price: 15900,
+
+  //     isSoldOut: false,
+  //     remainingQuantity: 100,
+  //     contentImg1: '/img/ProductDetail/blackpink3_1.webp',
+  //     releaseDate: '2023-07-11',
+  //   },
+  //   {
+  //     productId: 69,
+  //     sideCategory: 'CD&DVD',
+  //     category: 'CD',
+  //     artist: '블랙핑크',
+  //     img: '/img/ProductCardImg/blackpink7.webp',
+  //     title:
+  //       '블랙핑크(BLACKPINK) - 2nd ALBUM [BORN PINK] (DIGIPACK ver.) (4종 세트)',
+  //     titleEn: '',
+  //     ProductName:
+  //       '블랙핑크(BLACKPINK) - 2nd ALBUM [BORN PINK] (DIGIPACK ver.) (4종 세트)',
+  //     price: 52900,
+
+  //     isSoldOut: false,
+  //     remainingQuantity: 100,
+  //     contentImg1: '/img/ProductDetail/blackpink3_1.webp',
+  //     releaseDate: '2023-07-11',
+  //   },
+  //   {
+  //     productId: 70,
+  //     sideCategory: 'CD&DVD',
+  //     category: 'CD',
+  //     artist: '블랙핑크',
+  //     img: '/img/ProductCardImg/blackpink8.webp',
+  //     title:
+  //       '[교환반품불가] 블랙핑크 (BLACKPINK) - 1st FULL ALBUM [THE ALBUM] (JP Ver.) (JENNIE Ver.) (수입반)',
+  //     titleEn: '',
+  //     ProductName:
+  //       '[교환반품불가] 블랙핑크 (BLACKPINK) - 1st FULL ALBUM [THE ALBUM] (JP Ver.) (JENNIE Ver.) (수입반)',
+  //     price: 65900,
+  //     isSoldOut: false,
+  //     remainingQuantity: 100,
+  //     contentImg1: '/img/ProductDetail/blackpink8_1.webp',
+  //     contentImg2: '/img/ProductDetail/blackpink8_2.webp',
+  //     releaseDate: '2023-07-11',
+  //   },
+  //   {
+  //     productId: 71,
+  //     sideCategory: 'CD&DVD',
+  //     category: 'CD',
+  //     artist: '블랙핑크',
+  //     img: '/img/ProductCardImg/blackpink9.webp',
+  //     title:
+  //       '[교환반품불가] 블랙핑크 (BLACKPINK) - 1st FULL ALBUM [THE ALBUM] (JP Ver.) (JISOO Ver.) (수입반)',
+  //     titleEn: '',
+  //     ProductName:
+  //       '[교환반품불가] 블랙핑크 (BLACKPINK) - 1st FULL ALBUM [THE ALBUM] (JP Ver.) (JISOO Ver.) (수입반)',
+  //     price: 65900,
+  //     isSoldOut: false,
+  //     remainingQuantity: 100,
+  //     contentImg1: '/img/ProductDetail/blackpink9_1.webp',
+  //     contentImg2: '/img/ProductDetail/blackpink9_2.webp',
+  //     releaseDate: '2023-07-11',
+  //   },
+  //   {
+  //     productId: 71,
+  //     sideCategory: 'CD&DVD',
+  //     category: 'CD',
+  //     artist: '블랙핑크',
+  //     img: '/img/ProductCardImg/blackpink10.webp',
+  //     title:
+  //       '[교환반품불가] 블랙핑크 (BLACKPINK) - 1st FULL ALBUM [THE ALBUM] (JP Ver.) (LISA Ver.) (수입반)',
+  //     titleEn: '',
+  //     ProductName:
+  //       '[교환반품불가] 블랙핑크 (BLACKPINK) - 1st FULL ALBUM [THE ALBUM] (JP Ver.) (LISA Ver.) (수입반)',
+  //     price: 65900,
+  //     isSoldOut: false,
+  //     remainingQuantity: 100,
+  //     contentImg1: '/img/ProductDetail/blackpink10_1.webp',
+  //     contentImg2: '/img/ProductDetail/blackpink10_2.webp',
+  //     releaseDate: '2023-07-11',
+  //   },
+  //   {
+  //     productId: 72,
+  //     sideCategory: 'CD&DVD',
+  //     category: 'CD',
+  //     artist: '블랙핑크',
+  //     img: '/img/ProductCardImg/blackpink11.webp',
+  //     title:
+  //       '[교환반품불가] 블랙핑크 (BLACKPINK) - 1st FULL ALBUM [THE ALBUM] (JP Ver.) (ROSÉ Ver.) (수입반)',
+  //     titleEn: '',
+  //     ProductName:
+  //       '[교환반품불가] 블랙핑크 (BLACKPINK) - 1st FULL ALBUM [THE ALBUM] (JP Ver.) (ROSÉ Ver.) (수입반)',
+  //     price: 65900,
+  //     isSoldOut: false,
+  //     remainingQuantity: 100,
+  //     contentImg1: '/img/ProductDetail/blackpink11_1.webp',
+  //     contentImg2: '/img/ProductDetail/blackpink11_2.webp',
+  //     releaseDate: '2023-07-11',
+  //   },
+  //   {
+  //     productId: 73,
+  //     sideCategory: 'Sundries',
+  //     category: '텀블러/컵',
+  //     info: '',
+  //     artist: '아이브',
+  //     img: '/img/ProductCardImg/ive3.webp',
+  //     title: '아이브(IVE) - [THE PROM QUEENS] Official MD - 머그컵 MUG CUP',
+  //     titleEn: '',
+  //     ProductName:
+  //       '아이브(IVE) - [THE PROM QUEENS] Official MD - 머그컵 MUG CUP',
+  //     price: 14700,
+  //     isSoldOut: false,
+  //     remainingQuantity: 100,
+  //     contentImg1: '/img/ProductDetail/ive3_1.webp',
+  //     releaseDate: '2023-11-20',
+  //   },
+  //   {
+  //     productId: 74,
+  //     sideCategory: 'Pompoms',
+  //     category: '응원봉',
+  //     info: '',
+  //     artist: '아이브',
+  //     img: '/img/ProductCardImg/ive4.webp',
+  //     title:
+  //       '아이브(IVE) - [THE PROM QUEENS] Official MD - 응원봉 OFFICIAL LIGHT STICK ver.1',
+  //     titleEn: '',
+  //     ProductName:
+  //       '아이브(IVE) - [THE PROM QUEENS] Official MD - 응원봉 OFFICIAL LIGHT STICK ver.1',
+  //     price: 42700,
+  //     isSoldOut: false,
+  //     remainingQuantity: 100,
+  //     contentImg1: '/img/ProductDetail/ive4_1.webp',
+  //     releaseDate: '2023-11-20',
+  //   },
+  //   {
+  //     productId: 75,
+  //     sideCategory: 'Apparel',
+  //     category: '모자',
+  //     info: '',
+  //     artist: '아이브',
+  //     img: '/img/ProductCardImg/ive5.webp',
+  //     title: '아이브(IVE) - [THE PROM QUEENS] Official MD - 볼캡 BALL CAP',
+  //     titleEn: '',
+  //     ProductName:
+  //       '아이브(IVE) - [THE PROM QUEENS] Official MD - 볼캡 BALL CAP',
+  //     price: 35700,
+  //     isSoldOut: false,
+  //     remainingQuantity: 100,
+  //     contentImg1: '/img/ProductDetail/ive5_1.webp',
+  //     releaseDate: '2023-11-20',
+  //   },
+  //   {
+  //     productId: 76,
+  //     sideCategory: 'Apparel',
+  //     category: '후드티',
+  //     info: '',
+  //     artist: '아이브',
+  //     img: '/img/ProductCardImg/ive6.webp',
+  //     title: '아이브(IVE) - [THE PROM QUEENS] Official MD - 후드티 HOODIE',
+  //     titleEn: '',
+  //     ProductName:
+  //       '아이브(IVE) - [THE PROM QUEENS] Official MD - 후드티 HOODIE',
+  //     price: 65000,
+  //     isSoldOut: false,
+  //     remainingQuantity: 100,
+  //     contentImg1: '/img/ProductDetail/ive6_1.webp',
+  //     releaseDate: '2023-11-20',
+  //   },
+  //   {
+  //     productId: 77,
+  //     sideCategory: 'Sundries',
+  //     category: '액세서리',
+  //     info: '',
+  //     artist: '아이브',
+  //     img: '/img/ProductCardImg/ive7.webp',
+  //     title:
+  //       '아이브(IVE) - [THE PROM QUEENS] Official MD - 헤어핀 세트 HAIR PIN SET',
+  //     titleEn: '',
+  //     ProductName:
+  //       '아이브(IVE) - [THE PROM QUEENS] Official MD - 헤어핀 세트 HAIR PIN SET',
+  //     price: 65000,
+  //     isSoldOut: false,
+  //     remainingQuantity: 100,
+  //     contentImg1: '/img/ProductDetail/ive7_1.webp',
+  //     releaseDate: '2023-11-20',
+  //   },
+  //   {
+  //     productId: 78,
+  //     sideCategory: 'Sundries',
+  //     category: '액세서리',
+  //     info: '',
+  //     artist: '아이브',
+  //     img: '/img/ProductCardImg/ive8.webp',
+  //     title:
+  //       '아이브(IVE) - [THE PROM QUEENS] Official MD - 스크런치 세트 SCRUNCHIE SET',
+  //     titleEn: '',
+  //     ProductName:
+  //       '아이브(IVE) - [THE PROM QUEENS] Official MD - 스크런치 세트 SCRUNCHIE SET',
+  //     price: 25000,
+  //     isSoldOut: false,
+  //     remainingQuantity: 100,
+  //     contentImg1: '/img/ProductDetail/ive8_1.webp',
+  //     releaseDate: '2023-11-20',
+  //   },
+  //   {
+  //     productId: 79,
+  //     sideCategory: 'Sundries',
+  //     category: '그립톡',
+  //     info: '',
+  //     artist: '아이브',
+  //     img: '/img/ProductCardImg/ive9.webp',
+  //     title:
+  //       '아이브(IVE) - [THE PROM QUEENS] Official MD - 스크런치 세트 SCRUNCHIE SET',
+  //     titleEn: '',
+  //     ProductName:
+  //       '아이브(IVE) - [THE PROM QUEENS] Official MD - 스크런치 세트 SCRUNCHIE SET',
+  //     price: 25000,
+  //     isSoldOut: false,
+  //     remainingQuantity: 100,
+  //     contentImg1: '/img/ProductDetail/ive9_1.webp',
+  //     releaseDate: '2023-11-20',
+  //   },
+  //   {
+  //     productId: 80,
+  //     sideCategory: 'Sundries',
+  //     category: '텀블러/컵',
+  //     info: '',
+  //     artist: 'bts',
+  //     img: '/img/ProductCardImg/bts3.webp',
+  //     title: '[반품교환불가] 방탄소년단(BTS) - Built NY x BTS 보틀 (BTS)',
+  //     titleEn: '',
+  //     ProductName: '방탄소년단(BTS) - Built NY x BTS 보틀 (BTS)',
+  //     price: 36000,
+  //     isSoldOut: false,
+  //     remainingQuantity: 100,
+  //     contentImg1: '/img/ProductDetail/bts3_1.jpg',
+  //     releaseDate: '2024-01-18',
+  //   },
+  //   {
+  //     productId: 81,
+  //     sideCategory: 'Sundries',
+  //     category: '텀블러/컵',
+  //     info: '',
+  //     artist: 'bts',
+  //     img: '/img/ProductCardImg/bts4.webp',
+  //     title: '[반품교환불가] 방탄소년단(BTS) - Built NY x BTS 보틀 (RM)',
+  //     titleEn: '',
+  //     ProductName: '방탄소년단(BTS) - Built NY x BTS 보틀 (RM)',
+  //     price: 36000,
+  //     isSoldOut: false,
+  //     remainingQuantity: 100,
+  //     contentImg1: '/img/ProductDetail/bts3_1.jpg',
+  //     releaseDate: '2024-01-18',
+  //   },
+  //   {
+  //     productId: 82,
+  //     sideCategory: 'Sundries',
+  //     category: '텀블러/컵',
+  //     info: '',
+  //     artist: 'bts',
+  //     img: '/img/ProductCardImg/bts5.webp',
+  //     title: '[반품교환불가] 방탄소년단(BTS) - Built NY x BTS 보틀 (진)',
+  //     titleEn: '',
+  //     ProductName: '방탄소년단(BTS) - Built NY x BTS 보틀 (진)',
+  //     price: 36000,
+  //     isSoldOut: false,
+  //     remainingQuantity: 100,
+  //     contentImg1: '/img/ProductDetail/bts3_1.jpg',
+  //     releaseDate: '2024-01-18',
+  //   },
+  //   {
+  //     productId: 83,
+  //     sideCategory: 'Sundries',
+  //     category: '텀블러/컵',
+  //     info: '',
+  //     artist: 'bts',
+  //     img: '/img/ProductCardImg/bts6.webp',
+  //     title: '[반품교환불가] 방탄소년단(BTS) - Built NY x BTS 보틀 (슈가)',
+  //     titleEn: '',
+  //     ProductName: '방탄소년단(BTS) - Built NY x BTS 보틀 (슈가)',
+  //     price: 36000,
+  //     isSoldOut: false,
+  //     remainingQuantity: 100,
+  //     contentImg1: '/img/ProductDetail/bts3_1.jpg',
+  //     releaseDate: '2024-01-18',
+  //   },
+  //   {
+  //     productId: 84,
+  //     sideCategory: 'Sundries',
+  //     category: '텀블러/컵',
+  //     info: '',
+  //     artist: 'bts',
+  //     img: '/img/ProductCardImg/bts7.webp',
+  //     title: '[반품교환불가] 방탄소년단(BTS) - Built NY x BTS 보틀 (제이홉)',
+  //     titleEn: '',
+  //     ProductName: '방탄소년단(BTS) - Built NY x BTS 보틀 (제이홉)',
+  //     price: 36000,
+  //     isSoldOut: false,
+  //     remainingQuantity: 100,
+  //     contentImg1: '/img/ProductDetail/bts3_1.jpg',
+  //     releaseDate: '2024-01-18',
+  //   },
+  //   {
+  //     productId: 85,
+  //     sideCategory: 'Sundries',
+  //     category: '텀블러/컵',
+  //     info: '',
+  //     artist: 'bts',
+  //     img: '/img/ProductCardImg/bts8.webp',
+  //     title: '[반품교환불가] 방탄소년단(BTS) - Built NY x BTS 보틀 (지민)',
+  //     titleEn: '',
+  //     ProductName: '방탄소년단(BTS) - Built NY x BTS 보틀 (지민)',
+  //     price: 36000,
+  //     isSoldOut: false,
+  //     remainingQuantity: 100,
+  //     contentImg1: '/img/ProductDetail/bts3_1.jpg',
+  //     releaseDate: '2024-01-18',
+  //   },
+  //   {
+  //     productId: 86,
+  //     sideCategory: 'Sundries',
+  //     category: '텀블러/컵',
+  //     info: '',
+  //     artist: 'bts',
+  //     img: '/img/ProductCardImg/bts9.webp',
+  //     title: '[반품교환불가] 방탄소년단(BTS) - Built NY x BTS 보틀 (뷔)',
+  //     titleEn: '',
+  //     ProductName: '방탄소년단(BTS) - Built NY x BTS 보틀 (뷔)',
+  //     price: 36000,
+  //     isSoldOut: false,
+  //     remainingQuantity: 100,
+  //     contentImg1: '/img/ProductDetail/bts3_1.jpg',
+  //     releaseDate: '2024-01-18',
+  //   },
+  //   {
+  //     productId: 87,
+  //     sideCategory: 'Sundries',
+  //     category: '텀블러/컵',
+  //     info: '',
+  //     artist: 'bts',
+  //     img: '/img/ProductCardImg/bts10.webp',
+  //     title: '[반품교환불가] 방탄소년단(BTS) - Built NY x BTS 보틀 (정국)',
+  //     titleEn: '',
+  //     ProductName: '방탄소년단(BTS) - Built NY x BTS 보틀 (정국)',
+  //     price: 36000,
+  //     isSoldOut: false,
+  //     remainingQuantity: 100,
+  //     contentImg1: '/img/ProductDetail/bts3_1.jpg',
+  //     releaseDate: '2024-01-18',
   //   },
   // ];
 
@@ -1043,6 +1721,7 @@ const GoodsList = () => {
     if (page > lastPageNumber) {
       page = 1;
     }
+    window.scrollTo(0, 0);
     dispatch(setCurrentPage(page));
   };
   const handlePrevPage = (pageNumber: number) => {
@@ -1050,6 +1729,7 @@ const GoodsList = () => {
     if (page < 1) {
       page = 1;
     }
+    window.scrollTo(0, 0);
     dispatch(setCurrentPage(page));
   };
 
@@ -1060,7 +1740,10 @@ const GoodsList = () => {
   return (
     <S.GoodsListContainer>
       <S.GoodsCategory>
-        <S.Cate>{sideCategory}</S.Cate>
+        <S.Cate>
+          {sideCategory}
+          <span>({lastFilteredProduct.length})</span>
+        </S.Cate>
       </S.GoodsCategory>
       <S.GoodsListContainerSection>
         <S.GoodsListSection1>
@@ -1190,56 +1873,113 @@ const GoodsList = () => {
                     </S.ProductCard>
                   ))
                 ) : (
-                  <S.NotProduct>상품이 없습니다.</S.NotProduct>
+                  <S.NotProduct>
+                    <div>
+                      {Array.from({ length: 12 }).map((_, index) => (
+                        <S.ProductCard>
+                          <S.ProductCardImgBox>
+                            <S.Simg />
+                            <div></div>
+                          </S.ProductCardImgBox>
+                          <div>
+                            <S.GoodsListCardSection1>
+                              <S.GoodsListCardSection1_1>
+                                <S.ProductCardInfoArtist>
+                                  <S.SBar />
+                                </S.ProductCardInfoArtist>
+                                <S.ProductCardTitle>
+                                  <S.SBar />
+                                </S.ProductCardTitle>
+                                <S.ProductReleaseDate>
+                                  <S.SBar />
+                                </S.ProductReleaseDate>
+                              </S.GoodsListCardSection1_1>
+                              <S.GoodsListCardSection1_2>
+                                <S.ProductCardPrice>
+                                  <S.SBar />
+                                </S.ProductCardPrice>
+                              </S.GoodsListCardSection1_2>
+                            </S.GoodsListCardSection1>
+                          </div>
+                        </S.ProductCard>
+                      ))}
+                    </div>
+                  </S.NotProduct>
                 )
               }
             </S.GoodsListSection3Wrapper>
           </S.GoodsListSection3>
           <S.GoodsListSection4>
-            <S.GoodsListSection4Btn
-              onClick={() => {
-                handlePrevPage(pageNumber);
-              }}
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="40"
-                height="40"
-                viewBox="0 0 40 40"
-                fill="none"
-              >
-                <path
-                  d="M20 0C31.0457 1.44847e-06 40 8.95431 40 20C40 31.0457 31.0457 40 20 40C8.9543 40 -1.44847e-06 31.0457 0 20C1.44847e-06 8.9543 8.95431 -1.44847e-06 20 0Z"
-                  fill="var(--color-primary)"
-                />
-                <path
-                  d="M23.2 13.6C23.2005 13.8492 23.1137 14.0908 22.9547 14.2827L18.176 20L22.784 25.728C22.8726 25.8371 22.9388 25.9627 22.9787 26.0974C23.0186 26.2322 23.0315 26.3735 23.0167 26.5133C23.0018 26.653 22.9594 26.7885 22.8921 26.9118C22.8247 27.0352 22.7336 27.144 22.624 27.232C22.5149 27.3206 22.3894 27.3868 22.2546 27.4267C22.1198 27.4666 21.9785 27.4795 21.8387 27.4647C21.699 27.4498 21.5635 27.4074 21.4402 27.3401C21.3168 27.2727 21.208 27.1816 21.12 27.072L15.968 20.672C15.8111 20.4811 15.7253 20.2417 15.7253 19.9947C15.7253 19.7476 15.8111 19.5082 15.968 19.3173L21.3013 12.9173C21.3909 12.8093 21.5009 12.72 21.625 12.6546C21.7491 12.5892 21.8849 12.5488 22.0246 12.536C22.1643 12.5231 22.3052 12.5379 22.4391 12.5795C22.5731 12.6212 22.6975 12.6889 22.8053 12.7787C22.9277 12.8779 23.0265 13.0031 23.0948 13.1451C23.163 13.2871 23.199 13.4424 23.2 13.6Z"
-                  fill="var(--color-white)"
-                />
-              </svg>
-            </S.GoodsListSection4Btn>
-            <S.GoodsListSection4Btn
-              onClick={() => {
-                handleNextPage(pageNumber);
-              }}
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="40"
-                height="40"
-                viewBox="0 0 40 40"
-                fill="none"
-              >
-                <path
-                  d="M20 40C8.9543 40 -3.03189e-06 31.0457 1.74846e-06 20C2.7141e-06 8.9543 8.95431 -6.5288e-06 20 -1.74846e-06C31.0457 -7.8281e-07 40 8.95431 40 20C40 31.0457 31.0457 40 20 40Z"
-                  fill="var(--color-primary)"
-                />
-                <path
-                  d="M16.8 26.4C16.7995 26.1508 16.8863 25.9092 17.0453 25.7173L21.824 20L17.216 14.272C17.1274 14.1629 17.0612 14.0373 17.0213 13.9026C16.9814 13.7678 16.9685 13.6265 16.9833 13.4867C16.9982 13.347 17.0406 13.2115 17.1079 13.0882C17.1753 12.9648 17.2664 12.856 17.376 12.768C17.4851 12.6794 17.6107 12.6132 17.7454 12.5733C17.8802 12.5334 18.0215 12.5205 18.1613 12.5353C18.301 12.5502 18.4365 12.5926 18.5598 12.6599C18.6832 12.7273 18.792 12.8184 18.88 12.928L24.032 19.328C24.1889 19.5189 24.2747 19.7583 24.2747 20.0053C24.2747 20.2524 24.1889 20.4918 24.032 20.6827L18.6987 27.0827C18.6091 27.1907 18.4991 27.28 18.375 27.3454C18.2509 27.4108 18.1151 27.4512 17.9754 27.464C17.8357 27.4769 17.6949 27.4621 17.5609 27.4205C17.4269 27.3788 17.3025 27.3111 17.1947 27.2213C17.0723 27.1221 16.9735 26.9969 16.9052 26.8549C16.837 26.7129 16.801 26.5576 16.8 26.4Z"
-                  fill="var(--color-white)"
-                />
-              </svg>
-            </S.GoodsListSection4Btn>
+            {totalPage
+              ? totalPage > 1 && (
+                  <>
+                    <S.GoodsListSection4Btn
+                      onClick={() => {
+                        handlePrevPage(pageNumber);
+                      }}
+                      aria-label="이전페이지"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="40"
+                        height="40"
+                        viewBox="0 0 40 40"
+                        fill="none"
+                      >
+                        <path
+                          d="M20 0C31.0457 1.44847e-06 40 8.95431 40 20C40 31.0457 31.0457 40 20 40C8.9543 40 -1.44847e-06 31.0457 0 20C1.44847e-06 8.9543 8.95431 -1.44847e-06 20 0Z"
+                          fill="var(--color-primary)"
+                        />
+                        <path
+                          d="M23.2 13.6C23.2005 13.8492 23.1137 14.0908 22.9547 14.2827L18.176 20L22.784 25.728C22.8726 25.8371 22.9388 25.9627 22.9787 26.0974C23.0186 26.2322 23.0315 26.3735 23.0167 26.5133C23.0018 26.653 22.9594 26.7885 22.8921 26.9118C22.8247 27.0352 22.7336 27.144 22.624 27.232C22.5149 27.3206 22.3894 27.3868 22.2546 27.4267C22.1198 27.4666 21.9785 27.4795 21.8387 27.4647C21.699 27.4498 21.5635 27.4074 21.4402 27.3401C21.3168 27.2727 21.208 27.1816 21.12 27.072L15.968 20.672C15.8111 20.4811 15.7253 20.2417 15.7253 19.9947C15.7253 19.7476 15.8111 19.5082 15.968 19.3173L21.3013 12.9173C21.3909 12.8093 21.5009 12.72 21.625 12.6546C21.7491 12.5892 21.8849 12.5488 22.0246 12.536C22.1643 12.5231 22.3052 12.5379 22.4391 12.5795C22.5731 12.6212 22.6975 12.6889 22.8053 12.7787C22.9277 12.8779 23.0265 13.0031 23.0948 13.1451C23.163 13.2871 23.199 13.4424 23.2 13.6Z"
+                          fill="var(--color-white)"
+                        />
+                      </svg>
+                    </S.GoodsListSection4Btn>
+                    <S.GoodsListPageNumber>
+                      {[...Array(totalPage).keys()].map((_, index) => (
+                        <S.GoodsListPageNumberButton
+                          key={index}
+                          style={{
+                            fontWeight:
+                              index + 1 === pageNumber ? 'bold' : 'normal',
+                            backgroundColor:
+                              index + 1 === pageNumber ? '#f7f7f7' : '#FFFFFF',
+                            color:
+                              index + 1 === pageNumber ? '#333333' : '#999999',
+                          }}
+                          onClick={() => handlePageChange(index + 1)}
+                        >
+                          {index + 1}
+                        </S.GoodsListPageNumberButton>
+                      ))}
+                    </S.GoodsListPageNumber>
+                    <S.GoodsListSection4Btn
+                      onClick={() => {
+                        handleNextPage(pageNumber);
+                      }}
+                      aria-label="다음페이지"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="40"
+                        height="40"
+                        viewBox="0 0 40 40"
+                        fill="none"
+                      >
+                        <path
+                          d="M20 40C8.9543 40 -3.03189e-06 31.0457 1.74846e-06 20C2.7141e-06 8.9543 8.95431 -6.5288e-06 20 -1.74846e-06C31.0457 -7.8281e-07 40 8.95431 40 20C40 31.0457 31.0457 40 20 40Z"
+                          fill="var(--color-primary)"
+                        />
+                        <path
+                          d="M16.8 26.4C16.7995 26.1508 16.8863 25.9092 17.0453 25.7173L21.824 20L17.216 14.272C17.1274 14.1629 17.0612 14.0373 17.0213 13.9026C16.9814 13.7678 16.9685 13.6265 16.9833 13.4867C16.9982 13.347 17.0406 13.2115 17.1079 13.0882C17.1753 12.9648 17.2664 12.856 17.376 12.768C17.4851 12.6794 17.6107 12.6132 17.7454 12.5733C17.8802 12.5334 18.0215 12.5205 18.1613 12.5353C18.301 12.5502 18.4365 12.5926 18.5598 12.6599C18.6832 12.7273 18.792 12.8184 18.88 12.928L24.032 19.328C24.1889 19.5189 24.2747 19.7583 24.2747 20.0053C24.2747 20.2524 24.1889 20.4918 24.032 20.6827L18.6987 27.0827C18.6091 27.1907 18.4991 27.28 18.375 27.3454C18.2509 27.4108 18.1151 27.4512 17.9754 27.464C17.8357 27.4769 17.6949 27.4621 17.5609 27.4205C17.4269 27.3788 17.3025 27.3111 17.1947 27.2213C17.0723 27.1221 16.9735 26.9969 16.9052 26.8549C16.837 26.7129 16.801 26.5576 16.8 26.4Z"
+                          fill="var(--color-white)"
+                        />
+                      </svg>
+                    </S.GoodsListSection4Btn>
+                  </>
+                )
+              : null}
           </S.GoodsListSection4>
         </div>
       </S.GoodsListContainerSection>

@@ -2,9 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import * as S from '../../styledComponent/styledMain/StMainCarousel';
 import { config } from '@fortawesome/fontawesome-svg-core';
 import '@fortawesome/fontawesome-svg-core/styles.css';
-
 import { DocumentData } from 'firebase/firestore';
-
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { setSelectedProduct } from '../../redux/modules/GoodsList/GoodsListSlice';

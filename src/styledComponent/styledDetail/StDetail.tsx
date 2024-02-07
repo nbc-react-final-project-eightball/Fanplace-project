@@ -4,9 +4,15 @@ export const DtailContainer = styled.div`
   display: flex;
   justify-content: center;
   width: 100%;
-  height: 100%;
+  height: 100vh;
+  overflow: auto;
   padding: 0 2.5rem 0 8.75rem;
+  ::-webkit-scrollbar {
+    display: none;
+  }
+  scrollbar-width: none;
   @media (max-width: 1024px) {
+    width: 100%;
     padding: 0 0.5rem 0 6.75rem;
   }
 
@@ -111,16 +117,17 @@ export const ProductDetailImg = styled.img`
 export const ProductInfoContainer = styled.div`
   position: -webkit-sticky;
   position: sticky;
-  top: 80px;
+  top: 0px;
   width: 39.89%;
   max-width: 440px;
   height: 100%;
-  display: flex;
+  display: block;
   flex-direction: column;
   border-radius: 20px;
   @media (max-width: 768px) {
-    position: static;
+    position: none;
     width: 100%;
+    height: auto;
     max-width: 100%;
   }
 `;

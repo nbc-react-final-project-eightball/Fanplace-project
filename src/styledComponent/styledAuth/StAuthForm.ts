@@ -35,6 +35,7 @@ export const AuthForm = styled.form`
   margin: 0 auto;
   .css-9npbnl-MuiFormLabel-root-MuiInputLabel-root {
     font-family: 'pretendard', san-serif;
+    color: var(--color-primary);
   }
 
   @media (max-width: 480px) {

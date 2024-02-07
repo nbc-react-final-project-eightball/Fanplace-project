@@ -10,7 +10,7 @@ import {
 const SideBar = () => {
   const { sideCategory } = useParams<{ sideCategory: string }>();
   const [active, setActive] = useState<string>('');
-  const [isSidebarVisible, setSidebarVisible] = useState<boolean>(true);
+  const [isSidebarVisible, setSidebarVisible] = useState<boolean>(false);
   const dispatch = useDispatch();
   const toggleSidebar = () => {
     setSidebarVisible(!isSidebarVisible);
