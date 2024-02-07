@@ -11,6 +11,7 @@ interface GoodsState {
   filter: string | null;
   searchList: DocumentData[];
   searchName: string;
+  wishlist: any;
 }
 
 const initialState: GoodsState = {
@@ -21,6 +22,7 @@ const initialState: GoodsState = {
   filter: null,
   searchList: [],
   searchName: '',
+  wishlist: 1,
 };
 
 export const goodsSlice = createSlice({
@@ -51,6 +53,9 @@ export const goodsSlice = createSlice({
     setSearchName: (state, action: PayloadAction<string>) => {
       state.searchName = action.payload;
     },
+    setWishlistR: (state, action: PayloadAction<any>) => {
+      state.wishlist = action.payload;
+    },
   },
 });
 
@@ -63,6 +68,7 @@ export const {
   setPage,
   setProductSearch,
   setSearchName,
+  setWishlistR,
 } = goodsSlice.actions;
 
 export default goodsSlice.reducer;

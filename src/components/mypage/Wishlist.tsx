@@ -2,7 +2,10 @@ import React, { useEffect, useState } from 'react';
 import * as S from '../../styledComponent/styledMypage/StWishlist';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from 'redux/configStore';
-import { setSelectedProduct } from '../../redux/modules/GoodsList/GoodsListSlice';
+import {
+  setSelectedProduct,
+  setWishlistR,
+} from '../../redux/modules/GoodsList/GoodsListSlice';
 import { auth } from '../../firebase/config';
 import Swal from 'sweetalert2';
 
@@ -21,6 +24,7 @@ const Wishlist = () => {
       const storedItems = localStorage.getItem(`wishlist_${user?.uid}`);
       if (storedItems) {
         setWishlist(JSON.parse(storedItems));
+        dispatch(setWishlistR(wishlist.length));
       }
     }
   }, [userInfo]);
@@ -37,6 +41,7 @@ const Wishlist = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         setDeleteIndex(index);
+        dispatch(setWishlistR(wishlist.length - 1));
       }
     });
   };
