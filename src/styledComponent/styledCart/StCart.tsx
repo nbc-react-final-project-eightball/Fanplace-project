@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const CartContainer = styled.div`
   width: 100%;
@@ -240,6 +240,12 @@ export const PaymentButton = styled.button`
   border-radius: 28px;
   background: var(--color-primary);
   color: var(--color-white);
+  ${({ disabled }) =>
+    disabled &&
+    css`
+      background: var(--color-medium-gray-be);
+      cursor: not-allowed;
+    `}
 `;
 export const CartList = styled.ul`
   gap: 20px;

@@ -17,6 +17,7 @@ interface TossPaymentMethodsWidget {
 }
 
 interface TossPaymentRequestOptions {
+  // userId도 추가
   orderId: string;
   orderName: string;
   customerName: string;

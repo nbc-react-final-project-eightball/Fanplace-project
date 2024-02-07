@@ -49,10 +49,12 @@ export const Wrapper = styled.div`
 
 export const PaymentSection = styled.div`
   position: absolute;
-  top: 320px;
+  top: 620px;
   left: 0;
   width: 100%;
-
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   height: 100%;
   @media screen and (max-width: 1024px) {
     position: relative;
@@ -106,10 +108,10 @@ export const ApiWrapper = styled.div`
   max-width: 720px;
   width: 66.6666%;
   height: 100%;
-  margin-top: 20px;
   @media screen and (max-width: 1024px) {
     max-width: unset;
     width: 100%;
+
   }
 `;
 
