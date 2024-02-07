@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import * as S from 'styledComponent/styledMypage/StMypageLayout';
 import { Link, useLocation } from 'react-router-dom';
+import { auth } from '../../firebase/config';
 
 const MyPageLayout = ({ children }: { children: React.ReactNode }) => {
   const location = useLocation();
@@ -9,6 +10,24 @@ const MyPageLayout = ({ children }: { children: React.ReactNode }) => {
   const { userInfo } = useSelector(
     (state: { signUpSlice: any }) => state.signUpSlice,
   );
+
+  const [wishlistLength, setWishlistLength] = useState<number>(0);
+  const user = auth.currentUser;
+  console.log('userInfo', userInfo);
+  useEffect(() => {
+    if (userInfo?.uid) {
+      const storedItems = localStorage.getItem(`wishlist_${user?.uid}`);
+      if (storedItems) {
+        setWishlistLength(JSON.parse(storedItems).length);
+        // console.log(
+        //   'JSON.parse(storedItems).length',
+        //   JSON.parse(storedItems).length,
+        // );
+      } else {
+        setWishlistLength(0);
+      }
+    }
+  }, [userInfo]);
   return (
     <S.MypageWrapper>
       <S.InfoBoxBackground>
@@ -51,7 +70,8 @@ const MyPageLayout = ({ children }: { children: React.ReactNode }) => {
           <S.MyWishListBox to={'/wishlist'}>
             <h3>위시리스트</h3>
             <h4>
-              0<span>건</span>
+              {wishlistLength}
+              <span>건</span>
             </h4>
             <p>장바구니에 추가해보세요!</p>
             <S.MoreLink to={'/profilesettings'}>
