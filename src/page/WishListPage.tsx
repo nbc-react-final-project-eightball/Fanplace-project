@@ -1,11 +1,10 @@
 import MyPageLayout from 'components/layout/MyPageLayout';
-import PrepareLayout from 'components/layout/PrepareLayout';
-import React from 'react';
+import Wishlist from 'components/mypage/Wishlist';
 
 const WishListPage = () => {
   return (
     <MyPageLayout>
-      <PrepareLayout />
+      <Wishlist />
     </MyPageLayout>
   );
 };
