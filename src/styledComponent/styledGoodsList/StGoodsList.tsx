@@ -380,7 +380,26 @@ export const NotProduct = styled.div`
     width: 100%;
   }
 `;
+export const NotProductDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: calc((100% - 40px) / 3);
+  height: 70vh;
+  cursor: pointer;
+  @media (max-width: 1024px) {
+    width: calc((100% - 20px) / 2);
+  }
+  @media (max-width: 480px) {
+    flex: 0 0 100%;
+  }
+  h1 {
+    color: var(--color-primary-medium-55);
 
+    font-size: 3rem;
+  }
+`;
 export const GoodsListPageNumber = styled.div`
   display: flex;
   justify-content: center;
