@@ -7,6 +7,7 @@ import {
   getDocs,
   DocumentData,
   where,
+  addDoc,
 } from 'firebase/firestore';
 
 import { typeProduct } from '../Type/TypeInterface';
@@ -181,8 +182,8 @@ const GoodsList = () => {
   //   },
   //   {
   //     productId: 6,
-  //     sideCategory: 'CD&DVD',
-  //     category: 'NEW',
+  //     sideCategory: 'New',
+  //     category: 'CD',
   //     info: '[2/13출시]',
   //     artist: '에스파',
   //     img: '/img/ProductCardImg/aespa2.webp',
@@ -604,8 +605,8 @@ const GoodsList = () => {
   //   },
   //   {
   //     productId: 31,
-  //     sideCategory: 'CD',
-  //     category: 'New',
+  //     sideCategory: 'New',
+  //     category: 'CD',
   //     info: '',
   //     artist: '레드벨벳',
   //     img: '/img/ProductCardImg/redvelvet1.webp',
@@ -792,8 +793,8 @@ const GoodsList = () => {
   //   },
   //   {
   //     productId: 42,
-  //     sideCategory: 'CD',
-  //     category: 'New',
+  //     sideCategory: 'New',
+  //     category: 'CD',
   //     info: '',
   //     artist: '스테이씨',
   //     img: '/img/ProductCardImg/stayc1.webp',
@@ -866,8 +867,8 @@ const GoodsList = () => {
   //   },
   //   {
   //     productId: 46,
-  //     sideCategory: 'CD',
-  //     category: 'New',
+  //     sideCategory: 'New',
+  //     category: 'CD',
   //     info: '[2/13출시]',
   //     artist: '칸나',
   //     img: '/img/ProductCardImg/kanna1.webp',
@@ -945,6 +946,679 @@ const GoodsList = () => {
   //     remainingQuantity: 100,
   //     contentImg1: '/img/ProductDetail/redvelvet2_1.webp',
   //     releaseDate: '2023-12-20',
+  //   },
+  //   {
+  //     productId: 51,
+  //     sideCategory: 'PhotoCard',
+  //     category: '포토북',
+  //     info: '',
+  //     artist: '세븐틴',
+  //     img: '/img/ProductCardImg/seventeen4.webp',
+  //     title:
+  //       '세븐틴 (SEVENTEEN) - 2023 SVT 7TH FAN MEETING [SEVENTEEN in CARAT LAND] MEMORY BOOK+ DIGITAL CODE​',
+  //     titleEn: 'MEMORY BOOK+ DIGITAL CODE',
+  //     ProductName: '세븐틴 (SEVENTEEN) - 2023 SVT 7TH FAN MEETING',
+  //     price: 45500,
+  //     isSoldOut: false,
+  //     remainingQuantity: 100,
+  //     contentImg1: '/img/ProductDetail/seventeen4_1.webp',
+  //     releaseDate: '2023-12-20',
+  //   },
+  //   {
+  //     productId: 52,
+  //     sideCategory: 'New',
+  //     category: 'CD',
+  //     info: '',
+  //     artist: '스트레이키즈',
+  //     img: '/img/ProductCardImg/straykids5.webp',
+  //     title:
+  //       'Stray Kids(스트레이 키즈) - 정규 1집 리패키지 IN生 (IN LIFE) 랜덤',
+  //     titleEn:
+  //       'Stray Kids(스트레이 키즈) - 정규 1집 리패키지 IN生 (IN LIFE) 랜덤',
+  //     ProductName:
+  //       'Stray Kids(스트레이 키즈) - 정규 1집 리패키지 IN生 (IN LIFE) 랜덤',
+  //     price: 17900,
+  //     isSoldOut: false,
+  //     remainingQuantity: 100,
+  //     contentImg1: '/img/ProductDetail/straykids15_1.webp',
+  //     releaseDate: '2023-12-20',
+  //   },
+  //   {
+  //     productId: 53,
+  //     sideCategory: 'New',
+  //     category: 'CD',
+  //     info: '',
+  //     artist: '스트레이키즈',
+  //     img: '/img/ProductCardImg/straykids6.webp',
+  //     title:
+  //       '스트레이 키즈(Stray Kids) - 정규 3집 [★★★★★ (5-STAR)] (LIMITED VER.)',
+  //     titleEn:
+  //       '스트레이 키즈(Stray Kids) - 정규 3집 [★★★★★ (5-STAR)] (LIMITED VER.)',
+  //     ProductName:
+  //       '스트레이 키즈(Stray Kids) - 정규 3집 [★★★★★ (5-STAR)] (LIMITED VER.)',
+  //     price: 17900,
+  //     isSoldOut: false,
+  //     remainingQuantity: 100,
+  //     contentImg1: '/img/ProductDetail/straykids16_1.webp',
+  //     releaseDate: '2024-02-07',
+  //   },
+  //   {
+  //     productId: 54,
+  //     sideCategory: 'CD&DVD',
+  //     category: 'CD',
+  //     artist: '있지',
+  //     img: '/img/ProductCardImg/itzy2.webp',
+  //     title: '있지(ITZY) - [BORN TO BE] (LIMITED VER.)',
+  //     titleEn: '있지(ITZY) - [BORN TO BE] (LIMITED VER.)',
+  //     ProductName: '있지(ITZY) - [BORN TO BE] (LIMITED VER.)',
+  //     price: 15500,
+  //     salePrice: 13400,
+  //     isSoldOut: false,
+  //     remainingQuantity: 100,
+  //     contentImg1: '/img/ProductDetail/itzy2_1.webp',
+  //     releaseDate: '2024-01-16',
+  //   },
+  //   {
+  //     productId: 55,
+  //     sideCategory: 'CD&DVD',
+  //     category: 'CD',
+  //     artist: '있지',
+  //     img: '/img/ProductCardImg/itzy3.webp',
+  //     title: 'ITZY(있지) - [IT Z ME] (버전 3종 중 랜덤)',
+  //     titleEn: 'ITZY(있지) - [IT Z ME] (버전 3종 중 랜덤)',
+  //     ProductName: 'ITZY(있지) - [IT Z ME] (버전 3종 중 랜덤)',
+  //     price: 15500,
+  //     salePrice: 13300,
+  //     isSoldOut: false,
+  //     remainingQuantity: 100,
+  //     contentImg1: '/img/ProductDetail/itzy3_1.webp',
+  //     releaseDate: '2024-01-16',
+  //   },
+  //   {
+  //     productId: 56,
+  //     sideCategory: 'CD&DVD',
+  //     category: 'CD',
+  //     artist: '있지',
+  //     img: '/img/ProductCardImg/itzy4.webp',
+  //     title: '있지(ITZY) - [IT’z ICY] (IT’Z ver / ICY ver. 2종 중 랜덤발송)',
+  //     titleEn: '있지(ITZY) - [IT’z ICY] (IT’Z ver / ICY ver. 2종 중 랜덤발송)',
+  //     ProductName:
+  //       '있지(ITZY) - [IT’z ICY] (IT’Z ver / ICY ver. 2종 중 랜덤발송)',
+  //     price: 15500,
+  //     salePrice: 13300,
+  //     isSoldOut: false,
+  //     remainingQuantity: 100,
+  //     contentImg1: '/img/ProductDetail/itzy4_1.webp',
+  //     releaseDate: '2024-01-16',
+  //   },
+  //   {
+  //     productId: 57,
+  //     sideCategory: 'CD&DVD',
+  //     category: 'CD',
+  //     info: '',
+  //     artist: '스테이씨',
+  //     img: '/img/ProductCardImg/stayc2.webp',
+  //     title:
+  //       '스테이씨 - 3집 미니 앨범 [TEENFRESH] (6종 중 랜덤 1종) (Digipak Ver.)',
+  //     titleEn:
+  //       '스테이씨(STAYC) - The 3rd Mini Album [TEENFRESH] (6종 중 랜덤 1종) (Digipak Ver.)',
+  //     ProductName: '스테이씨 - 3집 미니 앨범 [TEENFRESH] (6종 중 랜덤 1종)',
+  //     price: 47500,
+  //     isSoldOut: false,
+  //     remainingQuantity: 100,
+  //     contentImg1: '/img/ProductDetail/stayc2_1.webp',
+  //     releaseDate: '2023-11-08',
+  //   },
+  //   {
+  //     productId: 58,
+  //     sideCategory: 'Pompoms',
+  //     category: '응원봉',
+  //     info: '',
+  //     artist: '스테이씨',
+  //     img: '/img/ProductCardImg/stayc3.webp',
+  //     title:
+  //       '스테이씨 (STAYC) 2ND FANMEETING [SWITH GELATO FACTORY] OFFICIAL MD - 공식 응원봉 OFFICIAL LIGHT STICK',
+  //     titleEn: '',
+  //     ProductName: '스테이씨 공식 응원봉 OFFICIAL LIGHT STICK',
+  //     price: 43000,
+  //     isSoldOut: false,
+  //     remainingQuantity: 100,
+  //     contentImg1: '/img/ProductDetail/stayc3_1.webp',
+  //     releaseDate: '2023-06-20',
+  //   },
+  //   {
+  //     productId: 59,
+  //     sideCategory: 'CD&DVD',
+  //     category: 'CD',
+  //     info: '',
+  //     artist: '르세라핌',
+  //     img: '/img/ProductCardImg/lesserafim6.webp',
+  //     title:
+  //       '르세라핌 (LE SSERAFIM) - 미니 3집 [EASY] (Weverse Albums ver.) (2종 세트)​',
+  //     titleEn:
+  //       '르세라핌 (LE SSERAFIM) - 미니 3집 [EASY] (Weverse Albums ver.) (2종 세트)',
+  //     ProductName:
+  //       '르세라핌 (LE SSERAFIM) - 미니 3집 [EASY] (Weverse Albums ver.) (2종 세트)',
+  //     price: 49000,
+  //     isSoldOut: false,
+  //     remainingQuantity: 100,
+  //     contentImg1: '/img/ProductDetail/lesserafim6_1.webp',
+  //     releaseDate: '2024-01-20',
+  //   },
+  //   {
+  //     productId: 60,
+  //     sideCategory: 'CD&DVD',
+  //     category: 'CD',
+  //     info: '',
+  //     artist: '르세라핌',
+  //     img: '/img/ProductCardImg/lesserafim7.webp',
+  //     title:
+  //       '르세라핌(LE SSERAFIM) - 2nd 미니앨범 [ANTIFRAGILE] (Weverse Albums Ver.)​',
+  //     titleEn:
+  //       '르세라핌(LE SSERAFIM) - 2nd 미니앨범 [ANTIFRAGILE] (Weverse Albums Ver.)',
+  //     ProductName:
+  //       '르세라핌(LE SSERAFIM) - 2nd 미니앨범 [ANTIFRAGILE] (Weverse Albums Ver.)',
+  //     price: 49000,
+  //     isSoldOut: false,
+  //     remainingQuantity: 100,
+  //     contentImg1: '/img/ProductDetail/lesserafim7_1.webp',
+  //     releaseDate: '2022-10-17',
+  //   },
+  //   {
+  //     productId: 61,
+  //     sideCategory: 'CD&DVD',
+  //     category: 'CD',
+  //     info: '',
+  //     artist: '르세라핌',
+  //     img: '/img/ProductCardImg/lesserafim8.webp',
+  //     title: '르세라핌 (LE SSERAFIM) - [FEARLESS] (1ST 미니앨범) (세트)​',
+  //     titleEn: '르세라핌 (LE SSERAFIM) - [FEARLESS] (1ST 미니앨범) (세트)',
+  //     ProductName: '르세라핌 (LE SSERAFIM) - [FEARLESS] (1ST 미니앨범) (세트)',
+  //     price: 35400,
+  //     isSoldOut: false,
+  //     remainingQuantity: 100,
+  //     contentImg1: '/img/ProductDetail/lesserafim8_1.webp',
+  //     releaseDate: '2022-10-17',
+  //   },
+  //   {
+  //     productId: 62,
+  //     sideCategory: 'Sundries',
+  //     category: '폰케이스',
+  //     info: '',
+  //     artist: '(여자)아이들',
+  //     img: '/img/ProductCardImg/idle2.webp',
+  //     title: '[(G)I-DLE] I-LAND:WHO AM I 폰스트랩',
+  //     titleEn: '',
+  //     ProductName: '[(G)I-DLE] I-LAND:WHO AM I 폰스트랩',
+
+  //     price: 10000,
+  //     isSoldOut: false,
+  //     remainingQuantity: 100,
+  //     contentImg1: '/img/ProductDetail/idle2_1.webp',
+  //     releaseDate: '2023-10-27',
+  //   },
+  //   {
+  //     productId: 63,
+  //     sideCategory: 'PhotoCard',
+  //     category: '포토카드',
+  //     info: '',
+  //     artist: '(여자)아이들',
+  //     img: '/img/ProductCardImg/idle3.webp',
+  //     title: '[(G)I-DLE] I-LAND:WHO AM I 스페셜 포토 티켓 세트',
+  //     titleEn: '',
+  //     ProductName: '[(G)I-DLE] I-LAND:WHO AM I 스페셜 포토 티켓 세트',
+  //     price: 10000,
+  //     isSoldOut: false,
+  //     remainingQuantity: 100,
+  //     contentImg1: '/img/ProductDetail/idle3_1.webp',
+  //     releaseDate: '2023-10-27',
+  //   },
+  //   {
+  //     productId: 64,
+  //     sideCategory: 'Apparel',
+  //     category: '티셔츠',
+  //     info: '',
+  //     artist: '(여자)아이들',
+  //     img: '/img/ProductCardImg/idle4.webp',
+  //     title: '[(G)I-DLE] I-LAND:WHO AM I 티셔츠',
+  //     titleEn: '',
+  //     ProductName: '[(G)I-DLE] I-LAND:WHO AM I 티셔츠',
+  //     price: 32000,
+  //     isSoldOut: false,
+  //     remainingQuantity: 100,
+  //     contentImg1: '/img/ProductDetail/idle4_1.webp',
+  //     releaseDate: '2023-10-27',
+  //   },
+  //   {
+  //     productId: 65,
+  //     sideCategory: 'Apparel',
+  //     category: '후드티',
+  //     info: '',
+  //     artist: '(여자)아이들',
+  //     img: '/img/ProductCardImg/idle5.webp',
+  //     title:
+  //       '(G)I-DLE (여자)아이들 [GBC in the NEVERLAND] OFFICIAL MD 후드 티셔츠',
+  //     titleEn: '',
+  //     ProductName:
+  //       '(G)I-DLE (여자)아이들 [GBC in the NEVERLAND] OFFICIAL MD 후드 티셔츠',
+  //     price: 52000,
+  //     isSoldOut: false,
+  //     remainingQuantity: 100,
+  //     contentImg1: '/img/ProductDetail/idle4_1.webp',
+  //     releaseDate: '2023-10-27',
+  //   },
+  //   {
+  //     productId: 66,
+  //     sideCategory: 'CD&DVD',
+  //     category: 'CD',
+  //     artist: '블랙핑크',
+  //     img: '/img/ProductCardImg/blackpink3.webp',
+  //     title:
+  //       '블랙핑크(BLACKPINK) - 2nd ALBUM [BORN PINK] (DIGIPACK ver.) (ROSE ver.)',
+  //     titleEn: '',
+  //     ProductName:
+  //       '블랙핑크(BLACKPINK) - 2nd ALBUM [BORN PINK] (DIGIPACK ver.) (ROSE ver.)',
+  //     price: 15900,
+
+  //     isSoldOut: false,
+  //     remainingQuantity: 100,
+  //     contentImg1: '/img/ProductDetail/blackpink3_1.webp',
+  //     releaseDate: '2023-07-11',
+  //   },
+  //   {
+  //     productId: 67,
+  //     sideCategory: 'CD&DVD',
+  //     category: 'CD',
+  //     artist: '블랙핑크',
+  //     img: '/img/ProductCardImg/blackpink4.webp',
+  //     title:
+  //       '블랙핑크(BLACKPINK) - 2nd ALBUM [BORN PINK] (DIGIPACK ver.) (JISOO ver.)',
+  //     titleEn: '',
+  //     ProductName:
+  //       '블랙핑크(BLACKPINK) - 2nd ALBUM [BORN PINK] (DIGIPACK ver.) (JISOO ver.)',
+  //     price: 15900,
+
+  //     isSoldOut: false,
+  //     remainingQuantity: 100,
+  //     contentImg1: '/img/ProductDetail/blackpink3_1.webp',
+  //     releaseDate: '2023-07-11',
+  //   },
+  //   {
+  //     productId: 67,
+  //     sideCategory: 'CD&DVD',
+  //     category: 'CD',
+  //     artist: '블랙핑크',
+  //     img: '/img/ProductCardImg/blackpink5.webp',
+  //     title:
+  //       '블랙핑크(BLACKPINK) - 2nd ALBUM [BORN PINK] (DIGIPACK ver.) (LISA ver.)',
+  //     titleEn: '',
+  //     ProductName:
+  //       '블랙핑크(BLACKPINK) - 2nd ALBUM [BORN PINK] (DIGIPACK ver.) (LISA ver.)',
+  //     price: 15900,
+
+  //     isSoldOut: false,
+  //     remainingQuantity: 100,
+  //     contentImg1: '/img/ProductDetail/blackpink3_1.webp',
+  //     releaseDate: '2023-07-11',
+  //   },
+  //   {
+  //     productId: 68,
+  //     sideCategory: 'CD&DVD',
+  //     category: 'CD',
+  //     artist: '블랙핑크',
+  //     img: '/img/ProductCardImg/blackpink6.webp',
+  //     title:
+  //       '블랙핑크(BLACKPINK) - 2nd ALBUM [BORN PINK] (DIGIPACK ver.) (JENNIE ver.)',
+  //     titleEn: '',
+  //     ProductName:
+  //       '블랙핑크(BLACKPINK) - 2nd ALBUM [BORN PINK] (DIGIPACK ver.) (JENNIE ver.)',
+  //     price: 15900,
+
+  //     isSoldOut: false,
+  //     remainingQuantity: 100,
+  //     contentImg1: '/img/ProductDetail/blackpink3_1.webp',
+  //     releaseDate: '2023-07-11',
+  //   },
+  //   {
+  //     productId: 69,
+  //     sideCategory: 'CD&DVD',
+  //     category: 'CD',
+  //     artist: '블랙핑크',
+  //     img: '/img/ProductCardImg/blackpink7.webp',
+  //     title:
+  //       '블랙핑크(BLACKPINK) - 2nd ALBUM [BORN PINK] (DIGIPACK ver.) (4종 세트)',
+  //     titleEn: '',
+  //     ProductName:
+  //       '블랙핑크(BLACKPINK) - 2nd ALBUM [BORN PINK] (DIGIPACK ver.) (4종 세트)',
+  //     price: 52900,
+
+  //     isSoldOut: false,
+  //     remainingQuantity: 100,
+  //     contentImg1: '/img/ProductDetail/blackpink3_1.webp',
+  //     releaseDate: '2023-07-11',
+  //   },
+  //   {
+  //     productId: 70,
+  //     sideCategory: 'CD&DVD',
+  //     category: 'CD',
+  //     artist: '블랙핑크',
+  //     img: '/img/ProductCardImg/blackpink8.webp',
+  //     title:
+  //       '[교환반품불가] 블랙핑크 (BLACKPINK) - 1st FULL ALBUM [THE ALBUM] (JP Ver.) (JENNIE Ver.) (수입반)',
+  //     titleEn: '',
+  //     ProductName:
+  //       '[교환반품불가] 블랙핑크 (BLACKPINK) - 1st FULL ALBUM [THE ALBUM] (JP Ver.) (JENNIE Ver.) (수입반)',
+  //     price: 65900,
+  //     isSoldOut: false,
+  //     remainingQuantity: 100,
+  //     contentImg1: '/img/ProductDetail/blackpink8_1.webp',
+  //     contentImg2: '/img/ProductDetail/blackpink8_2.webp',
+  //     releaseDate: '2023-07-11',
+  //   },
+  //   {
+  //     productId: 71,
+  //     sideCategory: 'CD&DVD',
+  //     category: 'CD',
+  //     artist: '블랙핑크',
+  //     img: '/img/ProductCardImg/blackpink9.webp',
+  //     title:
+  //       '[교환반품불가] 블랙핑크 (BLACKPINK) - 1st FULL ALBUM [THE ALBUM] (JP Ver.) (JISOO Ver.) (수입반)',
+  //     titleEn: '',
+  //     ProductName:
+  //       '[교환반품불가] 블랙핑크 (BLACKPINK) - 1st FULL ALBUM [THE ALBUM] (JP Ver.) (JISOO Ver.) (수입반)',
+  //     price: 65900,
+  //     isSoldOut: false,
+  //     remainingQuantity: 100,
+  //     contentImg1: '/img/ProductDetail/blackpink9_1.webp',
+  //     contentImg2: '/img/ProductDetail/blackpink9_2.webp',
+  //     releaseDate: '2023-07-11',
+  //   },
+  //   {
+  //     productId: 71,
+  //     sideCategory: 'CD&DVD',
+  //     category: 'CD',
+  //     artist: '블랙핑크',
+  //     img: '/img/ProductCardImg/blackpink10.webp',
+  //     title:
+  //       '[교환반품불가] 블랙핑크 (BLACKPINK) - 1st FULL ALBUM [THE ALBUM] (JP Ver.) (LISA Ver.) (수입반)',
+  //     titleEn: '',
+  //     ProductName:
+  //       '[교환반품불가] 블랙핑크 (BLACKPINK) - 1st FULL ALBUM [THE ALBUM] (JP Ver.) (LISA Ver.) (수입반)',
+  //     price: 65900,
+  //     isSoldOut: false,
+  //     remainingQuantity: 100,
+  //     contentImg1: '/img/ProductDetail/blackpink10_1.webp',
+  //     contentImg2: '/img/ProductDetail/blackpink10_2.webp',
+  //     releaseDate: '2023-07-11',
+  //   },
+  //   {
+  //     productId: 72,
+  //     sideCategory: 'CD&DVD',
+  //     category: 'CD',
+  //     artist: '블랙핑크',
+  //     img: '/img/ProductCardImg/blackpink11.webp',
+  //     title:
+  //       '[교환반품불가] 블랙핑크 (BLACKPINK) - 1st FULL ALBUM [THE ALBUM] (JP Ver.) (ROSÉ Ver.) (수입반)',
+  //     titleEn: '',
+  //     ProductName:
+  //       '[교환반품불가] 블랙핑크 (BLACKPINK) - 1st FULL ALBUM [THE ALBUM] (JP Ver.) (ROSÉ Ver.) (수입반)',
+  //     price: 65900,
+  //     isSoldOut: false,
+  //     remainingQuantity: 100,
+  //     contentImg1: '/img/ProductDetail/blackpink11_1.webp',
+  //     contentImg2: '/img/ProductDetail/blackpink11_2.webp',
+  //     releaseDate: '2023-07-11',
+  //   },
+  //   {
+  //     productId: 73,
+  //     sideCategory: 'Sundries',
+  //     category: '텀블러/컵',
+  //     info: '',
+  //     artist: '아이브',
+  //     img: '/img/ProductCardImg/ive3.webp',
+  //     title: '아이브(IVE) - [THE PROM QUEENS] Official MD - 머그컵 MUG CUP',
+  //     titleEn: '',
+  //     ProductName:
+  //       '아이브(IVE) - [THE PROM QUEENS] Official MD - 머그컵 MUG CUP',
+  //     price: 14700,
+  //     isSoldOut: false,
+  //     remainingQuantity: 100,
+  //     contentImg1: '/img/ProductDetail/ive3_1.webp',
+  //     releaseDate: '2023-11-20',
+  //   },
+  //   {
+  //     productId: 74,
+  //     sideCategory: 'Pompoms',
+  //     category: '응원봉',
+  //     info: '',
+  //     artist: '아이브',
+  //     img: '/img/ProductCardImg/ive4.webp',
+  //     title:
+  //       '아이브(IVE) - [THE PROM QUEENS] Official MD - 응원봉 OFFICIAL LIGHT STICK ver.1',
+  //     titleEn: '',
+  //     ProductName:
+  //       '아이브(IVE) - [THE PROM QUEENS] Official MD - 응원봉 OFFICIAL LIGHT STICK ver.1',
+  //     price: 42700,
+  //     isSoldOut: false,
+  //     remainingQuantity: 100,
+  //     contentImg1: '/img/ProductDetail/ive4_1.webp',
+  //     releaseDate: '2023-11-20',
+  //   },
+  //   {
+  //     productId: 75,
+  //     sideCategory: 'Apparel',
+  //     category: '모자',
+  //     info: '',
+  //     artist: '아이브',
+  //     img: '/img/ProductCardImg/ive5.webp',
+  //     title: '아이브(IVE) - [THE PROM QUEENS] Official MD - 볼캡 BALL CAP',
+  //     titleEn: '',
+  //     ProductName:
+  //       '아이브(IVE) - [THE PROM QUEENS] Official MD - 볼캡 BALL CAP',
+  //     price: 35700,
+  //     isSoldOut: false,
+  //     remainingQuantity: 100,
+  //     contentImg1: '/img/ProductDetail/ive5_1.webp',
+  //     releaseDate: '2023-11-20',
+  //   },
+  //   {
+  //     productId: 76,
+  //     sideCategory: 'Apparel',
+  //     category: '후드티',
+  //     info: '',
+  //     artist: '아이브',
+  //     img: '/img/ProductCardImg/ive6.webp',
+  //     title: '아이브(IVE) - [THE PROM QUEENS] Official MD - 후드티 HOODIE',
+  //     titleEn: '',
+  //     ProductName:
+  //       '아이브(IVE) - [THE PROM QUEENS] Official MD - 후드티 HOODIE',
+  //     price: 65000,
+  //     isSoldOut: false,
+  //     remainingQuantity: 100,
+  //     contentImg1: '/img/ProductDetail/ive6_1.webp',
+  //     releaseDate: '2023-11-20',
+  //   },
+  //   {
+  //     productId: 77,
+  //     sideCategory: 'Sundries',
+  //     category: '액세서리',
+  //     info: '',
+  //     artist: '아이브',
+  //     img: '/img/ProductCardImg/ive7.webp',
+  //     title:
+  //       '아이브(IVE) - [THE PROM QUEENS] Official MD - 헤어핀 세트 HAIR PIN SET',
+  //     titleEn: '',
+  //     ProductName:
+  //       '아이브(IVE) - [THE PROM QUEENS] Official MD - 헤어핀 세트 HAIR PIN SET',
+  //     price: 65000,
+  //     isSoldOut: false,
+  //     remainingQuantity: 100,
+  //     contentImg1: '/img/ProductDetail/ive7_1.webp',
+  //     releaseDate: '2023-11-20',
+  //   },
+  //   {
+  //     productId: 78,
+  //     sideCategory: 'Sundries',
+  //     category: '액세서리',
+  //     info: '',
+  //     artist: '아이브',
+  //     img: '/img/ProductCardImg/ive8.webp',
+  //     title:
+  //       '아이브(IVE) - [THE PROM QUEENS] Official MD - 스크런치 세트 SCRUNCHIE SET',
+  //     titleEn: '',
+  //     ProductName:
+  //       '아이브(IVE) - [THE PROM QUEENS] Official MD - 스크런치 세트 SCRUNCHIE SET',
+  //     price: 25000,
+  //     isSoldOut: false,
+  //     remainingQuantity: 100,
+  //     contentImg1: '/img/ProductDetail/ive8_1.webp',
+  //     releaseDate: '2023-11-20',
+  //   },
+  //   {
+  //     productId: 79,
+  //     sideCategory: 'Sundries',
+  //     category: '그립톡',
+  //     info: '',
+  //     artist: '아이브',
+  //     img: '/img/ProductCardImg/ive9.webp',
+  //     title:
+  //       '아이브(IVE) - [THE PROM QUEENS] Official MD - 스크런치 세트 SCRUNCHIE SET',
+  //     titleEn: '',
+  //     ProductName:
+  //       '아이브(IVE) - [THE PROM QUEENS] Official MD - 스크런치 세트 SCRUNCHIE SET',
+  //     price: 25000,
+  //     isSoldOut: false,
+  //     remainingQuantity: 100,
+  //     contentImg1: '/img/ProductDetail/ive9_1.webp',
+  //     releaseDate: '2023-11-20',
+  //   },
+  //   {
+  //     productId: 80,
+  //     sideCategory: 'Sundries',
+  //     category: '텀블러/컵',
+  //     info: '',
+  //     artist: 'bts',
+  //     img: '/img/ProductCardImg/bts3.webp',
+  //     title: '[반품교환불가] 방탄소년단(BTS) - Built NY x BTS 보틀 (BTS)',
+  //     titleEn: '',
+  //     ProductName: '방탄소년단(BTS) - Built NY x BTS 보틀 (BTS)',
+  //     price: 36000,
+  //     isSoldOut: false,
+  //     remainingQuantity: 100,
+  //     contentImg1: '/img/ProductDetail/bts3_1.jpg',
+  //     releaseDate: '2024-01-18',
+  //   },
+  //   {
+  //     productId: 81,
+  //     sideCategory: 'Sundries',
+  //     category: '텀블러/컵',
+  //     info: '',
+  //     artist: 'bts',
+  //     img: '/img/ProductCardImg/bts4.webp',
+  //     title: '[반품교환불가] 방탄소년단(BTS) - Built NY x BTS 보틀 (RM)',
+  //     titleEn: '',
+  //     ProductName: '방탄소년단(BTS) - Built NY x BTS 보틀 (RM)',
+  //     price: 36000,
+  //     isSoldOut: false,
+  //     remainingQuantity: 100,
+  //     contentImg1: '/img/ProductDetail/bts3_1.jpg',
+  //     releaseDate: '2024-01-18',
+  //   },
+  //   {
+  //     productId: 82,
+  //     sideCategory: 'Sundries',
+  //     category: '텀블러/컵',
+  //     info: '',
+  //     artist: 'bts',
+  //     img: '/img/ProductCardImg/bts5.webp',
+  //     title: '[반품교환불가] 방탄소년단(BTS) - Built NY x BTS 보틀 (진)',
+  //     titleEn: '',
+  //     ProductName: '방탄소년단(BTS) - Built NY x BTS 보틀 (진)',
+  //     price: 36000,
+  //     isSoldOut: false,
+  //     remainingQuantity: 100,
+  //     contentImg1: '/img/ProductDetail/bts3_1.jpg',
+  //     releaseDate: '2024-01-18',
+  //   },
+  //   {
+  //     productId: 83,
+  //     sideCategory: 'Sundries',
+  //     category: '텀블러/컵',
+  //     info: '',
+  //     artist: 'bts',
+  //     img: '/img/ProductCardImg/bts6.webp',
+  //     title: '[반품교환불가] 방탄소년단(BTS) - Built NY x BTS 보틀 (슈가)',
+  //     titleEn: '',
+  //     ProductName: '방탄소년단(BTS) - Built NY x BTS 보틀 (슈가)',
+  //     price: 36000,
+  //     isSoldOut: false,
+  //     remainingQuantity: 100,
+  //     contentImg1: '/img/ProductDetail/bts3_1.jpg',
+  //     releaseDate: '2024-01-18',
+  //   },
+  //   {
+  //     productId: 84,
+  //     sideCategory: 'Sundries',
+  //     category: '텀블러/컵',
+  //     info: '',
+  //     artist: 'bts',
+  //     img: '/img/ProductCardImg/bts7.webp',
+  //     title: '[반품교환불가] 방탄소년단(BTS) - Built NY x BTS 보틀 (제이홉)',
+  //     titleEn: '',
+  //     ProductName: '방탄소년단(BTS) - Built NY x BTS 보틀 (제이홉)',
+  //     price: 36000,
+  //     isSoldOut: false,
+  //     remainingQuantity: 100,
+  //     contentImg1: '/img/ProductDetail/bts3_1.jpg',
+  //     releaseDate: '2024-01-18',
+  //   },
+  //   {
+  //     productId: 85,
+  //     sideCategory: 'Sundries',
+  //     category: '텀블러/컵',
+  //     info: '',
+  //     artist: 'bts',
+  //     img: '/img/ProductCardImg/bts8.webp',
+  //     title: '[반품교환불가] 방탄소년단(BTS) - Built NY x BTS 보틀 (지민)',
+  //     titleEn: '',
+  //     ProductName: '방탄소년단(BTS) - Built NY x BTS 보틀 (지민)',
+  //     price: 36000,
+  //     isSoldOut: false,
+  //     remainingQuantity: 100,
+  //     contentImg1: '/img/ProductDetail/bts3_1.jpg',
+  //     releaseDate: '2024-01-18',
+  //   },
+  //   {
+  //     productId: 86,
+  //     sideCategory: 'Sundries',
+  //     category: '텀블러/컵',
+  //     info: '',
+  //     artist: 'bts',
+  //     img: '/img/ProductCardImg/bts9.webp',
+  //     title: '[반품교환불가] 방탄소년단(BTS) - Built NY x BTS 보틀 (뷔)',
+  //     titleEn: '',
+  //     ProductName: '방탄소년단(BTS) - Built NY x BTS 보틀 (뷔)',
+  //     price: 36000,
+  //     isSoldOut: false,
+  //     remainingQuantity: 100,
+  //     contentImg1: '/img/ProductDetail/bts3_1.jpg',
+  //     releaseDate: '2024-01-18',
+  //   },
+  //   {
+  //     productId: 87,
+  //     sideCategory: 'Sundries',
+  //     category: '텀블러/컵',
+  //     info: '',
+  //     artist: 'bts',
+  //     img: '/img/ProductCardImg/bts10.webp',
+  //     title: '[반품교환불가] 방탄소년단(BTS) - Built NY x BTS 보틀 (정국)',
+  //     titleEn: '',
+  //     ProductName: '방탄소년단(BTS) - Built NY x BTS 보틀 (정국)',
+  //     price: 36000,
+  //     isSoldOut: false,
+  //     remainingQuantity: 100,
+  //     contentImg1: '/img/ProductDetail/bts3_1.jpg',
+  //     releaseDate: '2024-01-18',
   //   },
   // ];
 
@@ -1047,6 +1721,7 @@ const GoodsList = () => {
     if (page > lastPageNumber) {
       page = 1;
     }
+    window.scrollTo(0, 0);
     dispatch(setCurrentPage(page));
   };
   const handlePrevPage = (pageNumber: number) => {
@@ -1054,6 +1729,7 @@ const GoodsList = () => {
     if (page < 1) {
       page = 1;
     }
+    window.scrollTo(0, 0);
     dispatch(setCurrentPage(page));
   };
 
@@ -1197,7 +1873,38 @@ const GoodsList = () => {
                     </S.ProductCard>
                   ))
                 ) : (
-                  <S.NotProduct>상품이 없습니다.</S.NotProduct>
+                  <S.NotProduct>
+                    <div>
+                      {Array.from({ length: 12 }).map((_, index) => (
+                        <S.ProductCard>
+                          <S.ProductCardImgBox>
+                            <S.Simg />
+                            <div></div>
+                          </S.ProductCardImgBox>
+                          <div>
+                            <S.GoodsListCardSection1>
+                              <S.GoodsListCardSection1_1>
+                                <S.ProductCardInfoArtist>
+                                  <S.SBar />
+                                </S.ProductCardInfoArtist>
+                                <S.ProductCardTitle>
+                                  <S.SBar />
+                                </S.ProductCardTitle>
+                                <S.ProductReleaseDate>
+                                  <S.SBar />
+                                </S.ProductReleaseDate>
+                              </S.GoodsListCardSection1_1>
+                              <S.GoodsListCardSection1_2>
+                                <S.ProductCardPrice>
+                                  <S.SBar />
+                                </S.ProductCardPrice>
+                              </S.GoodsListCardSection1_2>
+                            </S.GoodsListCardSection1>
+                          </div>
+                        </S.ProductCard>
+                      ))}
+                    </div>
+                  </S.NotProduct>
                 )
               }
             </S.GoodsListSection3Wrapper>

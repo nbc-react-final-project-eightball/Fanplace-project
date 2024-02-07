@@ -247,6 +247,18 @@ export const ProductCardImg = styled.img`
   object-fit: cover;
   border-radius: 8px;
 `;
+export const Simg = styled.div`
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+`;
+export const SBar = styled.div`
+  background-color: aliceblue;
+  width: 100%;
+  height: 20px;
+`;
 export const ProductCardImgBox = styled.div`
   position: relative;
   width: 100%;
@@ -359,12 +371,14 @@ export const GoodsListSection4Btn = styled.button`
 `;
 
 export const NotProduct = styled.div`
+  position: relative;
   width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  padding: 40px 0;
-  font-size: 18px;
+  > div {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    width: 100%;
+  }
 `;
 
 export const GoodsListPageNumber = styled.div`

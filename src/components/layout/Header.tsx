@@ -223,7 +223,7 @@ const Header = () => {
                 <S.MobileName>로그인</S.MobileName>
               </S.LoginButton>
             )}
-            <Link to={isLogged ? '/cart' : '/login'}>
+            <Link to={isLogged ? '/cart' : '/login'} aria-label="장바구니">
               <svg
                 id="shopping"
                 xmlns="http://www.w3.org/2000/svg"
