@@ -1,6 +1,7 @@
 import * as S from '../styledComponent/styledPayment/stPaymentSuccess';
 
 const PaymentSuccess = () => {
+  // 주문id를 url에서 가져와서 -> db 상태값을 결제 완료로 변경
   return (
     <S.Container>
       <S.TitleWrapper>
