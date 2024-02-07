@@ -7,6 +7,10 @@ export const DtailContainer = styled.div`
   height: 100vh;
   overflow: auto;
   padding: 0 2.5rem 0 8.75rem;
+  ::-webkit-scrollbar {
+    display: none;
+  }
+  scrollbar-width: none;
   @media (max-width: 1024px) {
     width: 100%;
     padding: 0 0.5rem 0 6.75rem;
@@ -121,6 +125,7 @@ export const ProductInfoContainer = styled.div`
   flex-direction: column;
   border-radius: 20px;
   @media (max-width: 768px) {
+    position: none;
     width: 100%;
     height: auto;
     max-width: 100%;
