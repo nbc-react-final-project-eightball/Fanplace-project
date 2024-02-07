@@ -81,7 +81,7 @@ const Header = () => {
                 type="text"
                 value={searchInput}
                 onChange={handleSearchChange}
-                maxLength={20}
+                maxLength={11}
                 onKeyPress={(event) => {
                   if (event.key === 'Enter') {
                     fetchGoods();
@@ -111,10 +111,10 @@ const Header = () => {
                     });
                     return;
                   }
-                  if (searchInput.length >= 20) {
+                  if (searchInput.length >= 11) {
                     Swal.fire({
                       icon: 'warning',
-                      title: '20자 이하로 입력해주세요',
+                      title: '11자 이하로 입력해주세요',
                       showConfirmButton: false,
                       timer: 1500,
                     });

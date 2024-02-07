@@ -303,6 +303,9 @@ export const AlbumDiv = styled.div`
   position: relative;
   background: #000;
   border: 1px solid var(--color-primary);
+  @media (max-width: 1280px) {
+    width: 100%;
+  }
   @media (max-width: 768px) {
     width: 100%;
   }
@@ -321,6 +324,12 @@ export const AlbumWrapper = styled.div`
   position: relative;
   display: flex;
   margin-left: -660px;
+  @media (max-width: 1280px) {
+    margin-left: -120px;
+  }
+  @media (max-width: 957px) {
+    margin-left: -280px;
+  }
   @media (max-width: 768px) {
     margin-left: -255px;
   }
@@ -421,6 +430,12 @@ export const AlbumPrevButton = styled.button`
   top: 300px;
   left: 430px;
   z-index: 1;
+  @media (max-width: 1280px) {
+    left: 380px;
+  }
+  @media (max-width: 957px) {
+    left: 230px;
+  }
   @media (max-width: 768px) {
     left: 220px;
   }
@@ -440,6 +455,12 @@ export const AlbumNextButton = styled.button`
   top: 300px;
   right: 410px;
   z-index: 1;
+  @media (max-width: 1280px) {
+    right: 380px;
+  }
+  @media (max-width: 957px) {
+    right: 230px;
+  }
   @media (max-width: 768px) {
     right: 210px;
   }
