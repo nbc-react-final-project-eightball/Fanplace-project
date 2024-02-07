@@ -48,7 +48,23 @@ const RecentProducts = () => {
                       발매일&nbsp;&nbsp;
                       {list?.releaseDate || '2024-02-12'}
                     </S.ReleaseDate>
-                    <S.Price>{list?.price.toLocaleString()} 원</S.Price>
+                    <S.Price>
+                      {list?.salePrice ? (
+                        <div>
+                          <span>
+                            {Math.floor(
+                              ((list?.price - list?.salePrice) / list?.price) *
+                                100,
+                            )}
+                            %
+                          </span>
+                          <h3>{list.salePrice.toLocaleString()}원</h3>
+                          <p>{list.price.toLocaleString()}원</p>
+                        </div>
+                      ) : (
+                        <p>{list?.price.toLocaleString()}원</p>
+                      )}
+                    </S.Price>
                   </S.ListInTextDiv>
                 </S.StyledLink>
               </S.List>

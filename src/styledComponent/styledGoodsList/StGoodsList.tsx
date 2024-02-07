@@ -260,8 +260,11 @@ export const ProductCardInfoArtist = styled.div`
   margin-bottom: 4px;
   color: var(--color-medium-gray-aa);
   font-size: 14px;
-  font-style: normal;
   line-height: 1.5; /* 171.429% */
+  h1 {
+    font-weight: normal;
+    color: var(--color-medium-gray-99);
+  }
 `;
 export const ProductCardInfo = styled.span`
   flex: 2;
@@ -281,11 +284,12 @@ export const ProductCardTitle = styled.h1`
   height: 43px;
   width: 100%;
   font-weight: 500;
+  color: var(--color-medium-gray-33);
 `;
 
 export const ProductReleaseDate = styled.div`
   margin-top: 10px;
-  color: var(--color-primary-medium-99);
+  color: var(--color-primary-medium-55);
   font-size: 14px;
   font-weight: 400;
 `;

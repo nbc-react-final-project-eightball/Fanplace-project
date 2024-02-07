@@ -264,6 +264,13 @@ export const buttonWrapper = styled.div`
   > button {
     padding: 4px 8px;
   }
+  > p {
+    max-width: 120px;
+    font-size: 12px;
+    border: 1px solid var(--color-light-gray-ef);
+    padding: 4px;
+    text-align: center;
+  }
 `;
 export const EditButton = styled.button`
   border: 1px solid var(--color-light-gray-ef);

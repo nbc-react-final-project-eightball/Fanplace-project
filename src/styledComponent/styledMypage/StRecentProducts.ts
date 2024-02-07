@@ -133,4 +133,26 @@ export const Price = styled.p`
   font-style: normal;
   font-weight: 600;
   line-height: 1.5; /* 133.333% */
+
+  > div {
+    display: flex;
+    gap: 10px;
+    align-items: baseline;
+    span {
+      color: #ff6565;
+      font-size: 18px;
+      font-weight: 600;
+    }
+    h3 {
+      color: var(--color-primary-medium-33);
+      font-size: 18px;
+      font-weight: 600;
+    }
+    p {
+      color: rgba(190, 190, 190, 0.93);
+      font-size: 14px;
+      font-weight: 400;
+      text-decoration: line-through;
+    }
+  }
 `;
