@@ -327,6 +327,9 @@ export const AlbumWrapper = styled.div`
   @media (max-width: 1280px) {
     margin-left: -120px;
   }
+  @media (max-width: 957px) {
+    margin-left: -280px;
+  }
   @media (max-width: 768px) {
     margin-left: -255px;
   }
@@ -430,6 +433,9 @@ export const AlbumPrevButton = styled.button`
   @media (max-width: 1280px) {
     left: 380px;
   }
+  @media (max-width: 957px) {
+    left: 230px;
+  }
   @media (max-width: 768px) {
     left: 220px;
   }
@@ -451,6 +457,9 @@ export const AlbumNextButton = styled.button`
   z-index: 1;
   @media (max-width: 1280px) {
     right: 380px;
+  }
+  @media (max-width: 957px) {
+    right: 230px;
   }
   @media (max-width: 768px) {
     right: 210px;
