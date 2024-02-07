@@ -170,6 +170,11 @@ export const Searchinput = styled.input<SearchProps>`
     left: 100px;
     top: -500px;
   }
+  @media screen and (max-width: 430px) {
+    width: 320px;
+    left: 50px;
+    top: -500px;
+  }
   @media screen and (max-width: 414px) {
     width: 330px;
     left: 40px;
@@ -199,8 +204,13 @@ export const SearchinputButton1 = styled.button<SearchProps>`
     left: 640px;
     top: -480px;
   }
+
   @media screen and (max-width: 480px) {
     left: 360px;
+    top: -480px;
+  }
+  @media screen and (max-width: 430px) {
+    left: 330px;
     top: -480px;
   }
   @media screen and (max-width: 414px) {
