@@ -1195,7 +1195,38 @@ const GoodsList = () => {
                     </S.ProductCard>
                   ))
                 ) : (
-                  <S.NotProduct>상품이 없습니다.</S.NotProduct>
+                  <S.NotProduct>
+                    <div>
+                      {Array.from({ length: 12 }).map((_, index) => (
+                        <S.ProductCard>
+                          <S.ProductCardImgBox>
+                            <S.Simg />
+                            <div></div>
+                          </S.ProductCardImgBox>
+                          <div>
+                            <S.GoodsListCardSection1>
+                              <S.GoodsListCardSection1_1>
+                                <S.ProductCardInfoArtist>
+                                  <S.SBar />
+                                </S.ProductCardInfoArtist>
+                                <S.ProductCardTitle>
+                                  <S.SBar />
+                                </S.ProductCardTitle>
+                                <S.ProductReleaseDate>
+                                  <S.SBar />
+                                </S.ProductReleaseDate>
+                              </S.GoodsListCardSection1_1>
+                              <S.GoodsListCardSection1_2>
+                                <S.ProductCardPrice>
+                                  <S.SBar />
+                                </S.ProductCardPrice>
+                              </S.GoodsListCardSection1_2>
+                            </S.GoodsListCardSection1>
+                          </div>
+                        </S.ProductCard>
+                      ))}
+                    </div>
+                  </S.NotProduct>
                 )
               }
             </S.GoodsListSection3Wrapper>
