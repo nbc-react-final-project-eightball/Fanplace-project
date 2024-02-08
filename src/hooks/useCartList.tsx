@@ -23,7 +23,6 @@ const useCartList = () => {
   const [orderList, setOrderList] = useState<TypeCart[]>([]);
   const auth = getAuth();
   const user: string | undefined = auth.currentUser?.uid;
-  const [done, setDone] = useState(false);
   const fetchCartList = async () => {
     //user정보가 없으면 리턴하기
     if (!user) return;
@@ -75,8 +74,6 @@ const useCartList = () => {
       try {
         const docRef = doc(db, 'cartList', user);
         await updateDoc(docRef, { cartList: updatedCartList });
-        console.log('장바구니 업데이트 완료', updateDoc);
-        setDone(true);
       } catch (error) {
         console.error('Error updating cart data:', error);
       }

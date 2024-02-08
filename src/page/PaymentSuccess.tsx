@@ -32,7 +32,7 @@ const PaymentSuccess = () => {
     } catch (e) {
       console.error(e);
     }
-  }, [orderId, selectedItems, cartList, navigate, updateOrderAndDeleteCart]);
+  }, [orderId]);
 
   useEffect(() => {
     console.log('selectedItems:', selectedItems);
