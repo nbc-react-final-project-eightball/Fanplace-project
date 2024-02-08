@@ -1,7 +1,42 @@
+import useCartList from 'hooks/useCartList';
 import * as S from '../styledComponent/styledPayment/stPaymentSuccess';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 
 const PaymentSuccess = () => {
   // 주문id를 url에서 가져와서 -> db 상태값을 결제 완료로 변경
+  const location = useLocation();
+  const orderId = new URLSearchParams(location.search).get('orderId');
+  // const selectedItems: TypeCart[] = location.state?.selectedItems || [];
+  const it = JSON.parse(sessionStorage.getItem('selectedItems') || '[]');
+  const [selectedItems, setIt] = useState(it);
+
+  const { cartList, updateOrderAndDeleteCart } = useCartList();
+  console.log('orderId:', orderId);
+  console.log('selectedItems:', selectedItems);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    try {
+      const it = JSON.parse(sessionStorage.getItem('selectedItems') || '[]');
+      setIt(it);
+      if (orderId) {
+        updateOrderAndDeleteCart(orderId, selectedItems, cartList);
+        console.log('orderId:', orderId);
+        console.log('selectedItems:', selectedItems);
+        console.log('cartList:', cartList);
+      } else {
+        console.error('orderId is null');
+        navigate('/error');
+      }
+    } catch (e) {
+      console.error(e);
+    }
+  }, [orderId]);
+
+  useEffect(() => {
+    console.log('selectedItems:', selectedItems);
+  }, [selectedItems]);
   return (
     <S.Container>
       <S.TitleWrapper>
