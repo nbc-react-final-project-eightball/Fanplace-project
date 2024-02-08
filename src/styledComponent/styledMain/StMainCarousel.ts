@@ -177,7 +177,7 @@ export const PrevButton = styled.button`
   background-color: var(--color-primary);
   border-radius: 50%;
   position: absolute;
-  top: 300px;
+  top: 50%;
   left: -20px;
   z-index: 1;
   svg {
@@ -223,7 +223,7 @@ export const NextButton = styled.button`
   background-color: var(--color-primary);
   border-radius: 50%;
   position: absolute;
-  top: 300px;
+  top: 50%;
   right: -20px;
   z-index: 1;
   svg {
@@ -427,7 +427,7 @@ export const AlbumPrevButton = styled.button`
   background-color: var(--color-primary);
   border-radius: 50%;
   position: absolute;
-  top: 300px;
+  top: 50%;
   left: 430px;
   z-index: 1;
   @media (max-width: 1280px) {
@@ -452,7 +452,7 @@ export const AlbumNextButton = styled.button`
   background-color: var(--color-primary);
   border-radius: 50%;
   position: absolute;
-  top: 300px;
+  top: 50%;
   right: 410px;
   z-index: 1;
   @media (max-width: 1280px) {

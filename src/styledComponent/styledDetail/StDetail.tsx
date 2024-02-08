@@ -363,15 +363,16 @@ export const ProductInfoSection3Btn3 = styled.button`
 export const DetailReviewContainer = styled.div`
   width: 100%;
   height: 100%;
+  padding-bottom: 100px;
 `;
 export const DetailReviewInPut = styled.input`
   width: 100%;
-  height: 100px;
-  border-radius: 30px;
+  height: 48px;
+  border-radius: 8px;
   border: 1px solid var(--color-primary-medium-99);
-  padding: 20px;
+  padding: 10px 20px;
   font-size: 16px;
-  font-weight: 800;
+  font-weight: normal;
   flex: 1;
 
   &:focus {
@@ -401,14 +402,14 @@ export const DetailReviewRatingLabel = styled.label`
 
 export const DetailReviewBtn = styled.button`
   width: 20%;
-  height: 100px;
-  border-radius: 30px;
+  height: 48px;
+  border-radius: 8px;
   font-weight: normal;
   background-color: var(--color-primary);
   transition: all 0.2s;
-  color: #ffffff;
+  color: var(--color-white);
   &:hover {
-    color: #ffffff;
+    color: var(--color-white);
     background-color: var(--color-primary-medium-33);
   }
 `;
@@ -417,6 +418,7 @@ export const DetailReviewRating = styled.div`
   gap: 20px;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
 `;
 
 export const DetailReviewForm = styled.form`
@@ -433,23 +435,29 @@ export const DetailReviewFormSection1 = styled.div`
 `;
 export const DetailReviewList = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: column-reverse;
   gap: 20px;
   padding: 20px;
   width: 100%;
   height: 100%;
-  border-radius: 30px;
 `;
 
 export const DetailReviewContent = styled.div`
   display: flex;
   gap: 20px;
   width: 100%;
+  padding: 20px;
+  background-color: var(--color-light-gray-f7);
+  border-radius: 8px;
+  @media (max-width: 768px) {
+    gap: 10px;
+  }
 `;
 export const DetailReviewContentSectionContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 20px;
+  width: calc(100% - 60px);
 `;
 export const DetailReviewContentSection1 = styled.div`
   display: flex;
@@ -457,8 +465,9 @@ export const DetailReviewContentSection1 = styled.div`
 `;
 export const DetailReviewContentSection1_1 = styled.div`
   display: flex;
-  flex-direction: row;
-
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 8px;
   @media (max-width: 768px) {
     align-items: start;
   }
@@ -468,15 +477,20 @@ export const DetailReviewContentSection1_2 = styled.div`
   flex-direction: column;
 `;
 export const DetailReviewContentSection2 = styled.div`
-  width: 400px;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  text-align: left;
 `;
 export const DetailReviewImg = styled.img`
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
+  @media (max-width: 768px) {
+    width: 30px;
+    height: 30px;
+  }
 `;
 
 export const DetailReviewDeleteBtn = styled.button`
@@ -484,14 +498,8 @@ export const DetailReviewDeleteBtn = styled.button`
   height: 20px;
   border-radius: 30px;
   font-weight: normal;
-  background-color: var(--color-primary);
   transition: all 0.2s;
 
-  color: #ffffff;
-  &:hover {
-    color: var(--color-primary);
-    background-color: #ffffff;
-  }
   @media (max-width: 768px) {
     width: 30px;
   }
@@ -502,8 +510,8 @@ export const DetailReviewDeleteBtn = styled.button`
 export const DetailReviewerNameH1 = styled.h1`
   width: 100%;
   font-size: 16px;
-  font-weight: 800;
   text-align: left;
+  font-weight: normal;
 
   @media (max-width: 768px) {
     width: 150px;
@@ -515,16 +523,6 @@ export const DetailReviewerNameH1 = styled.h1`
 export const DetailReviewercreatedAtP = styled.p`
   width: 100%;
   font-size: 12px;
-  font-weight: 800;
-  text-align: left;
-
-  @media (max-width: 768px) {
-    width: 350px;
-  }
-  @media (max-width: 638px) {
-    width: 230px;
-  }
-  @media (max-width: 480px) {
-    width: 210px;
-  }
+  text-align: right;
+  color: var(--color-primary-medium-99);
 `;

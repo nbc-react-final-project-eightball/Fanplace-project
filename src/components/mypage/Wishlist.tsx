@@ -68,7 +68,7 @@ const Wishlist = () => {
   }, [deleteIndex]);
 
   return (
-    <S.RecentProductsWrapper>
+    <S.WishlistWrapper>
       <S.TitleWrapper>
         <div>
           <h3>위시리스트</h3>
@@ -127,7 +127,7 @@ const Wishlist = () => {
           ))}
         </S.RecentList>
       </S.RecentContainer>
-    </S.RecentProductsWrapper>
+    </S.WishlistWrapper>
   );
 };
 

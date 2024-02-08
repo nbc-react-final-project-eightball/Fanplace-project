@@ -16,7 +16,7 @@ import PaymentSuccess from 'page/PaymentSuccess';
 import ChatListPage from 'page/ChatListPage';
 import Artists from 'page/Artists';
 import Announcements from 'page/Announcements';
-import CartPage from 'page/CartPage';
+import Cartpage from 'page/Cartpage';
 import PaymentPage from 'page/PaymentPage';
 import SearchList from 'page/SearchList';
 
@@ -36,7 +36,7 @@ const Router = () => {
           <Route path="/wishlist" element={<WishListPage />} />
           <Route path="/profilesettings" element={<ProfileSettingsPage />} />
           <Route path="/shipping" element={<ShippingPage />} />
-          <Route path="/Cart" element={<CartPage />} />
+          <Route path="/Cart" element={<Cartpage />} />
           <Route path="/payment" element={<PaymentPage />} />
           <Route path="/Detail/:id" element={<Detail />} />
           <Route path="/success" element={<PaymentSuccess />} />

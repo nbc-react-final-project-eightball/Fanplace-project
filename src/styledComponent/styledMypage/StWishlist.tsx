@@ -1,7 +1,9 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-export const RecentProductsWrapper = styled.div``;
+export const WishlistWrapper = styled.div`
+  width: 100%;
+`;
 
 export const TitleWrapper = styled.div`
   display: flex;

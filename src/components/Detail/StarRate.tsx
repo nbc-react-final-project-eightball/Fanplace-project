@@ -31,7 +31,11 @@ const StarRate = ({ rating, setRating }: any) => {
               width="40"
               height="39"
               viewBox="0 0 14 13"
-              fill={ratesResArr[idx] === 1 ? '#FFD700' : '#cacaca'}
+              fill={
+                ratesResArr[idx] === 1
+                  ? 'var(--color-accent)'
+                  : 'var(--color-medium-gray-dd)'
+              }
             >
               <clipPath id={`${item}StarClip`}>
                 <rect width={`${ratesResArr[idx]}`} height="39" />

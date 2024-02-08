@@ -25,7 +25,7 @@ const SearchList = () => {
               {' '}
               <span
                 style={{
-                  color: '#ff6565',
+                  color: 'var(--color-accent)',
                   fontWeight: 'bold',
                 }}
               >
