@@ -435,12 +435,11 @@ export const DetailReviewFormSection1 = styled.div`
 `;
 export const DetailReviewList = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: column-reverse;
   gap: 20px;
   padding: 20px;
   width: 100%;
   height: 100%;
-  border-radius: 30px;
 `;
 
 export const DetailReviewContent = styled.div`
@@ -451,7 +450,7 @@ export const DetailReviewContent = styled.div`
   background-color: var(--color-light-gray-f7);
   border-radius: 8px;
   @media (max-width: 768px) {
-  gap: 10px;
+    gap: 10px;
   }
 `;
 export const DetailReviewContentSectionContainer = styled.div`
@@ -468,6 +467,7 @@ export const DetailReviewContentSection1_1 = styled.div`
   display: flex;
   gap: 10px;
   align-items: center;
+  margin-bottom: 8px;
   @media (max-width: 768px) {
     align-items: start;
   }

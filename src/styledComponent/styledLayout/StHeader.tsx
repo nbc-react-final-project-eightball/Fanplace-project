@@ -164,37 +164,10 @@ export const Searchinput = styled.input<SearchProps>`
   transition: all 1s ease-in-out;
   @media screen and (max-width: 768px) {
     z-index: 25;
-    width: 600px;
-    height: 70px;
-    left: 100px;
-    top: -500px;
-    font-size: 1.3rem;
-    padding-left: 1rem;
-  }
-  @media screen and (max-width: 480px) {
-    width: 300px;
-    left: 100px;
-    top: -500px;
-  }
-  @media screen and (max-width: 430px) {
-    width: 320px;
-    left: 50px;
-    top: -700px;
-  }
-  @media screen and (max-width: 414px) {
-    width: 330px;
-    left: 40px;
-    top: -700px;
-  }
-  @media screen and (max-width: 411px) {
-    width: 300px;
-    left: 50px;
-    top: -700px;
-  }
-  @media screen and (max-width: 375px) {
-    width: 280px;
-    left: 50px;
-    top: -700px;
+    width: 100vw;
+    height: 48px;
+    left: 0;
+    top: -64px;
   }
 `;
 
@@ -251,7 +224,7 @@ export const SearchOverlay = styled(Div)<SearchProps>`
     right: 0;
     bottom: 0;
     width: 100%;
-    height: 100%;
+    height: calc(100% - 64px);
     background-color: rgba(0, 0, 0, 0.4);
     transition: 0.5s;
     z-index: 24;

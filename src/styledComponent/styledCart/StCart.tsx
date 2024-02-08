@@ -248,8 +248,8 @@ export const PaymentButton = styled.button`
     `}
 `;
 export const DeleteButton = styled.button`
-  width: 30%;
-  height: 48px;
+  width: 120px;
+  height: 32px;
   text-align: center;
   flex-shrink: 0;
   border-radius: 28px;
