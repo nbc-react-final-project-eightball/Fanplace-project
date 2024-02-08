@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import * as S from 'styledComponent/styledMypage/StMypageLayout';
 import { Link, useLocation } from 'react-router-dom';
 import { auth } from '../../firebase/config';
+import { RootState } from 'redux/configStore';
 
 const MyPageLayout = ({ children }: { children: React.ReactNode }) => {
   const location = useLocation();
@@ -10,8 +11,8 @@ const MyPageLayout = ({ children }: { children: React.ReactNode }) => {
   const { userInfo } = useSelector(
     (state: { signUpSlice: any }) => state.signUpSlice,
   );
-
-  const [wishlistLength, setWishlistLength] = useState<number>(0);
+  const wish = useSelector((state: RootState) => state.goods.wishlist);
+  const [wishlistLength, setWishlistLength] = useState<number>(wish);
   const user = auth.currentUser;
   console.log('userInfo', userInfo);
   useEffect(() => {
@@ -27,7 +28,8 @@ const MyPageLayout = ({ children }: { children: React.ReactNode }) => {
         setWishlistLength(0);
       }
     }
-  }, [userInfo]);
+  }, [wish]);
+
   return (
     <S.MypageWrapper>
       <S.InfoBoxBackground>

@@ -29,6 +29,7 @@ const GoodsList = () => {
   const [filter, setFilter] = React.useState<null | String>(reSetCategory);
   const [showArtistFilter, setShowArtistFilter] = React.useState(false);
   const [selectedArtists, setSelectedArtists] = React.useState<string[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
   const [FilteredProduct, setFilteredProduct] = useState<DocumentData | null>(
     [],
   );
@@ -56,6 +57,7 @@ const GoodsList = () => {
 
   const fetchGoods = async () => {
     try {
+      setIsLoading(true);
       const goodsCollection = collection(db, 'goodsList');
       const goodsQuery = query(
         goodsCollection,
@@ -65,6 +67,7 @@ const GoodsList = () => {
       const goodsSnapshot = await getDocs(goodsQuery);
       const getGoodsList = goodsSnapshot.docs.map((doc) => doc.data());
       setGoodsList(getGoodsList);
+      setIsLoading(false);
     } catch (error) {
       console.log('상품 가져오기 실패!', error);
     }
@@ -1815,98 +1818,99 @@ const GoodsList = () => {
           {/* TODO: 상품리스트 카드 */}
           <S.GoodsListSection3>
             <S.GoodsListSection3Wrapper>
-              {
-                //상품 필터해서 0개면 상품없다고 말해줌
-                lastFilteredProduct?.length > 0 ? (
-                  (filter == null
-                    ? currentPageGoodsList
-                    : lastFilteredProduct
-                  )?.map((product: typeProduct) => (
-                    <S.ProductCard
-                      key={product.productId}
-                      onClick={() => {
-                        dispatch(setSelectedProduct(product));
-                        navigate(`/detail/${product.productId}`);
-                      }}
-                    >
-                      <S.ProductCardImgBox>
-                        <S.ProductCardImg src={product.img} alt="상품이미지" />
-                      </S.ProductCardImgBox>
-                      <div>
-                        <S.GoodsListCardSection1>
-                          <S.GoodsListCardSection1_1>
-                            <S.ProductCardInfoArtist>
-                              <h1>{product.artist}</h1>
-                            </S.ProductCardInfoArtist>
-                            <S.ProductCardTitle>
-                              {product.title}
-                            </S.ProductCardTitle>
-                            <S.ProductReleaseDate>
-                              발매일&nbsp;&nbsp;
-                              {product?.releaseDate || '2024-02-12'}
-                            </S.ProductReleaseDate>
-                          </S.GoodsListCardSection1_1>
-                          <S.GoodsListCardSection1_2>
-                            <S.ProductCardPrice>
-                              {product?.salePrice ? (
-                                <div>
-                                  <span>
-                                    {Math.floor(
-                                      ((product?.price - product?.salePrice) /
-                                        product?.price) *
-                                        100,
-                                    )}
-                                    %
-                                  </span>
-                                  <h3>
-                                    {product.salePrice.toLocaleString()}원
-                                  </h3>
-                                  <p>{product.price.toLocaleString()}원</p>
-                                </div>
-                              ) : (
-                                <p>{product?.price.toLocaleString()}원</p>
-                              )}
-                            </S.ProductCardPrice>
-                          </S.GoodsListCardSection1_2>
-                        </S.GoodsListCardSection1>
-                      </div>
-                    </S.ProductCard>
-                  ))
-                ) : (
-                  <S.NotProduct>
+              {isLoading ? (
+                <S.NotProduct>
+                  <div>
+                    {Array.from({ length: 12 }).map((_, index) => (
+                      <S.ProductCard>
+                        <S.ProductCardImgBox>
+                          <S.Simg />
+                          <div></div>
+                        </S.ProductCardImgBox>
+                        <div>
+                          <S.GoodsListCardSection1>
+                            <S.GoodsListCardSection1_1>
+                              <S.ProductCardInfoArtist>
+                                <S.SBar />
+                              </S.ProductCardInfoArtist>
+                              <S.ProductCardTitle>
+                                <S.SBar />
+                              </S.ProductCardTitle>
+                              <S.ProductReleaseDate>
+                                <S.SBar />
+                              </S.ProductReleaseDate>
+                            </S.GoodsListCardSection1_1>
+                            <S.GoodsListCardSection1_2>
+                              <S.ProductCardPrice>
+                                <S.SBar />
+                              </S.ProductCardPrice>
+                            </S.GoodsListCardSection1_2>
+                          </S.GoodsListCardSection1>
+                        </div>
+                      </S.ProductCard>
+                    ))}
+                  </div>
+                </S.NotProduct>
+              ) : lastFilteredProduct?.length > 0 ? (
+                (filter == null
+                  ? currentPageGoodsList
+                  : lastFilteredProduct
+                )?.map((product: typeProduct) => (
+                  <S.ProductCard
+                    key={product.productId}
+                    onClick={() => {
+                      dispatch(setSelectedProduct(product));
+                      navigate(`/detail/${product.productId}`);
+                    }}
+                  >
+                    <S.ProductCardImgBox>
+                      <S.ProductCardImg src={product.img} alt="상품이미지" />
+                    </S.ProductCardImgBox>
                     <div>
-                      {Array.from({ length: 12 }).map((_, index) => (
-                        <S.ProductCard>
-                          <S.ProductCardImgBox>
-                            <S.Simg />
-                            <div></div>
-                          </S.ProductCardImgBox>
-                          <div>
-                            <S.GoodsListCardSection1>
-                              <S.GoodsListCardSection1_1>
-                                <S.ProductCardInfoArtist>
-                                  <S.SBar />
-                                </S.ProductCardInfoArtist>
-                                <S.ProductCardTitle>
-                                  <S.SBar />
-                                </S.ProductCardTitle>
-                                <S.ProductReleaseDate>
-                                  <S.SBar />
-                                </S.ProductReleaseDate>
-                              </S.GoodsListCardSection1_1>
-                              <S.GoodsListCardSection1_2>
-                                <S.ProductCardPrice>
-                                  <S.SBar />
-                                </S.ProductCardPrice>
-                              </S.GoodsListCardSection1_2>
-                            </S.GoodsListCardSection1>
-                          </div>
-                        </S.ProductCard>
-                      ))}
+                      <S.GoodsListCardSection1>
+                        <S.GoodsListCardSection1_1>
+                          <S.ProductCardInfoArtist>
+                            <h1>{product.artist}</h1>
+                          </S.ProductCardInfoArtist>
+                          <S.ProductCardTitle>
+                            {product.title}
+                          </S.ProductCardTitle>
+                          <S.ProductReleaseDate>
+                            발매일&nbsp;&nbsp;
+                            {product?.releaseDate || '2024-02-12'}
+                          </S.ProductReleaseDate>
+                        </S.GoodsListCardSection1_1>
+                        <S.GoodsListCardSection1_2>
+                          <S.ProductCardPrice>
+                            {product?.salePrice ? (
+                              <div>
+                                <span>
+                                  {Math.floor(
+                                    ((product?.price - product?.salePrice) /
+                                      product?.price) *
+                                      100,
+                                  )}
+                                  %
+                                </span>
+                                <h3>{product.salePrice.toLocaleString()}원</h3>
+                                <p>{product.price.toLocaleString()}원</p>
+                              </div>
+                            ) : (
+                              <p>{product?.price.toLocaleString()}원</p>
+                            )}
+                          </S.ProductCardPrice>
+                        </S.GoodsListCardSection1_2>
+                      </S.GoodsListCardSection1>
                     </div>
-                  </S.NotProduct>
-                )
-              }
+                  </S.ProductCard>
+                ))
+              ) : (
+                <S.NotProduct>
+                  <S.NotProductDiv>
+                    <h1>조건에 맞는 상품이 없습니다!</h1>
+                  </S.NotProductDiv>
+                </S.NotProduct>
+              )}
             </S.GoodsListSection3Wrapper>
           </S.GoodsListSection3>
           <S.GoodsListSection4>
