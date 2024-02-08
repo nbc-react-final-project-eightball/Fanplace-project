@@ -1,10 +1,14 @@
 import MyPageLayout from 'components/layout/MyPageLayout';
 import RecentProducts from 'components/mypage/RecentProducts';
+import useCartList from 'hooks/useCartList';
 import { useLogout } from 'hooks/useLogout';
 import * as S from 'styledComponent/styledMypage/StMypage';
-
+function truncateText(text: string, maxLength: number) {
+  return text.length > maxLength ? `${text.substring(0, maxLength)}...` : text;
+}
 const Mypage = () => {
   const { logout } = useLogout();
+  const { orderList } = useCartList();
   return (
     <MyPageLayout>
       <S.RightWrapper>
@@ -39,24 +43,25 @@ const Mypage = () => {
                 <li>결제금액</li>
               </ul>
             </S.TableHead>
-            {/* <S.TableBody2> */}
-            {/* <ul>
-                <li>2024.02.05/7</li>
-                <li>아이리 칸나 - ADDICT!ON</li>
-                <li>1</li>
-                <li>배송 준비 중</li>
-                <li>44000 원</li>
-              </ul> */}
-            {/* <ul>
-                <li>2024.02.05/12</li>
-                <li>트와이스 휴대폰 키링 세트 - ONCE AGAIN</li>
-                <li>1</li>
-                <li>배송 준비 중</li>
-                <li>19000 원</li>
-              </ul> */}
-            {/* </S.TableBody2> */}
+            <S.TableBody2>
+              {orderList.length > 0 ? (
+                orderList.map((orderItem) => (
+                  <ul key={orderItem.id}>
+                    <li>{orderItem.orderId}</li>
+                    <li>{truncateText(orderItem.title, 22)}</li>
+                    <li>{orderItem.quantity}</li>
+                    <li>배송준비중</li>
+                    <li>
+                      {(orderItem.price * orderItem.quantity).toString()} 원
+                    </li>
+                  </ul>
+                ))
+              ) : (
+                <p>주문내역이 없습니다.</p>
+              )}
+            </S.TableBody2>
             <S.TableBody>
-              <p>주문내역이 없습니다.</p>
+              <p></p>
             </S.TableBody>
           </S.TableWrapper>
         </S.OrderList>

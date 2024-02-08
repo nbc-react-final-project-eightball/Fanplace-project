@@ -98,11 +98,17 @@ export const TableBody2 = styled.div`
   ul li:nth-child(2) {
     flex: 2;
   }
+  p {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 50px;
+  }
   @media (max-width: 640px) {
     display: none;
   }
 `;
-export const TableBody = styled.div`
+export const TableBody = styled.ul`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -123,4 +129,11 @@ export const LogoutButton = styled.button`
   @media screen and (max-width: 768px) {
     display: block;
   }
+`;
+
+export const UlWrapper = styled.ul`
+  padding: 0;
+`;
+export const LiWrapper = styled.li`
+  padding: 0;
 `;

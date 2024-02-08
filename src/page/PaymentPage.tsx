@@ -1,15 +1,22 @@
 import useCartList from 'hooks/useCartList';
 import * as S from '../styledComponent/styledCart/StCart';
 import * as P from '../styledComponent/styledPayment/stPayment';
-
 import ProgressIndicator from 'components/Cart/ProgressIndicator';
-
 import Address from 'components/payment/Address';
 import TossApi from 'components/payment/TossApi';
-import useTossPayment from 'hooks/useTossApi';
+
 import { TypeCart } from 'Type/TypeInterface';
-import { useLocation } from 'react-router-dom';
-import { nanoid } from '@reduxjs/toolkit';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { useEffect, useRef } from 'react';
+import {
+  loadPaymentWidget,
+  PaymentWidgetInstance,
+} from '@tosspayments/payment-widget-sdk';
+import { RootState } from 'redux/configStore';
+import { useSelector } from 'react-redux';
+
+const clientKey = 'test_gck_docs_Ovk5rk1EwkEbP0W43n07xlzm';
+const customerKey = 'HyZccn4pYtFcWyfFC1q1-';
 
 const getSelectedTotalPrice = (selectedItems: TypeCart[]) => {
   let totalPrice = 0;
@@ -21,11 +28,13 @@ const getSelectedTotalPrice = (selectedItems: TypeCart[]) => {
 
 const Paymentpage = () => {
   const { cartList, orderPaymentList } = useCartList();
-
+  const navigate = useNavigate();
   const location = useLocation();
   const selectedItems: TypeCart[] = location.state?.selectedItems || [];
   const title = '주문결제';
-
+  const selectedItems1 = useSelector(
+    (state: RootState) => state.cartSlice.selectedItems,
+  );
   // 총 상품 금액 계산
   // 체크된 상품들만 총 금액의 합 계산
   const selectedTotalPrice = getSelectedTotalPrice(selectedItems);
@@ -34,35 +43,51 @@ const Paymentpage = () => {
   // 주문금액이 5만원 이하면 배송비 3000원 추가
   const shippingCost = selectedTotalPrice <= 50000 ? 3000 : 0;
   const totalPayment = totalPrice + shippingCost;
+  //TossAPi
+  const paymentWidgetRef = useRef<PaymentWidgetInstance | null>(null);
+  const paymentMethodsWidgetRef = useRef<ReturnType<
+    PaymentWidgetInstance['renderPaymentMethods']
+  > | null>(null);
+  useEffect(() => {
+    (async () => {
+      const paymentWidget = await loadPaymentWidget(clientKey, customerKey);
 
-  //TossApi를 호출
-  const { requestTossPayment } = useTossPayment({
-    clientKey: 'test_gck_docs_Ovk5rk1EwkEbP0W43n07xlzm',
-    customerKey: 'HyZccn4pYtFcWyfFC1q1-',
-    defaultTotalPrice: totalPayment,
-  });
+      const paymentMethodsWidget = paymentWidget.renderPaymentMethods(
+        '#payment-widget',
+        totalPayment,
+      );
 
-  // 1. 결제하기 버튼을 눌렀을 때 실행되는 함수
-  const handlePaymentRequest = async () => {
-    // 여기서 바로 orderList 테이블에 미리 데이터를 넣어주거나 (결제 전)
-    const orderId = await orderPaymentList(selectedItems, totalPayment);
-
-    // => 이때 nanoid 로 주문 id를 만들어야 함 or db에 그냥 넣고 문서id를 가져오거나
-    if (orderId) {
-      await requestTossPayment({
-        // 3. success 페이지에는 주문id가 존재한다
-        // => success 페이지에서 실제 우리 DB를 결제 완료로 변경해!
-        orderId: orderId, // 여기에 실제 주문id
-        orderName: '토스 티셔츠 외 2건',
-        customerName: '김토스',
-        customerEmail: 'customer123@gmail.com',
-        // 2. 결제가 성공하면 /success 페이지로 이동한다.
-        successUrl: `${window.location.origin}/success`,
-        failUrl: `${window.location.origin}/fail`,
-      });
+      paymentWidgetRef.current = paymentWidget;
+      paymentMethodsWidgetRef.current = paymentMethodsWidget;
+    })();
+  }, []);
+  useEffect(() => {
+    const paymentMethodsWidget = paymentMethodsWidgetRef.current;
+    if (paymentMethodsWidget == null) {
+      return;
     }
+    paymentMethodsWidget.updateAmount(
+      totalPayment,
+      paymentMethodsWidget.UPDATE_REASON.COUPON,
+    );
+  }, [totalPayment]);
 
-    console.log('결제완료');
+  const handlePaymentRequest = async () => {
+    const paymentWidget = paymentWidgetRef.current;
+    const orderId = await orderPaymentList(selectedItems, totalPayment);
+    sessionStorage.setItem('selectedItems', JSON.stringify(selectedItems1));
+    try {
+      await paymentWidget?.requestPayment({
+        orderId: orderId ?? '', //주문번호
+        orderName: '토스 티셔츠 외 2건', //주문명
+        customerName: '김토스', //주문자명
+        customerEmail: 'customer123@gmail.com', //주문자 이메일
+        successUrl: `${window.location.origin}/success?orderId=${orderId}`, //성공시 이동할 url
+        failUrl: `${window.location.origin}/fail`, //실패시 이동할 url
+      });
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   if (cartList.length === 0) return null;
@@ -156,7 +181,7 @@ const Paymentpage = () => {
           <P.PaymentSection>
             <Address />
             <P.ApiWrapper>
-              <TossApi />
+              <div id="payment-widget" />
             </P.ApiWrapper>
           </P.PaymentSection>
           <S.RightContainer>
