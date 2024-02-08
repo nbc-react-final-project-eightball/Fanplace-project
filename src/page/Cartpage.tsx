@@ -1,13 +1,14 @@
 import useCartList from 'hooks/useCartList';
 import * as S from '../styledComponent/styledCart/StCart';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import CartEmpty from 'components/Cart/CartEmpty';
 import ProgressIndicator from 'components/Cart/ProgressIndicator';
 import { useNavigate } from 'react-router-dom';
 import { TypeCart } from 'Type/TypeInterface';
-import { query } from 'firebase/firestore';
+import { RootState } from 'redux/configStore';
 import { useQueryClient } from 'react-query';
-
+import { useDispatch, useSelector } from 'react-redux';
+import { setSelectedItems11 } from '../redux/modules/Cart/cartSlice';
 const getSelectedTotalPrice = (cartList: TypeCart[]) => {
   let totalPrice = 0;
   cartList.forEach((cartItem) => {
@@ -27,8 +28,12 @@ const Cartpage = () => {
   } = useCartList();
   const [selectAll, setSelectAll] = useState<boolean>(false);
   const [selectedItems, setSelectedItems] = useState<TypeCart[]>([]);
+  const [a, setA] = useState<TypeCart[]>([]);
   const title = '장바구니';
-
+  const dispatch = useDispatch();
+  const selectedItems11 = useSelector(
+    (state: RootState) => state.cartSlice.selectedItems,
+  );
   const queryClient = useQueryClient();
 
   // 총 상품 금액 계산
@@ -41,15 +46,16 @@ const Cartpage = () => {
   const totalPayment = totalPrice + shippingCost;
   const navigate = useNavigate();
 
-  //채크박스 변하는 핸들러
+  //채크박스 하나씩 변하는 핸들러
   const checkboxChangeHanlder = (itemId: number) => {
     const updatedCartList = cartList.map((item) =>
       item.productId === itemId ? { ...item, selected: !item.selected } : item,
     );
     setCartList(updatedCartList);
 
-    const selectedItems = updatedCartList.filter((item) => item.selected);
-    setSelectedItems(selectedItems);
+    const selectedItems1 = updatedCartList.filter((item) => item.selected);
+    setSelectedItems(selectedItems1);
+    dispatch(setSelectedItems11(selectedItems1));
   };
   //체크박스 전체선택
   const selectAllChangeHandler = () => {
@@ -60,9 +66,9 @@ const Cartpage = () => {
     setCartList(updatedCartList);
     setSelectAll(!selectAll);
 
-    const selectedItems = updatedCartList.filter((item) => item.selected);
-    setSelectedItems(selectedItems);
-    console.log('전체선택', selectedItems);
+    const selectedItems1 = updatedCartList.filter((item) => item.selected);
+    setSelectedItems(selectedItems1);
+    dispatch(setSelectedItems11(selectedItems1));
   };
   //장바구니 수량 추가
   const increaseQuantityHandler = (itemId: number) => {
@@ -105,14 +111,18 @@ const Cartpage = () => {
 
     // 선택 상태 초기화
     setSelectAll(false);
-    setSelectedItems([]);
+    setSelectedItems11([]);
 
     // 장바구니 데이터 다시 불러오기
     // 캐쉬를 전역상태로 관리하고있고
     //다시 갱신하라
     queryClient.invalidateQueries('cartList');
   };
-
+  useEffect(() => {
+    console.log('----------------------------');
+    console.log('selectedItems11', selectedItems11);
+    console.log('selectedItems', selectedItems);
+  }, [selectedItems]);
   return (
     <S.CartContainer>
       {cartList.length == 0 ? (
@@ -146,13 +156,13 @@ const Cartpage = () => {
                         }
                       />
                       <label htmlFor={`checkbox${cartItem.productId}`} />
-                    </>
-                    <S.Image src={`${cartItem.img}`}></S.Image>
 
-                    <div className="titleWrapper">
-                      <div className="title">{cartItem.title}</div>
-                    </div>
-                    <>
+                      <S.Image src={`${cartItem.img}`}></S.Image>
+
+                      <div className="titleWrapper">
+                        <div className="title">{cartItem.title}</div>
+                      </div>
+
                       <div className="circleArea">
                         <div
                           className="circle"
@@ -204,13 +214,14 @@ const Cartpage = () => {
                     </div>
                   </S.CartWrapper>
                 ))}
+                <S.DeleteButton
+                  onClick={removeSelectedItemsHandler}
+                  disabled={selectedItems.length === 0}
+                >
+                  삭제하기
+                </S.DeleteButton>
               </S.CartList>
-              <S.PaymentButton
-                onClick={removeSelectedItemsHandler}
-                disabled={selectedItems.length === 0}
-              >
-                삭제하기
-              </S.PaymentButton>
+
               <S.TotalAmount>
                 <div>
                   <div className="div1">상품금액</div>

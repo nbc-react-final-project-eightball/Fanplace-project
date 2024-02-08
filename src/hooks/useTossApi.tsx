@@ -17,7 +17,6 @@ interface TossPaymentMethodsWidget {
 }
 
 interface TossPaymentRequestOptions {
-  // userId도 추가
   orderId: string;
   orderName: string;
   customerName: string;
@@ -26,7 +25,6 @@ interface TossPaymentRequestOptions {
   failUrl: string;
 }
 
-// 카트페이지에서 useTossPayment를 사용하지 말던가
 const useTossPayment = ({
   clientKey,
   customerKey,
@@ -40,15 +38,13 @@ const useTossPayment = ({
     const paymentMethodsWidget = paymentWidget.renderPaymentMethods(
       '#payment-widget',
       totalPrice,
-      // { variantKey: 'widgetA' },
+      { variantKey: 'widgetA' },
     );
     paymentWidgetRef.current = paymentWidget;
     paymentMethodsWidgetRef.current = paymentMethodsWidget;
   };
 
   useEffect(() => {
-    // 카트 페이지에서 얘가 실행되지 않게 하던가
-    // url이 /payment일 때만 실행되게
     initializeTossPayment(defaultTotalPrice);
   }, [defaultTotalPrice]);
 

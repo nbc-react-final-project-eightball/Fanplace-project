@@ -47,18 +47,6 @@ export interface TypeCart {
   quantity: number; // 선택된수량
   selected: boolean; // 체크박스 선택 T/F
   productId: number; //제품고유id
-}
-
-//
-export interface TypeCart2 {
-  id: string;
-  category: string; //카테고리
-  img: string; //이미지
-  artist: string; //아티스트
-  title: string; //상품이름
-  price: number; //가격
-  quantity: number; // 선택된수량
-  selected: boolean; // 체크박스 선택 T/F
-  productId: number; //제품고유id
-  isSelected: boolean; //체크박스 선택됐냐안됐냐
+  orderId?: string;
+  totalPayment?: number;
 }

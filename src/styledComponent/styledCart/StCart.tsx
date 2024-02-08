@@ -247,6 +247,22 @@ export const PaymentButton = styled.button`
       cursor: not-allowed;
     `}
 `;
+export const DeleteButton = styled.button`
+  width: 30%;
+  height: 48px;
+  text-align: center;
+  flex-shrink: 0;
+  border-radius: 28px;
+  background: var(--color-primary);
+  color: var(--color-white);
+  ${({ disabled }) =>
+    disabled &&
+    css`
+      background: var(--color-medium-gray-be);
+      cursor: not-allowed;
+    `}
+`;
+
 export const CartList = styled.ul`
   gap: 20px;
   li:first-child {
