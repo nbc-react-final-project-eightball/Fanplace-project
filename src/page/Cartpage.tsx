@@ -19,7 +19,7 @@ const getSelectedTotalPrice = (cartList: TypeCart[]) => {
   return totalPrice;
 };
 
-const Cartpage = () => {
+const CartPage = () => {
   const {
     cartList,
     setCartList,
@@ -317,4 +317,4 @@ const Cartpage = () => {
   );
 };
 
-export default Cartpage;
+export default CartPage;

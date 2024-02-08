@@ -12,7 +12,6 @@ import ShippingPage from 'page/ShippingPage';
 import ProfileSettingsPage from 'page/ProfileSettingsPage';
 import Detail from 'page/Detail';
 import NotFound from 'page/NotFound';
-
 import PaymentSuccess from 'page/PaymentSuccess';
 import ChatListPage from 'page/ChatListPage';
 import Artists from 'page/Artists';
