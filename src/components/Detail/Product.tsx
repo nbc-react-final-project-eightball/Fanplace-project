@@ -270,7 +270,7 @@ const Product: React.FC<ProductProps> = ({ product }) => {
                     maxLength={100}
                   />
                   <S.DetailReviewBtn type="submit" aria-label="리뷰 저장">
-                    저 장
+                    리뷰 등록
                   </S.DetailReviewBtn>
                 </S.DetailReviewFormSection1>
               </S.DetailReviewForm>
@@ -281,11 +281,19 @@ const Product: React.FC<ProductProps> = ({ product }) => {
                 <S.DetailReviewList>
                   {reviews.map((review: Review) => (
                     <S.DetailReviewContent key={review.productId}>
-                      <S.DetailReviewImg
-                        src={review.photoURL}
-                        alt="프로필 이미지"
-                        referrerPolicy="no-referrer"
-                      />
+                      {review.photoURL === null ? (
+                        <S.DetailReviewImg
+                          src="../../img/MainTopCarouseImg/TopC1.webp"
+                          alt="프로필1 이미지"
+                          referrerPolicy="no-referrer"
+                        />
+                      ) : (
+                        <S.DetailReviewImg
+                          src={review.photoURL}
+                          alt="프로필2 이미지"
+                          referrerPolicy="no-referrer"
+                        />
+                      )}
                       <S.DetailReviewContentSectionContainer>
                         <S.DetailReviewContentSection1>
                           <S.DetailReviewContentSection1_1>
@@ -301,7 +309,33 @@ const Product: React.FC<ProductProps> = ({ product }) => {
                                   handleReviewDelete(review.reviewsId);
                                 }}
                               >
-                                X
+                                <svg
+                                  width="14"
+                                  height="14"
+                                  viewBox="0 0 14 14"
+                                  fill="none"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                >
+                                  <g clip-path="url(#clip0_41_1369)">
+                                    <path
+                                      d="M16 16L-2 -2M-2 16L16 -2"
+                                      stroke="var(--color-primary-medium-99)"
+                                      stroke-width="1.5"
+                                      stroke-linecap="round"
+                                      stroke-linejoin="round"
+                                    />
+                                  </g>
+                                  <defs>
+                                    <clipPath id="clip0_41_1369">
+                                      <rect
+                                        width="14"
+                                        height="14"
+                                        fill="white"
+                                        transform="matrix(1 0 0 -1 0 14)"
+                                      />
+                                    </clipPath>
+                                  </defs>
+                                </svg>
                               </S.DetailReviewDeleteBtn>
                             )}
                           </S.DetailReviewContentSection1_1>
@@ -316,7 +350,7 @@ const Product: React.FC<ProductProps> = ({ product }) => {
                                     width="20"
                                     height="20"
                                     viewBox="0 0 14 13"
-                                    fill="#FFD700"
+                                    fill="var(--color-accent)"
                                   >
                                     {
                                       <path

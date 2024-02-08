@@ -21,7 +21,7 @@ export const PaymentProcess = styled.div`
   color: var(--color-primary-medium-99);
   font-weight: 400;
   span:last-child {
-    color: #777777;
+    color: var(--color-primary-medium-77);
     font-weight: 600;
     font-size: 18px;
   }

@@ -128,12 +128,17 @@ export const ArtistFilterReset = styled.button`
   color: #a8a8a8;
 `;
 export const Cate = styled.h2`
+  display: flex;
+  align-items: center;
   font-size: 20px;
   color: var(--color-primary-medium-33);
   span {
-    margin-left: 10px;
+    margin-left: 8px;
     font-weight: normal;
-    color: #777777;
+    color: var(--color-primary-medium-77);
+  }
+  > span {
+    font-size: 16px;
   }
 `;
 

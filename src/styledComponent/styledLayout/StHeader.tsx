@@ -148,11 +148,17 @@ interface SearchProps {
 export const Searchinput = styled.input<SearchProps>`
   display: flex;
   justify-content: center;
-  padding: 0.375rem;
+  padding: 0.375rem 1rem;
   background: var(--color-white);
   border-radius: 4rem;
   position: absolute;
-  left: -150px;
+  border: 2px solid var(--color-medium-gray-dd);
+  width: 220px;
+  height: 40px;
+  top: 50%;
+  transform: translateY(-50%);
+  left: -170px;
+  outline: unset;
   visibility: ${(props) => (props.$setchClick ? 'visible' : 'hidden')};
   opacity: ${(props) => (props.$setchClick ? 1 : 0)};
   transition: all 1s ease-in-out;
